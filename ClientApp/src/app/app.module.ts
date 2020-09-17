@@ -9,11 +9,15 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 
-import { BeerListComponent } from './beerList/beer-list.component';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { BeerListComponent } from './beer-list/beer-list.component';
+import { MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { BeerDetailComponent } from './beer-detail/beer-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, BeerListComponent],
+  declarations: [
+    AppComponent,
+    BeerListComponent,
+    BeerDetailComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -21,6 +25,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     MaterialModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
     RouterModule.forRoot([
       { path: '', component: BeerListComponent, pathMatch: 'full' },
       { path: 'list', component: BeerListComponent },

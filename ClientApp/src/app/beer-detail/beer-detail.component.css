@@ -1,0 +1,8 @@
+.beer-details-image{
+ max-width: 400pt;
+ max-height: 400pt;
+}
+
+mat-card-content > p {
+    max-width: 400pt;
+}

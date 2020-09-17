@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+}
+
+.list-container{
+  width: 50%;
+}
+
+.beer-detail-card{
+  padding: 20pt 20pt 20pt 20pt;
+}
