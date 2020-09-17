@@ -1,0 +1,14 @@
+.beer-container {
+  position: relative;
+  min-height: 200px;
+  margin-bottom: 20px;
+}
+
+.beer-table-container {
+  position: relative;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
