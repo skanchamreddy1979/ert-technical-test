@@ -7,6 +7,6 @@ import { BeersService } from '../services/beers-service';
 export class BeersListResolver implements Resolve<any> {
     constructor(private service: BeersService) { }
     resolve(): Observable<any> {
-        return this.service.listbeers(1);
+        return this.service.listbeers('', 1);
     }
 }

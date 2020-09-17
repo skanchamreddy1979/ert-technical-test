@@ -17,7 +17,6 @@ export class ListComponent implements OnInit, OnDestroy {
   public dataSource = new MatTableDataSource<any>([]);
   private listSubscription: Subscription;
   private infoSubscription: Subscription;
-  private searchSubscription: Subscription;
   private listofSubscription: Subscription;
   private paginationSubscription: Subscription;
 
@@ -35,22 +34,19 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   public getFilterData(event: any) {
-    if (event.target.value === '' || event.target.value === null) {
-      this.listofSubscription = this.beersService.listbeers(1).subscribe((response) => {
+    this.listofSubscription = this.beersService.listbeers(event.target.value === '' ? '' : event.target.value, 1)
+      .subscribe((response) => {
         this.bindDatasource(response);
       });
-    } else {
-      this.searchSubscription = this.beersService.searchbeer(event.target.value).subscribe((response) => {
-        this.bindDatasource(response);
-      });
-    }
   }
 
   public getPagintion(event: PageEvent) {
-    this.paginationSubscription = this.beersService.listbeers(event.pageIndex === 0 ? 1 : event.pageIndex, event.pageSize)
-    .subscribe((response) => {
-      this.bindDatasource(response);
-    });
+    this.paginationSubscription = this.beersService.listbeers('',
+      event.pageIndex === 0 ? 1 : event.pageIndex,
+      event.pageSize)
+      .subscribe((response) => {
+        this.bindDatasource(response);
+      });
   }
 
   public openBeerInfo(id: any) {
@@ -68,7 +64,6 @@ export class ListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.listSubscription) { this.listSubscription.unsubscribe(); }
     if (this.infoSubscription) { this.infoSubscription.unsubscribe(); }
-    if (this.searchSubscription) { this.searchSubscription.unsubscribe(); }
     if (this.listofSubscription) { this.listofSubscription.unsubscribe(); }
     if (this.paginationSubscription) { this.paginationSubscription.unsubscribe(); }
   }

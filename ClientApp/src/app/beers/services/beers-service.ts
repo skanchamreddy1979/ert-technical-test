@@ -7,16 +7,18 @@ import { environment } from '../../../environments/environment';
 export class BeersService {
   constructor(private httpClient: HttpClient) { }
 
-  listbeers(pageIndex: number, pageSize: number = 30): Observable<any> {
-    return this.httpClient.get(environment.apiUrl + '/beers?page=' + pageIndex + '&per_page=' + pageSize);
+  listbeers(name: string, pageIndex: number, pageSize: number = 30): Observable<any> {
+    let urlParams = null;
+    if (name === null || name === '') {
+      urlParams = 'page=' + pageIndex + '&per_page=' + pageSize;
+    } else {
+      urlParams = 'beer_name=' + name;
+    }
+    return this.httpClient.get(environment.apiUrl + '/beers?' + urlParams);
   }
 
   openbeer(id: number): Observable<any> {
     return this.httpClient.get(environment.apiUrl + '/beers/' + id);
-  }
-
-  searchbeer(name: string): Observable<any> {
-    return this.httpClient.get(environment.apiUrl + '/beers?beer_name=' + name);
   }
 
 }
