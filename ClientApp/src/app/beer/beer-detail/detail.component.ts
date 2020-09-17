@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Beer } from 'src/app/interface/beer';
-import { BeerService } from 'src/app/services/beer/beer.service';
+import { Beer } from 'src/app/beer/interface/beer';
+import { BeerService } from 'src/app/beer/services/beer/beer.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({

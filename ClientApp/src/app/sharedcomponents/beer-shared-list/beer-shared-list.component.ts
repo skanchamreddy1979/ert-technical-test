@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Beer } from 'src/app/interface/beer';
+import { Beer } from 'src/app/beer/interface/beer';
 
 @Component({
   selector: 'app--shared-list',

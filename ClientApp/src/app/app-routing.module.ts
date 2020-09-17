@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DetailComponent } from './beer/detail/detail.component';
-import { FavouritesComponent } from './beer/favourites/favourites.component';
-import { ListComponent } from './beer/list/list.component';
+import { DetailComponent } from './beer/beer-detail/detail.component';
+import { FavouritesComponent } from './beer/beer-favourites/favourites.component';
+import { ListComponent } from './beer/beer-list/beer-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 

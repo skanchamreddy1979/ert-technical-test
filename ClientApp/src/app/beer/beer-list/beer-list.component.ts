@@ -2,14 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
-import { Beer } from 'src/app/interface/beer';
-import { BeerService } from 'src/app/services/beer/beer.service';
+import { Beer } from 'src/app/beer/interface/beer';
+import { BeerService } from 'src/app/beer/services/beer/beer.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
+  templateUrl: './beer-list.component.html',
+  styleUrls: ['./beer-list.component.css'],
 })
 export class ListComponent implements OnInit, OnDestroy {
   beers: Beer[] = [];

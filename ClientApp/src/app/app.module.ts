@@ -8,9 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ListComponent } from './beer/list/list.component';
-import { DetailComponent } from './beer/detail/detail.component';
-import { FavouritesComponent } from './beer/favourites/favourites.component';
+import { ListComponent } from './beer/beer-list/beer-list.component';
+import { DetailComponent } from './beer/beer-detail/detail.component';
+import { FavouritesComponent } from './beer/beer-favourites/favourites.component';
 import { httpInterceptorProviders } from './core/interceptor';
 
 import { HeaderComponent } from './sharedcomponents/header/header.component';
