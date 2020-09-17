@@ -13,9 +13,10 @@ import { ListComponent } from './list/list.component';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SearchComponent } from './search/search.component';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent, SearchComponent],
+  declarations: [AppComponent, ListComponent, WelcomeComponent, SearchComponent, DetailComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -24,6 +25,7 @@ import { SearchComponent } from './search/search.component';
     RouterModule.forRoot([
       { path: '', component: WelcomeComponent, pathMatch: 'full' },
       { path: 'list', component: ListComponent },
+      { path: 'detail/:id', component: DetailComponent }
     ]),
     BrowserAnimationsModule,
   ],

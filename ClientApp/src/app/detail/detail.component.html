@@ -1,1 +1,23 @@
-<p>detail works!</p>
+<div *ngIf="beer" class="row">
+    <mat-toolbar>Beer Details</mat-toolbar>
+    <!-- <h1 class="mat-h1 news-caption">NEWS LIST</h1> -->
+    <div class="row sources-wrapper">
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>
+                    <h4 class="mat-h4 card-title">{{beer.name}}</h4>
+                </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class="img-wrapper" [src]="beer.imgUrl" />
+            <mat-card-content>
+                <p>
+                    <b>Description: </b> {{beer.description}}
+                </p>
+                <mat-divider [inset]="true"></mat-divider>
+                <p>
+                    <b>ABV: </b> {{beer.abv}}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

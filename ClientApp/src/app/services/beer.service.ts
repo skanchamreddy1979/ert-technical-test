@@ -12,14 +12,20 @@ export class BeerService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  getBeerList(): Observable<Beer[]> {
-    const params = new HttpParams()
-    // .set('apiKey', this._apiKey)
-    // .set('sources', newsSourceId);
+  getBeerList(beerName?: string): Observable<Beer[]> {
+    let params;
+    if (beerName) {
+      params = { 'beer_name': beerName };
+    }
 
     return this._httpClient.get<Beer[]>(`${this._punkapiUrl}/beers`, { params }).pipe(map(beerList => {
       return beerList.map(item => Beer.fromDto(item));
     }));
   }
 
+  getSingleBeer(beerId: number): Observable<Beer> {
+    return this._httpClient.get<Beer[]>(`${this._punkapiUrl}/beers/${beerId}`).pipe(map(singleBeer => {
+      return Beer.fromDto(singleBeer.shift());
+    }));
+  }
 }

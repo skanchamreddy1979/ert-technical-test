@@ -15,7 +15,6 @@ export class ListComponent implements AfterViewInit, OnInit, OnDestroy {
   constructor(private _beerService: BeerService) { }
 
   private isAlive = true;
-  private searchInput = '';
 
   displayedColumns: string[] = ['name', 'tagLine', 'firstBrewed', 'abv'];
   dataSource = new MatTableDataSource<Beer>();
@@ -31,11 +30,11 @@ export class ListComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   onSearchChange(searchInput: string) {
-    this.dataSource.filter = searchInput;
+    this.initBeerList(searchInput);
   }
 
-  private initBeerList(): void {
-    this._beerService.getBeerList()
+  private initBeerList(beerName?: string): void {
+    this._beerService.getBeerList(beerName)
       .pipe(takeWhile(() => this.isAlive))
       .subscribe(data => {
         this.dataSource.data = data;
