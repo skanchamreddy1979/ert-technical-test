@@ -6,11 +6,11 @@ import { BeerService } from 'src/app/beer/services/beer/beer.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  selector: 'app-beer-detail',
+  templateUrl: './beer-detail.component.html',
+  styleUrls: ['./beer-detail.component.css']
 })
-export class DetailComponent implements OnInit, OnDestroy {
+export class BeerDetailComponent implements OnInit, OnDestroy {
   private beerSubscription: Subscription;
   private routeSubscription: Subscription;
   beer: Beer;

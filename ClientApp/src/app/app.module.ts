@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './beer/beer-list/beer-list.component';
-import { DetailComponent } from './beer/beer-detail/detail.component';
+import { BeerDetailComponent } from './beer/beer-detail/beer-detail.component';
 import { FavouritesComponent } from './beer/beer-favourites/favourites.component';
 import { httpInterceptorProviders } from './core/interceptor';
 
@@ -24,7 +24,7 @@ import { BeerSharedListComponent } from './sharedcomponents/beer-shared-list/bee
   declarations: [
     AppComponent,
     ListComponent,
-    DetailComponent,
+    BeerDetailComponent,
     FavouritesComponent,
     WelcomeComponent,
     HeaderComponent,
