@@ -1,0 +1,9 @@
+C:\ERT\Application\bin\Debug\netcoreapp3.1\Application.deps.json
+C:\ERT\Application\bin\Debug\netcoreapp3.1\Application.dll
+C:\ERT\Application\bin\Debug\netcoreapp3.1\Application.pdb
+C:\ERT\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache
+C:\ERT\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfoInputs.cache
+C:\ERT\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfo.cs
+C:\ERT\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
+C:\ERT\Application\obj\Debug\netcoreapp3.1\Application.dll
+C:\ERT\Application\obj\Debug\netcoreapp3.1\Application.pdb
