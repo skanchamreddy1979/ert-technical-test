@@ -9,20 +9,17 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 
-import { ListComponent } from './list/list.component';
-
-import { WelcomeComponent } from './welcome/welcome.component';
+import { BeerListComponent } from './components/beer-list/beer-list.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
+  declarations: [AppComponent, BeerListComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: '', component: ListComponent, pathMatch: 'full' },
-      { path: 'list', component: WelcomeComponent },
+      { path: '', component: BeerListComponent, pathMatch: 'full' }
     ]),
     BrowserAnimationsModule,
   ],
