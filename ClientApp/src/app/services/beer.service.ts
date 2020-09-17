@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Beer } from '../models/beer.model';
@@ -10,7 +10,14 @@ export class BeerService {
 
   constructor(private _http: HttpClient) { }
 
-  getBeers(): Observable<Beer[]> {
-    return this._http.get<Beer[]>('https://api.punkapi.com/v2/beers');
+  getBeers(beerNameFilter?: string): Observable<Beer[]> {
+
+    let params = new HttpParams();
+
+    if (beerNameFilter != null) {
+      params = params.set('beer_name', beerNameFilter);
+    }
+
+    return this._http.get<Beer[]>('https://api.punkapi.com/v2/beers', { params });
   }
 }

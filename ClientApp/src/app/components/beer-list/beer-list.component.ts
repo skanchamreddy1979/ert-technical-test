@@ -7,7 +7,6 @@ import { BeerService } from 'src/app/services/beer.service';
   templateUrl: './beer-list.component.html',
   styleUrls: ['./beer-list.component.css']
 })
-
 export class BeerListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'tagline', 'first_brewed', 'abv'];
   beers: Beer[] = [];
@@ -15,7 +14,16 @@ export class BeerListComponent implements OnInit {
   constructor(private beerService: BeerService) { }
 
   ngOnInit(): void {
-    this.beerService.getBeers()
+    this.loadBeers();
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.loadBeers(filterValue);
+  }
+
+  private loadBeers(beerNameFilter?: string) {
+    this.beerService.getBeers(beerNameFilter)
       .subscribe(beers => this.beers = beers);
   }
 }
