@@ -1,0 +1,33 @@
+<div class="mat-elevation-z8">
+  <div>
+    <mat-form-field class="filterInput">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by beer name">
+    </mat-form-field>
+  </div>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="tagline">
+      <th mat-header-cell *matHeaderCellDef>Tagline</th>
+      <td mat-cell *matCellDef="let element">{{ element.tagline }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="first_brewed">
+      <th mat-header-cell *matHeaderCellDef>First brewed</th>
+      <td mat-cell *matCellDef="let element">{{ element.first_brewed }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="abv">
+      <th mat-header-cell *matHeaderCellDef>Abv</th>
+      <td mat-cell *matCellDef="let element">{{ element.abv }}</td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+</div>
