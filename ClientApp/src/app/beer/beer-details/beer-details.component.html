@@ -1,0 +1,14 @@
+<div>
+  <h2 class="header">Beer Information - {{this.beerData?.name}}</h2>
+</div>
+
+<div class="header">  
+  <img [src]="this.beerData?.image_url" class="imageSize">
+  <ul>
+    <li> <strong>Name :</strong> {{this.beerData?.name}} </li>
+    <li> <strong>Abv :</strong> {{this.beerData?.abv}} </li>
+    <li> <strong>Description :</strong> {{this.beerData?.description}} </li>
+  </ul>
+</div>
+<div class="header"><button (click)="back()">Back To Beers</button></div>
+
