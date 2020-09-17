@@ -36,4 +36,5 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
+  <mat-paginator [length]="totalBeersCount" [pageSize]="pageSize"></mat-paginator>
 </div>
