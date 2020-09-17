@@ -4,4 +4,6 @@ export interface Beer {
   tagline: string;
   first_brewed: string;
   abv: number;
+  description: string;
+  image_url: string;
 }

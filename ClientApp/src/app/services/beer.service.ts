@@ -27,4 +27,13 @@ export class BeerService {
       })
     );
   }
+
+  getBeerById(id: number): Observable<Beer> {
+    return this._http.get<Beer>(`https://api.punkapi.com/v2/beers/?ids=${id}`)
+      .pipe(
+        map(data => {
+          return data[0];
+        })
+      );
+  }
 }
