@@ -21,12 +21,12 @@ import { WelcomeComponent } from './welcome/welcome.component';
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
+      { path: '', component: ListComponent, pathMatch: 'full' },
+      { path: 'list', component: WelcomeComponent },
     ]),
     BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
