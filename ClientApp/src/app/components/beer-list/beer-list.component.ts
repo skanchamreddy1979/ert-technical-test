@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material';
 import { Beer } from 'src/app/models/beer.model';
 import { BeerService } from 'src/app/services/beer.service';
 import { tap } from 'rxjs/operators';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-beer-list',
@@ -10,12 +11,17 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./beer-list.component.css']
 })
 export class BeerListComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['name', 'tagline', 'first_brewed', 'abv'];
+  displayedColumns: string[] = ['select', 'name', 'tagline', 'first_brewed', 'abv'];
+  selection = new SelectionModel<Beer>(true, []);
   beers: Beer[] = [];
 
   // hard coded value since it is not clear how to return total row count using beers api
   totalBeersCount = 325;
   pageSize = 10;
+
+  get selected_rows(): Beer[] {
+    return this.selection.selected;
+  }
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 

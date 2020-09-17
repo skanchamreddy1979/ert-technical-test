@@ -16,3 +16,9 @@ table {
 .mat-form-field {
   width: 100%;
 }
+
+.mat-save-button-container {
+  display:flex;
+  justify-content:flex-end;
+  align-items:flex-end;
+}

@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [],
@@ -20,6 +20,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCheckboxModule
   ],
   exports: [
     MatButtonModule,
@@ -28,6 +29,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCheckboxModule
   ],
 })
 export class MaterialModule { }
