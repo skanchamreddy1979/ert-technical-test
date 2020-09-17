@@ -7,15 +7,15 @@ import { BeerService } from 'src/app/beer/services/beer/beer.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-beer-list',
   templateUrl: './beer-list.component.html',
   styleUrls: ['./beer-list.component.css'],
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class BeerListComponent implements OnInit, OnDestroy {
   beers: Beer[] = [];
   beersAll: Beer[] = [];
   beersFiltered: Beer[] = [];
-  private beerSubscription: Subscription;
+  private subscription: Subscription;
   filter = new FormControl('');
   page = 1;
   pageSize = 10;
@@ -31,7 +31,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
   getAllBeers() {
     this.loaderService.setSpinner(true);
-    this.beerSubscription = this.beerService.getAllBeers().subscribe(result => {
+    this.subscription= this.beerService.getAllBeers().subscribe(result => {
       console.log(result);
       this.beersFiltered = this.beersAll = result;
       this.collectionSize = this.beersAll.length;
@@ -58,8 +58,8 @@ export class ListComponent implements OnInit, OnDestroy {
     this.filterBeers(this.beersFiltered);
   }
   ngOnDestroy() {
-    if (this.beerSubscription) {
-      this.beerSubscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }

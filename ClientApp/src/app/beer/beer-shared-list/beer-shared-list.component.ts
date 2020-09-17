@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Beer } from 'src/app/beer/interface/beer';
 
 @Component({
-  selector: 'app--shared-list',
+  selector: 'app-shared-list',
   templateUrl: './beer-shared-list.component.html',
   styleUrls: ['./beer-shared-list.component.css']
 })

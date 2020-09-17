@@ -11,8 +11,8 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
   styleUrls: ['./beer-detail.component.css']
 })
 export class BeerDetailComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   private beerSubscription: Subscription;
-  private routeSubscription: Subscription;
   beer: Beer;
   id: number;
   constructor(
@@ -23,14 +23,14 @@ export class BeerDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.routeSubscription = this.activatedRoute.params.subscribe(params => {
+    this.subscription=  this.activatedRoute.params.subscribe(params => {
       this.id = +atob(params.id);
       this.getBeer();
     });
   }
   getBeer() {
     this.loaderService.setSpinner(true);
-    this.beerSubscription = this.beerService.getBeerById(this.id).subscribe(result => {
+    this.beerSubscription= this.beerService.getBeerById(this.id).subscribe(result => {
       console.log(result);
       this.beer = result[0];
       this.loaderService.setSpinner(false);
@@ -40,11 +40,11 @@ export class BeerDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['beerlist']);
   }
   ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
     if (this.beerSubscription) {
       this.beerSubscription.unsubscribe();
-    }
-    if (this.routeSubscription) {
-      this.routeSubscription.unsubscribe();
     }
   }
 

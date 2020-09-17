@@ -5,7 +5,7 @@
     </div>
   </form>
 
- <app--shared-list  [beers]="beers"></app--shared-list>
+ <app-shared-list  [beers]="beers"></app-shared-list>
   <div class="d-flex justify-content-between p-2">
     <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshBeers()">
     </ngb-pagination>

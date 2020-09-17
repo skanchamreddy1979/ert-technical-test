@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ListComponent } from './beer/beer-list/beer-list.component';
+import { BeerListComponent } from './beer/beer-list/beer-list.component';
 import { BeerDetailComponent } from './beer/beer-detail/beer-detail.component';
 import { FavouritesComponent } from './beer/beer-favourites/favourites.component';
 import { httpInterceptorProviders } from './core/interceptor';
@@ -18,12 +18,12 @@ import { LoaderComponent } from './sharedcomponents/loader/loader.component';
 import { FooterComponent } from './sharedcomponents/footer/footer.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BeerSharedListComponent } from './sharedcomponents/beer-shared-list/beer-shared-list.component';
+import { BeerSharedListComponent } from './beer/beer-shared-list/beer-shared-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent,
+    BeerListComponent,
     BeerDetailComponent,
     FavouritesComponent,
     WelcomeComponent,
