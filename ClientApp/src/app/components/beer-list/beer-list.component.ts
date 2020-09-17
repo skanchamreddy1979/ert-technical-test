@@ -2,9 +2,9 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { MatPaginator } from '@angular/material';
 import { Beer } from 'src/app/models/beer.model';
 import { BeerService } from 'src/app/services/beer.service';
-import { takeUntil, tap } from 'rxjs/operators';
+import { catchError, takeUntil, tap } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Subject } from 'rxjs';
+import { of, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-beer-list',
@@ -56,7 +56,12 @@ export class BeerListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private loadBeers(pageIndex: number, pageSize: number, beerNameFilter?: string) {
     this.beerService.getBeers(pageIndex, pageSize, beerNameFilter)
-      .pipe(takeUntil(this.notifier))
+      .pipe(
+        catchError((error) => {
+          console.log('An error has occured', error);
+          return of(null);
+        }),
+        takeUntil(this.notifier))
       .subscribe(beers => {
         this.beers = beers;
       });
