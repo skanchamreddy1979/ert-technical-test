@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Beer } from 'src/app/models/beer.model';
 import { BeerService } from 'src/app/services/beer.service';
 
@@ -8,8 +10,8 @@ import { BeerService } from 'src/app/services/beer.service';
   templateUrl: './beer.component.html',
   styleUrls: ['./beer.component.css']
 })
-export class BeerComponent implements OnInit {
-
+export class BeerComponent implements OnInit, OnDestroy {
+  notifier = new Subject();
   beer: Beer;
   beerId: number;
 
@@ -18,13 +20,15 @@ export class BeerComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.beerId);
-    this.beerService
-      .getBeerById(this.beerId)
+    this.beerService.getBeerById(this.beerId)
+      .pipe(takeUntil(this.notifier))
       .subscribe(beer => {
-        console.log(beer);
         this.beer = beer;
       });
   }
 
+  ngOnDestroy() {
+    this.notifier.next();
+    this.notifier.complete();
+  }
 }
