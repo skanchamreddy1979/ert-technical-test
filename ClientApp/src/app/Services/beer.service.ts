@@ -10,7 +10,7 @@ export class BeerService {
 
   constructor(private http: HttpClient) { }
 
-  getBeersWithPagination(page: number, perPage: number){
+  getBeersWithPagination(page: number, perPage: number) {
     return this.http.get('https://api.punkapi.com/v2/beers', { params: { page: `${page}`, per_page: `${perPage}` } });
   }
 
@@ -18,12 +18,12 @@ export class BeerService {
     return this.http.get('https://api.punkapi.com/v2/beers', { params: { brewed_before: `${brewedBefore}`, abv_gt: `${abvGt}` } });
   }
 
-  getBeerById(id: string){
+  getBeerById(id: string) {
     return this.http.get( `https://api.punkapi.com/v2/beers/${id}`);
   }
 
   getBeer() {
-   return this.http.get('https://api.punkapi.com/v2/beers')
+   return this.http.get('https://api.punkapi.com/v2/beers');
   }
 
 }
