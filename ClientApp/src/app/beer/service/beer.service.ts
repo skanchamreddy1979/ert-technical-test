@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,16 @@ import { environment } from 'src/environments/environment';
 export class BeerService {
 
   constructor(private http: HttpClient) { }
+
+  private apiUrl = environment.apiUrl;
   getBeers(): Observable<any> {
-    return this.http.get(environment.apiUrl + '/beers');
+    return this.http.get(this.apiUrl).pipe(catchError(this.handleError));
   }
-  getBeerById(id): Observable<any> {
-    return this.http.get(environment.apiUrl + '/beers/' + id);
+  getBeerById(id: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`).pipe(catchError(this.handleError));
   }
+  handleError(error: HttpErrorResponse): Observable<never> {
+    return throwError(error.message);
+  }
+
 }
