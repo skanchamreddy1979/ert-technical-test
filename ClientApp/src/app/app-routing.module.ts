@@ -10,8 +10,8 @@ const routes: Routes = [
   { path: 'details/:id', component: BeerDetailsComponent },
   { path: 'favorite', component: FavoriteBeersComponent },
   { path: 'favorites', component: FavoriteBeersComponent },
-  { path: '', component: DashboardComponent }
-
+  { path: '', component: DashboardComponent },
+  { path: '**', component: DashboardComponent }
 ];
 
 @NgModule({
