@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
 
   filter = new FormControl('');
   beers: Beer[] = [];
-  _beers: Beer[] = [];
+  beersToFilter: Beer[] = [];
   page = 1;
   pageSize = 10;
   collectionSize: number;
@@ -39,12 +39,12 @@ export class DashboardComponent implements OnInit {
   refreshCountries() {
     return this.beerservice.getBeersWithPagination(this.page, this.pageSize).subscribe(
       (result: Beer[]) => {
-        this.beers = this._beers = result;
+        this.beers = this.beersToFilter = result;
       }
     );
   }
   search(text: string, pipe: PipeTransform): Beer[] {
-    return this._beers.filter(beer => {
+    return this.beersToFilter.filter(beer => {
       const term = text.toLowerCase();
       return beer.name.toLowerCase().includes(term);
     });

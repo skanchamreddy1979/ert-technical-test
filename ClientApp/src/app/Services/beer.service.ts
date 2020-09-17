@@ -10,18 +10,16 @@ export class BeerService {
 
   constructor(private http: HttpClient) { }
 
-  private _beers: Beer[];
-
-  getBeersWithPagination(page: number, per_page: number){
-    return this.http.get('https://api.punkapi.com/v2/beers', { params: { page: `${page}`, per_page: `${per_page}` } });
+  getBeersWithPagination(page: number, perPage: number){
+    return this.http.get('https://api.punkapi.com/v2/beers', { params: { page: `${page}`, per_page: `${perPage}` } });
   }
 
-  getBeersWithFilter(brewed_before: Date, abv_gt: number) {
-    return this.http.get('https://api.punkapi.com/v2/beers', { params: { brewed_before: `${brewed_before}`, abv_gt: `${abv_gt}` } });
+  getBeersWithFilter(brewedBefore: Date, abvGt: number) {
+    return this.http.get('https://api.punkapi.com/v2/beers', { params: { brewed_before: `${brewedBefore}`, abv_gt: `${abvGt}` } });
   }
 
   getBeerById(id: string){
-    return this.http.get(`https://api.punkapi.com/v2/beers/${id}`);
+    return this.http.get( `https://api.punkapi.com/v2/beers/${id}`);
   }
 
   getBeer() {
