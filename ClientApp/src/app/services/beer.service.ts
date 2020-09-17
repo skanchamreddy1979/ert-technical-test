@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { appUrlConfig } from '../app-config';
 import { Beer } from '../models/beer.model';
 
 @Injectable({
@@ -20,16 +21,11 @@ export class BeerService {
       params = params.set('beer_name', beerNameFilter);
     }
 
-    return this._http.get<Beer[]>('https://api.punkapi.com/v2/beers', { params }).pipe(
-      map(data => {
-        console.log(data);
-        return data;
-      })
-    );
+    return this._http.get<Beer[]>(appUrlConfig.beerApiUrl, { params });
   }
 
   getBeerById(id: number): Observable<Beer> {
-    return this._http.get<Beer>(`https://api.punkapi.com/v2/beers/?ids=${id}`)
+    return this._http.get<Beer>(`${appUrlConfig.beerApiUrl}?ids=${id}`)
       .pipe(
         map(data => {
           return data[0];
