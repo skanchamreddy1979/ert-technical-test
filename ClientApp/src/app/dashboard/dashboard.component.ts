@@ -26,7 +26,6 @@ export class DashboardComponent implements OnInit {
     this.filter.valueChanges.pipe(startWith(''), map(text => this.search(text, pipe))).subscribe(
       (result: Beer[]) => {
         this.beers = result;
-        localStorage.setItem('beers',  JSON.stringify(result));
       }
     );
   }
