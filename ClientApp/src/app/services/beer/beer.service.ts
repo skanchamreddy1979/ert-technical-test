@@ -5,14 +5,14 @@ import { HttpService } from 'src/app/core/http/http.service';
 @Injectable({
   providedIn: 'root'
 })
-export class BearService {
+export class BeerService {
 
   constructor(private httpService: HttpService) { }
 
-  getAllBears(): Observable<any> {
+  getAllBeers(): Observable<any> {
     return this.httpService.get('/beers');
   }
-  getBearById(id: number): Observable<any> {
+  getBeerById(id: number): Observable<any> {
     return this.httpService.get('/beers/' + id);
   }
 }

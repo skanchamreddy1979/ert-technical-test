@@ -25,7 +25,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.params.subscribe(params => {
       this.id = +atob(params.id);
-      this.getbeer();
+      this.getBeer();
     });
   }
   getBeer() {

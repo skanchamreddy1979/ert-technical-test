@@ -1,0 +1,20 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id #</th>
+      <th scope="col">Beer Name</th>
+      <th scope="col">Tagline</th>
+      <th scope="col">First Brewed</th>
+      <th scope="col">ABV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let beer of beers; index as i">
+      <th scope="row">{{ beer.id }}</th>
+      <td> <a (click)="details(beer.id)"> {{ beer.name }} </a></td>
+      <td>{{ beer.tagline }}</td>
+      <td>{{ beer.first_brewed  }}</td>
+      <td>{{ beer.abv  }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -16,7 +16,7 @@ import { httpInterceptorProviders } from './core/interceptor';
 import { HeaderComponent } from './sharedcomponents/header/header.component';
 import { LoaderComponent } from './sharedcomponents/loader/loader.component';
 import { FooterComponent } from './sharedcomponents/footer/footer.component';
-import { beerListComponent } from './sharedcomponents/beer-list/beer-list.component';
+import { BeerListComponent } from './sharedcomponents/beer-list/beer-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({

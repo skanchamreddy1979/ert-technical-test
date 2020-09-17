@@ -29,13 +29,13 @@ export class ListComponent implements OnInit, OnDestroy {
       this.search(text);
     });
   }
-  getAllbeers() {
+  getAllBeers() {
     this.loaderService.setSpinner(true);
     this.beerSubscription = this.beerService.getAllBeers().subscribe(result => {
       console.log(result);
       this.beersFiltered = this.beersAll = result;
       this.collectionSize = this.beersAll.length;
-      this.filterbeers(this.beersAll);
+      this.filterBeers(this.beersAll);
       this.loaderService.setSpinner(false);
     });
 
