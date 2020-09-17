@@ -12,9 +12,10 @@ import { MaterialModule } from './shared/material.module';
 import { ListComponent } from './list/list.component';
 
 import { WelcomeComponent } from './welcome/welcome.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
+  declarations: [AppComponent, ListComponent, WelcomeComponent, SearchComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

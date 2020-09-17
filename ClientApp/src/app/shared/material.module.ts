@@ -16,13 +16,13 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatTableModule,
+    MatTableModule
   ],
   exports: [
     MatButtonModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatTableModule,
+    MatTableModule
   ],
 })
 export class MaterialModule {}
