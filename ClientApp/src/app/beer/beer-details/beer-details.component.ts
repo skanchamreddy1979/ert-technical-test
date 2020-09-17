@@ -8,7 +8,7 @@ import { Beer } from '../models/beer.model';
 })
 export class BeerDetailsComponent implements OnInit {
 
-  public beerData: Beer;
+  beerData: Beer;
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
