@@ -1,16 +1,16 @@
 <p-table #dt [columns]="cols" [value]="beers" [paginator]="isPagination" [rows]="10" [rowsPerPageOptions]="[5,10,15,20]"
   totalRecords="totalRecords" pageLinks="3">
   <ng-template pTemplate="caption">
-    <div style="text-align: right">
-      <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+    <div class="right">
+      <i class="pi pi-search"></i>
       <input type="text" pInputText size="50" placeholder="Global Filter"
-        (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        (input)="dt.filterGlobal($event.target.value, 'contains')">
     </div>
   </ng-template>
 
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th *ngFor="let col of columns">
+      <th *ngFor="let col of columns"  [ngStyle]="{'width': col.width}">
         {{col.header}}
       </th>
     </tr>
@@ -24,7 +24,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr>
-      <td *ngFor="let col of columns">
+      <td *ngFor="let col of columns" >
         <span *ngIf="col.header==='Name'"><a href="javascript:void(0)" (click) = "beerDetails(rowData.id)">{{rowData[col.field]}}</a></span>
         <span *ngIf="col.header!=='Name'">{{rowData[col.field]}}</span>
       </td>

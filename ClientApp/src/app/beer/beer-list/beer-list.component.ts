@@ -22,10 +22,11 @@ export class BeerListComponent implements OnInit {
     });
 
     this.cols = [
-      { field: 'id', header: 'ID' },
-      { field: 'name', header: 'Name' },
-      { field: 'tagline', header: 'Tagline' },
-      { field: 'abv', header: 'ABV' }
+      { field: 'id', header: 'ID' , width: '10%'},
+      { field: 'name', header: 'Name' , width: '30%'},
+      { field: 'tagline', header: 'Tagline' , width: '30%'},
+      { field: 'first_brewed', header: 'First Brewed' , width: '15%'},
+      { field: 'abv', header: 'ABV', width: '15%' }
     ];
   }
   beerDetails(id: number) {
