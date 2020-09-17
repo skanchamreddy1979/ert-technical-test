@@ -45,7 +45,8 @@ export class DashboardComponent implements OnInit {
   }
   search(text: string, pipe: PipeTransform): Beer[] {
     return this.beersToFilter.filter(beer => {
-      return beer.name.toLowerCase().includes(text.toLowerCase());
+      return beer.name.toLowerCase().includes(text.toLowerCase())
+      || beer.tagline.toLowerCase().includes(text.toLowerCase());
     });
   }
 }
