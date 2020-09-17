@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Beers } from '../models/beer.model';
+import { Beer } from '../models/beer.model';
 import { BeerService } from '../service/beer.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { BeerService } from '../service/beer.service';
 })
 export class BeerListComponent implements OnInit {
 
-  beers: Beers[];
+  beers: Beer[];
   cols: any[];
   totalRecords: number;
   isPagination = true;
@@ -18,9 +18,7 @@ export class BeerListComponent implements OnInit {
   ngOnInit() {
     this.beerService.getBeers().subscribe((res) => {
       this.beers = res;
-      console.log(this.beers);
       this.totalRecords = this.beers.length;
-      console.log(this.beers.length);
     });
 
     this.cols = [
@@ -30,8 +28,8 @@ export class BeerListComponent implements OnInit {
       { field: 'abv', header: 'ABV' }
     ];
   }
-  beerInfo(id: any) {
-    this.route.navigate(['beerInfo', id]);
+  beerDetails(id: number) {
+    this.route.navigate(['beerDetails', id]);
   }
 
 }

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Beer } from '../models/beer.model';
 
 @Component({
-  selector: 'app-beer-info',
+  selector: 'app-beer-details',
   templateUrl: './beer-details.component.html'
 })
 export class BeerDetailsComponent implements OnInit {
 
-  public beerData: any;
+  public beerData: Beer;
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {

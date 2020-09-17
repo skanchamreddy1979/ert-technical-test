@@ -25,7 +25,7 @@
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr>
       <td *ngFor="let col of columns">
-        <span *ngIf="col.header==='Name'"><a href="javascript:void(0)" (click) = "beerInfo(rowData.id)">{{rowData[col.field]}}</a></span>
+        <span *ngIf="col.header==='Name'"><a href="javascript:void(0)" (click) = "beerDetails(rowData.id)">{{rowData[col.field]}}</a></span>
         <span *ngIf="col.header!=='Name'">{{rowData[col.field]}}</span>
       </td>
     </tr>

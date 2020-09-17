@@ -15,11 +15,10 @@ export class BeerService {
   getBeers(): Observable<any> {
     return this.http.get(this.apiUrl).pipe(catchError(this.handleError));
   }
-  getBeerById(id: any): Observable<any> {
+  getBeerById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`).pipe(catchError(this.handleError));
   }
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error.message);
   }
-
 }

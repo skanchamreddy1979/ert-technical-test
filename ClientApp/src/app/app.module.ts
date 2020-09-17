@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DropdownModule } from 'primeng/dropdown';
 import { BeerDetailsComponent } from './beer/beer-details/beer-details.component';
 import { BeerListComponent } from './beer/beer-list/beer-list.component';
 
@@ -23,8 +21,6 @@ import { BeerListComponent } from './beer/beer-list/beer-list.component';
     TableModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

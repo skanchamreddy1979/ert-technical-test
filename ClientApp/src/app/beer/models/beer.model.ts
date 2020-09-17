@@ -1,8 +1,8 @@
-export interface Beers {
-  id;
-  name;
-  tagline;
-  description;
-  image_url;
-  abv;
+export interface Beer {
+  id: number;
+  name: string;
+  tagline: string;
+  description: string;
+  image_url: string;
+  abv: number;
 }
