@@ -1,0 +1,7 @@
+.listContainer{
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    margin: .8rem;
+  }
+}

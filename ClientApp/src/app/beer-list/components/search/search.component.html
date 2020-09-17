@@ -1,0 +1,11 @@
+<div class='container'>
+  <span class='space'></span>
+  <span class='label'>You can find a beer by the name:</span>
+  <mat-form-field class="example-form-field" class='innerContainer'>
+    <mat-label>Search by name</mat-label>
+    <input matInput appDebouncedInput (onInput)='queryChanged($event)' (keyup.enter)='queryChanged($event)' placeholder='Beer name' type="text">
+    <button mat-button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="query=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>

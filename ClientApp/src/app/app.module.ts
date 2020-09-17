@@ -1,3 +1,7 @@
+import { MainComponent } from './main/main.component';
+import { BeerListModule } from './beer-list/beer-list.module';
+import { reducers, metaReducers, effects } from './store/index';
+import { HeaderModule } from './header/header.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -9,12 +13,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 
-import { ListComponent } from './list/list.component';
-
 import { WelcomeComponent } from './welcome/welcome.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
+  declarations: [AppComponent, WelcomeComponent, MainComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -22,9 +28,14 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MaterialModule,
     RouterModule.forRoot([
       { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
+      { path: 'list', component: MainComponent },
     ]),
     BrowserAnimationsModule,
+    HeaderModule,
+    BeerListModule,
+    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot(effects),
   ],
   providers: [],
   bootstrap: [AppComponent],
