@@ -10,13 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { BrewdogBeerDetailComponent } from './component/brewdog-beer-detail/brewdog-beer-detail.component';
 import { NotfoundComponent } from './component/notfound/notfound.component';
 import { BrewdogBeersFavComponent } from './component/brewdog-beers-fav/brewdog-beers-fav.component';
+import { GridComponent } from './component/grid/grid.component';
 @NgModule({
   declarations: [
     AppComponent,
     BrewdogBeersComponent,
     BrewdogBeerDetailComponent,
     NotfoundComponent,
-    BrewdogBeersFavComponent
+    BrewdogBeersFavComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,

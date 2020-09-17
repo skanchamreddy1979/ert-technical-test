@@ -1,0 +1,31 @@
+<table class="table table-striped table-advance table-hover">
+    <thead>
+        <tr>
+            <th colspan="4" class="text-center"> Brewdog Beers List</th>
+        </tr>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Tagline
+            </th>
+            <th>
+                First Brewed
+            </th>
+            <th>
+                ABV
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let beers of brewdogBeersList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+            <a [routerLink]="['/details', beers.id]">
+                <td>{{beers.name}}</td>
+            </a>
+            <td>{{beers.tagline}}</td>
+            <td>{{beers.first_brewed}}</td>
+            <td>{{beers.abv}} </td>
+        </tr>
+    </tbody>
+</table>

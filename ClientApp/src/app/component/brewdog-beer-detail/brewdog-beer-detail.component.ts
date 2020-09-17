@@ -23,7 +23,7 @@ export class BrewdogBeerDetailComponent implements OnInit, OnDestroy {
     this.routeSubscription = this.route.paramMap.subscribe(data => this.id = +data.get('id'));
 
     this.brewdogBeerDetailSubscription = this.brewdogservice.getBrewdogBeerDetail(this.id).subscribe(
-      x => this.brewdogbeers = x
+      data => this.brewdogbeers = data
     );
   }
 
