@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BeerListComponent } from './beer-list.component';
+import { BeerSharedListComponent } from './beer-shared-list.component';
 
 describe('BeerListComponent', () => {
-  let component: BeerListComponent;
-  let fixture: ComponentFixture<BeerListComponent>;
+  let component: BeerSharedListComponent;
+  let fixture: ComponentFixture<BeerSharedListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BeerListComponent ]
+      declarations: [ BeerSharedListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BeerListComponent);
+    fixture = TestBed.createComponent(BeerSharedListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Beer } from 'src/app/interface/beer';
 
 @Component({
-  selector: 'app-beer-list',
-  templateUrl: './beer-list.component.html',
-  styleUrls: ['./beer-list.component.css']
+  selector: 'app--shared-list',
+  templateUrl: './beer-shared-list.component.html',
+  styleUrls: ['./beer-shared-list.component.css']
 })
-export class BeerListComponent implements OnInit {
+export class BeerSharedListComponent implements OnInit {
   @Input() beers: Beer[] = [];
   constructor(private router: Router) { }
 
