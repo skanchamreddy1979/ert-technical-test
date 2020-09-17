@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { BrewdogBeers } from '../../Interface/brewdog-beers';
-import { BrewdogBeersService } from '../../Service/brewdog-beers.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { BrewdogBeers } from '../../interface/brewdog-beers';
+import { BrewdogBeersService } from '../../service/brewdog-beers.service';
 
 @Component({
   selector: 'app-brewdog-beers',
   templateUrl: './brewdog-beers.component.html',
   styleUrls: ['./brewdog-beers.component.css']
 })
-export class BrewdogBeersComponent implements OnInit {
+export class BrewdogBeersComponent implements OnInit, OnDestroy {
 
   constructor(private brewdogservice: BrewdogBeersService) { }
   brewdogBeersList: BrewdogBeers[];
+  brewdogBeersSubscription: Subscription;
   brewdogBeersInitialList: BrewdogBeers[];
   searchTerm: string;
   pageSize = 10;
   page = 1;
 
   ngOnInit(): void {
-    this.brewdogservice.getAllBrewdogBeers().subscribe(
+    this.brewdogBeersSubscription = this.brewdogservice.getAllBrewdogBeers().subscribe(
       data => { this.brewdogBeersList = data; this.brewdogBeersInitialList = data; },
       (err) => console.log(err)
     );
@@ -29,4 +31,7 @@ export class BrewdogBeersComponent implements OnInit {
       startsWith(this.searchTerm.toLowerCase()));
   }
 
+  ngOnDestroy(): void {
+    if (this.brewdogBeersSubscription) { this.brewdogBeersSubscription.unsubscribe(); }
+  }
 }

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BrewdogBeerDetailComponent } from '../app/brewdog-beer-detail/brewdog-beer-detail.component';
-import { BrewdogBeersComponent } from '../app/brewdog-beers/brewdog-beers.component';
-import { NotfoundComponent } from '../app/notfound/notfound.component';
+import { BrewdogBeerDetailComponent } from '../component/brewdog-beer-detail/brewdog-beer-detail.component';
+import { BrewdogBeersComponent } from '../component/brewdog-beers/brewdog-beers.component';
+import { NotfoundComponent } from '../component/notfound/notfound.component';
 
 const routes: Routes = [
 
