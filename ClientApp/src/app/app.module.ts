@@ -8,15 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ListComponent } from './bear/list/list.component';
-import { DetailComponent } from './bear/detail/detail.component';
-import { FavouritesComponent } from './bear/favourites/favourites.component';
+import { ListComponent } from './beer/list/list.component';
+import { DetailComponent } from './beer/detail/detail.component';
+import { FavouritesComponent } from './beer/favourites/favourites.component';
 import { httpInterceptorProviders } from './core/interceptor';
 
 import { HeaderComponent } from './sharedcomponents/header/header.component';
 import { LoaderComponent } from './sharedcomponents/loader/loader.component';
 import { FooterComponent } from './sharedcomponents/footer/footer.component';
-import { BearListComponent } from './sharedcomponents/bear-list/bear-list.component';
+import { beerListComponent } from './sharedcomponents/beer-list/beer-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderComponent,
     LoaderComponent,
     FooterComponent,
-    BearListComponent],
+    BeerListComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

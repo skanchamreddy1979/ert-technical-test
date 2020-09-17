@@ -1,13 +1,13 @@
 <div class="px-5 pt-3">
   <form>
     <div class="form-group form-inline">
-      Bear search: <input class="form-control ml-2" placeholder="search by name" type="text" [formControl]="filter" />
+      Beer search: <input class="form-control ml-2" placeholder="search by name" type="text" [formControl]="filter" />
     </div>
   </form>
 
- <app-bear-list  [bears]="bears"></app-bear-list>
+ <app-beer-list  [beers]="beers"></app-beer-list>
   <div class="d-flex justify-content-between p-2">
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshBears()">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshBeers()">
     </ngb-pagination>
 
   </div>

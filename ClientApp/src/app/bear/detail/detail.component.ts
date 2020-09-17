@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Bear } from 'src/app/interface/bear';
-import { BearService } from 'src/app/services/bear/bear.service';
+import { Beer } from 'src/app/interface/beer';
+import { BeerService } from 'src/app/services/beer/beer.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
@@ -11,12 +11,12 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit, OnDestroy {
-  private bearSubscription: Subscription;
+  private beerSubscription: Subscription;
   private routeSubscription: Subscription;
-  bear: Bear;
+  beer: Beer;
   id: number;
   constructor(
-    private bearService: BearService,
+    private beerService: BeerService,
     private activatedRoute: ActivatedRoute,
     public loaderService: LoaderService,
     private router: Router
@@ -25,23 +25,23 @@ export class DetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.params.subscribe(params => {
       this.id = +atob(params.id);
-      this.getBear();
+      this.getbeer();
     });
   }
-  getBear() {
+  getBeer() {
     this.loaderService.setSpinner(true);
-    this.bearSubscription = this.bearService.getBearById(this.id).subscribe(result => {
+    this.beerSubscription = this.beerService.getBeerById(this.id).subscribe(result => {
       console.log(result);
-      this.bear = result[0];
+      this.beer = result[0];
       this.loaderService.setSpinner(false);
     });
   }
   goback() {
-    this.router.navigate(['bearlist']);
+    this.router.navigate(['beerlist']);
   }
   ngOnDestroy() {
-    if (this.bearSubscription) {
-      this.bearSubscription.unsubscribe();
+    if (this.beerSubscription) {
+      this.beerSubscription.unsubscribe();
     }
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
