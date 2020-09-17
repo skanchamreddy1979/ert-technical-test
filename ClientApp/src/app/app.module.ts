@@ -1,32 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-
+import { AppRoutingModule } from '../Routing/app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './shared/material.module';
-
-import { ListComponent } from './list/list.component';
-
-import { WelcomeComponent } from './welcome/welcome.component';
-
+import { BrewdogBeersComponent } from './brewdog-beers/brewdog-beers.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BrewdogBeersService } from '../Service/brewdog-beers.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { BrewdogBeerDetailComponent } from './brewdog-beer-detail/brewdog-beer-detail.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { BrewdogBeersFavComponent } from './brewdog-beers-fav/brewdog-beers-fav.component';
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
-    FormsModule,
-    MaterialModule,
-    RouterModule.forRoot([
-      { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
-    ]),
-    BrowserAnimationsModule,
+  declarations: [
+    AppComponent,
+    BrewdogBeersComponent,
+    BrewdogBeerDetailComponent,
+    NotfoundComponent,
+    BrewdogBeersFavComponent
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    FormsModule
+
+  ],
+  providers: [BrewdogBeersService],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

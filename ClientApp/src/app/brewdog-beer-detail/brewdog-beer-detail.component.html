@@ -1,0 +1,16 @@
+<div class="mt-4" style="margin-left: 38%;margin-bottom:25px;">
+    <div *ngIf="brewdogbeers" class="card" style="width: 25rem;">
+        <div class="card-header">
+            Beer Details
+          </div>
+        <img class="card-img-top" style="height: 300px;" src="{{brewdogbeers[0].image_url}}" alt="Card image">
+        <div class="card-body">
+            <h5 class="card-title">{{brewdogbeers[0].name}}</h5>
+            <h4 class="card-title">abv : {{brewdogbeers[0].abv}}</h4>
+            <p class="card-text">{{brewdogbeers[0].description}}</p>
+        </div>
+        <div class="card-footer text-muted">
+          <a class="btn btn-success" [routerLink]="['']">Back to List</a>
+          </div>
+    </div>
+</div>
