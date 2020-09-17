@@ -1,0 +1,10 @@
+/* .active {
+    background-color: yellow;
+  } */
+
+  
+
+tr:hover{
+  cursor: pointer;
+  box-shadow: 1px 5px 12px grey;
+}

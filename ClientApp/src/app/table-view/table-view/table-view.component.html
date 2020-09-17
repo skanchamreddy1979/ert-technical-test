@@ -1,0 +1,25 @@
+<table class="table table-striped align-middle" >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Tagline</th>
+        <th scope="col">First Brewed</th>
+        <th scope="col">abv</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let beer of beers; index as i" [routerLink]="['/details', beer.id]">
+        <th scope="row">{{ page==1?i + 1:(10*(page-1))+i+1 }}</th>
+        <td>
+          <img [src]="beer.image_url" class="mr-2" style="width: 20px">
+          <label>{{beer.name}}</label>
+        </td>
+        <td><label>{{beer.tagline}}</label> </td>
+        <td><label>{{beer.first_brewed}}</label> </td>
+        <td><label>{{beer.abv}}</label></td>
+       </tr>
+   
+    </tbody>
+  </table>
+

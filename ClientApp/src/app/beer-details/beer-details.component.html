@@ -1,0 +1,22 @@
+<div class="row align-items-center h-100" style="margin-top: 90px;">
+    <div class="col-6 mx-auto">
+        <div class="card shadow align-items-center" style=" max-height: 800px;">
+            <div class="card-body shadow">
+                <div class="row">
+                    <div class="col-4">
+                        <img class="card-img-top align-items-center" [src]="beer.image_url"
+                            style="width: 200px;height: 400px;" alt="Card image cap">
+                    </div>
+                    <div class="col-8">
+                        <h5 class="card-title">{{beer.name}}</h5>
+                        <p class="card-text">{{beer.description}}</p>
+                        <p>ABV : {{beer.abv}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<a [routerLink]="['/dashboard']" class="btn btn-primary">GoTo DashBoard</a>
+
