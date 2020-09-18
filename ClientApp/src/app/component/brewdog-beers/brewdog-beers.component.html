@@ -1,6 +1,6 @@
 <div class="container mt-4" *ngIf="brewdogBeersList">
     <div class="form-group form-inline">
-        Search by Name: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="searchTerm"
+        Search by Name: <input class="form-control ml-2" placeholder="Ex: Trashy Blonde" type="text" name="searchTerm" [(ngModel)]="searchTerm"
             (ngModelChange)="onKey()" />
     </div>
 

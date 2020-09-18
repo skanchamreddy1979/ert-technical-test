@@ -1,12 +1,12 @@
 <div class="mt-4 mb-4 ml-5">
   <div *ngIf="brewdogbeers" class="card w-25" >
     <div class="card-header">
-      Beer Details
+     <h5>Beer Details</h5> 
     </div>
     <img class="card-img-top mt-4 image-size" width="40px" src="{{brewdogbeers[0].image_url}}" alt="Card image">
     <div class="card-body">
-      <h5 class="card-title">{{brewdogbeers[0].name}}</h5>
-      <h5 class="card-title">ABV : {{brewdogbeers[0].abv}}</h5>
+      <h6 class="card-title">Name: {{brewdogbeers[0].name}}</h6>
+      <h6 class="card-title">ABV : {{brewdogbeers[0].abv}}</h6>
       <p class="card-text">{{brewdogbeers[0].description}}</p>
     </div>
     <div class="card-footer text-muted">
