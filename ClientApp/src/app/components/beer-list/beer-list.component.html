@@ -3,10 +3,7 @@
   <button mat-raised-button color="accent" [disabled]="this.selected_rows.length == 0">Save favorites</button>
 </div>
 <div>
-  <mat-form-field>
-    <mat-label>Search by beer name</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Buzz" #input>
-  </mat-form-field>
+  <app-filter (filterChanged)="onFilterChanged($event)" placeholder="Ex. Buzz" label="Search by beer name"></app-filter>
 </div>
 <div class="beer-container mat-elevation-z8">
   <div class="beer-table-container">

@@ -49,8 +49,7 @@ export class BeerListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.notifier.complete();
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  onFilterChanged(filterValue: string) {
     this.loadBeers(1, this.pageSize, filterValue);
   }
 

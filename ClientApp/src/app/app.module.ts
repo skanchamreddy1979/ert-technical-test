@@ -12,9 +12,10 @@ import { MaterialModule } from './shared/material.module';
 import { BeerListComponent } from './components/beer-list/beer-list.component';
 import { BeerComponent } from './components/beer/beer.component';
 import { BeerNavMenuComponent } from './layout/beer-nav-menu/beer-nav-menu.component';
+import { FilterComponent } from './shared/filter/filter.component';
 
 @NgModule({
-  declarations: [AppComponent, BeerListComponent, BeerComponent, BeerNavMenuComponent],
+  declarations: [AppComponent, BeerListComponent, BeerComponent, BeerNavMenuComponent, FilterComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
