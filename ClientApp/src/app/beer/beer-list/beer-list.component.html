@@ -10,8 +10,9 @@
 
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th *ngFor="let col of columns"  [ngStyle]="{'width': col.width}">
+      <th *ngFor="let col of columns"  [ngStyle]="{'width': col.width}" [pSortableColumn]="col.field">
         {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
       </th>
     </tr>
 
@@ -24,7 +25,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr>
-      <td *ngFor="let col of columns" >
+      <td *ngFor="let col of columns" class="header">
         <span *ngIf="col.header==='Name'"><a href="javascript:void(0)" (click) = "beerDetails(rowData.id)">{{rowData[col.field]}}</a></span>
         <span *ngIf="col.header!=='Name'">{{rowData[col.field]}}</span>
       </td>
