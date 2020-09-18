@@ -12,7 +12,4 @@ export class DetailComponent implements OnInit {
   public beerData: any;
   ngOnInit() {
   }
-  public closeDialog() {
-    this.dialogRef.close();
-  }
 }

@@ -1,4 +1,19 @@
 .img-align {
-  width: 150px;
-  height: 200px;
+  width: 40%;
+}
+.column{
+  float: left;
+  width: 45%;
+  padding: 10px;
+}
+.row:after{
+content: "";
+display: table;
+clear: both;
+}
+.mat-table,h3,ul,li,strong,.mat-label,input {
+  font-family: Roboto,"Helvetica Neue",sans-serif
+}
+.clslist{
+  padding-bottom: 10px;
 }

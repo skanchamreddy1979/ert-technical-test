@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BeersService } from '../services/beers-service';
 import { DetailComponent } from '../detail/detail.component';
 import { Subscription } from 'rxjs';
+import { MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-list',
@@ -26,6 +27,7 @@ export class ListComponent implements OnInit, OnDestroy {
     private dailog: MatDialog) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit() {
     this.listSubscription = this.activateRoute.data.subscribe((response) => {
@@ -51,7 +53,10 @@ export class ListComponent implements OnInit, OnDestroy {
 
   public openBeerInfo(id: any) {
     this.infoSubscription = this.beersService.openbeer(id).subscribe((response) => {
-      const dailogRef = this.dailog.open(DetailComponent);
+      const dailogRef = this.dailog.open(DetailComponent, {
+        panelClass: 'my-dialog',
+        width: '65%'
+      });
       dailogRef.componentInstance.beerData = response[0];
     });
   }
@@ -59,6 +64,7 @@ export class ListComponent implements OnInit, OnDestroy {
   private bindDatasource(response: any) {
     this.dataSource = new MatTableDataSource(response);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnDestroy() {
