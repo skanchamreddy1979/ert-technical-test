@@ -23,15 +23,17 @@ export class BeerListComponent implements OnInit, OnDestroy {
   constructor(private beerService: BeerService,
     public loaderService: LoaderService) { }
   ngOnInit() {
-
     this.getAllBeers();
+    this.intateValueChangeSubscription();
+  }
+  private intateValueChangeSubscription = (): void => {
     this.filter.valueChanges.subscribe(text => {
       this.search(text);
     });
   }
-  getAllBeers() {
+  private getAllBeers = (): void => {
     this.loaderService.setSpinner(true);
-    this.subscription= this.beerService.getAllBeers().subscribe(result => {
+    this.subscription = this.beerService.getAllBeers().subscribe(result => {
       console.log(result);
       this.beersFiltered = this.beersAll = result;
       this.collectionSize = this.beersAll.length;
@@ -40,7 +42,7 @@ export class BeerListComponent implements OnInit, OnDestroy {
     });
 
   }
-  search(text: string) {
+  private search = (text: string): void => {
     this.page = 1;
     this.beersFiltered = this.beersAll.filter(beer => {
       const term = text.toLowerCase();
@@ -49,12 +51,12 @@ export class BeerListComponent implements OnInit, OnDestroy {
     this.collectionSize = this.beersFiltered.length;
     this.filterBeers(this.beersFiltered);
   }
-  filterBeers(beersList: Beer[]) {
+  private filterBeers = (beersList: Beer[]): void => {
     this.beers = beersList.map((beer, i) => ({ row: i + 1, ...beer })).slice(
       (this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize
     );
   }
-  refreshBeers() {
+ private refreshBeers=():void=> {
     this.filterBeers(this.beersFiltered);
   }
   ngOnDestroy() {

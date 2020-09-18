@@ -23,20 +23,25 @@ export class BeerDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.subscription=  this.activatedRoute.params.subscribe(params => {
+    this.intializeGetParam();
+  }
+
+  private intializeGetParam = (): void => {
+    this.subscription = this.activatedRoute.params.subscribe(params => {
       this.id = +atob(params.id);
       this.getBeer();
     });
   }
-  getBeer() {
+
+  private getBeer = (): void => {
     this.loaderService.setSpinner(true);
-    this.beerSubscription= this.beerService.getBeerById(this.id).subscribe(result => {
+    this.beerSubscription = this.beerService.getBeerById(this.id).subscribe(result => {
       console.log(result);
       this.beer = result[0];
       this.loaderService.setSpinner(false);
     });
   }
-  goback() {
+  private goback = (): void => {
     this.router.navigate(['beerlist']);
   }
   ngOnDestroy() {

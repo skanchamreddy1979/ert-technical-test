@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BeerDetailComponent } from './beer/beer-detail/beer-detail.component';
-import { FavouritesComponent } from './beer/beer-favourites/favourites.component';
-import { BeerListComponent } from './beer/beer-list/beer-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { BeerListComponent, FavouritesComponent, BeerDetailComponent } from './beer/components';
 
 
 const routes: Routes = [
