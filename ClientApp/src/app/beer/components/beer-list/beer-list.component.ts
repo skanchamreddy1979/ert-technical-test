@@ -56,7 +56,7 @@ export class BeerListComponent implements OnInit, OnDestroy {
       (this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize
     );
   }
- private refreshBeers=():void=> {
+  refreshBeers=():void=> {
     this.filterBeers(this.beersFiltered);
   }
   ngOnDestroy() {
