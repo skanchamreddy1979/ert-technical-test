@@ -1,14 +1,15 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Beer } from '../beer.model';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Beer } from '../models/beer.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BeerService {
-  private _punkapiUrl = 'https://api.punkapi.com/v2';
+  private _punkapiUrl = environment.punkapiUrl;
 
   constructor(private _httpClient: HttpClient) { }
 

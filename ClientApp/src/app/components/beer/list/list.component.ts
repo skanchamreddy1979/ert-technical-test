@@ -2,8 +2,8 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { takeWhile } from 'rxjs/operators';
-import { Beer } from '../beer.model';
-import { BeerService } from '../services';
+import { Beer } from 'src/app/models/beer.model';
+import { BeerService } from 'src/app/services';
 
 @Component({
   selector: 'app-list',
@@ -14,7 +14,7 @@ export class ListComponent implements AfterViewInit, OnInit, OnDestroy {
 
   constructor(private _beerService: BeerService) { }
 
-  private isAlive = true;
+  private _isAlive = true;
 
   displayedColumns: string[] = ['name', 'tagLine', 'firstBrewed', 'abv'];
   dataSource = new MatTableDataSource<Beer>();
@@ -35,14 +35,14 @@ export class ListComponent implements AfterViewInit, OnInit, OnDestroy {
 
   private initBeerList(beerName?: string): void {
     this._beerService.getBeerList(beerName)
-      .pipe(takeWhile(() => this.isAlive))
+      .pipe(takeWhile(() => this._isAlive))
       .subscribe(data => {
         this.dataSource.data = data;
       });
   }
 
   ngOnDestroy() {
-    this.isAlive = false;
+    this._isAlive = false;
   }
 
 }

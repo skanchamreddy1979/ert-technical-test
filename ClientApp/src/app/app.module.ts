@@ -9,11 +9,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 
-import { ListComponent } from './list/list.component';
 
 import { WelcomeComponent } from './welcome/welcome.component';
-import { SearchComponent } from './search/search.component';
-import { DetailComponent } from './detail/detail.component';
+import { DetailComponent } from './components/beer/detail/detail.component';
+import { SearchComponent } from './components/beer/search/search.component';
+import { ListComponent } from './components/beer/list/list.component';
 
 @NgModule({
   declarations: [AppComponent, ListComponent, WelcomeComponent, SearchComponent, DetailComponent],

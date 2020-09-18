@@ -18,6 +18,10 @@
                     <b>ABV: </b> {{beer.abv}}
                 </p>
             </mat-card-content>
+            <mat-divider [inset]="true"></mat-divider>
+            <mat-card-actions>
+                <button (click)="goBack()" mat-raised-button color="primary">Go Back</button>
+            </mat-card-actions>
         </mat-card>
     </div>
 </div>

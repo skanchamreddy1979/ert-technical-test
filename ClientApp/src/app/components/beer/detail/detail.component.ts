@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { takeWhile } from 'rxjs/operators';
-import { BeerService } from '../services';
 import { Location } from '@angular/common';
-import { Beer } from '../beer.model';
+import { BeerService } from 'src/app/services';
+import { Beer } from 'src/app/models/beer.model';
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
 
   constructor(private _route: ActivatedRoute,
     private _beerService: BeerService,

@@ -15,7 +15,7 @@ export class Beer {
     beer.abv = dto.abv;
     beer.imgUrl = dto.image_url;
     beer.description = dto.description;
-    beer.firstBrewed = dto.first_brewed
+    beer.firstBrewed = dto.first_brewed;
     return beer;
   }
 }
