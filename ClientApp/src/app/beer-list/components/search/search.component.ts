@@ -8,12 +8,12 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
 })
 export class SearchComponent implements OnInit {
 
-  @Output() onChange = new EventEmitter();
+  @Output() changeEv = new EventEmitter();
 
-  queryChanged(event){
-    this.onChange.emit(event.target.value);
+  queryChanged(event) {
+    this.changeEv.emit(event.target.value);
   }
-  
+
   constructor() { }
 
   ngOnInit() {

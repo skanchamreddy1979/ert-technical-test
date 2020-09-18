@@ -1,1 +1,1 @@
-export const filterName = "filter";
+export const filterName = 'filter';

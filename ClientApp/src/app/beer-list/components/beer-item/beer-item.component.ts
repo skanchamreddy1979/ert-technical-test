@@ -9,10 +9,8 @@ import { BeerItem } from 'src/app/interfaces/beer-item.model';
 })
 export class BeerItemComponent implements OnInit {
   @Input() item: BeerItem;
-  
   constructor() { }
 
   ngOnInit() {
   }
-
 }

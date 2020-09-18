@@ -1,0 +1,11 @@
+<div class='container'>
+  <button class="material-icons" [disabled]='currentPage === 1' (click)='onPageDown()'>
+    keyboard_arrow_left
+  </button>
+  <span>
+    {{ currentPage }}
+  </span>
+  <button class="material-icons" [disabled]='currentPage === maxPage' (click)='onPageUp()'>
+    keyboard_arrow_right
+  </button>
+</div>

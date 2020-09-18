@@ -9,11 +9,20 @@ import { SearchComponent } from './components/search/search.component';
 import { ListContainerComponent } from './containers/list-container/list-container.component';
 import { SearchContainerComponent } from './containers/search-container/search-container.component';
 import BeerService from '../services/beer/beer.service';
+import { PagingContainerComponent } from './containers/paging-container/paging-container.component';
+import { PagingComponent } from './components/paging/paging.component';
+import PagingService from '../services/paging/paging.service';
 
 
 
 @NgModule({
-  declarations: [BeerItemComponent, SearchComponent, ListContainerComponent, SearchContainerComponent],
+  declarations: [
+    BeerItemComponent,
+    SearchComponent,
+    ListContainerComponent,
+    SearchContainerComponent,
+    PagingContainerComponent,
+    PagingComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -23,6 +32,7 @@ import BeerService from '../services/beer/beer.service';
   providers: [
     BeerService,
     FilterService,
+    PagingService
   ],
   exports: [
     ListContainerComponent,

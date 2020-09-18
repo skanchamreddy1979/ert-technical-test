@@ -11,15 +11,15 @@ export class NavbarComponent implements OnInit {
   @Output() listClick = new EventEmitter();
   @Output() favouritesClick = new EventEmitter();
 
-  onMainClick(e){
+  onMainClick(e) {
     e.preventDefault();
     this.mainClick.emit(e);
   }
-  onListClick(e){
+  onListClick(e) {
     e.preventDefault();
     this.listClick.emit(e);
   }
-  onFavouritesClick(e){
+  onFavouritesClick(e) {
     e.preventDefault();
     this.favouritesClick.emit(e);
   }

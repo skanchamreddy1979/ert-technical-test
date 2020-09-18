@@ -9,11 +9,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class SearchContainerComponent implements OnInit {
 
-  onChange(event){
-    console.log(event);
+  onChange(event) {
     this.filterService.setFilter(event);
   }
-  
+
   constructor(private filterService: FilterService) { }
 
   ngOnInit() {

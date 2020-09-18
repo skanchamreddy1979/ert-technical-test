@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderContainerComponent implements OnInit {
-  onMainClick(e){
+  onMainClick(e) {
     this.router.navigate(['']);
   }
-  onListClick(e){
+  onListClick(e) {
     this.router.navigate(['list']);
   }
-  onFavouritesClick(e){
+  onFavouritesClick(e) {
     this.router.navigate(['']);
   }
   constructor(private router: Router) { }
