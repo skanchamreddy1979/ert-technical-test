@@ -1,32 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './shared/material.module';
-
-import { ListComponent } from './list/list.component';
-
-import { WelcomeComponent } from './welcome/welcome.component';
+import { BeerModule } from './Modules/beer/beer.module';
+import { BeerService } from './Modules/beer/beer.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdSortableHeader } from './Directives/sortable.directive';
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
-    FormsModule,
-    MaterialModule,
-    RouterModule.forRoot([
-      { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
-    ]),
-    BrowserAnimationsModule,
+  declarations: [
+    AppComponent, NgbdSortableHeader
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BeerModule,
+    NgbModule
+  ],
+  providers: [BeerService, DecimalPipe],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
