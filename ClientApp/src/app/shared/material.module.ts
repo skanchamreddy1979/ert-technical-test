@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule, MatInputModule, MatSortModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import { MatFormFieldModule, MatInputModule, MatSortModule } from '@angular/mate
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ],
   exports: [
     MatButtonModule,
@@ -35,7 +37,8 @@ import { MatFormFieldModule, MatInputModule, MatSortModule } from '@angular/mate
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ],
 })
 export class MaterialModule { }

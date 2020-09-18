@@ -20,6 +20,9 @@ export class ListComponent implements OnInit, OnDestroy {
   private infoSubscription: Subscription;
   private listofSubscription: Subscription;
   private paginationSubscription: Subscription;
+  public brewdBeersData: any[] = [];
+  public favouriteBeers: any[] = [];
+  public disableCheckbox = false;
 
   constructor(
     private beersService: BeersService,
@@ -30,19 +33,17 @@ export class ListComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit() {
-    this.listSubscription = this.activateRoute.data.subscribe((response) => {
-      this.bindDatasource(response.beerslist);
-    });
+    this.initialValueSubscrption();
   }
 
-  public getFilterData(event: any) {
+  public getFilterData = (event: any): void => {
     this.listofSubscription = this.beersService.listbeers(event.target.value === '' ? '' : event.target.value, 1)
       .subscribe((response) => {
         this.bindDatasource(response);
       });
   }
 
-  public getPagintion(event: PageEvent) {
+  public getPagintion = (event: PageEvent): void => {
     this.paginationSubscription = this.beersService.listbeers('',
       event.pageIndex === 0 ? 1 : event.pageIndex,
       event.pageSize)
@@ -51,7 +52,7 @@ export class ListComponent implements OnInit, OnDestroy {
       });
   }
 
-  public openBeerInfo(id: any) {
+  public openBeerInfo = (id: any): void => {
     this.infoSubscription = this.beersService.openbeer(id).subscribe((response) => {
       const dailogRef = this.dailog.open(DetailComponent, {
         panelClass: 'my-dialog',
@@ -61,13 +62,20 @@ export class ListComponent implements OnInit, OnDestroy {
     });
   }
 
-  private bindDatasource(response: any) {
+  private initialValueSubscrption = (): void => {
+    this.listSubscription = this.activateRoute.data.subscribe((response) => {
+      this.bindDatasource(response.beerslist);
+    });
+  }
+
+  private bindDatasource = (response: any): void => {
+    this.brewdBeersData = response;
     this.dataSource = new MatTableDataSource(response);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy = (): void => {
     if (this.listSubscription) { this.listSubscription.unsubscribe(); }
     if (this.infoSubscription) { this.infoSubscription.unsubscribe(); }
     if (this.listofSubscription) { this.listofSubscription.unsubscribe(); }

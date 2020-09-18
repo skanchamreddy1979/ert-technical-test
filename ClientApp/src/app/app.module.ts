@@ -8,13 +8,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
-
-import { ListComponent } from './beers/list/list.component';
-
 import { WelcomeComponent } from './welcome/welcome.component';
-import { BeersListResolver } from './beers/reslovers/beers-resolver';
-import { BeersService } from './beers/services/beers-service';
-import { DetailComponent } from './beers/detail/detail.component';
+import { BeersListResolver, BeersService, DetailComponent, ListComponent } from './beers';
 
 @NgModule({
   declarations: [AppComponent, ListComponent, WelcomeComponent, DetailComponent],
@@ -38,4 +33,4 @@ import { DetailComponent } from './beers/detail/detail.component';
   bootstrap: [AppComponent],
   entryComponents: [DetailComponent]
 })
-export class AppModule {}
+export class AppModule { }
