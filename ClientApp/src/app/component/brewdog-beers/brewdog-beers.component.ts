@@ -19,19 +19,23 @@ export class BrewdogBeersComponent implements OnInit, OnDestroy {
   page = 1;
 
   ngOnInit(): void {
+    this.intializeGetParam();
+  }
+
+  private intializeGetParam = (): void => {
     this.brewdogBeersSubscription = this.brewdogservice.getAllBrewdogBeers().subscribe(
       data => { this.brewdogBeersList = data; this.brewdogBeersInitialList = data; },
       (err) => console.log(err)
     );
   }
 
-  onKey(): void {
+  private onKey = (): void => {
     this.brewdogBeersList = this.brewdogBeersInitialList;
     this.brewdogBeersList = this.brewdogBeersList.filter(x => x.name.toLowerCase().
       startsWith(this.searchTerm.toLowerCase()));
   }
 
-  ngOnDestroy(): void {
+   ngOnDestroy = (): void => {
     if (this.brewdogBeersSubscription) { this.brewdogBeersSubscription.unsubscribe(); }
   }
 }

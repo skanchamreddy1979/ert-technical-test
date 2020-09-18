@@ -20,14 +20,16 @@ export class BrewdogBeerDetailComponent implements OnInit, OnDestroy {
   brewdogbeers: BrewdogBeers[];
 
   ngOnInit(): void {
-    this.routeSubscription = this.route.paramMap.subscribe(data => this.id = +data.get('id'));
+    this.intializeGetParam();
+  }
 
+  private intializeGetParam = (): void => {
+    this.routeSubscription = this.route.paramMap.subscribe(data => this.id = +data.get('id'));
     this.brewdogBeerDetailSubscription = this.brewdogservice.getBrewdogBeerDetail(this.id).subscribe(
       data => this.brewdogbeers = data
     );
   }
-
-  ngOnDestroy(): void {
+   ngOnDestroy = (): void => {
     if (this.routeSubscription) { this.routeSubscription.unsubscribe(); }
     if (this.brewdogBeerDetailSubscription) { this.brewdogBeerDetailSubscription.unsubscribe(); }
   }
