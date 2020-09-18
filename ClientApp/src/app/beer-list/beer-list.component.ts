@@ -8,7 +8,7 @@ import { BeerService } from '../services/beer.service';
 import { BeerDetailComponent } from '../beer-detail/beer-detail.component';
 
 @Component({
-  selector: 'beer-list',
+  selector: 'app-beer-list',
   templateUrl: './beer-list.component.html',
   styleUrls: ['./beer-list.component.css'],
 })
@@ -24,7 +24,7 @@ export class BeerListComponent implements AfterViewInit {
 
   constructor(beerService: BeerService) {
      beerService.getAllBeers().subscribe((result) => {
-     let beers = result as Beer[];
+     const beers = result as Beer[];
      this.dataSource = new MatTableDataSource(beers);
      this.dataSource.paginator = this.paginator;
     });
@@ -33,7 +33,7 @@ export class BeerListComponent implements AfterViewInit {
   ngAfterViewInit() {
   }
 
-  getRecord($event){
+  getRecord($event) {
     this.selectedBeer = this.dataSource.data.find(element => element.id === $event) as Beer;
   }
 

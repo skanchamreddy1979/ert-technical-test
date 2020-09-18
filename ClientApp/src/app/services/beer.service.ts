@@ -7,12 +7,11 @@ import { environment } from 'src/environments/environment';
 })
 export class BeerService {
 
-  private beersUrl: string = "beers";
+  private beersUrl = 'beers';
 
-  constructor(private http: HttpClient) { 
-  }
+  constructor(private http: HttpClient) { }
 
-  getAllBeers(){
+  getAllBeers() {
     return this.http.get(`${environment.baseBeerApiUrl}/${this.beersUrl}`);
   }
 }
