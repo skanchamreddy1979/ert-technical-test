@@ -1,10 +1,13 @@
 ﻿using Application;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Application.Interfaces;
+using Application.ViewModel;
+using Domain;
 
 namespace ert_beer_app.Controllers
 {
-    [Route("api/beer")]
+   
     [ApiController]
     public class BeerController : ControllerBase
     {
@@ -15,6 +18,7 @@ namespace ert_beer_app.Controllers
             _beerService = beerService;
         }
 
+        [Route("api/beers")]
         [HttpGet]
         public IEnumerable<BeerViewModel> GetAll()
         {

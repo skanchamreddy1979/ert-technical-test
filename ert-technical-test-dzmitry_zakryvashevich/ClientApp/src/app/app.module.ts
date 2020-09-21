@@ -8,20 +8,16 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-
 import { MaterialModule } from './shared/material.module';
 
-import { ListComponent } from './list/list.component';
-
-import { DetailComponent } from './detail/detail.component';
-
-import { FavouritesComponent } from './favourites/favourites.component';
-
-import { WelcomeComponent } from './welcome/welcome.component';
+import { NavMenuComponent } from "./component/layout/nav-menu/nav-menu.component";
+import { WelcomeComponent } from "./component/modules/welcome/welcome.component";
+import { FavouritesComponent } from "./component/modules/favourites/favourites.component";
+import { BeerListComponent as BeerListComponent } from "./component/modules/beer-list/beer-list.component";
+import { BeerDetailComponent as BeerDetailComponent } from "./component/modules/beer-detail/beer-detail.component";
 
 @NgModule({
-  declarations: [AppComponent, NavMenuComponent, ListComponent, WelcomeComponent, FavouritesComponent, DetailComponent],
+  declarations: [AppComponent, NavMenuComponent, BeerListComponent, WelcomeComponent, FavouritesComponent, BeerDetailComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -29,11 +25,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MaterialModule,
     RouterModule.forRoot([
       { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
-      { path: 'detail', component: DetailComponent },
-      { path: 'favourites', component: FavouritesComponent },
+      { path: 'list', component: BeerListComponent },
+      { path: 'detail/:id', component: BeerDetailComponent },
+      { path: 'favourites', component: FavouritesComponent }
     ]),
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

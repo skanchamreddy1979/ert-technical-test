@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\welcome\" />
+    <Folder Include="ClientApp\src\app\component\modules\welcome\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ert-beer-app", "ert-beer-app.csproj", "{DF550CB4-04FA-4CF8-91F7-94BD251A1F54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "..\Persistance\Persistance.csproj", "{3CA32A0C-F83F-4871-875E-E3F968F181EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistance", "..\Persistance\Persistance.csproj", "{3CA32A0C-F83F-4871-875E-E3F968F181EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "..\Application\Application.csproj", "{8F37D61D-A043-4A87-92E1-CB43F12E5027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "..\Application\Application.csproj", "{8F37D61D-A043-4A87-92E1-CB43F12E5027}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "..\Domain\Domain.csproj", "{F14D3924-0793-443F-9E6E-C2319435F426}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8F37D61D-A043-4A87-92E1-CB43F12E5027}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F37D61D-A043-4A87-92E1-CB43F12E5027}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F37D61D-A043-4A87-92E1-CB43F12E5027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F14D3924-0793-443F-9E6E-C2319435F426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F14D3924-0793-443F-9E6E-C2319435F426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F14D3924-0793-443F-9E6E-C2319435F426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F14D3924-0793-443F-9E6E-C2319435F426}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

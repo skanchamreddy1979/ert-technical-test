@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Interfaces;
+using Domain;
 
 namespace Persistance
 {
@@ -12,8 +14,7 @@ namespace Persistance
         {
         }
 
-        public DbSet<Favorites> Favorites { get; set; }
-        public DbSet<User> Users{ get; set; }
+        public DbSet<Favourites> Favorites { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
