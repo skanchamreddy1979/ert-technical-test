@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ert_beer_app.Models.BrewDog>
+
+@{
+    ViewBag.Title = "BrewDog Beers";
+}
+
+    <h2>BrewDog Beers</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find Beer by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Tag Line</th>
+        <th>First Brewed</th>
+        <th>@Html.DisplayNameFor(model => model.ABV).ToUpper()</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.Name, "Details", new { id = item.ID })</td>
+            <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
+            <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
+            <td>@Html.DisplayFor(modelItem => item.ABV)</td>
+        </tr>
+    }
+</table>

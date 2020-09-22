@@ -1,0 +1,30 @@
+﻿@model ert_beer_app.Models.BrewDog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>BrewDog Details</h2>
+
+<div>
+    <table border="1">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>@Html.DisplayNameFor(model => model.ABV).ToUpper()</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            @*<img src="@Url.Content(String.IsNullOrEmpty(Model.Image_Url)? "~/No_Image.png":Model.Image_Url)" alt="Image" width="120" height="120" />*@
+
+            <td><img src="@Url.Content(Model.Image_Url)" alt="Image" width="120" height="120" /></td>
+            <td> @Html.DisplayFor(model => model.Name)</td>
+            <td>@Html.DisplayFor(model => model.ABV)</td>
+            <td> @Html.DisplayFor(model => model.Description)</td>
+        </tr>
+    </table>
+    
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
