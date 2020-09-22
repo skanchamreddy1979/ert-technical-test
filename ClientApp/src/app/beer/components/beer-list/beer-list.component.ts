@@ -12,7 +12,7 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
   styleUrls: ['./beer-list.component.css'],
 })
 export class BeerListComponent implements OnInit, OnDestroy {
-  beers: Beer[] = [];
+ public beers: Beer[] = [];
   beersAll: Beer[] = [];
   beersFiltered: Beer[] = [];
   private subscription: Subscription;
@@ -26,15 +26,15 @@ export class BeerListComponent implements OnInit, OnDestroy {
     this.getAllBeers();
     this.intateValueChangeSubscription();
   }
-  private intateValueChangeSubscription = (): void => {
+  public intateValueChangeSubscription = (): void => {
     this.filter.valueChanges.subscribe(text => {
       this.search(text);
     });
   }
-  private getAllBeers = (): void => {
+  public getAllBeers = (): void => {
     this.loaderService.setSpinner(true);
     this.subscription = this.beerService.getAllBeers().subscribe(result => {
-      console.log(result);
+
       this.beersFiltered = this.beersAll = result;
       this.collectionSize = this.beersAll.length;
       this.filterBeers(this.beersAll);
@@ -51,7 +51,7 @@ export class BeerListComponent implements OnInit, OnDestroy {
     this.collectionSize = this.beersFiltered.length;
     this.filterBeers(this.beersFiltered);
   }
-  private filterBeers = (beersList: Beer[]): void => {
+  public filterBeers = (beersList: Beer[]): void => {
     this.beers = beersList.map((beer, i) => ({ row: i + 1, ...beer })).slice(
       (this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize
     );

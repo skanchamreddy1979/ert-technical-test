@@ -13,7 +13,7 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
 export class BeerDetailComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private beerSubscription: Subscription;
-  beer: Beer;
+  public beer: Beer;
   id: number;
   constructor(
     private beerService: BeerService,
@@ -26,9 +26,9 @@ export class BeerDetailComponent implements OnInit, OnDestroy {
     this.intializeGetParam();
   }
 
-  private intializeGetParam = (): void => {
+  public intializeGetParam = (): void => {
     this.subscription = this.activatedRoute.params.subscribe(params => {
-      this.id = +atob(params.id);
+      this.id = +params.id;
       this.getBeer();
     });
   }

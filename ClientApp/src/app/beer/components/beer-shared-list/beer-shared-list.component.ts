@@ -13,8 +13,8 @@ export class BeerSharedListComponent implements OnInit {
 
   ngOnInit() {
   }
-  details(id: number) {
-    this.router.navigate(['beer-details', btoa(id.toString())]);
+  public details(id: number) {
+    this.router.navigate(['beer-details', id.toString()]);
   }
 
 }

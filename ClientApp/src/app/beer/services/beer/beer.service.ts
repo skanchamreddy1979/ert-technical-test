@@ -15,7 +15,7 @@ export class BeerService {
   public getAllBeers=(): Observable<Beer[]>=> {
     return this.httpService.get(this.bearUrl);
   }
-  public getBeerById=(id: number): Observable<Beer> =>{
+  public getBeerById=(id: number): Observable<Beer[]> =>{
     return this.httpService.get(this.bearByIdUrl + id);
   }
 }
