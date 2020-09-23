@@ -36,12 +36,12 @@ export class BeerDetailComponent implements OnInit, OnDestroy {
   private getBeer = (): void => {
     this.loaderService.setSpinner(true);
     this.beerSubscription = this.beerService.getBeerById(this.id).subscribe(result => {
-      console.log(result);
+
       this.beer = result[0];
       this.loaderService.setSpinner(false);
     });
   }
-  private goback = (): void => {
+  public goback = (): void => {
     this.router.navigate(['beerlist']);
   }
   ngOnDestroy() {

@@ -37,21 +37,23 @@ describe('BeerListComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should call intializeGetParam method', async(() => {
-    let mockResponse: Beer[] = [
+    const mockResponse: Beer[] = [
       { id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
     ];
     spyOn(beerService, 'getAllBeers').and.returnValue(of(mockResponse));
+
     component.getAllBeers();
-    component.beersFiltered = component.beers = mockResponse;
-    component.collectionSize = component.beersAll.length;
-    expect(mockResponse.length).toBe(1);
+    expect(component.beersFiltered).toEqual(mockResponse);
+    expect(component.collectionSize).toEqual(1);
+    expect(beerService.getAllBeers).toHaveBeenCalled();
+
+    expect(mockResponse.length).toEqual(1);
   }));
 
   it('should call intateValueChangeSubscription method', async(() => {
-    let mockResponse: Beer[] = [
+    const mockResponse: Beer[] = [
       { id: 0, name: 'Buzz', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
     ];
-    const app = fixture.debugElement.componentInstance;
     component.intateValueChangeSubscription();
     component.beersAll = mockResponse;
     const el = fixture.nativeElement.querySelector('input');
@@ -64,8 +66,7 @@ describe('BeerListComponent', () => {
   }));
 
   it('should call intateValueChangeSubscription method empty beers list', async(() => {
-    let mockResponse: Beer[] = [];
-    const app = fixture.debugElement.componentInstance;
+    const mockResponse: Beer[] = [];
     component.intateValueChangeSubscription();
     component.beersAll = mockResponse;
     const el = fixture.nativeElement.querySelector('input');

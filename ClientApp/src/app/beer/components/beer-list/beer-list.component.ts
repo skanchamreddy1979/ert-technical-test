@@ -34,7 +34,6 @@ export class BeerListComponent implements OnInit, OnDestroy {
   public getAllBeers = (): void => {
     this.loaderService.setSpinner(true);
     this.subscription = this.beerService.getAllBeers().subscribe(result => {
-
       this.beersFiltered = this.beersAll = result;
       this.collectionSize = this.beersAll.length;
       this.filterBeers(this.beersAll);
