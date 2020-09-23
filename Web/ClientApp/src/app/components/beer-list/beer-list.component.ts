@@ -16,6 +16,7 @@ export class BeerListComponent implements OnInit {
 
   beers: Observable<Beer[]>;
   columns: TableColumn[];
+  filterValue: string;
 
   constructor(private beerService: BeerService) { }
 
@@ -26,6 +27,13 @@ export class BeerListComponent implements OnInit {
       { text: "Tagline", key: 'tagline'},
       { text: "ABV", key: 'abv'},
       { text: "First Brewed Date", key: 'first_brewed'}];
+  }
+
+  updateList(filterValue?: string) {
+    if (this.filterValue != filterValue) {
+      this.filterValue = filterValue;
+      this.fetchData(filterValue);
+    }
   }
 
   fetchData(filterValue?: string) {
