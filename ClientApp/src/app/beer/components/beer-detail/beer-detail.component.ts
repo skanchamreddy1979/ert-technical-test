@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Beer } from '../model/beer.model';
-import { BeerService } from '../services/beer.service';
+import { Beer } from 'src/app/model/beer.model';
+import { BeerService } from 'src/app/services/beer.service';
 
 @Component({
   selector: 'app-detail',
@@ -14,16 +14,18 @@ export class BeerDetailComponent implements OnInit {
   beerId: number;
 
   constructor(private activatedRoute: ActivatedRoute, private beerService: BeerService) {
-    this.beerId = +this.activatedRoute.snapshot.params['id'];
   }
 
   ngOnInit() {
+    this.beerId = +this.activatedRoute.snapshot.params['id'];
     this.getBeer(this.beerId);
   }
   getBeer(beerId: number) {
     this.beerService.getBeerById(beerId)
-      .subscribe(beer => {
-        this.beer = beer;
+      .subscribe((beer: any) => {
+        if (beer != null && beer.length > 0) {
+          this.beer = beer[0];
+        }
       });
   }
 }

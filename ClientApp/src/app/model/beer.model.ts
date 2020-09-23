@@ -1,8 +1,9 @@
 export interface Beer {
-  id: string;
+  id: number;
   name: string;
   tagLine: string;
-  abv: string;
+  first_brewed: string;
+  abv: number;
   image_url: string;
   description: string;
 }

@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ViewChild, Inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { BeerService } from '../services/beer.service';
-import { Beer } from '../model/beer.model';
+import { Beer } from 'src/app/model/beer.model';
+import { BeerService } from 'src/app/services/beer.service';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +16,7 @@ export class BeerListComponent implements AfterViewInit {
 
   public beers: Beer[];
 
-  displayedColumns: string[] = ['name', 'first_brewed', 'tagline', 'abv'];
+  displayedColumns: string[] = ['name', 'tagline', 'first_brewed', 'abv'];
   dataSource;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;

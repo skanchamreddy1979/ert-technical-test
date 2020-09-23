@@ -2,14 +2,14 @@
   <h2>BrewDog beers</h2>
 </div>
 <mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="search" #input>
+  <mat-label>Search by name:</mat-label>
+   <input matInput (keyup)="applyFilter($event)" placeholder="Ex:Trashy Blonde" #input>
 </mat-form-field>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef>Beer Name</th>
       <td mat-cell *matCellDef="let beer"><a [routerLink]="['/detail', beer.id]"> {{ beer.name }}</a> </td>
     </ng-container>
 
@@ -24,7 +24,7 @@
     </ng-container>
 
     <ng-container matColumnDef="abv">
-      <th mat-header-cell *matHeaderCellDef>Abv</th>
+      <th mat-header-cell *matHeaderCellDef>ABV</th>
       <td mat-cell *matCellDef="let beer">{{ beer.abv }}</td>
     </ng-container>
 
