@@ -4,7 +4,7 @@ import { BeerService } from './beer.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { Beer } from '../../interface/beer';
 
-fdescribe('BeerService', () => {
+describe('BeerService', () => {
   let service: BeerService;
   let httpMock: HttpTestingController;
   beforeEach(() => TestBed.configureTestingModule(

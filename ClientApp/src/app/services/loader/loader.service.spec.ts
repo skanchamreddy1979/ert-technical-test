@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { LoaderService } from './loader.service';
 
-xdescribe('LoaderService', () => {
+describe('LoaderService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {

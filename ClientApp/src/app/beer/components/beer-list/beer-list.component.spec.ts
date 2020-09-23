@@ -8,7 +8,7 @@ import { Beer } from '../../interface/beer';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
 
-fdescribe('BeerListComponent', () => {
+describe('BeerListComponent', () => {
   let component: BeerListComponent;
   let fixture: ComponentFixture<BeerListComponent>;
   let beerService: BeerService;
@@ -20,10 +20,10 @@ fdescribe('BeerListComponent', () => {
         HttpClientTestingModule,
         RouterModule.forRoot([])
       ],
-      schemas: [ NO_ERRORS_SCHEMA ],
-      declarations: [ BeerListComponent ]
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [BeerListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -40,13 +40,10 @@ fdescribe('BeerListComponent', () => {
     let mockResponse: Beer[] = [
       { id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
     ];
-
     spyOn(beerService, 'getAllBeers').and.returnValue(of(mockResponse));
-
     component.getAllBeers();
     component.beersFiltered = component.beers = mockResponse;
     component.collectionSize = component.beersAll.length;
-
     expect(mockResponse.length).toBe(1);
   }));
 
@@ -55,10 +52,8 @@ fdescribe('BeerListComponent', () => {
       { id: 0, name: 'Buzz', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
     ];
     const app = fixture.debugElement.componentInstance;
-
-
     component.intateValueChangeSubscription();
-    component.beersAll=mockResponse;
+    component.beersAll = mockResponse;
     const el = fixture.nativeElement.querySelector('input');
     el.value = 'Buz';
     el.dispatchEvent(new Event('input'));
@@ -67,4 +62,19 @@ fdescribe('BeerListComponent', () => {
       expect(component.beers.length).toBe(1);
     });
   }));
+
+  it('should call intateValueChangeSubscription method empty beers list', async(() => {
+    let mockResponse: Beer[] = [];
+    const app = fixture.debugElement.componentInstance;
+    component.intateValueChangeSubscription();
+    component.beersAll = mockResponse;
+    const el = fixture.nativeElement.querySelector('input');
+    el.value = 'Buz';
+    el.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.beers.length).toBe(0);
+    });
+  }));
+
 });

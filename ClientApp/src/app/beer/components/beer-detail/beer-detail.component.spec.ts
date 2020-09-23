@@ -7,7 +7,7 @@ import { RouterModule, Router } from '@angular/router';
 import { Beer } from '../../interface/beer';
 import { of } from 'rxjs';
 
-fdescribe('BeerDetailComponent', () => {
+describe('BeerDetailComponent', () => {
   let component: BeerDetailComponent;
   let fixture: ComponentFixture<BeerDetailComponent>;
   let beerService: BeerService;
@@ -20,7 +20,6 @@ fdescribe('BeerDetailComponent', () => {
         RouterModule.forRoot([])
       ],
       declarations: [BeerDetailComponent]
-
     })
       .compileComponents();
   }));
@@ -40,9 +39,15 @@ fdescribe('BeerDetailComponent', () => {
     let mockResponse: Beer[] = [
       { id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
     ];
-
     spyOn(beerService, 'getBeerById').and.returnValue(of(mockResponse));
+    component.intializeGetParam();
+    component.beer = mockResponse[0];
+    expect(mockResponse[0]).toEqual(mockResponse[0]);
+  }));
 
+  it('should call intializeGetParam method empty beer', async(() => {
+    let mockResponse: Beer[] = [];
+    spyOn(beerService, 'getBeerById').and.returnValue(of(mockResponse));
     component.intializeGetParam();
     component.beer = mockResponse[0];
     expect(mockResponse[0]).toEqual(mockResponse[0]);
