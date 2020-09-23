@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { MenuItem } from 'src/app/core/models/menu-item';
+import { MenuItem } from 'src/app/core/models/menu-item.model';
 
 @Component({
   selector: 'header',

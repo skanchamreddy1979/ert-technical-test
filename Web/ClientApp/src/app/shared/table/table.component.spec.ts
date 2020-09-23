@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../material.module';
 import { TableComponent } from './table.component';
+import { WrapperComponent } from './testing/wrapper/wrapper-component';
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -17,10 +18,12 @@ describe('TableComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         TableComponent,
+        WrapperComponent
       ],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule]
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
   }));
@@ -28,6 +31,7 @@ describe('TableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -43,6 +47,44 @@ describe('TableComponent', () => {
 
       expect(rows).toBeTruthy();
       expect(rows.length).toEqual(data.length);
+    });
+  });
+
+  describe('Wrapping tests', () => {
+    let wrapperFixture: ComponentFixture<WrapperComponent>;
+    let wrapperComponent: WrapperComponent;
+
+    beforeEach(() => {
+      wrapperFixture = TestBed.createComponent(WrapperComponent);
+      wrapperComponent = wrapperFixture.componentInstance;
+      component = wrapperComponent.table;
+      wrapperComponent.data = data;
+      wrapperComponent.columns = columns;
+      wrapperFixture.detectChanges();
+    });
+
+    it('should render row for displaying details', () => {
+      wrapperFixture.whenStable().then(() => {
+        let expandedRows: HTMLElement[] = wrapperFixture.nativeElement.querySelectorAll('table tbody tr.expaned-row');
+        expect(expandedRows.length).toEqual(0);
+  
+        let rows: HTMLElement[] = wrapperFixture.nativeElement.querySelectorAll('table tbody tr');
+        expect(rows.length).toEqual(data.length * 2);
+      });
+    });
+
+    it('should expand a row with details when the is clicked', () => {
+      wrapperFixture.whenStable().then(() => {
+        let clickSpy = spyOn(component, 'onRowClick');
+        let row: HTMLElement = wrapperFixture.nativeElement.querySelector('table tbody tr.expaned-row');
+        expect(row).toBeNull();
+  
+        row.click();
+        wrapperFixture.detectChanges();
+  
+        expect(clickSpy).toHaveBeenCalled();
+        expect(row.classList.contains('expaned-row')).toBeTruthy();
+      });
     });
   });
 });

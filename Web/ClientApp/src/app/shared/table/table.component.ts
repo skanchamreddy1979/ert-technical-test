@@ -18,7 +18,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { TableColumn } from 'src/app/core/models/table-column.model';
+import { TableColumn } from 'src/app/shared/table/table-column.model';
 
 @Component({
   selector: 'app-table',

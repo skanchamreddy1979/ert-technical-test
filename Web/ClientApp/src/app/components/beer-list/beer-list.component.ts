@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 import { BeerService } from 'src/app/core/services/beer.service';
 import { Beer } from 'src/app/core/models/beer.model';
-import { TableColumn } from 'src/app/core/models/table-column.model';
+import { TableColumn } from 'src/app/shared/table/table-column.model';
 
 @Component({
   selector: 'app-beer-list',
