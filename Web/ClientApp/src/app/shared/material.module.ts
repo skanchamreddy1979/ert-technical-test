@@ -7,21 +7,22 @@ import {
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatTableModule,
     MatDividerModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
   exports: [
     MatTableModule,
     MatDividerModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
 })
 export class MaterialModule {}
