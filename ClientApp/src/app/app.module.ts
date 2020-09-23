@@ -9,23 +9,27 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 
-import { ListComponent } from './components/list/list.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
+import { BeerListComponent } from './components/beer_list/beer_list.component';
+import { BeerDetailComponent } from './components/beer_detail/beer_detail.component';
+import { PunkApiService } from './services/punkapi.service';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
+  declarations: [AppComponent, BeerListComponent, BeerDetailComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
+      { path: '', component: BeerListComponent, pathMatch: 'full' },
+      { path: 'beers/:id', component: BeerDetailComponent },
+      { path: '**', component: BeerListComponent },
     ]),
     BrowserAnimationsModule,
+    MatCheckboxModule,
   ],
-  providers: [],
+  providers: [PunkApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
