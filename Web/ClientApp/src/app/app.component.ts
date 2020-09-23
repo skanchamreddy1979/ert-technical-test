@@ -13,7 +13,7 @@ export class AppComponent  implements OnInit {
   ngOnInit(): void {
     this.menu = [
       { text: 'Beers', link: '' },
-      { text: 'My Favourites', link: 'nolink' }
+      { text: 'My Favourites', link: 'beer/favourite' }
     ];
   }
 

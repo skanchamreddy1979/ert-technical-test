@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TableComponent } from './table.component';
 import { MaterialModule } from '../material.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { MaterialModule } from '../material.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MaterialModule
   ],
   exports: [

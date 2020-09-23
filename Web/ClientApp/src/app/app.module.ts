@@ -10,6 +10,7 @@ import { BeerListModule } from './components/beer-list/beer-list.module';
 import { LayoutModule } from './components/layout/layout-module';
 import { BeerService } from './core/services/beer.service';
 import { MaterialModule } from './shared/material.module';
+import { BeerFavouriteModule } from './components/beer-favourite/beer-list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { MaterialModule } from './shared/material.module';
     MaterialModule,
     BrowserAnimationsModule,
     LayoutModule,
-    BeerListModule
+    BeerListModule,
+    BeerFavouriteModule
   ],
   providers: [BeerService],
   bootstrap: [AppComponent],

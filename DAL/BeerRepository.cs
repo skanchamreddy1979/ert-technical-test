@@ -15,7 +15,6 @@ namespace DAL
         public BeerRepository()
         {
             _context = new Context();
-            _context.Database.EnsureCreated();
         }
 
         public async Task AddOrUpdate(ICollection<Beer> beers, string userId)
@@ -26,6 +25,13 @@ namespace DAL
             await UpdateUser(user);
 
             await _context.SaveChangesAsync();
+        }
+
+        public Task<ICollection<Beer>> GetFavourite(string userId)
+        {
+            User user = _context.Users.Include(x => x.FavouriteBeers).SingleOrDefault(x => x.Email == userId);
+
+            return Task.FromResult(user?.FavouriteBeers ?? new List<Beer>());
         }
 
         public void Dispose()
@@ -65,7 +71,7 @@ namespace DAL
 
         private async Task UpdateUser(User user)
         {
-            bool exists = GetUserByEmail(user.Email) != null;
+            bool exists = _context.Users.Any(x => x.Email == user.Email);
 
             if (exists)
             {
@@ -75,8 +81,5 @@ namespace DAL
 
             await _context.Users.AddAsync(user);
         }
-
-        private User GetUserByEmail(string email) 
-            => _context.Users.SingleOrDefault(x => x.Email == email); 
     }
 }

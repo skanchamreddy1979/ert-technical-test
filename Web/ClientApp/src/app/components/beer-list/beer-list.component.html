@@ -5,7 +5,7 @@
       <input matInput type="text" (focusout)="updateList($event.target.value)">
     </mat-form-field>
 </div>
-<app-table [data]="beers | async" [columns]="columns" (selectedChange)="onSelectionChange($event)" (selected)="onSelectionChange($event)">
+<app-table [data]="beers | async" [columns]="columns" (selectedChange)="onSelectionChange($event)">
     <ng-template #expandedRow let-row="row">
         <img [src]="row.image_url" width="90" height="250"/>
         <div class="element-description"> {{row.description}} </div>

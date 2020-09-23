@@ -9,6 +9,11 @@ namespace DAL
         public DbSet<Beer> Beers { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public Context()
+        {
+            Database.EnsureCreated();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=TestDatabase.db", options =>

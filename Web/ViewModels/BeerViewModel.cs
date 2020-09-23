@@ -26,6 +26,17 @@ namespace ert_beer_app.ViewModels
         [JsonProperty("image_url")]
         public string ImageUrl { get; set; }
 
+        public static BeerViewModel FromBeer(Beer beer) => new BeerViewModel
+        {
+            Id = beer.Id,
+            Name = beer.Name,
+            TagLine = beer.TagLine,
+            BrewDate = beer.BrewDate,
+            Abv = beer.Abv,
+            Description = beer.Description,
+            ImageUrl = beer.ImageUrl
+        };
+
         public Beer ToBeer() => new Beer
         {
             Id = Id,

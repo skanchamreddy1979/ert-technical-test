@@ -34,5 +34,15 @@ namespace BLL
 
             await _beerRepository.AddOrUpdate(beers, email);
         }
+
+        public async Task<ICollection<Beer>> GetFavourite(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new ArgumentException(email);
+            }
+
+            return await _beerRepository.GetFavourite(email);
+        }
     }
 }

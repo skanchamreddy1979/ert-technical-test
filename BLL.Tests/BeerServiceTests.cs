@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using DAL;
 
@@ -12,7 +13,7 @@ namespace BLL.Tests
     [TestFixture]
     public class BeerServiceTests
     {
-        private const string TEST_USER_ID = "testId";
+        private const string TEST_EMAIL = "test@gmail.com";
 
         #region Constructor Tests
 
@@ -35,7 +36,7 @@ namespace BLL.Tests
             var sut = new BeerService(beerRepository);
 
             // Act and Assert
-            Assert.ThrowsAsync<ArgumentNullException>(async () => await sut.AddOrUpdate(null, TEST_USER_ID));
+            Assert.ThrowsAsync<ArgumentNullException>(async () => await sut.AddOrUpdate(null, TEST_EMAIL));
         }
 
         [TestCase(null)]
@@ -59,14 +60,46 @@ namespace BLL.Tests
             var sut = new BeerService(beerRepository);
 
             // Act and Assert
-            Assert.DoesNotThrowAsync(async () => await sut.AddOrUpdate(GetBeerList(), TEST_USER_ID));
+            Assert.DoesNotThrowAsync(async () => await sut.AddOrUpdate(GetBeerList(), TEST_EMAIL));
+        }
+
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void GivenBeerService_WhenGetFavouriteUserIdIsInvalid_ThenShouldThrowException(string userId)
+        {
+            // Arrange
+            IBeerRepository beerRepository = MockBeerRepository();
+            var sut = new BeerService(beerRepository);
+
+            // Act and Assert
+            Assert.ThrowsAsync<ArgumentException>(async () => await sut.GetFavourite(userId));
+        }
+
+        [Test]
+        public async Task GivenBeerService_WhenGetFavourite_ThenReturnExpectedResult()
+        {
+            // Arrange
+            var expectedResult = GetBeerList();
+            IBeerRepository beerRepository = MockBeerRepository(expectedResult);
+            var sut = new BeerService(beerRepository);
+
+            // Act
+            ICollection<Beer> result = await sut.GetFavourite(TEST_EMAIL);
+
+
+            // Act and Assert
+            Assert.AreEqual(expectedResult, result);
         }
 
         #region Test Helpers
 
-        private static IBeerRepository MockBeerRepository()
+        private static IBeerRepository MockBeerRepository(ICollection<Beer> beerList = null)
         {
             var mock = new Mock<IBeerRepository>();
+
+            mock.Setup(x => x.GetFavourite(It.IsAny<string>()))
+                .Returns(Task.FromResult(beerList ?? new List<Beer>()));
 
             return mock.Object;
         }
