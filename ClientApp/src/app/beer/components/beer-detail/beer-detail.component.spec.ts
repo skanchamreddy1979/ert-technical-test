@@ -6,12 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { Beer } from '../../interface/beer';
 import { of } from 'rxjs';
+import { TestData } from '../test-data';
 
 describe('BeerDetailComponent', () => {
   let component: BeerDetailComponent;
   let fixture: ComponentFixture<BeerDetailComponent>;
   let beerService: BeerService;
-
+  const mockResponse: Beer[] = TestData.getBeerTByIdestData();
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -36,9 +37,7 @@ describe('BeerDetailComponent', () => {
   });
 
   it('should call intializeGetParam method', async(() => {
-    let mockResponse: Beer[] = [
-      { id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
-    ];
+
     spyOn(beerService, 'getBeerById').and.returnValue(of(mockResponse));
     component.intializeGetParam();
     component.beer = mockResponse[0];

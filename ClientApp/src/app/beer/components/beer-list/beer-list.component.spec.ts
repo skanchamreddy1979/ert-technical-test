@@ -7,14 +7,14 @@ import { RouterModule } from '@angular/router';
 import { Beer } from '../../interface/beer';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
+import { TestData } from '../test-data';
 
 describe('BeerListComponent', () => {
   let component: BeerListComponent;
   let fixture: ComponentFixture<BeerListComponent>;
   let beerService: BeerService;
-  const mockResponse: Beer[] = [
-    { id: 0, name: 'Buz', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
-  ];
+  const mockResponse: Beer[] = TestData.getBeerTestData();
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -44,10 +44,10 @@ describe('BeerListComponent', () => {
     spyOn(beerService, 'getAllBeers').and.returnValue(of(mockResponse));
     component.getAllBeers();
     expect(component.beersFiltered).toEqual(mockResponse);
-    expect(component.collectionSize).toEqual(1);
+    expect(component.collectionSize).toEqual(3);
     expect(beerService.getAllBeers).toHaveBeenCalled();
 
-    expect(mockResponse.length).toEqual(1);
+    expect(mockResponse.length).toEqual(3);
   }));
 
 
