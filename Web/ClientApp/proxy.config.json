@@ -7,5 +7,11 @@
             "^/brewdog/api": ""
         },
         "logLevel": "debug"
+    },
+    "/api/*": {
+        "target": "http://localhost:50485",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
     }
 }

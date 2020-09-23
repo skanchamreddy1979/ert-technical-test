@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Add Favourite Beers</h1>
+<div mat-dialog-content class="content">
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput validate-email type="text" #emailRef="validateEmail" ngModel #emailNgRef="ngModel" (focusout)="onInputFocusOut(emailNgRef.control.value)">
+    </mat-form-field>
+    <ng-container *ngIf="email && !emailRef.valid"><span>Invalid Email</span></ng-container>
+</div>
+<div class="actions">
+    <button mat-button color="primary" [disabled]="inProgress || !emailRef.valid" (click)="onAddClick()">Add</button>
+    <button mat-dialog-close mat-button color="primary" [disabled]="inProgress">Close</button>
+</div>

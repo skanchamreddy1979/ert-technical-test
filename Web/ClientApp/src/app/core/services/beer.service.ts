@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -26,4 +26,11 @@ export class BeerService {
         return this.http.get<Beer[]>('/brewdog/api/beers', requestOpts);
     }
 
+    addFavourite(beers: Beer[], userId: string): Observable<any> {
+        return this.http.post<any>(`/api/beer/user/${userId}`, JSON.stringify(beers), {
+            headers: new HttpHeaders({
+                'Content-Type' : 'application/json'
+            })
+        });
+    }
 }

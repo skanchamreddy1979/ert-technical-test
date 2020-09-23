@@ -1,11 +1,11 @@
 <div class="list-header">
-    <span>Beer List</span>
+    <button mat-button color="primary" (click)="onAddFavouriteClick()" [disabled]="!selectedBeers || !selectedBeers.length">Add Favourite</button>
     <mat-form-field>
       <mat-label>Filter by Name</mat-label>
       <input matInput type="text" (focusout)="updateList($event.target.value)">
     </mat-form-field>
 </div>
-<app-table [data]="beers | async" [columns]="columns" (selectedChange)="onSelectionChange($event)">
+<app-table [data]="beers | async" [columns]="columns" (selectedChange)="onSelectionChange($event)" (selected)="onSelectionChange($event)">
     <ng-template #expandedRow let-row="row">
         <img [src]="row.image_url" width="90" height="250"/>
         <div class="element-description"> {{row.description}} </div>

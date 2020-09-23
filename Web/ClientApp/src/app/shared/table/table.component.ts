@@ -4,12 +4,15 @@ import {
   style,
   transition,
   trigger } from '@angular/animations';
+import { SelectionModel } from '@angular/cdk/collections';
 import {
   Component,
   ContentChild,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
   TemplateRef,
   ViewChild,
@@ -35,9 +38,12 @@ import { TableColumn } from 'src/app/shared/table/table-column.model';
 })
 export class TableComponent implements OnInit, OnChanges  {
 
+  @Input() maxSelectedRows: number = 5;
   @Input() columns: TableColumn[];
   @Input() data: any[];
   
+  @Output() selectedChange: EventEmitter<any[]> = new EventEmitter();
+
   @ContentChild('expandedRow', { static: false }) expandedRowTemplate: TemplateRef<any>;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
@@ -45,6 +51,8 @@ export class TableComponent implements OnInit, OnChanges  {
   pageSizeOptions: number[] = [10, 20];
   displayedColumns: string[];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  selection = new SelectionModel<any>(true, []);
+  selectionColumnKey = 'selection';
 
   constructor() { }
 
@@ -59,7 +67,9 @@ export class TableComponent implements OnInit, OnChanges  {
     }
 
     if (changes['columns']) {
-      this.displayedColumns = [...this.columns.map(c => c.key)];
+      let tmpArr = this.columns.map(c => c.key);
+      tmpArr.push(this.selectionColumnKey);
+      this.displayedColumns = tmpArr;
     }
   }
 
@@ -70,6 +80,11 @@ export class TableComponent implements OnInit, OnChanges  {
     if (this.expandedRowTemplate) {
       this.expandedRow = this.expandedRow == row ? null : row
     }
+  }
+
+  onItemSelect(row: any) {
+    this.selection.toggle(row);
+    this.selectedChange.emit(this.selection.selected);
   }
 
 }
