@@ -1,0 +1,17 @@
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 17px 0 0 0;
+}
+
+.list-filter {
+    float: right;
+}
+
+.list-option p span{
+    padding-right: 15px !important;
+}
+
+.element-description {
+    padding: 16px;
+}

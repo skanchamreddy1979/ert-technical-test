@@ -1,0 +1,20 @@
+.header h3 {
+    margin: 0;
+}
+
+.header a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.header ul {
+    padding: 0;
+}
+.header ul li{
+    display:inline;
+}
+
+.header .active {
+    color: #0066ff;
+}

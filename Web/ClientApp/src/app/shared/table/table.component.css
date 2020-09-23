@@ -1,0 +1,37 @@
+table {
+    width: 100%;
+}
+
+tr.detail-row.mat-row {
+    height: 0;
+}
+
+th.selection-col {
+    width: 10px;
+    padding-right: 0 !important;
+}
+
+tr.element-row {
+    cursor: pointer;
+}
+
+td.mat-cell:last-of-type {
+    padding-right: 14px;
+}
+
+tr.element-row:not(.expanded-row):hover {
+    background: whitesmoke;
+}
+  
+tr.element-row:not(.expanded-row):active {
+    background: #efefef;
+}
+ 
+.element-row td {
+    border-bottom-width: 0 !important;
+}
+
+.element-detail {
+    overflow: hidden;
+    display: flex;
+}
