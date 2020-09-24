@@ -7,14 +7,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ert.DataAccessLayer
 {
-    public class BeerRepository : IBeerRepository, IDisposable
+    public class BeerRepository : IBeerRepository
     {
-        private bool _disposed;
         private readonly Context _context;
 
-        public BeerRepository()
+        public BeerRepository(Context context)
         {
-            _context = new Context();
+            if (context == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            _context = context;
         }
 
         public async Task AddOrUpdate(ICollection<Beer> beers, string userId)
@@ -32,25 +36,6 @@ namespace Ert.DataAccessLayer
             User user = await _context.Users.Include(x => x.FavouriteBeers).SingleOrDefaultAsync(x => x.Email == userId);
 
             return user?.FavouriteBeers ?? new List<Beer>();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-
-                _disposed = true;
-            }
         }
 
         private async Task UpdateBeersTable(ICollection<Beer> beers)

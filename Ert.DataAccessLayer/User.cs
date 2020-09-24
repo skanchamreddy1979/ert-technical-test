@@ -2,7 +2,7 @@
 
 namespace Ert.DataAccessLayer
 {
-    internal class User
+    public class User
     {
         // Email is going to play ID role
         public string Email { get; set; }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ert.DataAccessLayer
 {
-    internal class Context : DbContext
+    public class Context : DbContext
     {
         public DbSet<Beer> Beers { get; set; }
         public DbSet<User> Users { get; set; }

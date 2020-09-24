@@ -25,6 +25,8 @@ namespace Ert.Web
             services.AddCors(o => o.AddPolicy("CorePolicy", builder => builder.AllowAnyMethod()));
             services.AddControllers().AddNewtonsoftJson();
             services.AddSpaStaticFiles(configuration => configuration.RootPath = "ClientApp/dist");
+
+            services.AddDbContext<Context>();
             services.AddScoped<IBeerRepository, BeerRepository>();
             services.AddScoped<IBeerService, BeerService>();
         }

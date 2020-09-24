@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAL\Ert.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\Ert.DataAccessLayer\Ert.DataAccessLayer.csproj" />
   </ItemGroup>
 
 </Project>

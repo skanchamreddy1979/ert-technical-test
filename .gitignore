@@ -192,6 +192,9 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
+# SQLite
+*.db
+
 # SQL Server files
 *.mdf
 *.ldf
