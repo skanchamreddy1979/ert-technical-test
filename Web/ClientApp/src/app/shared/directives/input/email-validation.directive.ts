@@ -22,7 +22,7 @@ export class EmailValidationDirective implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['pattern']) {
-            this.regex = new RegExp(changes['pattern'].currentValue);
+            this.UpdateRegex();
         }
     }
   
