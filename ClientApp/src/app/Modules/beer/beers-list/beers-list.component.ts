@@ -12,6 +12,8 @@ export class BeersListComponent implements OnInit {
   beerList: any;
   beerLists$: Observable<BeerModel[]>;
   total$: Observable<number>;
+  // totalRecords: number;
+  // total: number;
   constructor(public service: BeerService) {
 
   }

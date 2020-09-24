@@ -9,14 +9,15 @@ import { BeerService } from '../beer.service';
 })
 export class BeerDetailsComponent implements OnInit {
   beerDetails: any;
-  beerId: any;
+  beerId: number;
+
   constructor(private beerService: BeerService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.beerId = this.route.snapshot.params.id;
+    this.beerId = this.route.snapshot.params.id || 1;
     this.getBeersDetail(this.beerId);
   }
-  getBeersDetail = (beerId): void => {
+  getBeersDetail = (beerId: number): void => {
     this.beerService.getBeerDetail(beerId).subscribe(response => {
       this.beerDetails = response[0];
     });

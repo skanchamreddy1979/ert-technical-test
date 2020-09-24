@@ -52,15 +52,15 @@ export class BeerService {
     sortColumn: '',
     sortDirection: ''
   };
-  constructor(private httpClient: HttpClient, private pipe: DecimalPipe) {
+  constructor(private httpClient: HttpClient) {
 
   }
 
   getAllBeers(): Observable<BeerModel[]> {
     return this.httpClient.get<BeerModel[]>(`${this.apiUrl}/${'beers'}`);
   }
-  getBeerDetail(beerId: string): Observable<BeerModel> {
-    return this.httpClient.get<BeerModel>(`${this.apiUrl}/${'beers'}/${beerId}`);
+  getBeerDetail(beerId: number): Observable<BeerModel[]> {
+    return this.httpClient.get<BeerModel[]>(`${this.apiUrl}/beers/${beerId}`);
   }
 
   setObservable = (beerList): void => {

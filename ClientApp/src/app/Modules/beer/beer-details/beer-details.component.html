@@ -5,13 +5,13 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4 bg-success">
-          <img [src]="beerDetails.image_url" alt="image not loaded" class="mr-2 imageposition">
+          <img [src]="beerDetails?.image_url" alt="image not loaded" class="mr-2 imageposition">
         </div>
         <div class="col-sm-4 bg-success">
-          <strong>Name:</strong> {{beerDetails.name}} <br>
-          <strong> Tagline:</strong> {{beerDetails.tagline}} <br>
-          <strong> First Brewed:</strong> {{beerDetails.first_brewed}} <br>
-          <strong>Abv:</strong> {{beerDetails.abv}} <br>
+          <strong>Name:</strong> {{beerDetails?.name}} <br>
+          <strong> Tagline:</strong> {{beerDetails?.tagline}} <br>
+          <strong> First Brewed:</strong> {{beerDetails?.first_brewed}} <br>
+          <strong>Abv:</strong> {{beerDetails?.abv}} <br>
         </div>
       </div>
       <button type="button" routerLink="/" class="btn btn-primary">Back</button>
