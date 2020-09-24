@@ -3,7 +3,7 @@
     OnInit,
     ViewChild } from '@angular/core';
 
-  import { TableColumn } from 'src/app/shared/table/table-column.model';
+  import { TableColumn } from 'src/app/shared/components/table/table-column.model';
   import { TableComponent } from '../../table.component';
 
   @Component({

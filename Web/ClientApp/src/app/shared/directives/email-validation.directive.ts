@@ -9,7 +9,7 @@ import {
 
 @Directive({
   selector: '[appValidateEmail]',
-  exportAs: 'validateEmail'
+  exportAs: 'appValidateEmail'
 })
 export class EmailValidationDirective implements OnInit, OnChanges {
 
@@ -22,7 +22,7 @@ export class EmailValidationDirective implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['pattern']) {
-            this.UpdateRegex();
+            this.updateRegex();
         }
     }
 
@@ -31,7 +31,7 @@ export class EmailValidationDirective implements OnInit, OnChanges {
             throw Error('Unexpected element');
         }
 
-        this.UpdateRegex();
+        this.updateRegex();
     }
 
 
@@ -40,7 +40,7 @@ export class EmailValidationDirective implements OnInit, OnChanges {
         this.valid = this.regex.test(this.el.nativeElement.value);
     }
 
-    private UpdateRegex() {
+    private updateRegex() {
         this.regex = new RegExp(this.pattern);
     }
 }

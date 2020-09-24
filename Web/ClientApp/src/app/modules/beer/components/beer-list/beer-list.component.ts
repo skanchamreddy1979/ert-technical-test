@@ -1,5 +1,6 @@
 import {
   Component,
+  Input,
   OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -7,8 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { BeerService } from 'src/app/core/services/beer.service';
 import { Beer } from 'src/app/core/models/beer.model';
-import { TableColumn } from 'src/app/shared/table/table-column.model';
-import { AddFavouriteModalComponent } from './add-favourite-modal/add-favourite-modal.component';
+import { TableColumn } from 'src/app/shared/components/table/table-column.model';
+import { AddFavouritesModalComponent } from '../add-favourites-modal/add-favourites-modal.component';
 
 @Component({
   selector: 'app-beer-list',
@@ -16,13 +17,14 @@ import { AddFavouriteModalComponent } from './add-favourite-modal/add-favourite-
   styleUrls: ['./beer-list.component.css']
 })
 export class BeerListComponent implements OnInit {
-
+  @Input() columns: TableColumn[];
   beers: Observable<Beer[]>;
-  columns: TableColumn[];
   filterValue = '';
   selectedBeers: Beer[];
 
-  constructor(private beerService: BeerService, private dialog: MatDialog) { }
+  constructor(
+    private beerService: BeerService,
+    private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.fetchData();
@@ -49,7 +51,7 @@ export class BeerListComponent implements OnInit {
   }
 
   onAddFavouriteClick() {
-    this.dialog.open(AddFavouriteModalComponent, {
+    this.dialog.open(AddFavouritesModalComponent, {
       disableClose: true,
       data: {
         selected: this.selectedBeers

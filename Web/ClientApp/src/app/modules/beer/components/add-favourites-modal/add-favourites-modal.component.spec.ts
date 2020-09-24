@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddFavouriteModalComponent } from './add-favourite-modal.component';
+import { AddFavouriteModalComponent } from './add-favourites-modal.component';
 
 describe('AddFavouriteModalComponent', () => {
   let component: AddFavouriteModalComponent;

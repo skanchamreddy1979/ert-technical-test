@@ -4,7 +4,7 @@ import {
   TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from '../../material.module';
 import { TableComponent } from './table.component';
 import { WrapperComponent } from './testing/wrapper/wrapper-component';
 

@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { BeerFavouriteComponent } from './components/beer-favourite/beer-favourite.component';
+import {
+  Routes,
+  RouterModule } from '@angular/router';
 
-import { BeerListComponent } from './components/beer-list/beer-list.component';
+import { BeerFavouriteComponent } from './modules/beer/components/beer-favourites/beer-favourites.component';
+import { BeerListComponent } from './modules/beer/components/beer-list/beer-list.component';
 
 const routes: Routes = [
   { path: '', component: BeerListComponent },

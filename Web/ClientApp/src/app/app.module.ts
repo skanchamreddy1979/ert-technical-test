@@ -6,11 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { BeerListModule } from './components/beer-list/beer-list.module';
-import { LayoutModule } from './components/layout/layout-module';
+import { LayoutModule } from './modules/layout/layout-module';
 import { BeerService } from './core/services/beer.service';
 import { MaterialModule } from './shared/material.module';
-import { BeerFavouriteModule } from './components/beer-favourite/beer-list.module';
+import { BeerModule } from './modules/beer/beer.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,8 +20,7 @@ import { BeerFavouriteModule } from './components/beer-favourite/beer-list.modul
     MaterialModule,
     BrowserAnimationsModule,
     LayoutModule,
-    BeerListModule,
-    BeerFavouriteModule
+    BeerModule
   ],
   providers: [BeerService],
   bootstrap: [AppComponent],

@@ -9,28 +9,32 @@ import {
   MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Subscription } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import {
+  catchError,
+  finalize } from 'rxjs/operators';
 import { BeerService } from 'src/app/core/services/beer.service';
 import { DialogData } from './dialog-data.model';
 
 @Component({
-  selector: 'app-add-favourite-modal',
-  templateUrl: './add-favourite-modal.component.html',
-  styleUrls: ['./add-favourite-modal.component.css']
+  selector: 'app-add-favourites-modal',
+  templateUrl: './add-favourites-modal.component.html',
+  styleUrls: ['./add-favourites-modal.component.css']
 })
-export class AddFavouriteModalComponent implements OnInit, OnDestroy {
+export class AddFavouritesModalComponent implements OnInit, OnDestroy {
 
   private onAddSubscription: Subscription;
+  title: string;
   email: string;
   inProgress: boolean;
   hasError: boolean;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: DialogData,
-    private dialogRef: MatDialogRef<AddFavouriteModalComponent>,
+    private dialogRef: MatDialogRef<AddFavouritesModalComponent>,
     private beerService: BeerService) { }
 
   ngOnInit() {
+    this.title = this.data.title ? this.data.title : 'Add Favourite Beers';
   }
 
   ngOnDestroy() {

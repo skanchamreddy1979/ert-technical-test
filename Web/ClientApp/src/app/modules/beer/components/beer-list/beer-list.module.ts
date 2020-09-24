@@ -4,23 +4,22 @@ import { FormsModule } from '@angular/forms';
 
 import { BeerListComponent } from './beer-list.component';
 import { MaterialModule } from 'src/app/shared/material.module';
-import { TableModule } from 'src/app/shared/table/table.module';
-import { AddFavouriteModalComponent } from './add-favourite-modal/add-favourite-modal.component';
-import { InputDirectivesModule } from 'src/app/shared/directives/input/input-directives.module';
+import { TableModule } from 'src/app/shared/components/table/table.module';
+import { AddFavouriteModule } from '../add-favourites-modal/add-favourites-modal.module';
+import { AddFavouritesModalComponent } from '../add-favourites-modal/add-favourites-modal.component';
 
 @NgModule({
   declarations: [
     BeerListComponent,
-    AddFavouriteModalComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
     TableModule,
-    InputDirectivesModule
+    AddFavouriteModule
   ],
-  entryComponents: [AddFavouriteModalComponent],
+  entryComponents: [AddFavouritesModalComponent],
   exports: [BeerListComponent],
 })
 export class BeerListModule {}
