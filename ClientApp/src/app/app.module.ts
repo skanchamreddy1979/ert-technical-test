@@ -12,7 +12,8 @@ import { MaterialModule } from './shared/material.module';
 import { BeerListComponent } from './components/beer_list/beer_list.component';
 import { BeerDetailComponent } from './components/beer_detail/beer_detail.component';
 import { PunkApiService } from './services/punkapi.service';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { InternalApiService } from './services/internal.service';
 
 @NgModule({
   declarations: [AppComponent, BeerListComponent, BeerDetailComponent],
@@ -29,7 +30,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     BrowserAnimationsModule,
     MatCheckboxModule,
   ],
-  providers: [PunkApiService],
+  providers: [PunkApiService, InternalApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

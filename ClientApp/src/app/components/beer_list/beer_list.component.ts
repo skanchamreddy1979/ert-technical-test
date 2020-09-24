@@ -5,6 +5,7 @@ import { PunkApiService } from 'src/app/services/punkapi.service';
 import { displayBeerSettings } from 'src/app/shared/app.constants';
 import { tap } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
+import { InternalApiService } from 'src/app/services/internal.service';
 
 @Component({
   selector: 'app-beer-list',
@@ -12,7 +13,7 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./beer_list.component.css'],
 })
 export class BeerListComponent implements AfterViewInit, OnInit {
-  constructor(private _pukApiService: PunkApiService) {}
+  constructor(private _punkApiService: PunkApiService, private _internalService: InternalApiService) {}
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   displayedColumns: string[] = ['favorite', 'name', 'tagline', 'first_brewed', 'abv'];
@@ -21,6 +22,7 @@ export class BeerListComponent implements AfterViewInit, OnInit {
 
   beers: Beer[] = [];
   searchingBeerName: string;
+  email: string;
   totalPages = displayBeerSettings.currentTotalPages;
   pageSize = displayBeerSettings.currentPageSize;
 
@@ -45,7 +47,6 @@ export class BeerListComponent implements AfterViewInit, OnInit {
 
   onChanged(event: Event) {
     let value = (event.target as HTMLInputElement).value;
-    console.log(value);
 
     if(value.length > 0) {
       this.searchingBeerName = value;
@@ -57,8 +58,12 @@ export class BeerListComponent implements AfterViewInit, OnInit {
     this.getBeers(1, this.pageSize);
   }
 
+  saveBeers() {
+    this._internalService.setFavoriteBeers(this.email, this.getSelectedBeers.map(beer => { return beer.id }));
+  }
+
   private getBeers(pageNumber: number, pageSize: number) {
-    this._pukApiService.getBeers(pageNumber, pageSize, this.searchingBeerName)
+    this._punkApiService.getBeers(pageNumber, pageSize, this.searchingBeerName)
       .subscribe(beers => {
         this.beers = beers;
       }
@@ -66,7 +71,7 @@ export class BeerListComponent implements AfterViewInit, OnInit {
   }
 
   private checkLength() {
-    this._pukApiService.getBeers(this.totalPages, this.pageSize)
+    this._punkApiService.getBeers(this.totalPages, this.pageSize)
       .subscribe(beers => {
         if(beers.length == this.pageSize) {
           this.totalPages = this.totalPages + 1;

@@ -1,4 +1,8 @@
 <div>
+  <input [(ngModel)]="email" placeholder="email"/>
+  <button (click)="saveBeers()" [disabled]="this.getSelectedBeers.length == 0">Save favorites</button>
+</div>
+<div>
   <input (keyup)="onChanged($event)" placeholder="Search field" />
 </div>
 <div class="mat-elevation-z8">

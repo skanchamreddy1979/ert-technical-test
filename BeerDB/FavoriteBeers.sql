@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[FavoriteBeers]
+(
+	[Id] INT NOT NULL PRIMARY KEY,
+	[EMail] VARCHAR NOT NULL,
+	[BeerId] INT NOT NULL
+)
