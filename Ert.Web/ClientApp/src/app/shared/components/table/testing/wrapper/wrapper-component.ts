@@ -8,7 +8,7 @@
 
   @Component({
     selector: 'app-table-wrapper',
-    templateUrl: '<app-table><ng-template #expandedRow [data]="data" [columns]="columns" let-row="row">{{row.description}}</ng-template></app-table>'
+    template: '<app-table [data]="data" [columns]="columns"><ng-template #expandedRow let-row="row">{{row.description}}</ng-template></app-table>'
   })
   export class WrapperComponent implements OnInit {
 

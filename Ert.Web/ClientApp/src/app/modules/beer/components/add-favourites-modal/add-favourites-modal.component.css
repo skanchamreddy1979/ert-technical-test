@@ -9,3 +9,7 @@
     flex-direction: column;
     min-width: 400px;
 }
+
+.error {
+    color: red;
+}

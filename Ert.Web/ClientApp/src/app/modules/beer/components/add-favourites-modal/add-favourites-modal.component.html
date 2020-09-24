@@ -4,7 +4,7 @@
         <mat-label>Email</mat-label>
         <input matInput appValidateEmail type="text" #emailRef="appValidateEmail" ngModel #emailNgRef="ngModel" (focusout)="onInputFocusOut(emailNgRef.control.value)">
     </mat-form-field>
-    <ng-container *ngIf="email && !emailRef.valid"><span>Invalid Email</span></ng-container>
+    <ng-container *ngIf="email && !emailRef.valid"><span class="error">Invalid Email</span></ng-container>
 </div>
 <div class="actions">
     <button mat-button color="primary" [disabled]="inProgress || !emailRef.valid" (click)="onAddClick()">Add</button>

@@ -29,7 +29,7 @@ export class AddFavouritesModalComponent implements OnInit, OnDestroy {
   hasError: boolean;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private dialogRef: MatDialogRef<AddFavouritesModalComponent>,
     private beerService: BeerService) { }
 

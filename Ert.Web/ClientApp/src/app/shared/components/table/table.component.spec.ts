@@ -1,7 +1,9 @@
+import { SimpleChange } from '@angular/core';
 import {
   async,
   ComponentFixture,
   TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '../../material.module';
@@ -11,16 +13,17 @@ import { WrapperComponent } from './testing/wrapper/wrapper-component';
 describe('TableComponent', () => {
   let component: TableComponent;
   let fixture: ComponentFixture<TableComponent>;
-  const data = [{ column: 'column value 1', description: 'description1' }, { column: 'column value 2', description: 'description2' }];
-  const columns = [{ key: 'column', text: 'Column' }];
+  const data = [{ col: 'column value 1', description: 'description1' }, { col: 'column value 2', description: 'description2' }];
+  const columns = [{ key: 'col', text: 'Column' }, { key: 'description', text: 'Description' }];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        TableComponent,
-        WrapperComponent
+        WrapperComponent,
+        TableComponent
       ],
       imports: [
+        FormsModule,
         MaterialModule,
         BrowserAnimationsModule
       ]
@@ -39,18 +42,19 @@ describe('TableComponent', () => {
   });
 
   it('should render rows', () => {
-    component.data = data;
-    component.columns = columns;
+    component.ngOnChanges({
+      data: new SimpleChange(component.data, data, true),
+      columns: new SimpleChange(component.columns, columns, true)
+    });
 
     fixture.whenStable().then(() => {
       const rows: HTMLElement[] = fixture.nativeElement.querySelectorAll('table tbody tr');
 
-      expect(rows).toBeTruthy();
       expect(rows.length).toEqual(data.length);
     });
   });
 
-  describe('Wrapping tests', () => {
+  describe('Wrapper TableComponent', () => {
     let wrapperFixture: ComponentFixture<WrapperComponent>;
     let wrapperComponent: WrapperComponent;
 
@@ -81,7 +85,7 @@ describe('TableComponent', () => {
 
         row.click();
         wrapperFixture.detectChanges();
-
+        
         expect(clickSpy).toHaveBeenCalled();
         expect(row.classList.contains('expaned-row')).toBeTruthy();
       });

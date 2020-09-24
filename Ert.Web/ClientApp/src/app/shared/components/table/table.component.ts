@@ -40,6 +40,7 @@ export class TableComponent implements OnInit, OnChanges  {
 
   @Input() columns: TableColumn[];
   @Input() data: any[];
+  @Input() pageSizeOptions: number[] = [10, 20];
 
   @Output() selectedChange: EventEmitter<any[]> = new EventEmitter();
 
@@ -47,7 +48,6 @@ export class TableComponent implements OnInit, OnChanges  {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   expandedRow: any | null;
-  pageSizeOptions: number[] = [10, 20];
   displayedColumns: string[];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   selection = new SelectionModel<any>(true, []);
@@ -58,7 +58,7 @@ export class TableComponent implements OnInit, OnChanges  {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']) {
       const currentValue = changes['data'].currentValue;
-      this.dataSource.data = currentValue == null || currentValue === undefined ? [] : currentValue;
+      this.dataSource.data = !currentValue ? [] : currentValue;
 
       if (changes['data'].isFirstChange) {
         this.dataSource.paginator = this.paginator;
@@ -66,9 +66,15 @@ export class TableComponent implements OnInit, OnChanges  {
     }
 
     if (changes['columns']) {
-      const tmpArr = this.columns.map(c => c.key);
-      tmpArr.push(this.selectionColumnKey);
-      this.displayedColumns = tmpArr;
+      let displayedColumns = [];
+      const currentValue = changes['columns'].currentValue;
+
+      if (currentValue) {
+        displayedColumns = currentValue.map(c => c.key);
+        displayedColumns.push(this.selectionColumnKey);
+      }
+
+      this.displayedColumns = displayedColumns;
     }
   }
 
