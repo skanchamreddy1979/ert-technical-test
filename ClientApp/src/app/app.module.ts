@@ -1,32 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { MatTableModule } from '@angular/material/table';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './shared/material.module';
-
-import { ListComponent } from './list/list.component';
-
-import { WelcomeComponent } from './welcome/welcome.component';
+import { BeersComponent } from './beer/beers/beers.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BeersService } from './beer/services/beers.service';
+import { SelectedbeerComponent } from './beer/selectedbeer/selectedbeer.component';
+import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
+  declarations: [
+    AppComponent,
+    BeersComponent,
+    SelectedbeerComponent,
+    HomeComponent,
+  ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MaterialModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
+      { path: '', component: HomeComponent },
+      { path: 'beers', component: BeersComponent },
+      { path: 'beers/:id', component: SelectedbeerComponent }
     ]),
     BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [BeersService],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
