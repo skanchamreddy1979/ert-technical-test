@@ -1,0 +1,26 @@
+<div class="col-md-12 col-sm-12 col-xs-12 pt-5 pb-2" id="datagrid">
+    <h2 class="text-info mt-3">Beers</h2>
+    <dx-data-grid id="gridContainer" [dataSource]="beersDatasource" [showBorders]="true" [remoteOperations]="true">
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search"></dxo-search-panel>
+        <dxo-selection selectAllMode="page" showCheckBoxesMode="always" mode="multiple"></dxo-selection>
+        <dxi-column caption="Name" dataField="name" dataType="string" cellTemplate="nameCellTemplate"
+            [allowSorting]="false">
+            <div *dxTemplate="let data of 'nameCellTemplate'">
+                <a class="cursor_pointer" (click)="gotoDetails(data.data.id)">
+                    {{data.data.name}}
+                </a>
+            </div>
+            <!-- routerLink="/beers/details/{{data.data.id}}  (click)="gotoDetails(data.data.id)"" -->
+        </dxi-column>
+        <dxi-column caption="Tag Line" dataField="tagline" [allowSorting]="false" [allowSearch]="false"
+            dataType="string">
+        </dxi-column>
+        <dxi-column caption="First Brewed" dataField="first_brewed" [allowSorting]="false" [allowSearch]="false"
+            dataType="date">
+        </dxi-column>
+        <dxi-column caption="ABV" dataField="abv" [allowSorting]="false" [allowSearch]="false" dataType="string">
+        </dxi-column>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10,25,50]"></dxo-pager>
+    </dx-data-grid>
+</div>

@@ -1,0 +1,20 @@
+<div class="col-md-12 col-sm-12 col-xs-12 pt-5 pb-2" id="beer-details">
+    <h2 class="text-info mt-5">Beer Details</h2>
+
+    <div class="row">
+        <div class="col-md-5">
+            <h3 class="my-3 text-primary">{{beerObj.name}}</h3>
+            <h5 class="my-2 text-dark">Description</h5>
+            <p class="text-secondary">{{beerObj.description}}</p>
+            <h5 class="my-2 text-dark">ABV</h5>
+            <p class="text-secondary">{{beerObj.abv}}</p>
+
+            <a class="cursor_pointer mt-2" routerLink="/beers">Back</a>
+        </div>
+
+        <div class="col-md-7 text-center">
+            <img class="img-fluid width20"  [src]="beerObj.image_url" alt="">
+        </div>
+
+    </div>
+</div>

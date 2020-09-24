@@ -6,6 +6,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
+
 
 @NgModule({
   declarations: [],
@@ -17,12 +20,16 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatTableModule,
+    MatProgressBarModule,
+    DxDataGridModule
   ],
   exports: [
     MatButtonModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatTableModule,
+    MatProgressBarModule,
+    DxDataGridModule
   ],
 })
 export class MaterialModule {}
