@@ -4,18 +4,18 @@ import {
     HostListener,
     Input,
     OnChanges,
-    OnInit, 
-    SimpleChanges} from '@angular/core';
+    OnInit,
+    SimpleChanges } from '@angular/core';
 
 @Directive({
-  selector: '[validate-email]',
-  exportAs:'validateEmail'
+  selector: '[appValidateEmail]',
+  exportAs: 'validateEmail'
 })
 export class EmailValidationDirective implements OnInit, OnChanges {
 
     private regex: RegExp;
     valid: boolean;
-    @Input() pattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
+    @Input() pattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 
     constructor(private el: ElementRef) { }
 
@@ -25,7 +25,7 @@ export class EmailValidationDirective implements OnInit, OnChanges {
             this.UpdateRegex();
         }
     }
-  
+
     ngOnInit() {
         if (!(this.el.nativeElement instanceof HTMLInputElement)) {
             throw Error('Unexpected element');

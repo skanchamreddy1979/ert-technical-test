@@ -38,10 +38,9 @@ import { TableColumn } from 'src/app/shared/table/table-column.model';
 })
 export class TableComponent implements OnInit, OnChanges  {
 
-  @Input() maxSelectedRows: number = 5;
   @Input() columns: TableColumn[];
   @Input() data: any[];
-  
+
   @Output() selectedChange: EventEmitter<any[]> = new EventEmitter();
 
   @ContentChild('expandedRow', { static: false }) expandedRowTemplate: TemplateRef<any>;
@@ -58,8 +57,8 @@ export class TableComponent implements OnInit, OnChanges  {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']) {
-      let currentValue = changes['data'].currentValue;
-      this.dataSource.data = currentValue == null || currentValue == undefined ? [] : currentValue;
+      const currentValue = changes['data'].currentValue;
+      this.dataSource.data = currentValue == null || currentValue === undefined ? [] : currentValue;
 
       if (changes['data'].isFirstChange) {
         this.dataSource.paginator = this.paginator;
@@ -67,7 +66,7 @@ export class TableComponent implements OnInit, OnChanges  {
     }
 
     if (changes['columns']) {
-      let tmpArr = this.columns.map(c => c.key);
+      const tmpArr = this.columns.map(c => c.key);
       tmpArr.push(this.selectionColumnKey);
       this.displayedColumns = tmpArr;
     }
@@ -78,7 +77,7 @@ export class TableComponent implements OnInit, OnChanges  {
 
   onRowClick(row: any) {
     if (this.expandedRowTemplate) {
-      this.expandedRow = this.expandedRow == row ? null : row
+      this.expandedRow = this.expandedRow === row ? null : row;
     }
   }
 

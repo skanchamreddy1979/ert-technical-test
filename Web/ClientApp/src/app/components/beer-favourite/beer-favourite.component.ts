@@ -20,10 +20,10 @@ export class BeerFavouriteComponent implements OnInit {
 
   ngOnInit() {
     this.columns = [
-      { text: "Name", key: 'name'},
-      { text: "Tagline", key: 'tagline'},
-      { text: "ABV", key: 'abv'},
-      { text: "First Brewed Date", key: 'first_brewed'}];
+      { text: 'Name', key: 'name'},
+      { text: 'Tagline', key: 'tagline'},
+      { text: 'ABV', key: 'abv'},
+      { text: 'First Brewed Date', key: 'first_brewed'}];
   }
 
   onFindClick() {

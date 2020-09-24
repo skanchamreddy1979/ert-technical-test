@@ -52,9 +52,9 @@ export class AddFavouriteModalComponent implements OnInit, OnDestroy {
           this.hasError = true;
           throw error;
         }),
-        finalize(() => { 
+        finalize(() => {
           this.inProgress = false;
-          
+
           if (!this.hasError) {
             this.dialogRef.close();
           }

@@ -7,7 +7,7 @@ import { MenuItem } from './core/models/menu-item.model';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent  implements OnInit {
-  
+
   menu: MenuItem[];
 
   ngOnInit(): void {

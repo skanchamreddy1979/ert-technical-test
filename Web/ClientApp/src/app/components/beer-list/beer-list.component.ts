@@ -19,7 +19,7 @@ export class BeerListComponent implements OnInit {
 
   beers: Observable<Beer[]>;
   columns: TableColumn[];
-  filterValue: string = "";
+  filterValue = '';
   selectedBeers: Beer[];
 
   constructor(private beerService: BeerService, private dialog: MatDialog) { }
@@ -27,14 +27,14 @@ export class BeerListComponent implements OnInit {
   ngOnInit(): void {
     this.fetchData();
     this.columns = [
-      { text: "Name", key: 'name'},
-      { text: "Tagline", key: 'tagline'},
-      { text: "ABV", key: 'abv'},
-      { text: "First Brewed Date", key: 'first_brewed'}];
+      { text: 'Name', key: 'name'},
+      { text: 'Tagline', key: 'tagline'},
+      { text: 'ABV', key: 'abv'},
+      { text: 'First Brewed Date', key: 'first_brewed'}];
   }
 
   updateList(filterValue?: string) {
-    if (this.filterValue != filterValue) {
+    if (this.filterValue !== filterValue) {
       this.filterValue = filterValue;
       this.fetchData(filterValue);
     }

@@ -16,10 +16,10 @@ export class BeerService {
         page?: number,
         perPage?: number
     }>): Observable<Beer[]> {
-        let defaultOptions = { page: 1, perPage: 50 };
+        const defaultOptions = { page: 1, perPage: 50 };
         Object.assign(defaultOptions, options);
 
-        let requestOpts = { params: { page: defaultOptions.page.toString() , per_page: defaultOptions.perPage.toString() }};
+        const requestOpts = { params: { page: defaultOptions.page.toString() , per_page: defaultOptions.perPage.toString() }};
 
         if (options && options.name) {
             requestOpts.params['beer_name'] = options.name;
