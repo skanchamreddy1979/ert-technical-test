@@ -4,6 +4,7 @@ import { BeersListComponent } from './beers-list/beers-list.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../shared/material.module';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 
 
@@ -16,7 +17,8 @@ import { MaterialModule } from '../shared/material.module';
     RouterModule.forChild([
       { path: '', component: BeersListComponent },
       { path: 'beers', component: BeersListComponent },
-      { path: 'details/:id', component: BeerDetailsComponent }
+      { path: 'details/:id', component: BeerDetailsComponent },
+      { path: 'favourites', component: FavouritesComponent },
     ])
   ]
 })
