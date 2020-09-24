@@ -3,7 +3,7 @@ using System.Linq;
 
 using Newtonsoft.Json;
 
-namespace ert_beer_app.Converters
+namespace Ert.Web.Converters
 {
     public class BrewDateConverter : JsonConverter<DateTime>
     {

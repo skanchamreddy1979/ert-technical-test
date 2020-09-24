@@ -1,10 +1,10 @@
-﻿using DAL;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BLL
+using Ert.DataAccessLayer;
+
+namespace Ert.BusinessLogicLayer
 {
     public class BeerService : IBeerService
     {
@@ -35,14 +35,14 @@ namespace BLL
             await _beerRepository.AddOrUpdate(beers, email);
         }
 
-        public async Task<ICollection<Beer>> GetFavourite(string email)
+        public async Task<ICollection<Beer>> GetFavourites(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
             {
                 throw new ArgumentException(email);
             }
 
-            return await _beerRepository.GetFavourite(email);
+            return await _beerRepository.GetFavourites(email);
         }
     }
 }

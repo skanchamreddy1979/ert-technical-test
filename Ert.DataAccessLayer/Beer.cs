@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DAL
+namespace Ert.DataAccessLayer
 {
     public class Beer
     {

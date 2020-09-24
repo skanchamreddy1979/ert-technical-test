@@ -2,7 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL
+namespace Ert.DataAccessLayer
 {
     internal class Context : DbContext
     {

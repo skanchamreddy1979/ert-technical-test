@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL
+namespace Ert.DataAccessLayer
 {
     public class BeerRepository : IBeerRepository, IDisposable
     {
@@ -27,11 +27,11 @@ namespace DAL
             await _context.SaveChangesAsync();
         }
 
-        public Task<ICollection<Beer>> GetFavourite(string userId)
+        public async Task<ICollection<Beer>> GetFavourites(string userId)
         {
-            User user = _context.Users.Include(x => x.FavouriteBeers).SingleOrDefault(x => x.Email == userId);
+            User user = await _context.Users.Include(x => x.FavouriteBeers).SingleOrDefaultAsync(x => x.Email == userId);
 
-            return Task.FromResult(user?.FavouriteBeers ?? new List<Beer>());
+            return user?.FavouriteBeers ?? new List<Beer>();
         }
 
         public void Dispose()

@@ -1,12 +1,11 @@
 ﻿using System;
 
-using DAL;
-
-using ert_beer_app.Converters;
+using Ert.DataAccessLayer;
+using Ert.Web.Converters;
 
 using Newtonsoft.Json;
 
-namespace ert_beer_app.ViewModels
+namespace Ert.Web.ViewModels
 {
     public class BeerViewModel
     {

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using BLL;
-using DAL;
-using ert_beer_app.ViewModels;
+using Ert.BusinessLogicLayer;
+using Ert.DataAccessLayer;
+using Ert.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace ert_beer_app.Controllers
+namespace Ert.Web.Controllers
 {
     [Route("api/beer")]
     [ApiController]
@@ -29,7 +29,7 @@ namespace ert_beer_app.Controllers
 
         [Route("user/{userId}")]
         [HttpPost]
-        public async Task<IActionResult> AddFavourite(string userId, [FromBody] IList<BeerViewModel> beers)
+        public async Task<IActionResult> AddFavourites(string userId, [FromBody] IList<BeerViewModel> beers)
         {
             await _beerService.AddOrUpdate(beers.Select(x => x.ToBeer()).ToList(), userId);
 
@@ -38,9 +38,9 @@ namespace ert_beer_app.Controllers
 
         [Route("user/{userId}")]
         [HttpGet]
-        public async Task<IActionResult> AddFavourite(string userId)
+        public async Task<IActionResult> GetFavourites(string userId)
         {
-            ICollection<Beer> beers = await _beerService.GetFavourite(userId);
+            ICollection<Beer> beers = await _beerService.GetFavourites(userId);
 
             return Ok(beers.Select(BeerViewModel.FromBeer).ToList());
         }

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using DAL;
+using Ert.DataAccessLayer;
 
 using Moq;
 
 using NUnit.Framework;
 
-namespace BLL.Tests
+namespace Ert.BusinessLogicLayer.Tests
 {
     [TestFixture]
     public class BeerServiceTests
@@ -73,7 +73,7 @@ namespace BLL.Tests
             var sut = new BeerService(beerRepository);
 
             // Act and Assert
-            Assert.ThrowsAsync<ArgumentException>(async () => await sut.GetFavourite(userId));
+            Assert.ThrowsAsync<ArgumentException>(async () => await sut.GetFavourites(userId));
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace BLL.Tests
             var sut = new BeerService(beerRepository);
 
             // Act
-            ICollection<Beer> result = await sut.GetFavourite(TEST_EMAIL);
+            ICollection<Beer> result = await sut.GetFavourites(TEST_EMAIL);
 
 
             // Act and Assert
@@ -98,7 +98,7 @@ namespace BLL.Tests
         {
             var mock = new Mock<IBeerRepository>();
 
-            mock.Setup(x => x.GetFavourite(It.IsAny<string>()))
+            mock.Setup(x => x.GetFavourites(It.IsAny<string>()))
                 .Returns(Task.FromResult(beerList ?? new List<Beer>()));
 
             return mock.Object;

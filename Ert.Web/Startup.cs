@@ -1,6 +1,5 @@
-using BLL;
-
-using DAL;
+using Ert.BusinessLogicLayer;
+using Ert.DataAccessLayer;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace ert_beer_app
+namespace Ert.Web
 {
     public class Startup
     {
@@ -23,17 +22,9 @@ namespace ert_beer_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(o => o.AddPolicy("CorePolicy", builder =>
-            {
-                builder.AllowAnyMethod();
-            }));
+            services.AddCors(o => o.AddPolicy("CorePolicy", builder => builder.AllowAnyMethod()));
             services.AddControllers().AddNewtonsoftJson();
-
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
-
+            services.AddSpaStaticFiles(configuration => configuration.RootPath = "ClientApp/dist");
             services.AddScoped<IBeerRepository, BeerRepository>();
             services.AddScoped<IBeerService, BeerService>();
         }
@@ -59,10 +50,7 @@ namespace ert_beer_app
 
             app.UseCors("CorePolicy");
             app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
