@@ -6,6 +6,7 @@ import { displayBeerSettings } from 'src/app/shared/app.constants';
 import { tap } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { InternalApiService } from 'src/app/services/internal.service';
+import { FavoriteBeerRequest } from 'src/app/models/favorite_beers.model';
 
 @Component({
   selector: 'app-beer-list',
@@ -30,7 +31,7 @@ export class BeerListComponent implements AfterViewInit, OnInit {
     return this.totalPages * this.pageSize;
   }
 
-  get getSelectedBeers() : Beer[] {
+  get getSelectedBeers(): Beer[] {
     return this.selection.selected;
   }
 
@@ -41,25 +42,26 @@ export class BeerListComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit() {
     this.paginator.page
-      .pipe(tap(() => { this.getBeers(this.paginator.pageIndex + 1, this.pageSize)}))
+      .pipe(tap(() => { this.getBeers(this.paginator.pageIndex + 1, this.pageSize); }))
       .subscribe();
   }
 
   onChanged(event: Event) {
-    let value = (event.target as HTMLInputElement).value;
+    const value = (event.target as HTMLInputElement).value;
 
-    if(value.length > 0) {
+    this.searchingBeerName = null;
+    if (value.length > 0) {
       this.searchingBeerName = value;
-    }
-    else {
-      this.searchingBeerName = null;
     }
 
     this.getBeers(1, this.pageSize);
   }
 
   saveBeers() {
-    this._internalService.setFavoriteBeers(this.email, this.getSelectedBeers.map(beer => { return beer.id }));
+    const request = new FavoriteBeerRequest();
+    request.email = this.email;
+    request.beerids = this.getSelectedBeers.map(beer => beer.id );
+    this._internalService.saveFavoriteBeers(request);
   }
 
   private getBeers(pageNumber: number, pageSize: number) {
@@ -73,7 +75,7 @@ export class BeerListComponent implements AfterViewInit, OnInit {
   private checkLength() {
     this._punkApiService.getBeers(this.totalPages, this.pageSize)
       .subscribe(beers => {
-        if(beers.length == this.pageSize) {
+        if (beers.length === this.pageSize) {
           this.totalPages = this.totalPages + 1;
           this.checkLength();
         }

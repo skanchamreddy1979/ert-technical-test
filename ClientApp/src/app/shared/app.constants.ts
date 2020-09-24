@@ -1,9 +1,9 @@
 export const punkApiUrls = {
-    punkApiBeersUrl: "https://api.punkapi.com/v2/beers",
+    punkApiBeersUrl: 'https://api.punkapi.com/v2/beers',
 };
 
 export const internalApiUrls = {
-    favoriteBeersUrl: "https://localhost:5001/api/beer",
+    favoriteBeersUrl: 'https://localhost:5001/api/beer',
 };
 
 export const displayBeerSettings = {

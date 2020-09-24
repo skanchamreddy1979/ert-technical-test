@@ -10,6 +10,6 @@ namespace ert_beer_app.Models
     {
         public string EMail { get; set; }
 
-        public int[] BeerIds { get; set; }
+        public string[] BeerIds { get; set; }
     }
 }

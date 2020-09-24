@@ -16,7 +16,7 @@ export class BeerDetailComponent implements OnInit {
   constructor(private _router: ActivatedRoute, private _pukApiService: PunkApiService) {
     this.beerId = +this._router.snapshot.params['id'];
   }
-  
+
   ngOnInit() {
     this._pukApiService.getBeerById(this.beerId)
       .subscribe(beer => {

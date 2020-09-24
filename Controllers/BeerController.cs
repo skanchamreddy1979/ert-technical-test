@@ -24,7 +24,7 @@ namespace ert_beer_app.Controllers
         [HttpPost]
         public async Task<IActionResult> SetFavoriteBeers([FromForm]FavoriteBeerRequest request)
         {
-            await _beersHandler.SetFavoriteBeers(request);
+            await _beersHandler.SaveFavoriteBeers(request);
             return Ok();
         }
 

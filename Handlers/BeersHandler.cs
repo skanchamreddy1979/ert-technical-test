@@ -17,10 +17,13 @@ namespace ert_beer_app.Handlers
             _dbContext = dbContext;
         }
 
-        public async Task SetFavoriteBeers(FavoriteBeerRequest request)
+        public async Task SaveFavoriteBeers(FavoriteBeerRequest request)
         {
-            _dbContext.FavoriteBeers.AddRange(request.BeerIds.Select(beerId => new FavoriteBeerModel { EMail = request.EMail, BeerId = beerId }));
-            await _dbContext.SaveChangesAsync();
+            if (!string.IsNullOrEmpty(request.EMail) && request.BeerIds.Any() && request.BeerIds.Length <= 5)
+            {
+                _dbContext.FavoriteBeers.AddRange(request.BeerIds.Select(beerId => new FavoriteBeerModel { EMail = request.EMail, BeerId = int.Parse(beerId) }));
+                await _dbContext.SaveChangesAsync();
+            }
         }
 
         public async Task<int[]> GetFavoriteBeers(string email)
