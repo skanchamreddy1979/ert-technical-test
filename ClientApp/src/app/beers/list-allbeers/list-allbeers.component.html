@@ -1,0 +1,35 @@
+<div class="container">
+    <div ng-controller="TableCtrl">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="filtered" autocomplete="off">
+            <span class="glyphicon glyphicon-search "></span>
+        </div>
+
+        <label for="search ">Search</label>
+    </div>
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th>Beer Name</th>
+                <th>Beer Tagline</th>
+                <th>First Brewed Date</th>
+                <th>Abv</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let beer of beers | filter:filtered | paginate: { itemsPerPage: 10, currentPage: p }">
+                <td (click)="goToBeer(beer)" style="color: green">{{ beer.name}}</td>
+                <td>{{ beer.tagline }}</td>
+                <td>{{ beer.first_brewed }}</td>
+                <td>{{ beer.abv }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4 ">
+                    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
