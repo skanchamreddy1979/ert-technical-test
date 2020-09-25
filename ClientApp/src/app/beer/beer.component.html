@@ -1,0 +1,25 @@
+<div class="conatiner" style="padding-top:20px; padding-left:20px; padding-right:20px;">  
+    <div class="col-sm-5" style="padding-top:20px;padding-bottom:20px;" >  
+         <input class="form-control" type="text" placeholder="Search...." [(ngModel)]="term">        
+    </div>  
+  </div>  
+    <table class="table table-striped">  
+      <thead class="thead-dark">  
+        <tr>  
+          <th>Name</th>  
+          <th>Tagline</th>  
+          <th>Brewed Date</th>  
+          <th>Abv</th>  
+        </tr>  
+      </thead>  
+      <tbody>  
+        <tr class="onHover" *ngFor="let beer of listBeers | filter:term | paginate: { itemsPerPage: 10, currentPage: pageNumber }">  
+            <td (click)="getBeer(beer)" style="color: blue;" >{{beer.name}}</td>
+            <td>{{beer.tagline}}</td>
+            <td>{{beer.first_brewed}}</td>
+            <td>{{beer.abv}}</td> 
+        </tr>  
+      </tbody>  
+      <br/>
+          <pagination-controls (pageChange)="pageNumber = $event"></pagination-controls>  
+    </table>  

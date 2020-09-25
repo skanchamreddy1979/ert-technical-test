@@ -1,32 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './shared/material.module';
+import { BeerService } from '../app/beer/services/beer.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { BeerComponent } from './beer/beer.component';
+import { BeerDataComponent } from '../app/beer/beer-data/beer-data.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './beer/header/header.component';
+import { HomeComponent } from './beer/home/home.component';
+import { BeerFavouriteComponent } from './beer/beer-favourite/beer-favourite.component';
 
-import { ListComponent } from './list/list.component';
-
-import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
+  declarations: [
+    AppComponent,
+    BeerComponent,
+    BeerDataComponent,
+    HeaderComponent,
+    HomeComponent,
+    BeerFavouriteComponent
+  ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MaterialModule,
-    RouterModule.forRoot([
-      { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
-    ]),
-    BrowserAnimationsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [BeerService],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

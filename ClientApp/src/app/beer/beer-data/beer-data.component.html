@@ -1,0 +1,15 @@
+<div class="px-5 pt-3">
+  <h3 class="post-title">{{ beer.name }}</h3>
+  <div class="post-thumb"><img [src]="beer.image_url" width="250" height="500"/></div>
+  <div class="post-content">
+    <h4><strong>Abv : </strong>{{ beer.abv }}</h4>
+    <br/>
+    <h4><strong>Description : </strong>{{ beer.description }}</h4>
+  </div>
+</div>
+<br>
+<div>
+<button routerLink="/beer" class="btn btn-primary">Back</button>
+</div>
+
+<router-outlet></router-outlet>
