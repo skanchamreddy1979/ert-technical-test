@@ -1,3 +1,5 @@
+using ert_beer_app.Interfaces;
+using ert_beer_app.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,7 @@ namespace ert_beer_app
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddHttpClient<IBeerService, BeerService>(c => c.BaseAddress = new System.Uri("https://api.punkapi.com/v2/beers")) ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
