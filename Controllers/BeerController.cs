@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using ert_beer_app.Models;
 
-using ert_beer_app.Models;
-
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Nancy.Json;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 
 namespace ert_beer_app.Controllers
 {
@@ -21,14 +19,14 @@ namespace ert_beer_app.Controllers
 
         public BeerController(ApplicationContext context)
         {
-            var t = PopulateCollection();
+            var listOfBeersProducts = PopulateCollection();
 
             db = context;
             if (!db.Beers.Any())
             {
-                if (t.Any())
+                if (listOfBeersProducts.Any())
                 {
-                    foreach (Beer b in t)
+                    foreach (Beer b in listOfBeersProducts)
                     {
                         db.Beers.Add(
                             new Beer
