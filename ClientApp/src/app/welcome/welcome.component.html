@@ -1,3 +1,12 @@
-<div>Welcome Page Works!</div>
-
-<button mat-flat-button color="secondary">TEST</button>
+<mat-tab-group dynamicHeight>
+  <mat-tab label="List beer">
+    <div class="mat-elevation-z4">
+      <app-list></app-list>
+    </div>
+  </mat-tab>
+  <mat-tab label="Favourites">
+    <div class="mat-elevation-z4">
+      Favourites component
+    </div>
+  </mat-tab>
+</mat-tab-group>

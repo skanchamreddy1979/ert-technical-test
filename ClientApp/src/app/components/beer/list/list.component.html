@@ -1,0 +1,52 @@
+<div class="mat-elevation-z8">
+  <app-search (onChange)="onSearchChage($event)"></app-search>
+  <app-save-favorites [beers]="selection.selected"></app-save-favorites>
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [disabled]="!selection.isSelected(row) && selectedCount() >= 5">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="tagline">
+      <th mat-header-cell *matHeaderCellDef>tagline</th>
+      <td mat-cell *matCellDef="let element">{{ element.tagLine }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="first_brewed">
+      <th mat-header-cell *matHeaderCellDef>first_brewed</th>
+      <td mat-cell *matCellDef="let element">{{ element.firstBrewed }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="abv">
+      <th mat-header-cell *matHeaderCellDef>abv</th>
+      <td mat-cell *matCellDef="let element">{{ element.abv }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" routerLink="/beer/{{row.id}}"></tr>
+  </table>
+
+  <mat-paginator
+    showFirstLastButtons
+    [length]="300"
+    [pageSize]="defaultPageSize"
+  ></mat-paginator>
+</div>

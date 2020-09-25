@@ -1,0 +1,16 @@
+<div>
+    <mat-toolbar>Beer detailes</mat-toolbar>
+    <div>
+        <mat-card class="card">
+            <mat-card-title>
+                <h3>{{selectedBeer?.name}}</h3>
+            </mat-card-title>
+            <mat-card-content>
+                <p>Description: {{selectedBeer?.description}}</p>
+                <p>ABV: {{selectedBeer?.abv}}</p>
+                <p></p>
+                <img mat-card-image [src]="selectedBeer?.imgUrl" />
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

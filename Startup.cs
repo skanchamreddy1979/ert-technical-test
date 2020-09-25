@@ -1,3 +1,9 @@
+using ert_beer_app.DataAccess;
+using ert_beer_app.DataAccess.Interfaces;
+using ert_beer_app.Models;
+using ert_beer_app.Services;
+using ert_beer_app.Services.Interfaces;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,6 +27,9 @@ namespace ert_beer_app
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddTransient<IRepository<Beer>, BeerRepository>();
+            services.AddTransient<IBeerService, BeerService>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

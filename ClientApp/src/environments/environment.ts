@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  beerApiUrls: {
+    baseUrl: 'https://api.punkapi.com/v2',
+    beerPath: 'beers'
+  },
+  localBeerServiceUrl: {
+    baseUrl: 'http://localhost:5000/api',
+    beerPath: 'beer'
+  }
 };
 
 /*
