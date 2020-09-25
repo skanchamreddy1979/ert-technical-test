@@ -12,16 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BeersService } from './beer/services/beers.service';
 import { SelectedbeerComponent } from './beer/selectedbeer/selectedbeer.component';
-import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BeersComponent,
-    SelectedbeerComponent,
-    HomeComponent,
-  ],
+  declarations: [AppComponent, BeersComponent, SelectedbeerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,15 +23,19 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      {
+        path: '',
+        redirectTo: '/beers',
+        pathMatch: 'full',
+      },
       { path: 'beers', component: BeersComponent },
-      { path: 'beers/:id', component: SelectedbeerComponent }
+      { path: 'beers/:id', component: SelectedbeerComponent },
     ]),
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
   ],
   providers: [BeersService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

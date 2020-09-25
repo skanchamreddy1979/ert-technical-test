@@ -1,9 +1,8 @@
 <div class="px-5 pt-3">
-
   <form>
     <nav class="navbar navbar-light bg-light">
-      <form class="form-inline">
-        <input class="form-control" placeholder="search" type="text" (keyup)="searchTerm($event.target.value)">
+      <form>
+        <input class="form-control" placeholder="Search By Name eg: Buzz" type="text" (keyup)="searchTerm($event.target.value)">
       </form>
     </nav>
   </form>
@@ -28,7 +27,7 @@
           <td style="text-align: left;" mat-cell *matCellDef="let beer"> {{beer.abv}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns" style="height: 40px;"></tr>
-        <tr mat-row *matRowDef="let beer; columns: displayedColumns;index as i" [routerLink]="['/beers',beer.id]"></tr>
+        <tr mat-row *matRowDef="let beer; columns: displayedColumns;" [routerLink]="['/beers',beer.id]"></tr>
 
       </table>
       <div *ngIf="beersDataSource.data.length===0" class="table-no-data-label">

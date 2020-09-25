@@ -47,7 +47,6 @@ describe('BeersComponent', () => {
   it('should equal getAllBeers values', waitForAsync(() => {
     spyOn(beerService, 'getAllBeers').and.returnValue(of(mockResponse.data));
     component.loadData();
-    // component.beersDataSource.data=mockResponse.data;
     expect(component.beersDataSource.data).toEqual(mockResponse.data);
     expect(mockResponse.data.length).toEqual(3);
   }));

@@ -1,0 +1,11 @@
+tr {
+  height: 40px !important;
+}
+
+input {
+  width: 150%;
+}
+
+.mat-header-cell {
+  background-color: grey;
+}

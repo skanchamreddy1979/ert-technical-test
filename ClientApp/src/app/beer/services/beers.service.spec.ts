@@ -1,4 +1,4 @@
-import { async, TestBed, inject, waitForAsync } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -43,16 +43,39 @@ describe('BeersService', () => {
           image_url: '',
           abv: 0,
         },
+        {
+          id: 1,
+          name: '',
+          tagline: '',
+          first_brewed: '',
+          description: '',
+          image_url: '',
+          abv: 1,
+        },
+      ];
+      beerService.getAllBeers().subscribe((response) => {
+        expect(mockResponse.length).toEqual(2);
+      });
+    })
+  );
+
+  it(
+    'it is expected to fetch one beer',
+    waitForAsync(() => {
+      const mockResponse: Beer[] = [
+        {
+          id: 0,
+          name: '',
+          tagline: '',
+          first_brewed: '',
+          description: '',
+          image_url: '',
+          abv: 0,
+        },
       ];
       beerService.getAllBeers().subscribe((response) => {
         expect(mockResponse.length).toEqual(1);
       });
     })
   );
-
-  // it('expects service to fetch all bears', () => {
-  //   let mockResponse: Beer[] = [{ id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }];
-  //   service.getBeers().subscribe(data => { expect(mockResponse.length).toEqual(1);
-  //   });
-  // });
 });

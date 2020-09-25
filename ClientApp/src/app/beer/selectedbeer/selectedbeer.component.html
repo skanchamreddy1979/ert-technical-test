@@ -1,20 +1,22 @@
-
-<div *ngIf="selectedBeer">
-    <h2>{{selectedBeer.name}}</h2>
-    <button class="btn btn-secondary" [routerLink]="['/beers']">Back</button>
-    <div class="row">
-        <div class="col-md-4">
-            <div style="display:inline-block">
-                <img src="{{selectedBeer.image_url}}" alt="" style="width:50%;" />
+<div class="px-5 pt-3">
+    <div *ngIf="selectedBeer">
+        <p class="h2">{{selectedBeer.name}}</p>
+        <button class="btn btn-secondary" [routerLink]="['/beers']"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
+        <div class="row">
+            <div class="col-md-4">
+                <div style="display:inline-block">
+                    <img src="{{selectedBeer.image_url}}" alt="" />
+                </div>
             </div>
-        </div>
-    
-        <div class="col-md-8">
-            <div style="display:inline-block">
-                <br><br><br><br><br><br><br>
-                <div><h3 class="text-primary">ABV : {{selectedBeer.abv}}</h3></div>
-                <div><h3 class="text-info">Description : {{selectedBeer.description}}</h3></div>
+        
+            <div class="col-md-8">
+                <div style="display:inline-block">
+                    <br><br><br><br><br><br><br>
+                    <div><h3><span class="h6">ABV :</span> {{selectedBeer.abv}}</h3></div>
+                    <div><h3><span class="h6">Description :</span> {{selectedBeer.description}}</h3></div>
+                </div>
             </div>
         </div>
     </div>
+    
 </div>

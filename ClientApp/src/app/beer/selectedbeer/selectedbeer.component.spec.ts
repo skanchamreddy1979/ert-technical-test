@@ -1,11 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentRef, NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  inject,
-  TestBed,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BeersService } from '../services/beers.service';
 import { SelectedbeerComponent } from './selectedbeer.component';
@@ -46,7 +41,7 @@ describe('SelectedbeerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('get param', () => {
+  it('should get parameter', () => {
     spyOn(beerService, 'getSelectedBeer')
       .withArgs(1)
       .and.returnValue(of(mockResponse));
@@ -56,9 +51,4 @@ describe('SelectedbeerComponent', () => {
     expect(component.selectedBeer).toEqual(mockResponse);
     expect(mockResponse.length).toEqual(1);
   });
-
-  // it('value should be equal', async(() => {
-  //   spyOn(beerService, 'getSelectedBeer').withArgs(1).and.returnValue(of(mockResponse));
-  //   component.getSelectedBeer(1);
-  // }));
 });
