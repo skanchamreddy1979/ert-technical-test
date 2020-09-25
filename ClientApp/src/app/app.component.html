@@ -1,5 +1,63 @@
-<body>
-  <div>
-    <router-outlet></router-outlet>
-  </div>
-</body>
+<h1>Beer types</h1>
+<input type="button" value="add" class="btn btn-default" (click)="add()" />
+<table *ngIf="tableMode; else create" class="table table-striped">
+    <thead>
+        <tr>
+          <td>Name</td>
+          <td>TagLine</td>
+          <td>abv</td>
+          <td>image</td>
+          <td>decription</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let bs of beers">
+            <ng-template [ngIf]="beer?.id != bs.id" [ngIfElse]="edit">
+                <td>{{bs?.name}}</td>
+                <td>{{bs?.tagLine}}</td>
+                <td>{{bs?.abv}}</td>
+                <td>{{bs?.imgUrl}}</td>
+                <td>{{bs?.description}}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" (click)="editProduct(bs)">Edit</button>
+                    <button class="btn btn-sm btn-danger" (click)="delete(bs)">Delete</button>
+                </td>
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+ 
+<ng-template #edit>
+    <td>
+        <input type="text" [(ngModel)]="beer.name" class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="beer.description" class="form-control" />
+    </td>
+    <td>
+        <input type="number" [(ngModel)]="beer.abv" class="form-control" />
+    </td>
+    <td>
+        <input type="button" value="Сохранить" (click)="save()" class="btn btn-sm btn-success" />
+        <input type="button" value="Отмена" (click)="cancel()" class="btn btn-sm btn-warning" />
+    </td>
+</ng-template>
+
+<ng-template #create>
+    <div class="form-group">
+        <label>Beer name</label>
+        <input type="text" [(ngModel)]="beer.name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>description</label>
+        <input type="text" [(ngModel)]="beer.description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Abv</label>
+        <input type="number" [(ngModel)]="beer.abv" class="form-control" />
+    </div>
+    <div>
+        <input type="button" value="Save" (click)="save()" class="btn btn-success" />
+        <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+    </div>
+</ng-template>
