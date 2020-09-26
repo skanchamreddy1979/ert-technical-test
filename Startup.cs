@@ -26,6 +26,8 @@ namespace ert_beer_app
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppContext>(options => options.UseSqlServer(connectionString));
+            services.AddHttpClient<IBeerService, BeerService>();
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
