@@ -16,8 +16,8 @@ namespace ert_beer_app.Models
         [JsonProperty("abv")]
         public string Abv { get; set; }
 
-        [JsonProperty("imgUrl")]
-        public string ImgUrl { get; set; }
+        [JsonProperty("image_Url")]
+        public string Image_Url { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

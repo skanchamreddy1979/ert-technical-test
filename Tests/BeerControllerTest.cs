@@ -1,4 +1,5 @@
 ﻿using ert_beer_app.Controllers;
+using ert_beer_app.Interfaces;
 using ert_beer_app.Models;
 
 using Microsoft.EntityFrameworkCore;
@@ -15,16 +16,11 @@ namespace ert_beer_app.Tests
     public class BeerControllerTest
     {
         [Test]
-        public void TestPopulateProductsCollection()
+        public void TestPopulateProductsCollection(IBeerService beerService)
         {
-            string connectionString = "Server=(localdb)\\mssqllocaldb;Database=beersdb;Trusted_Connection=True;";
-            var options = new DbContextOptionsBuilder<ApplicationContext>().UseSqlServer(connectionString).Options;
-            var context = new ApplicationContext(options);
+            BeerController beerController = new BeerController(beerService);
 
-            BeerController beerController = new BeerController(context);
-            var listOfBeersProducts = beerController.Get();
-            var result = listOfBeersProducts.Any();
-
+            var result = beerService;
             Assert.NotNull(result);
         }
     }

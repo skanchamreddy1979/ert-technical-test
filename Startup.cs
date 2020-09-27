@@ -1,4 +1,6 @@
+using ert_beer_app.Interfaces;
 using ert_beer_app.Models;
+using ert_beer_app.Services;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +34,8 @@ namespace ert_beer_app
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddHttpClient<IBeerService, BeerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,13 +1,10 @@
-﻿using ert_beer_app.Models;
+﻿using ert_beer_app.Interfaces;
+using ert_beer_app.Models;
 
 using Microsoft.AspNetCore.Mvc;
 
-using Nancy.Json;
-
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 
 namespace ert_beer_app.Controllers
 {
@@ -15,50 +12,33 @@ namespace ert_beer_app.Controllers
     [ApiController]
     public class BeerController : Controller
     {
-        ApplicationContext db;
+        private readonly IBeerService _beerService;
 
-        public BeerController(ApplicationContext context)
+        public BeerController(IBeerService beerService)
         {
-            var listOfBeersProducts = PopulateCollection();
-
-            db = context;
-            if (!db.Beers.Any())
-            {
-                if (listOfBeersProducts.Any())
-                {
-                    foreach (Beer b in listOfBeersProducts)
-                    {
-                        db.Beers.Add(
-                            new Beer
-                            {
-                                Id = b.Id,
-                                Name = b.Name,
-                                TagLine = b.TagLine,
-                                Abv = b.Abv,
-                                ImgUrl = b.ImgUrl,
-                                Description = b.Description,
-                            });
-                    }
-                    db.SaveChanges();
-                }
-            }
+            _beerService = beerService;
+            _beerService.PopulateProductsCollection();
         }
 
         public IEnumerable<Beer> Get()
         {
-            return db.Beers.ToList();
+            return _beerService.GetAllBeerProducts();
         }
 
-        private List<Beer> PopulateCollection() {
+        [Route("details")]
+        [HttpGet]
+        public Beer GetBeerDetailsId(string id)
+        {
+            try
+            {
+                var result = _beerService.GetBeerById(id);
 
-            string urlData = String.Empty;
-            WebClient client = new WebClient();
-
-            var json = new WebClient().DownloadString("http://api.punkapi.com/v2/beers/");
-            var serializer = new JavaScriptSerializer();
-            List<Beer> beersList = serializer.Deserialize<List<Beer>>(json);
-
-            return beersList;
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
