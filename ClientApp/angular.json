@@ -3,32 +3,29 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "UnitTest": {
+    "APM": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "pm",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/UnitTest",
+            "outputPath": "dist/APM",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/api"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -45,7 +42,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -67,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "UnitTest:build"
+            "browserTarget": "APM:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "UnitTest:build:production"
+              "browserTarget": "APM:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "UnitTest:build"
+            "browserTarget": "APM:build"
           }
         },
         "test": {
@@ -93,7 +89,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -115,15 +111,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "UnitTest:serve"
+            "devServerTarget": "APM:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "UnitTest:serve:production"
+              "devServerTarget": "APM:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "UnitTest"
+    }
+  },
+  "defaultProject": "APM"
 }
