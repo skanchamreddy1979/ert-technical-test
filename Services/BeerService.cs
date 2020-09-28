@@ -1,6 +1,7 @@
 ﻿using ert_beer_app.Interfaces;
 using ert_beer_app.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,15 @@ namespace ert_beer_app.Services
     {
         private HttpClient HttpClient { get; }
         private IConfiguration Configuration { get; }
+        private ILogger<BeerService> Logger { get; }
         private string BaseUrl { get; }
 
-        public BeerService(HttpClient httpClient, IConfiguration configuration)
+        public BeerService(HttpClient httpClient,
+            IConfiguration configuration, ILogger<BeerService> logger)
         {
             HttpClient = httpClient;
             Configuration = configuration;
+            Logger = logger;
             BaseUrl = Configuration.GetValue<string>("BeerServiceBaseUrl");
             HttpClient.BaseAddress = new Uri(BaseUrl);
         }
@@ -56,8 +60,9 @@ namespace ert_beer_app.Services
                 var result = JsonConvert.DeserializeObject<List<Beer>>(content);
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.LogError(ex.Message);
                 throw;
             }
         }
@@ -77,8 +82,9 @@ namespace ert_beer_app.Services
                 var result = JsonConvert.DeserializeObject<List<Beer>>(content).FirstOrDefault();
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.LogError(ex.Message);
                 throw;
             }
         }

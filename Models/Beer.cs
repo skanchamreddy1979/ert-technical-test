@@ -1,28 +1,29 @@
 ﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace ert_beer_app.Models
 {
     public class Beer
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public long Id { get; set; }
 
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("tagLine")]
+        [JsonPropertyName("tagLine")]
         public string TagLine { get; set; }
 
-        [JsonProperty("first_brewed")]
+        [JsonPropertyName("first_brewed")]
         public string FirstBrewed { get; set; }
 
-        [JsonProperty("abv")]
+        [JsonPropertyName("abv")]
         public string Abv { get; set; }
 
-        [JsonProperty("image_url")]
+        [JsonPropertyName("image_url")]
         public string ImageUrl { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
     }
 }

@@ -11,11 +11,15 @@ namespace ert_beer_app.Models
         public AppContext(DbContextOptions<AppContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Beer>()
+              .Property(x => x.Id)
+              .ValueGeneratedNever();
+
             modelBuilder.Entity<User>()
                 .HasAlternateKey(x => x.Email);
         }
