@@ -8,6 +8,7 @@ using ert_beer_app.Interfaces;
 using ert_beer_app.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using AppContext = ert_beer_app.Models.AppContext;
 
@@ -152,9 +153,14 @@ namespace ert_beer_app.Controllers
                 throw new ArgumentNullException(nameof(request));
             }
 
-            if (request.BeerIds is null || request.BeerIds.Count == 0)
+            if (request.BeerIds is null)
             {
                 throw new ArgumentNullException(nameof(request.BeerIds));
+            }
+
+            if (request.BeerIds.Count > 5 || request.BeerIds.Count < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(request.BeerIds), "Count must be between 1 and 5");
             }
 
             if (string.IsNullOrEmpty(request.Email))
@@ -213,6 +219,26 @@ namespace ert_beer_app.Controllers
             });
 
             return taskResult;
+        }
+
+        [Route("favourite/{email}")]
+        [HttpGet]
+        public async Task<IActionResult> GetFavouriteBeersAsync(string email)
+        {
+            try
+            {
+                var user = await Context.Users.FirstAsync(x => x.Email == email);
+                var favouriteItems = await Context.FavouriteBeers.Where(x => x.UserId == user.Id)
+                    .Include(x => x.Beer)
+                    .Select(x => x.Beer)
+                    .ToListAsync();
+                return Json(favouriteItems);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                throw;
+            }
         }
     }
 }
