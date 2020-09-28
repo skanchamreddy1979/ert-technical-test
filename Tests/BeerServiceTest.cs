@@ -12,9 +12,9 @@ namespace ert_beer_app.Tests
 {
     public class BeerServiceTest
     {
-        IBeerService _service;
+        private  BeerService _service;
 
-        BeerServiceTest(IBeerService service)
+        BeerServiceTest(BeerService service)
         {
             _service = service;
         }
@@ -23,7 +23,8 @@ namespace ert_beer_app.Tests
         {
           var result = _service.GetBeers(new Models.BeerByName() { page = 1, take = 10 });
 
-          Assert.IsNotNull(result);
+            Assert.IsNotNull(result);
+            Assert.AreSame(10, result.Count);
         }
 
         [Test]
@@ -39,7 +40,7 @@ namespace ert_beer_app.Tests
         {
             var result = _service.GetBeerById("10");
 
-            Assert.IsNotNull(result);
+            Assert.AreSame(10, result.Id);
         }
 
         [Test]
@@ -58,18 +59,6 @@ namespace ert_beer_app.Tests
            
         }
 
-
-        [Test]
-        public void TestBeerByNameModel()
-        {
-            try
-            {
-                var result = new Models.BeerByName() { page = 1, take = 10 };
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
+        
     }
 }
