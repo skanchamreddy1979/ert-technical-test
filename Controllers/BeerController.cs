@@ -19,6 +19,7 @@ namespace ert_beer_app.Controllers
             _beerService = beerService;
         }
 
+        [HttpGet]
         public IEnumerable<Beer> Get()
         {
             _beerService.PopulateProductsCollection();
@@ -27,7 +28,7 @@ namespace ert_beer_app.Controllers
         }
 
         [Route("details")]
-        [HttpGet]
+        [HttpGet("{id}")]
         public Beer GetBeerDetailsId(string id)
         {
             try
