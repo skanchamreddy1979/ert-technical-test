@@ -115,5 +115,31 @@ namespace ert_beer_app.Controllers
 
             return taskResult;
         }
+
+        [Route("{id}")]
+        [HttpGet]
+        public async Task<IActionResult> GetAsync(int id)
+        {
+            try
+            {
+                var item = Context.Beers.FirstOrDefault(x => x.Id == id);
+                if (item == null)
+                {
+                    item = await BeerService.GetBeerAsync(id);
+                    if (item != null)
+                    {
+                        await Context.Beers.AddAsync(item);
+                        await Context.SaveChangesAsync();
+                    }
+                }
+
+                return Json(item);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                throw;
+            }
+        }
     }
 }
