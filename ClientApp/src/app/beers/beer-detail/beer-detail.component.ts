@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { BeerService } from '../../services/beer.service';
   templateUrl: './beer-detail.component.html',
   styleUrls: ['./beer-detail.component.css']
 })
-export class BeerDetailComponent implements OnInit {
+export class BeerDetailComponent implements OnInit, OnDestroy {
   pageTitle = 'Beer Detail';
   errorMessage = '';
   beer: IBeer | undefined;
@@ -24,6 +24,11 @@ export class BeerDetailComponent implements OnInit {
       const id = +param;
       this.getBeer(id);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.notifier.next();
+    this.notifier.complete();
   }
 
   getBeer(id: number): void {

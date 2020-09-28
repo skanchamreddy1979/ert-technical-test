@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IBeer } from '../../models/beer';
 import { BeerService } from '../../services/beer.service';
@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
     templateUrl: './beer-list.component.html',
     styleUrls: ['./beer-list.component.css']
 })
-export class BeerListComponent implements OnInit {
+export class BeerListComponent implements OnInit, OnDestroy {
     pageTitle = 'Beer List';
     showImage = false;
     filteredBeers: IBeer[];
@@ -37,6 +37,11 @@ export class BeerListComponent implements OnInit {
 
     ngOnInit(): void {
       this.setDisplayedBeers();
+    }
+
+    ngOnDestroy(): void {
+      this.notifier.next();
+      this.notifier.complete();
     }
 
     getAllBeer(): IBeer[]
