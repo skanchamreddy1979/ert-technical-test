@@ -30,7 +30,7 @@ describe('BeerService', () => {
 
   it('expects service to retrieve all beers', () => {
     service.getBeers().subscribe(data => {
-      expect(mockResponse.length).toEqual(1);
+      expect(mockResponse.length).toEqual(5);
     });
   });
 
