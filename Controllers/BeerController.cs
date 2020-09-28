@@ -17,11 +17,12 @@ namespace ert_beer_app.Controllers
         public BeerController(IBeerService beerService)
         {
             _beerService = beerService;
-            _beerService.PopulateProductsCollection();
         }
 
         public IEnumerable<Beer> Get()
         {
+            _beerService.PopulateProductsCollection();
+
             return _beerService.GetAllBeerProducts();
         }
 

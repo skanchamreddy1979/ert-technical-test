@@ -12,25 +12,25 @@ import { MaterialModule } from './shared/material.module';
 import { ListComponent } from './list/list.component';
 
 import { WelcomeComponent } from './welcome/welcome.component';
-// import { DetailComponent } from './detail/detail.component';
-// import { FavouritesComponent } from './favourites/favourites.component';
+import { DetailComponent } from './detail/detail.component';
+import { FavouritesComponent } from './favourites/favourites.component';
+import { DataService } from './data.service';
 
-// TODO to implement routing 
-// const appRoutes: Routes =[
-//   { path: '', component: AppComponent},
-//   { path: 'details', component: DetailComponent},
-//   { path: 'favourite', component: FavouritesComponent }
-// ];
+const appRoutes: Routes = [
+  { path: '', component: ListComponent},
+  { path: 'details', component: DetailComponent},
+  { path: 'favourite', component: FavouritesComponent }
+];
 
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule, 
-    HttpClientModule, 
-    // TODO for routing implementation
-    // RouterModule.forRoot(appRoutes)
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent,  ListComponent, DetailComponent , FavouritesComponent],
+  bootstrap: [AppComponent],
+  providers : [DataService]
 })
 export class AppModule {}

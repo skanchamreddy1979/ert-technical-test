@@ -5,5 +5,5 @@ export class Beer {
     public tagLine?: string,
     public abv?: string,
     public image_Url?: string,
-    public description?: string){}
+    public description?: string) {}
 }
