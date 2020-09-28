@@ -34,9 +34,9 @@ describe('BeerService', () => {
     });
   });
 
-it('expects service to retrieve beer by id ', () => {
-    service.getBeer(2).subscribe(data => {
-      expect(mockResponse.length).toEqual(1);
+  it('expects service to retrieve beer by id ', () => {
+      service.getBeer(2).subscribe(data => {
+        expect(mockResponse.length).toEqual(1);
+      });
     });
-  });
 });

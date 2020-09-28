@@ -9,18 +9,18 @@ import { takeUntil } from 'rxjs/operators';
     styleUrls: ['./beer-list.component.css']
 })
 export class BeerListComponent implements OnInit {
-    pageTitle: string = 'Beer List';
-    showImage: boolean = false;
+    pageTitle = 'Beer List';
+    showImage = false;
     filteredBeers: IBeer[];
     displayedBeers: IBeer[];
     beers: IBeer[] = [];
-    errorMessage: string = '';
+    errorMessage = '';
     _beerService: BeerService;
     notifier = new Subject();
-    startIndex: number = 0;
-    finishIndex: number = 9;
-    pageIndex: number = 0;
-    pageSize: number = 10;
+    startIndex = 0;
+    finishIndex = 9;
+    pageIndex = 0;
+    pageSize = 10;
 
     _listFilter: string;
     get listFilter(): string {
@@ -35,6 +35,10 @@ export class BeerListComponent implements OnInit {
       this._beerService = beerService;
     }
 
+    ngOnInit(): void {
+      this.setDisplayedBeers();
+    }
+
     getAllBeer(): IBeer[]
     {
       this.pageIndex = 0;
@@ -47,20 +51,13 @@ export class BeerListComponent implements OnInit {
     performFilter(filterBy: string): IBeer[] {
       // Updates page index to 0.
       this.pageIndex = 0;
-      
       // Filters beers.
       filterBy = filterBy.toLocaleLowerCase();
-      let filteredBeers = this.beers.filter((beer: IBeer) => 
-          beer.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
-      
-      // Updates filtered beers count on any users type. 
+      const filteredBeers = this.beers.filter((beer: IBeer) => beer.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+      // Updates filtered beers count on any users type.
       this.updateIndexes();
       this.displayedBeers = filteredBeers.slice(this.startIndex, this.finishIndex + 1);
       return filteredBeers;
-    }
-
-    ngOnInit(): void {
-      this.setDisplayedBeers();
     }
 
     setDisplayedBeers(): void {
@@ -69,8 +66,7 @@ export class BeerListComponent implements OnInit {
           next: beers => {
             this.beers = beers;
             this.filteredBeers = this.beers;
-            this.displayedBeers = this.beers
-            .slice(this.startIndex,this.finishIndex + 1);
+            this.displayedBeers = this.beers.slice(this.startIndex, this.finishIndex + 1);
           },
           error: err => this.errorMessage = err
         });
@@ -82,13 +78,13 @@ export class BeerListComponent implements OnInit {
 
     updateIndexes(): void{
       this.startIndex = this.pageIndex * this.pageSize;
-        this.finishIndex = (this.filteredBeers.length - 1 - this.startIndex >= this.pageSize)
-          ? this.startIndex + this.pageSize -1
-          : this.filteredBeers.length - 1;
+      this.finishIndex = (this.filteredBeers.length - 1 - this.startIndex >= this.pageSize)
+      ? this.startIndex + this.pageSize - 1
+      : this.filteredBeers.length - 1;
     }
 
-    onBack() : void {
-      if(this.pageIndex > 0)
+    onBack(): void {
+      if (this.pageIndex > 0)
       {
         --this.pageIndex;
         this.updateIndexes();
@@ -96,12 +92,13 @@ export class BeerListComponent implements OnInit {
       }
     }
 
-    onForward() : void {
-      if( Math.floor(this.filteredBeers.length / ((this.pageIndex + 1) * this.pageSize)) > 0 )
+    onForward(): void {
+      if (Math.floor(this.filteredBeers.length / ((this.pageIndex + 1) * this.pageSize)) > 0 )
       {
         ++this.pageIndex;
         this.updateIndexes();
         this.displayedBeers = this.filteredBeers.slice(this.startIndex, this.finishIndex + 1);
       }
     }
-}
+  }
+

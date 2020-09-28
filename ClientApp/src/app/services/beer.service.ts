@@ -27,9 +27,9 @@ export class BeerService{
         );
     }
 
-    private handleError(err: HttpErrorResponse) {
+    private handleError(err: HttpErrorResponse): Observable<never> {
         let errorMessage = '';
-        if(err.error instanceof ErrorEvent) {
+        if (err.error instanceof ErrorEvent) {
             errorMessage = `An error occured: ${err.error.message}`;
 
         } else {
@@ -40,3 +40,4 @@ export class BeerService{
         return throwError(errorMessage);
     }
 }
+

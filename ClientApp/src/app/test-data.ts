@@ -7,7 +7,7 @@ export class TestData {
       {
         id: 2,
         name: 'Trashy Blonde',
-        tagline: "You Know You Shouldn't.",
+        tagline: 'You Know You Shouldn\'t',
         first_brewed: '04/2008',
         description:
           'A titillating, neurotic, peroxide punk of a Pale Ale. Combining attitude, style, substance, and a little bit of low self esteem for good measure; what would your mother say? The seductive lure of the sassy passion fruit hop proves too much to resist. All that is even before we get onto the fact that there are no additives, preservatives, pasteurization or strings attached. All wrapped up with the customary BrewDog bite and imaginative twist.',
@@ -17,7 +17,7 @@ export class TestData {
       {
         id: 5,
         name: 'Avery Brown Dredge',
-        tagline: "Bloggers' Imperial Pilsner.",
+        tagline: 'Bloggers\' Imperial Pilsner.',
         first_brewed: '02/2011',
         description:
           'An Imperial Pilsner in collaboration with beer writers. Tradition. Homage. Revolution. We wanted to showcase the awesome backbone of the Czech brewing tradition, the noble Saaz hop, and also tip our hats to the modern beers that rock our world, and the people who make them.',
@@ -57,14 +57,14 @@ export class TestData {
     ];
 
     return mockResponse;
-  };
+  }
 
   public static getBeerByIdTestData = (): IBeer[] => {
     const mockResponse: IBeer[] = [
       {
         id: 5,
         name: 'Avery Brown Dredge',
-        tagline: "Bloggers' Imperial Pilsner.",
+        tagline: 'Bloggers\' Imperial Pilsner.',
         first_brewed: '02/2011',
         description:
           'An Imperial Pilsner in collaboration with beer writers. Tradition. Homage. Revolution. We wanted to showcase the awesome backbone of the Czech brewing tradition, the noble Saaz hop, and also tip our hats to the modern beers that rock our world, and the people who make them.',
@@ -73,5 +73,5 @@ export class TestData {
       }
     ];
     return mockResponse;
-  };
+  }
 }

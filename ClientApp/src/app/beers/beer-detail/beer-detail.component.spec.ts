@@ -28,7 +28,7 @@ describe('BeerDetailComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BeerDetailComponent);
     component = fixture.componentInstance;
-    beerService = TestBed.get(BeerService);
+    beerService = TestBed.inject(BeerService);
     fixture.detectChanges();
   });
 
@@ -36,7 +36,7 @@ describe('BeerDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call ngOnInit method', async(() => {
+  it('should ngOnInit init beer instance', async(() => {
 
     spyOn(beerService, 'getBeer').and.returnValue(of(mockResponse[0]));
     component.ngOnInit();
@@ -45,7 +45,6 @@ describe('BeerDetailComponent', () => {
   }));
 
   it('should call ngOnInit method empty beer', async(() => {
-    let mockResponse: IBeer[] = [];
     spyOn(beerService, 'getBeer').and.returnValue(of(mockResponse[0]));
     component.ngOnInit();
     component.beer = mockResponse[0];
@@ -53,3 +52,4 @@ describe('BeerDetailComponent', () => {
   }));
 
 });
+

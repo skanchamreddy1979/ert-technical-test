@@ -16,5 +16,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  title: string = 'BrewDog Beers Management';
+  title = 'BrewDog Beers Management';
 }
+

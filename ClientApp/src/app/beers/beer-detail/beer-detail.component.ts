@@ -11,18 +11,16 @@ import { BeerService } from '../../services/beer.service';
   styleUrls: ['./beer-detail.component.css']
 })
 export class BeerDetailComponent implements OnInit {
-  pageTitle: string = 'Beer Detail';
-  errorMessage: string = '';
+  pageTitle = 'Beer Detail';
+  errorMessage = '';
   beer: IBeer | undefined;
   notifier = new Subject();
 
-  constructor(private route: ActivatedRoute, 
-              private router: Router,
-              private beerService: BeerService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private beerService: BeerService) {}
 
   ngOnInit(): void {
     const param = this.route.snapshot.paramMap.get('id');
-    if(param) {
+    if (param) {
       const id = +param;
       this.getBeer(id);
     }
@@ -39,3 +37,4 @@ export class BeerDetailComponent implements OnInit {
     this.router.navigate(['/beers']);
   }
 }
+

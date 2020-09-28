@@ -32,7 +32,7 @@ describe('BeerListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BeerListComponent);
     component = fixture.componentInstance;
-    beerService = TestBed.get(BeerService);
+    beerService = TestBed.inject(BeerService);
     fixture.detectChanges();
   });
 
@@ -61,9 +61,8 @@ describe('BeerListComponent', () => {
   }));
 
   it('should call getAllBeer method empty beers list', async(() => {
-    const mockResponse: IBeer[] = [];
     component.getAllBeer();
-    component.beers = mockResponse;
+    component.beers = [];
     fixture.whenStable().then(() => {
       expect(component.beers.length).toBe(0);
     });
