@@ -49,6 +49,11 @@ namespace ert_beer_app.Services
             }
         }
 
+        public List<Beer> GetAllBeerProducts()
+        {
+            return _db.Beers.ToList();
+        }
+
         public Beer GetBeerById(string id)
         {
             var url = BuildUrl(GetBaseUrl(), id);
@@ -82,11 +87,6 @@ namespace ert_beer_app.Services
             string responseBody = await response.Content.ReadAsStringAsync();
 
             return responseBody;
-        }
-
-        public List<Beer> GetAllBeerProducts()
-        {
-            return _db.Beers.ToList();
         }
     }
 }
