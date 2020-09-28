@@ -53,7 +53,8 @@ export class ListComponent implements AfterViewInit, OnInit {
     this.getBeers(1, this.defaultPageSize, input);
   }
 
-  checkboxLabel(row?: Beer): string {
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  isCkecked(row: Beer) {
+    const found = this.selection.selected.find(x => x.id == row.id)
+    return found ? true : false;
   }
 }

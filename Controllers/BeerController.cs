@@ -22,7 +22,7 @@ namespace ert_beer_app.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveFavourites([FromBody] SaveFavouriteBeersCommand command)
         {
-            await _beerService.SaveFavouriteBeersForUser(command);
+            await _beerService.SaveFavouriteBeersForUserAsync(command);
 
             return Ok();
         }
@@ -30,7 +30,7 @@ namespace ert_beer_app.Controllers
         [HttpGet("{userEmail}")]
         public async Task<IActionResult> GetFavourites(string userEmail)
         {
-            IEnumerable<Beer> beerList = await _beerService.GetFavouriteBeersForUser(userEmail);
+            IEnumerable<Beer> beerList = await _beerService.GetFavouriteBeersForUserAsync(userEmail);
 
             return Ok(beerList);
         }

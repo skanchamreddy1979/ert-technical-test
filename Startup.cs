@@ -1,13 +1,11 @@
 using ert_beer_app.DataAccess;
-using ert_beer_app.DataAccess.Interfaces;
-using ert_beer_app.Models;
 using ert_beer_app.Services;
 using ert_beer_app.Services.Interfaces;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +26,7 @@ namespace ert_beer_app
         {
             services.AddControllersWithViews();
 
-            services.AddTransient<IRepository<Beer>, BeerRepository>();
+            services.AddDbContext<BeerContext>(options => options.UseSqlite("Filename=Beer.db"));
             services.AddTransient<IBeerService, BeerService>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

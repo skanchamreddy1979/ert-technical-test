@@ -1,4 +1,6 @@
-<div class="search-form">
-    <label>Filter by Name: </label>
-    <input matInput class="search-input" (input)="inputChanged($event.target.value)">
-</div>
+<form class="search-form">
+    <mat-form-field class="search-input">
+        <mat-label>Filter by Name</mat-label>
+        <input matInput placeholder="Ex. APA" (input)="inputChanged($event.target.value)">
+      </mat-form-field>
+</form>

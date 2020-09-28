@@ -8,8 +8,8 @@ namespace ert_beer_app.Services.Interfaces
 {
     public interface IBeerService
     {
-        Task<IEnumerable<Beer>> GetFavouriteBeersForUser(string userEmail);
+        Task<IEnumerable<Beer>> GetFavouriteBeersForUserAsync(string userEmail);
 
-        Task SaveFavouriteBeersForUser(SaveFavouriteBeersCommand command);
+        Task SaveFavouriteBeersForUserAsync(SaveFavouriteBeersCommand command);
     }
 }
