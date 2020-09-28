@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ert_beer_app.Interfaces;
@@ -97,20 +98,20 @@ namespace ert_beer_app.Controllers
 
         private async Task CacheItemsNotInDbAsync(List<Beer> differenceBetweenDbAndService)
         {
-            var itemsNotInDb = await GetItemsNotInDbAsync(differenceBetweenDbAndService);
+            var itemsNotInDb = await GetBeersNotInDbAsync(differenceBetweenDbAndService);
             await Context.Beers.AddRangeAsync(itemsNotInDb);
             await Context.SaveChangesAsync();
         }
 
-        private async Task<List<Beer>> GetItemsNotInDbAsync(List<Beer> collectionToAdd)
+        private async Task<List<Beer>> GetBeersNotInDbAsync(List<Beer> collectionToAdd)
         {
             var taskResult = await Task.Run(() =>
             {
                 var newItemIds = collectionToAdd.Select(item => item.Id).Distinct().ToArray();
                 var itemsInDb = Context.Beers.Where(item => newItemIds.Contains(item.Id))
                     .Select(item => item.Id).ToArray();
-                var usersNotInDb = collectionToAdd.Where(item => itemsInDb.Contains(item.Id) == false);
-                return usersNotInDb.ToList();
+                var itemsNotInDb = collectionToAdd.Where(item => itemsInDb.Contains(item.Id) == false).ToList();
+                return itemsNotInDb;
             });
 
             return taskResult;
@@ -118,7 +119,7 @@ namespace ert_beer_app.Controllers
 
         [Route("{id}")]
         [HttpGet]
-        public async Task<IActionResult> GetAsync(int id)
+        public async Task<IActionResult> GetAsync(long id)
         {
             try
             {
@@ -140,6 +141,78 @@ namespace ert_beer_app.Controllers
                 Logger.LogError(ex.Message);
                 throw;
             }
+        }
+
+        [Route("favourite")]
+        [HttpPost]
+        public async Task<IActionResult> SelectFavouriteBeerAsync(SelectFavouriteBeerRequest request)
+        {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            if (request.BeerIds is null || request.BeerIds.Count == 0)
+            {
+                throw new ArgumentNullException(nameof(request.BeerIds));
+            }
+
+            if (string.IsNullOrEmpty(request.Email))
+            {
+                throw new ArgumentException($"'{nameof(request.Email)}' cannot be null or empty", nameof(request.Email));
+            }
+
+            try
+            {
+                new MailAddress(request.Email);
+            }
+            catch (FormatException)
+            {
+                throw new ArgumentException($"{request.Email} is not valid mail address", nameof(request.Email));
+            }
+
+            try
+            {
+                var user = Context.Users.FirstOrDefault(x => x.Email == request.Email);
+                if (user == null)
+                {
+                    var addedUser = await Context.Users.AddAsync(new User { Email = request.Email });
+                    await Context.SaveChangesAsync();
+                    user = addedUser.Entity;
+                }
+
+                var beerIdsToAdd = await GetFavouriteBeersNotInDbAsync(request.BeerIds, user);
+                var itemsToAdd = beerIdsToAdd.Select(id => new FavouriteBeer
+                {
+                    BeerId = id,
+                    UserId = user.Id,
+                }).ToList();
+                if (itemsToAdd.Count != 0)
+                {
+                    await Context.FavouriteBeers.AddRangeAsync(itemsToAdd);
+                    await Context.SaveChangesAsync();
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                throw;
+            }
+        }
+
+        private async Task<List<long>> GetFavouriteBeersNotInDbAsync(List<long> newItemIds, User user)
+        {
+            var taskResult = await Task.Run(() =>
+            {
+                var itemsInDb = Context.FavouriteBeers.Where(item => newItemIds.Contains(item.BeerId) && item.UserId == user.Id)
+                    .Select(item => item.BeerId).ToArray();
+                var itemsNotInDb = newItemIds.Where(item => itemsInDb.Contains(item) == false).ToList();
+                return itemsNotInDb;
+            });
+
+            return taskResult;
         }
     }
 }
