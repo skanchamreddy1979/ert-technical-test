@@ -19,10 +19,10 @@ export class BeerdetailComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   ngOnInit(): void {
-    this.SetBeerID();
+    this.SetBeerId();
   }
 
-  SetBeerID(): void {
+  SetBeerId(): void {
     this.beer.id = +this.activatedroute.snapshot.params['id'];
     this.getBeerDetail(this.beer.id);
   }
