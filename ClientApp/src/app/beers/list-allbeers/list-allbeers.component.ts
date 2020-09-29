@@ -11,12 +11,14 @@ import { Subscription } from 'rxjs';
 })
 export class ListAllbeersComponent implements OnInit, OnDestroy {
 
-  public p = 0;
+  public p = 1;
   beers: any;
   beerName: string;
   filteredBeers: any;
   public filtered;
   totalrecords: number;
+  public searchString : string;
+
 
   constructor(private beerService: BeerService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.beers = [];
@@ -47,6 +49,10 @@ export class ListAllbeersComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  onSearch(value): void{
+    this.p=1;
   }
 
 }

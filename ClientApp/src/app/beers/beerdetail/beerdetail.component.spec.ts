@@ -50,4 +50,20 @@ describe('BeerdetailComponent', () => {
     expect(component.beer).toEqual(mockResponse[0]);
   });
 
+   it('should call getBeerById on ngOnInIt without data.', () => {
+    const mockResponse = [{
+      id: 0,
+      name: '',
+      tagline: '',
+      first_brewed: new Date(),
+      description: '',
+      image_url: '',
+      abv: 0.0
+    }];
+    spyOn(beerService, 'getBeerDetail').and.returnValue(of(mockResponse));
+    component.getBeerDetail(0);
+    // component.beer = mockResponse[0];
+    expect(component.beer).toEqual(mockResponse[0]);
+  });
+
 });

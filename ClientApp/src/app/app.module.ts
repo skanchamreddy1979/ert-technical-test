@@ -14,6 +14,7 @@ import { BeerdetailComponent } from './beers/beerdetail/beerdetail.component';
 import { BeerFavouriteComponent } from './beers/beer-favourite/beer-favourite/beer-favourite.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
+import { FilterPipe } from './beers/list-allbeers/Pipe/Filteredpipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HeaderComponent } from './header/header.component';
     BeerdetailComponent,
     BeerFavouriteComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { HeaderComponent } from './header/header.component';
     Ng2SearchPipeModule
   ],
   providers: [BeerService],
+  exports:[FilterPipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

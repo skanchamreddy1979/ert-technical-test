@@ -57,7 +57,6 @@ describe('ListAllbeersComponent', () => {
 
     component.getAllbeers();
     component.beers = mockResponse;
-    component.totalrecords = mockResponse.length;
     expect(component.totalrecords).toEqual(0);
   });
 
