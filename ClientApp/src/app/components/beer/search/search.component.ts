@@ -7,9 +7,9 @@ import { Component, Output, EventEmitter } from '@angular/core';
   })
 
 export class SearchComponent {
-    @Output() onChange = new EventEmitter<string>();
+    @Output() searchChange = new EventEmitter<string>();
 
     inputChanged(input: string): void {
-        this.onChange.emit(input);
+        this.searchChange.emit(input);
     }
 }

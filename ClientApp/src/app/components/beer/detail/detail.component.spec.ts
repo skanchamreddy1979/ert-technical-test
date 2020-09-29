@@ -12,7 +12,7 @@ import { DetailComponent } from './detail.component';
 describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DetailComponent ],
@@ -50,7 +50,7 @@ describe('DetailComponent', () => {
   });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(DetailComponent);
+    fixture = TestBed.createComponent(DetailComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });

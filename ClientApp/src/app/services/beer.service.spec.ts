@@ -3,7 +3,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { BeerService } from './beer.service';
 import { Beer } from 'src/app/models/beer.model';
 import { environment } from 'src/environments/environment';
-import { HttpParams } from '@angular/common/http';
 
 describe('BeerService', () => {
     let injector: TestBed;
@@ -69,13 +68,13 @@ describe('BeerService', () => {
             tagLine: 'Tagline3'
         },
     ];
-  
+
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule],
         providers: [BeerService],
       });
-  
+
       injector = getTestBed();
       service = injector.get(BeerService);
       httpMock = injector.get(HttpTestingController);
@@ -84,7 +83,7 @@ describe('BeerService', () => {
     it('getBeers() without filter should return data', () => {
         service.getBeers(1, 3).subscribe((responce) => {
             expect(responce).toEqual(testData);
-        })
+        });
 
         const req = httpMock.expectOne(c => c.method === 'GET' && c.url === `${environment.beerApiUrls.baseUrl}/${environment.beerApiUrls.beerPath}`);
         req.flush(testResponce);
@@ -93,13 +92,13 @@ describe('BeerService', () => {
     it('getBeerById() should return only one item', () => {
         service.getBeerById(1).subscribe((responce) => {
             expect(responce).toEqual(testData[0]);
-        })
+        });
 
         const req = httpMock.expectOne(c => c.method === 'GET' && c.url === `${environment.beerApiUrls.baseUrl}/${environment.beerApiUrls.beerPath}`);
         req.flush(testResponce);
     });
-  
+
     afterEach(() => {
-      httpMock.verify();
-    });  
-  });
+        httpMock.verify();
+    });
+});

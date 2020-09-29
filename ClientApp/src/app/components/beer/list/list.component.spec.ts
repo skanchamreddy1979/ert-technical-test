@@ -44,7 +44,7 @@ describe('ListComponent', () => {
   });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(ListComponent);
+    fixture = TestBed.createComponent(ListComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });

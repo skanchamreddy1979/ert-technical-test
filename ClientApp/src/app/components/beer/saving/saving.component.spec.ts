@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { InternalBeerService } from 'src/app/services/internalBeer.service';
 import { MaterialModule } from 'src/app/shared/material.module';
 
-import { SavingComponent } from "./saving.component";
+import { SavingComponent } from './saving.component';
 
 describe('SavingComponent', () => {
   let component: SavingComponent;
@@ -42,7 +42,7 @@ describe('SavingComponent', () => {
   });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(SavingComponent);
+    fixture = TestBed.createComponent(SavingComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });

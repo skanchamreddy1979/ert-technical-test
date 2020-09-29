@@ -20,7 +20,7 @@ export class ListComponent implements AfterViewInit, OnInit {
   notifier = new Subject();
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  
+
   constructor(private _beerService: BeerService) { }
 
   ngOnInit(): void {
@@ -54,7 +54,7 @@ export class ListComponent implements AfterViewInit, OnInit {
   }
 
   isCkecked(row: Beer) {
-    const found = this.selection.selected.find(x => x.id == row.id)
+    const found = this.selection.selected.find(x => x.id === row.id);
     return found ? true : false;
   }
 }

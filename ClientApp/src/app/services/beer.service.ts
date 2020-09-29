@@ -16,14 +16,13 @@ export class BeerService {
         let params = new HttpParams()
             .set('page', page.toString())
             .set('per_page', pageSize.toString());
-        
         if (nameFilter) {
             params = params.set('beer_name', nameFilter);
         }
 
         return this._httpClient.get<Beer[]>(`${environment.beerApiUrls.baseUrl}/${environment.beerApiUrls.beerPath}`, { params })
             .pipe(map(beers => {
-                return beers.map(beer => { return getBeerModelFromDto(beer) });
+                return beers.map(beer => getBeerModelFromDto(beer) );
             }));
     }
 
@@ -31,6 +30,6 @@ export class BeerService {
         const params = new HttpParams().set('ids', beerId.toString());
 
         return this._httpClient.get<Beer>(`${environment.beerApiUrls.baseUrl}/${environment.beerApiUrls.beerPath}`, { params })
-            .pipe(map(beer => { return getBeerModelFromDto(beer[0])} ))
+            .pipe(map(beer => getBeerModelFromDto(beer[0]) ));
     }
 }

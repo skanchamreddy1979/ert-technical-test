@@ -4,7 +4,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/app/shared/material.module';
 
-import { SearchComponent } from "./search.component";
+import { SearchComponent } from './search.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -31,7 +31,7 @@ describe('SearchComponent', () => {
   });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(SearchComponent);
+    fixture = TestBed.createComponent(SearchComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });

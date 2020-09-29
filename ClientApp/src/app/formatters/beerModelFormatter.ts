@@ -1,4 +1,4 @@
-import { Beer } from "./../models/beer.model";
+import { Beer } from 'src/app/models/beer.model';
 
 export function getBeerModelFromDto(obj: any): Beer {
     const beer: Beer = {

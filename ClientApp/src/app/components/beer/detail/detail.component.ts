@@ -11,7 +11,7 @@ import { BeerService } from 'src/app/services/beer.service';
 export class DetailComponent implements OnInit {
   selectedBeer: Beer;
   id: number;
-  
+
   constructor(private _beerService: BeerService, public _route: ActivatedRoute) {
     this.id = +this._route.snapshot.paramMap.get('id');
    }
