@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+      <div class="col">
+          <h1 class="text-center">BrewDog Beers</h1>
+      </div>
+  </div>
+  <div class="row"> 
+    <div class="col">
+      <form class="form-inline">              
+          <div class="form-group">
+            <label for="Search"></label>
+            <input name = "searchString" 
+              [(ngModel)]="searchString"
+              class="form-control" 
+              type="text"
+              placeholder="Search" 
+              aria-label="Search">
+          </div>
+          <div class="form-group">
+             <input name="Search" id="" class="btn btn-primary" type="button" value="Search" (click)="searchBeers()">
+          </div>              
+      </form>
+    </div>
+  </div>
+  <div class="row"> </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr class="">
+          <th scope="col">#</th>
+          <th scope="col">Beer Name</th>
+          <th scope="col">Tag Line</th>
+          <th scope="col">First Brewed</th>
+          <th scope="col">ABV</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let beer of beers">
+          <th scope="row"> {{ beer.id }}</th>
+          <td>
+            {{ beer.name }}
+          </td>
+          <td>{{ beer.tagline }}</td>
+          <td>{{ beer.first_brewed }}</td>
+          <td>{{ beer.abv }}</td>
+          <td>
+            <!-- Button trigger modal -->
+            <button 
+              type="button" 
+              class="btn btn-primary btn-lg" 
+              data-toggle="modal" 
+              data-target="#modelId"
+              (click)="onView(beer.id)">
+              View
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">   
+      <div class="col text-right">
+          <ngb-pagination
+            [collectionSize]="totalBeers" 
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [maxSize]="1"
+            (pageChange)="refreshBeers()"
+            [boundaryLinks] ="true"
+            [directionLinks] = "true"
+            class="d-flex justify-content-end">
+          </ngb-pagination>
+      </div>
+  </div>
+</div>
+
+<app-beer-details [beerId]="activeBeerId"></app-beer-details>

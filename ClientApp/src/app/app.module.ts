@@ -7,22 +7,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { MaterialModule } from './shared/material.module';
-
-import { ListComponent } from './list/list.component';
-
 import { WelcomeComponent } from './welcome/welcome.component';
+import { BeersModule } from './beers/beers.module';
+import { BeersListComponent } from './beers/beers-list/beers-list.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
+  declarations: [AppComponent, WelcomeComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    MaterialModule,
+    BeersModule,
+    NgbPaginationModule,
     RouterModule.forRoot([
       { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
+      { path: 'list', component: BeersListComponent },
     ]),
     BrowserAnimationsModule,
   ],
