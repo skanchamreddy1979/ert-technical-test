@@ -24,7 +24,7 @@ export class BeersListComponent implements OnInit {
     this.beers = [];
     this.searchString = '';
     this.totalBeers = 0;
-    this.activeBeerId = 1;
+    this.activeBeerId = 0;
     this.getBeeers();
   }
 

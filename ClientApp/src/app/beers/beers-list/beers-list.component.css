@@ -5,3 +5,7 @@ table {
 input[name="searchString"] {
     margin-right: 30px;
 }
+
+.table th, .table td {
+    padding: 0.25rem;
+}
