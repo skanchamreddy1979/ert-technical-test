@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { BeersListComponent } from '../beers-list/beers-list.component';
+import { Beer } from '../beer.model';
 import { BeersService } from '../beers.service';
 
 @Component({
@@ -9,13 +9,13 @@ import { BeersService } from '../beers.service';
 })
 export class BeerDetailsComponent implements OnInit, OnChanges {
   @Input() beerId: number;
-  beer: any;
+  beer: Beer;
   constructor(private beerService: BeersService) {
 
   }
 
   ngOnInit() {
-    this.beer = {};
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -26,7 +26,7 @@ export class BeerDetailsComponent implements OnInit, OnChanges {
 
   getBeer() {
     if (this.beerId) {
-      this.beerService.getBeerById(this.beerId).then((res: any) => {
+      this.beerService.getBeerById(this.beerId).then((res) => {
         const br = res[0];
         this.beer = {
             id: br.id,

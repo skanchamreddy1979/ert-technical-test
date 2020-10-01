@@ -7,13 +7,15 @@ import { BeersService } from '../beers.service';
   styleUrls: ['./beers-list.component.css']
 })
 export class BeersListComponent implements OnInit {
-  beers: any[];
+  beers: [];
   page: number;
   pageSize: number;
   searchString: string;
   totalBeers: number;
   activeBeerId: number;
+
   constructor(private beersService: BeersService) {
+
   }
 
   ngOnInit() {
@@ -21,32 +23,45 @@ export class BeersListComponent implements OnInit {
     this.pageSize = 10;
     this.beers = [];
     this.searchString = '';
-    // this is the total beers being returned by api at this moment - ideally api should return this
-    this.totalBeers = 325;
+    this.totalBeers = 0;
+    this.activeBeerId = 1;
     this.getBeeers();
   }
 
-  getBeeers() {
-    this.beersService.getBeers(this.page, this.pageSize, this.searchString).then((res: any[]) => {
+  getBeeers = (): void => {
+    this.beersService.getBeersByPage(this.page, this.pageSize).then((res: []) => {
       this.beers = res;
+      // ideally the api should return the total available beers on the server
+      // this is the total beers being returned by api at this moment, so just hard coding the total count
+      this.totalBeers = 325;
     }).catch((err) => {
        console.log(err);
     });
   }
 
-  searchBeers() {
+  searchBeers = (): void => {
     // replace the space in the search string with _ , it's needed as per the specs of pluck api
-    this.searchString = this.searchString.trim().replace('', '_');
-    // reset the page on search
-    this.page = 1;
-    this.getBeeers();
+    this.searchString = this.searchString.trim().replace(' ', '_');
+    if (this.searchString.length > 0) {
+        this.beersService.searchBeers(this.searchString).then((res: []) => {
+            this.beers = res;
+            this.totalBeers = this.beers.length;
+            this.page = 1;
+        });
+    } else {
+      this.getBeeers();
+    }
   }
 
-  refreshBeers() {
-    this.getBeeers();
+  refreshBeers = (): void => {
+     // during the search(if searchstring exists) - it's client side paging don't get the beers from server
+     // if there is no search string - it's server side paging - get the beers by page
+    if (!this.searchString.length) {
+      this.getBeeers();
+    }
   }
 
-  onView(beerId: number) {
+  onView = (beerId: number): void => {
     this.activeBeerId = beerId;
   }
 }

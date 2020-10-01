@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="beerDetail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,15 +10,21 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <div class="card"> 
-                        <img [src]="beer.imgUrl" class="card-img-top img-thumbnail float-right" [alt]="beer.name" [width]="200"/>
-                        <div class="card-body">
-                            <h4 class="card-title">{{ beer.name }}</h4>
-                            <p class="card-subtitle"><b>TagLine: </b> {{ beer.tagLine }} </p>
-                            <p class="card-text"><b>Description: </b> {{ beer.description }} </p>
-                            <p class="card-text"> <b>ABV:</b> {{ beer.abv }} </p>
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ beer.name }}</h4>
+                                    <p class="card-subtitle"><b>TagLine: </b> {{ beer.tagLine }} </p>
+                                    <p class="card-text"><b>Description: </b> {{ beer.description }} </p>
+                                    <p class="card-text"> <b>ABV:</b> {{ beer.abv }} </p>
+                                </div> 
+                            </div>   
                         </div>
-                    </div>                                  
+                        <div class="col-3">
+                            <img [src]="beer.imgUrl" class="card-img-top img-thumbnail float-right" [alt]="beer.name" [width]="200"/>
+                        </div>
+                    </div>                       
                 </div>
             </div>
             <div class="modal-footer">

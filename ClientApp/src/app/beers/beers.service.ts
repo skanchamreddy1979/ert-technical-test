@@ -16,11 +16,11 @@ export class BeersService {
     return this.httpClient.get(`${this.plunkAPIRootUrl}beers/${id}`).toPromise();
   }
 
-  getBeers(page: number, pageSize: number, searchString: string) {
-    let url = `${this.plunkAPIRootUrl}beers?page=${page}&per_page=${pageSize}`;
-    if (searchString.length > 0) {
-      url = `${url}&beer_name=${searchString}`;
-    }
-    return this.httpClient.get(url).toPromise();
+  getBeersByPage(page: number, pageSize: number) {
+    return this.httpClient.get(`${this.plunkAPIRootUrl}beers?page=${page}&per_page=${pageSize}`).toPromise();
+  }
+
+  searchBeers(searchString: string) {
+    return this.httpClient.get(`${this.plunkAPIRootUrl}beers?beer_name=${searchString}`).toPromise();
   }
 }
