@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+th{
+  background-color: #96919185;
+}
+.mat-table,h3 {
+  font-family: Roboto,"Helvetica Neue",sans-serif
+}
+tr.mat-header-row {
+  height: 46px !important;
+}
+tr.mat-footer-row, tr.mat-row {
+  height: 35px !important;
+}
