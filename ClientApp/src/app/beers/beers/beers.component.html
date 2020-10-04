@@ -1,0 +1,9 @@
+<app-beers-list 
+    [beers]="beers"
+    [pageNumber]="page"
+    [pageSize]="perPage"
+    [totalBeers]="totalBeers"
+    (view)="onView($event)"
+    (pageChange)="onPagechange($event)"
+    (search)="onSearch($event)">
+</app-beers-list>

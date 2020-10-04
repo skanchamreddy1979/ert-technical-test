@@ -8,8 +8,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BeersModule } from './beers/beers.module';
-import { BeersListComponent } from './beers/beers-list/beers-list.component';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { BeersComponent } from './beers/beers/beers.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +20,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     BeersModule,
     NgbPaginationModule,
     RouterModule.forRoot([
-      { path: '', component: BeersListComponent },
+      { path: '', component: BeersComponent },
     ]),
     BrowserAnimationsModule,
   ],
