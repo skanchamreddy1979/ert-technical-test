@@ -17,3 +17,9 @@ tr.mat-header-row {
 tr.mat-footer-row, tr.mat-row {
   height: 35px !important;
 }
+
+.basic-container {
+  margin : 20px;
+}
+
+.searchBox {width: 25% !important;}

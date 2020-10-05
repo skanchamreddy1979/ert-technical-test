@@ -1,13 +1,12 @@
-<div class="mat-app-background basic-container">
-  <h3>Brewdog Beers Management</h3>
+<div class="mat-app-background basic-container"  >
+  <h3  align="center">Brewdog Beers Management</h3>
   <div>
-    <div class="col-md-2">
-      <mat-form-field>
+    <div w>
+      <mat-form-field class="searchBox">
         <mat-label>Search by beer name </mat-label>
         <input matInput (keyup)="getFilterData($event.target.value)" placeholder="Ex. Trashy Blonde" #input>
       </mat-form-field>
     </div>
-    <div class="col-md-10"></div>
   </div>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
