@@ -27,7 +27,7 @@ describe('BeerDetailsComponent', () => {
     component = fixture.componentInstance;
 
     httpClient = TestBed.inject(HttpClient);
-    httpTestingController = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject  (HttpTestingController);
 
     fixture.detectChanges();
   });
@@ -35,4 +35,16 @@ describe('BeerDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+  it('should render grid columns', () => {
+    fixture = TestBed.createComponent(BeerDetailsComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.name').textContent).toContain('Name');
+    expect(compiled.querySelector('.abv').textContent).toContain('Abv');
+    expect(compiled.querySelector('.description').textContent).toContain('Description');
+
+  });
+
 });
