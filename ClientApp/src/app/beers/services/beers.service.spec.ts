@@ -28,7 +28,7 @@ describe('BeersService', () => {
     const mockResponse = [
       { id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
     ];
-    beersService.Get('',1).subscribe(data => {
+    beersService.Get('', 1).subscribe(data => {
       expect(mockResponse.length).toEqual(1);
     });
   });
@@ -37,7 +37,7 @@ describe('BeersService', () => {
     const mockResponse = [
       { id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
     ];
-    beersService.Get('A',1).subscribe(data => {
+    beersService.Get('A', 1).subscribe(data => {
       expect(mockResponse.length).toEqual(1);
     });
   });

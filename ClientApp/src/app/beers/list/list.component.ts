@@ -27,7 +27,7 @@ export class ListComponent implements AfterViewInit, OnDestroy {
 
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.bindData(null);
   }
 

@@ -18,7 +18,7 @@ import { DetailComponent } from './beers/detail/detail.component';
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: '', redirectTo:'list', pathMatch: 'full' },
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: ListComponent },
     ]),
     BrowserAnimationsModule,
