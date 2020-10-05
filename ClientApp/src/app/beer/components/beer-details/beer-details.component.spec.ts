@@ -26,8 +26,8 @@ describe('BeerDetailsComponent', () => {
     fixture = TestBed.createComponent(BeerDetailsComponent);
     component = fixture.componentInstance;
 
-    httpClient = TestBed.get(HttpClient);
-    httpTestingController = TestBed.get(HttpTestingController);
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
 
     fixture.detectChanges();
   });

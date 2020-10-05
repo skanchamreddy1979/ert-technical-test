@@ -19,7 +19,7 @@ export class BeerService {
     if (!(beerName === null || beerName === '')) {
       queryString = 'beer_name=' + beerName;
     }
-    let urlPath = queryString === null ? environment.apiUrl + '/beers' : environment.apiUrl + '/beers?' + queryString;
+    const urlPath = queryString === null ? environment.apiUrl + '/beers' : environment.apiUrl + '/beers?' + queryString;
     return this.httpClientService.get(urlPath);
   }
   getBeerById(id: number): Observable<Beer> {

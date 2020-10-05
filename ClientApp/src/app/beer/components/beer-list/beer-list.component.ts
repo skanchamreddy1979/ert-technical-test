@@ -33,6 +33,7 @@ constructor(
 @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 @ViewChild(MatSort, { static: true }) sort: MatSort;
 
+// tslint:disable-next-line: typedef
 ngOnInit() {
   this.initialValueSubscrption();
 }

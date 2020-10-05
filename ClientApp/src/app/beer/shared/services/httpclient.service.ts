@@ -19,6 +19,7 @@ export class HttpClientService {
       return this.http.get(path, { params })
         .pipe(catchError(this.formatErrors));
     }
+    // tslint:disable-next-line: typedef
     formatErrors(error: any) {
       return throwError(error);
     }

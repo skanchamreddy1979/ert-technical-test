@@ -15,17 +15,18 @@ describe('BeerService', () => {
         }
     ));
     beforeEach(() => {
-        service = TestBed.get(BeerService);
-        httpMock = TestBed.get(HttpTestingController);
+        service = TestBed.inject(BeerService);
+        httpMock = TestBed.inject(HttpTestingController);
     });
 
     it('should be created', () => {
-        const service: BeerService = TestBed.get(BeerService);
+        // tslint:disable-next-line: no-shadowed-variable
+        const service: BeerService = TestBed.inject(BeerService);
         expect(service).toBeTruthy();
     });
 
     it('expects service to fetch all bears', () => {
-        let mockResponse: Beer[] = [
+        const mockResponse: Beer[] = [
             { id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
         ];
         service.getBeers().subscribe(data => {
@@ -33,10 +34,10 @@ describe('BeerService', () => {
         });
     });
     it('expects service to fetch bear by id ', () => {
-        let mockResponse: Beer[] = [
+      const mockResponse: Beer[] = [
             { id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
         ];
-        service.getBeerById(1).subscribe(data => {
+      service.getBeerById(1).subscribe(data => {
             expect(mockResponse.length).toEqual(1);
         });
     });

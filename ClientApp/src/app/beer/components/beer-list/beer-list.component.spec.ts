@@ -47,7 +47,7 @@ describe('BeerListComponent', () => {
         expect(component).toBeTruthy();
     });
     it('should get list', () => {
-        let mockResponse: Beer[] = [
+        const mockResponse: Beer[] = [
             { id: 0, name: '', tagline: '', first_brewed: '', description: '', image_url: '', abv: 0 }
         ];
 
@@ -59,12 +59,12 @@ describe('BeerListComponent', () => {
         component.ngOnDestroy();
     });
     it('should be empty list', () => {
-        let mockResponse: Beer[] = [];
-        spyOn(beerService, 'getBeers').and.returnValue(of(mockResponse));
-        component.bindDatasource(mockResponse);
-        component.dataSource =  new MatTableDataSource(mockResponse);
-        component.getFilterData(1);
-        expect(component.dataSource.data.length).toEqual(0);
-        component.ngOnDestroy();
+      const mockResponse: Beer[] = [];
+      spyOn(beerService, 'getBeers').and.returnValue(of(mockResponse));
+      component.bindDatasource(mockResponse);
+      component.dataSource =  new MatTableDataSource(mockResponse);
+      component.getFilterData(1);
+      expect(component.dataSource.data.length).toEqual(0);
+      component.ngOnDestroy();
     });
 });
