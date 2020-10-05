@@ -9,7 +9,8 @@ describe('BeerDetailsComponent', () => {
   let fixture: ComponentFixture<BeerDetailsComponent>;
 
   class ActiveModalMock {
-    close: () => {};
+    close() {
+    }
   }
 
   beforeEach(async(() => {
@@ -17,7 +18,7 @@ describe('BeerDetailsComponent', () => {
       declarations: [BeerDetailsComponent],
       providers: [{
           provide: NgbActiveModal,
-          useClass: ActiveModalMock
+          useValue: new ActiveModalMock()
       }]
     })
     .compileComponents();
@@ -32,4 +33,11 @@ describe('BeerDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should close the modal on click of close', () => {
+    const modalCloseSpy = spyOn(ActiveModalMock.prototype, 'close').and.callThrough();
+    component.onModalClose();
+    expect(modalCloseSpy).toHaveBeenCalledTimes(1);
+  });
+
 });
