@@ -1,9 +1,26 @@
+<div class="header">
+  <h1>ERT App</h1> 
+</div>
+<div class="container">
 <mat-form-field>
   <mat-label>Search by Beer Name </mat-label>
   <input matInput (keyup)="filterData($event.target.value)" #input>
 </mat-form-field>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="listData">
+    <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      Select
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event"
+                    >
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -38,4 +55,5 @@
     [pageSizeOptions]="[10, 15]"
     showFirstLastButtons
   ></mat-paginator>
+</div>
 </div>

@@ -15,7 +15,7 @@ import { MatSort } from '@angular/material';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements AfterViewInit, OnDestroy {
-  displayedColumns: string[] = ['name', 'tagLine', 'firstBrewed', 'abv'];
+  displayedColumns: string[] = ['select', 'name', 'tagLine', 'firstBrewed', 'abv'];
   listData = new MatTableDataSource<any>([]);
   private listDataSubscription: Subscription = new Subscription();
   private detailSubscription: Subscription = new Subscription();

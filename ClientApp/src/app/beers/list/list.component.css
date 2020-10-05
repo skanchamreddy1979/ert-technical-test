@@ -4,3 +4,32 @@ table {
 mat-form-field{
   width: 100%;
 }
+th{
+  font-size: 17px;
+  font-weight: bold;
+}
+th{
+  background-color: #3F51B5;
+  color:#FFF;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: #3F51B5 !important;
+}
+.container{
+  padding-right: 30px;
+  padding-left: 30px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.header{
+  margin-right: auto;
+  margin-left: auto;
+  color: #FFF;
+  text-align: center;
+  background-color: #3F51B5;
+}
+
+.header h1{
+   padding: 10px; 
+}
