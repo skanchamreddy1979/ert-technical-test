@@ -1,1 +1,13 @@
-<p>detail works!</p>
+<strong>Details for beer</strong>
+<div>
+  <img style="height:72px;max-width:50px;" src="{{beer.imgUrl}}" />
+</div>
+<ul>
+  <li>{{beer.name}}</li>
+  <li>{{beer.tagLine}}</li>
+  <li>{{beer.abv}}</li>
+  <li>{{beer.description}}</li>
+</ul>
+<div  *ngIf="!beer.isFavorite">
+<button mat-flat-button color="secondary"(click)="setFavorite()">Add to favorites</button>
+</div>

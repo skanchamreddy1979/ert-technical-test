@@ -1,35 +1,30 @@
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef>No.</th>
-      <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-    </ng-container>
+  <table mat-table [dataSource]="dataSource" style="max-width: 1000px">
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      <td mat-cell *matCellDef="let element"><strong>{{ element.name }}</strong></td>
     </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef>Weight</th>
-      <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+    <!-- Img Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element">
+        <p style="max-width: 500px;">{{ element.description }}</p>
+      </td>
     </ng-container>
 
     <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
-      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef>Details</th>
+      <td mat-cell *matCellDef="let element" style="max-width: 10px"><a routerLink="/details/{{element.id}}">details</a></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-  ></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons></mat-paginator>
 </div>

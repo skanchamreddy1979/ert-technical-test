@@ -1,5 +1,13 @@
+using System;
+using System.Net;
+using ert_beer_app.Business;
+using ert_beer_app.Business.Interfaces;
+using ert_beer_app.Data;
+using ert_beer_app.Data.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
@@ -26,11 +34,29 @@ namespace ert_beer_app
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            RegisterDataLayer(services);
+            RegisterBusinessLayer(services);
+        }
+
+        private void RegisterDataLayer(IServiceCollection services)
+        {
+            services.AddHttpClient();
+            services.Add(ServiceDescriptor.Scoped<IUrlFilterBuilder, UrlFilterBuilder>());
+            services.Add(ServiceDescriptor.Scoped<IBeerContext, BeerContext>());
+            services.Add(ServiceDescriptor.Scoped<IBrewDogBeerProvider, BrewDogBeerProvider>());
+        }
+
+        private void RegisterBusinessLayer(IServiceCollection services)
+        {
+            services.Add(ServiceDescriptor.Scoped<IBeerService, BeerService>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -39,18 +65,17 @@ namespace ert_beer_app
             {
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseHsts(); 
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
 
             app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
