@@ -1,0 +1,20 @@
+<div class="mat-app-background basic-container">
+  <h3>Beer Detail</h3>
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="column">
+        <img [src]="this.beerDetail?.image_url" class="img-align" align="center">
+      </div>
+      <div class="column">
+        <ul>
+          <li class="clslist"> <strong>Name :</strong> {{this.beerDetail?.name}} </li>
+          <li class="clslist"> <strong>Abv :</strong> {{this.beerDetail?.abv}} </li>
+          <li class="clslist"> <strong>Description :</strong> {{this.beerDetail?.description}} </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+</div>
