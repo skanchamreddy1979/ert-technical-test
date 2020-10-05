@@ -7,12 +7,12 @@
           <label for="Search"></label>
           <input name = "searchString" 
             [(ngModel)]="searchString"
-            class="form-control" 
+            class="form-control"
             type="text"
             placeholder="Search by Beer name" 
             aria-label="Search">
         </div>
-        <div class="form-group">           
+        <div class="form-group">
           <input name="Search" id="search-btn" class="btn btn-primary" type="button" value="Search" (click)="onSearch()">
         </div>
     </form>
@@ -30,6 +30,7 @@
           <th scope="col">First Brewed</th>
           <th scope="col">ABV</th>
           <th scope="col">Actions</th>
+          <th scope="col">Is Favorite</th>          
         </tr>
         </thead>
         <tbody>
@@ -42,14 +43,20 @@
           <td class="text-center">{{ beer.first_brewed }}</td>
           <td class="text-center">{{ beer.abv }}</td>
           <td class="text-center">
-            <button 
-              type="button" 
+            <button
+              type="button"
               class="btn btn-primary btn-sm"
               title="will show top 25 search results"
               tooltip="will show top 25 search results"
               (click)="onView(beer.id)">
               View
             </button>
+          </td>
+          <td class="text-center">
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
           </td>
         </tr>
         </tbody>
