@@ -12,15 +12,15 @@ export class BeersService {
     this.plunkAPIRootUrl = 'https://api.punkapi.com/v2/';
   }
 
-  getBeerById(id: number) {
+  getBeerById = (id: number) =>  {
     return this.httpClient.get(`${this.plunkAPIRootUrl}beers/${id}`).toPromise();
   }
 
-  getBeersByPage(page: number, pageSize: number) {
+  getBeersByPage = (page: number, pageSize: number) => {
     return this.httpClient.get(`${this.plunkAPIRootUrl}beers?page=${page}&per_page=${pageSize}`).toPromise();
   }
 
-  searchBeers(searchString: string) {
+  searchBeers = (searchString: string) => {
     return this.httpClient.get(`${this.plunkAPIRootUrl}beers?beer_name=${searchString}`).toPromise();
   }
 }
