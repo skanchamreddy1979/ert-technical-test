@@ -1,9 +1,9 @@
-export interface Beer {
-  id: string;
+export class Beer {
+  id: number;
   name: string;
   tagLine: string;
-  abv: string;
-  imgUrl: string;
+  firstBrewed: Date;
   description: string;
-  firstBrewed: string;
+  imageUrl: string;
+  abv: number;
 }

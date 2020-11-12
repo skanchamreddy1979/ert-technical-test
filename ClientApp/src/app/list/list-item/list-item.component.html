@@ -2,6 +2,6 @@
     <div>
         <h4>{{ beer.name }}</h4>
         <p>{{ beer.tagLine }}</p>
-        <p>{{ beer.firstBrewed }}, {{ beer.abv }}</p>
+        <p>{{ beer.firstBrewed | date:'MMMM yyyy' }}, {{ beer.abv }}%</p>
     </div>
 </a>

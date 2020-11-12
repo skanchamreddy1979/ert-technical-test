@@ -33,7 +33,7 @@ import { ListItemComponent } from './list/list-item/list-item.component';
     RouterModule.forRoot([
       { path: '', redirectTo: '/list', pathMatch: 'full' },
       { path: 'list', component: ListComponent },
-      { path: 'favourites', component: FavouritesComponent },
+      { path: 'favourites', component: FavouritesComponent }
     ]),
     BrowserAnimationsModule,
   ],
