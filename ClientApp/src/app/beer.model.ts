@@ -5,4 +5,5 @@ export interface Beer {
   abv: string;
   imgUrl: string;
   description: string;
+  firstBrewed: string;
 }
