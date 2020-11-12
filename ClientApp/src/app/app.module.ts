@@ -12,9 +12,17 @@ import { MaterialModule } from './shared/material.module';
 import { ListComponent } from './list/list.component';
 
 import { WelcomeComponent } from './welcome/welcome.component';
+import { HeaderComponent } from './header/header.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
+  declarations: [
+    AppComponent, 
+    ListComponent, 
+    WelcomeComponent,
+    FavouritesComponent,
+    HeaderComponent
+  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -23,6 +31,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     RouterModule.forRoot([
       { path: '', component: WelcomeComponent, pathMatch: 'full' },
       { path: 'list', component: ListComponent },
+      { path: 'favourites', component: FavouritesComponent },
     ]),
     BrowserAnimationsModule,
   ],
