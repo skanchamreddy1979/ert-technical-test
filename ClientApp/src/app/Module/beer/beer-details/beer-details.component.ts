@@ -5,9 +5,10 @@ import { BeerService } from '../beer.service';
 @Component({
   selector: 'app-beer-details',
   templateUrl: './beer-details.component.html',
-  styleUrls: ['./beer-details.component.scss']
+  styleUrls: ['./beer-details.component.css']
 })
 export class BeerDetailsComponent implements OnInit {
+
   beerDetails: any;
   beerId: number;
 

@@ -1,13 +1,14 @@
 .bg-success {
     background-color: #d6ded8 !important;
     border-color: seashell;
-    height: 387px;
+    height: 451px;
+    width: 473px;
 }
 
 .imageposition{
     margin: 13px 0px 38px 53px;
-    width: 50%;
-    height: 91%;
+    width: 65%;
+    height: 85%;
 }
 
 h1{

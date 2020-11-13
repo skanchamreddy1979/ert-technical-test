@@ -10,6 +10,7 @@
         "statements"
       ]
     },
+    "adjacent-overload-signatures": false,
     "array-type": false,
     "arrow-return-shorthand": true,
     "curly": true,
@@ -83,7 +84,7 @@
       }
     },
     "typedef": [
-      true,
+      false,
       "call-signature"
     ],
     "typedef-whitespace": {
@@ -108,7 +109,8 @@
       "options": [
         "ban-keywords",
         "check-format",
-        "allow-pascal-case"
+        "allow-pascal-case",
+        "allow-leading-underscore"
       ]
     },
     "whitespace": {

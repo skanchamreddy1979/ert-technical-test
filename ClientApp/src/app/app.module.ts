@@ -3,23 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BeerModule } from './Modules/beer/beer.module';
-import { BeerService } from './Modules/beer/beer.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdSortableHeader } from './Directives/sortable.directive';
-import { DecimalPipe } from '@angular/common';
+import { BeerModule } from './Module/beer/beer.module';
+import { BeerService } from './Module/beer/beer.service';
 
 @NgModule({
   declarations: [
-    AppComponent, NgbdSortableHeader
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BeerModule,
-    NgbModule
   ],
-  providers: [BeerService, DecimalPipe],
+  providers: [BeerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,54 @@
+<form>
+    <div class="container">
+      <h1 data-test="heading">Beer List</h1>
+      <div class="form-group form-inline">
+        Filter record by name: <input class="form-control ml-2" type="text" name="searchTerm" placeholder="Ex:Buzz"
+          [(ngModel)]="service.searchTerm" />
+        <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">SR.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Tagline</th>
+            <th scope="col">First Brewed</th>
+            <th scope="col">Abv</th>
+            <th scope="col">Favorite</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let beers of beerLists$ | async">
+            <th scope="row">{{ beers.id  }}</th>
+            <td>
+              <img [src]="beers.image_url" class="mr-2" style="width: 20px">
+              <a routerLink="/beer/details/{{beers.id}}">{{ beers.name }}</a>
+               
+            </td>
+            
+            <td>
+              <ngb-highlight [result]="beers.tagline" [term]="service.searchTerm"></ngb-highlight>
+            </td>
+            <td>{{ beers.first_brewed }}</td>
+            <td>{{ beers.abv  }}</td>
+            <td>
+              <ng-container *ngIf="beers.isChecked">
+                <span [id]="beers.id" >
+                  <i class="fa fa-star" aria-hidden="true" (click)="getIconCount(beers.id,true)"></i>
+                </span>
+              </ng-container>
+              <ng-container *ngIf="!beers.isChecked">
+                <span [id]="beers.id">
+                  <i class="fa fa-star-o" aria-hidden="true" (click)="getIconCount(beers.id, false)"></i>
+                </span>
+              </ng-container>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+        </ngb-pagination>
+      </div>
+    </div>
+  </form>

@@ -1,9 +1,7 @@
-import { Injectable, PipeTransform } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { BeerModel } from 'src/app/Models/beer-model';
-import { DecimalPipe } from '@angular/common';
-import { SortColumn, SortDirection } from 'src/app/Directives/sortable.directive';
+import { BeerModel } from 'src/app/Model/beer-model';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 interface SearchResult {
@@ -15,23 +13,6 @@ interface State {
   page: number;
   pageSize: number;
   searchTerm: string;
-  sortColumn: SortColumn;
-  sortDirection: SortDirection;
-}
-
-const compare = (v1: string | number, v2: string | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
-
-
-
-function sort(countries: BeerModel[], column: SortColumn, direction: string): BeerModel[] {
-  if (direction === '' || column === '') {
-    return countries;
-  } else {
-    return [...countries].sort((a, b) => {
-      const res = compare(a[column], b[column]);
-      return direction === 'asc' ? res : -res;
-    });
-  }
 }
 
 @Injectable({
@@ -49,8 +30,6 @@ export class BeerService {
     page: 1,
     pageSize: 10,
     searchTerm: '',
-    sortColumn: '',
-    sortDirection: ''
   };
   constructor(private httpClient: HttpClient) {
 
@@ -86,9 +65,15 @@ export class BeerService {
   get pageSize() { return this._state.pageSize; }
   get searchTerm() { return this._state.searchTerm; }
 
-  set page(page: number) { this._set({ page }); }
-  set pageSize(pageSize: number) { this._set({ pageSize }); }
-  set searchTerm(searchTerm: string) { this._set({ searchTerm }); }
+  set page(page: number) {
+    this._set({ page });
+  }
+  set pageSize(pageSize: number) {
+    this._set({ pageSize });
+  }
+  set searchTerm(searchTerm: string) {
+    this._set({ searchTerm });
+  }
 
 
   private _set(patch: Partial<State>) {
@@ -97,10 +82,9 @@ export class BeerService {
   }
 
   private _search(): Observable<SearchResult> {
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
+    const { pageSize, page, searchTerm } = this._state;
 
-    let countries = sort(this.beerList, sortColumn, sortDirection);
-
+    let countries = this.beerList;
     countries = countries.filter(x => x.name.toLowerCase().startsWith(this.searchTerm.toLowerCase()));
     const total = countries.length;
 
