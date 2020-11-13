@@ -86,9 +86,13 @@ describe('BeersListComponent', () => {
     component.defaultValue = 'some_value';
     expect(fixture.debugElement.nativeElement.value).toBeFalsy();
     expect(component.defaultValue).toEqual(testValue);
+    expect(fixture.nativeElement.querySelector('[data-test="txtBox"]')).toBeTruthy();
   }));
   it('should check UI test as heading tag', (() => {
     expect(fixture.nativeElement.querySelector('[data-test="heading"]')).toBeTruthy();
+  }));
+  it('should check UI test as table grid', (() => {
+    expect(fixture.nativeElement.querySelector('[data-test="tblGrid"]')).toBeTruthy();
   }));
 
 });

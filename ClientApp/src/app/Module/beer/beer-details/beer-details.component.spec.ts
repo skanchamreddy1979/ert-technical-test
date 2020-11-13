@@ -41,4 +41,7 @@ describe('BeerDetailsComponent', () => {
   it('should check UI test as heading tag', (() => {
     expect(fixture.nativeElement.querySelector('[data-test="heading"]')).toBeTruthy();
   }));
+  it('should check UI test as button', (() => {
+    expect(fixture.nativeElement.querySelector('[data-test="btn"]')).toBeTruthy();
+  }));
 });
