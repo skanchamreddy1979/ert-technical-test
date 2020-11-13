@@ -23,11 +23,12 @@ export class ListControlComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Note: doing this weird last page check, as API does not give any paging info, 
     // total object count or even all objects to get total count (req. w/o pagination is limited to 25 items).
+    // In this case we can get page with 0 items and we don't know the exact number of pages.
     this.beersSubscription = this.beerService.beersChanged
       .subscribe((beers: Beer[]) => {
         this.reachedLastPage = beers.length < this.perPage;
-        
       });
+      
     this.beerService.loadBeers(this.page, this.perPage);
   }
 
