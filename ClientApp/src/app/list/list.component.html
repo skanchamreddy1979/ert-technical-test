@@ -1,10 +1,5 @@
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef>No.</th>
-      <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-    </ng-container>
+  <table mat-table [dataSource]="beers">
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
@@ -12,24 +7,27 @@
       <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef>Weight</th>
-      <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+    <!-- Tagline Column -->
+    <ng-container matColumnDef="tagline">
+      <th mat-header-cell *matHeaderCellDef>Tagline</th>
+      <td mat-cell *matCellDef="let element">{{ element.tagline }}</td>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
-      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+    <!-- First Brewed Column -->
+    <ng-container matColumnDef="firstbrewed">
+      <th mat-header-cell *matHeaderCellDef>First Brewed</th>
+      <td mat-cell *matCellDef="let element">{{ element.firstb_rewed }}</td>
+    </ng-container>
+
+    <!-- Abv Column -->
+    <ng-container matColumnDef="abv">
+      <th mat-header-cell *matHeaderCellDef>Abv</th>
+      <td mat-cell *matCellDef="let element">{{ element.abv }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-  ></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

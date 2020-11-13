@@ -21,8 +21,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
+      //{ path: '', component: WelcomeComponent, pathMatch: 'full' },
+      { path: '', component: ListComponent },
     ]),
     BrowserAnimationsModule,
   ],
