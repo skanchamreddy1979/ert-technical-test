@@ -23,7 +23,6 @@ export class ListComponent implements OnInit, OnDestroy {
       .subscribe((beers: Beer[]) => {
         this.beers = beers;
       });
-    this.beerService.loadBeers();
   }
 
   ngOnDestroy() {

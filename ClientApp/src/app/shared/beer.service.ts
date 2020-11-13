@@ -19,14 +19,25 @@ export class BeerService {
     private punkApiService: PunkApiService
   ) { }
 
-  public loadBeers(page?: number): void {
+  public loadBeers(page?: number, perPage?: number): void {
+    var parameters = this.initializePunkApiParams(page, perPage);
 
-    const parameters = new Map<PunkApiParamType, string | number>([ 
-      [PunkApiParamType.PerPage, 10]
-    ]);
+    this.punkApiService.getBeers(parameters)
+      .pipe(
+        map((beerDtos: BeerDto[]) => {
+          return beerDtos.map(this.beerDtoMapperService.mapBeerDto)
+        }))
+      .subscribe((beers: Beer[]) => {
+        this.beersChanged.next(beers);
+      });
+  }
 
-    if (page) {
-      parameters.set(PunkApiParamType.Page, page);
+  public searchBeers(searchValue: string, page?: number, perPage?: number): void {
+    var parameters = this.initializePunkApiParams(page, perPage);
+
+    if (searchValue) {
+      const searchValueParameterValue: string = searchValue.replace(' ', '_');
+      parameters.set(PunkApiParamType.BeerName, searchValueParameterValue);
     }
 
     this.punkApiService.getBeers(parameters)
@@ -39,27 +50,17 @@ export class BeerService {
       });
   }
 
-  public searchBeers(searchValue: string, page?: number): void {
-    var parameters = new Map<PunkApiParamType, string | number>([ 
-      [PunkApiParamType.PerPage, 10]
-    ]);
-
-    if (searchValue) {
-      const searchValueParameterValue: string = searchValue.replace(' ', '_');
-      parameters.set(PunkApiParamType.BeerName, searchValueParameterValue);
-    }
+  private initializePunkApiParams(page?: number, perPage?: number): Map<PunkApiParamType, string | number> {
+    const parameters = new Map<PunkApiParamType, string | number>();
 
     if (page) {
       parameters.set(PunkApiParamType.Page, page);
-    }    
+    }
 
-    this.punkApiService.getBeers(parameters)
-      .pipe(
-        map((beerDtos: BeerDto[]) => {
-          return beerDtos.map(this.beerDtoMapperService.mapBeerDto)
-        }))
-      .subscribe((beers: Beer[]) => {
-        this.beersChanged.next(beers);
-      });
+    if (perPage) {
+      parameters.set(PunkApiParamType.PerPage, perPage);
+    } 
+    
+    return parameters;
   }
 }
