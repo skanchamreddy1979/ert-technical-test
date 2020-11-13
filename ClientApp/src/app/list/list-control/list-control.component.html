@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" class="bd-list-control-form">
+<form (keydown.enter)="onSearchSubmit()" class="bd-list-control-form">
     <div class="form-row">
         <div class="col mb-3">
             <input type="search" id="searchValue" name="searchValue" placeholder="Search" class="form-control" [(ngModel)]="searchValue">
@@ -8,16 +8,16 @@
         <div class="col-md-4">
             <div class="d-flex flex-row align-items-baseline">            
                 <p>Page</p>
-                <a class="btn btn-default">&lt;</a>
+                <button class="btn btn-default" (click)="onPreviousPageClick()" [disabled]="page <= 1">&lt;</button>
                 {{ page }}
-                <a class="btn btn-default">&gt;</a>
+                <button class="btn btn-default" (click)="onNextPageClick()" [disabled]="reachedLastPage">&gt;</button>
             </div>
         </div>
         <div class="col-md-6">
             <div class="row">
                 <label for="perPage" class="col-md-auto col-form-label">Items per page</label>
                 <div class="col-md-auto">
-                    <select name="perPage" id="perPage" class="form-control" [(ngModel)]="perPage">
+                    <select name="perPage" id="perPage" class="form-control" [(ngModel)]="perPage" (change)="onPerPageChange()">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>

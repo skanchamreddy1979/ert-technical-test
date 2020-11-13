@@ -19,20 +19,7 @@ export class BeerService {
     private punkApiService: PunkApiService
   ) { }
 
-  public loadBeers(page?: number, perPage?: number): void {
-    var parameters = this.initializePunkApiParams(page, perPage);
-
-    this.punkApiService.getBeers(parameters)
-      .pipe(
-        map((beerDtos: BeerDto[]) => {
-          return beerDtos.map(this.beerDtoMapperService.mapBeerDto)
-        }))
-      .subscribe((beers: Beer[]) => {
-        this.beersChanged.next(beers);
-      });
-  }
-
-  public searchBeers(searchValue: string, page?: number, perPage?: number): void {
+  public loadBeers(page?: number, perPage?: number, searchValue?: string): void {
     var parameters = this.initializePunkApiParams(page, perPage);
 
     if (searchValue) {
