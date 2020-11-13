@@ -1,6 +1,21 @@
-<div class="row">
-    <div class="col-12" style="background-color: burlywood;">
-        Here we will place the details.
-        Beer id: {{ beer.id }}
+<div class="row bd-beer-details-container">
+    <div class="col-7">
+        <div class="card" >
+            <div class="card-body">
+                <h5 class="card-title">{{ beer.name }}</h5>
+                <p class="card-text">
+                    {{ beer.description }}
+                </p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ABV: {{ beer.abv }}</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Add to Favouries</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-auto" *ngIf="beer.imageUrl">
+        <img class="img-responsive bd-beer-details-image" [src]="beer.imageUrl">
     </div>
 </div>

@@ -1,0 +1,9 @@
+.bd-beer-details-container {
+    position: fixed;
+    margin-right: 50px;
+}
+
+.bd-beer-details-image {
+    max-height: 500px;
+    max-width: 200px;
+}
