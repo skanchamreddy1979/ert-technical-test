@@ -17,6 +17,7 @@ import { FavouritesComponent } from './favourites/favourites.component';
 import { ListItemComponent } from './list/list-item/list-item.component';
 import { ListControlComponent } from './list/list-control/list-control.component';
 import { BeerDetailsComponent } from './list/beer-details/beer-details.component';
+import { BeerDetailsResolverService } from './list/beer-details/beer-details-resolver.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { BeerDetailsComponent } from './list/beer-details/beer-details.component
     RouterModule.forRoot([
       { path: '', redirectTo: '/list', pathMatch: 'full' },
       { path: 'list', component: ListComponent, children: [
-        { path: ':id', component: BeerDetailsComponent}
+        { path: ':id', component: BeerDetailsComponent, resolve: { beer: BeerDetailsResolverService }}
       ]},
       { path: 'favourites', component: FavouritesComponent }
     ]),

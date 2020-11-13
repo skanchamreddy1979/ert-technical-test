@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Beer } from '../beer.model';
 import { BeerDtoMapperService } from './punk-api/beer-dto-mapper.service';
@@ -35,6 +35,15 @@ export class BeerService {
       .subscribe((beers: Beer[]) => {
         this.beersChanged.next(beers);
       });
+  }
+
+  public loadBeer(id: number): Observable<Beer> {
+    return this.punkApiService.getBeer(id)
+      .pipe(
+        map((beerDto: BeerDto) => {
+          const beer = this.beerDtoMapperService.mapBeerDto(beerDto);
+          return beer;
+        }));
   }
 
   private initializePunkApiParams(page?: number, perPage?: number): Map<PunkApiParamType, string | number> {
