@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Beer } from '../beer.model';
+import { Beer } from '../../beer.model';
 import { BeerDto } from './beer-dto.model';
 
 @Injectable({
