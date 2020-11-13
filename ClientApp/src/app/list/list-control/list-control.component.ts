@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { BeerService } from 'src/app/shared/beer.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  selector: 'app-list-control',
+  templateUrl: './list-control.component.html',
+  styleUrls: ['./list-control.component.css']
 })
-export class SearchComponent implements OnInit {
+export class ListControlComponent implements OnInit {
 
   searchValue: string;
 

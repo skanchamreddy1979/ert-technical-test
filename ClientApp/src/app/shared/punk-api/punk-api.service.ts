@@ -13,12 +13,12 @@ export class PunkApiService {
     private http: HttpClient
   ) { }
 
-  public getBeers(parameters?: Map<PunkApiParamType, string>): Observable<BeerDto[]> {
+  public getBeers(parameters?: Map<PunkApiParamType, string | number>): Observable<BeerDto[]> {
     var httpParams = new HttpParams();
 
     if (parameters && parameters.size) {
       parameters.forEach((value: string, key: PunkApiParamType) => {
-        httpParams = httpParams.append(key, value.toString());
+        httpParams = httpParams.append(key.toString(), value.toString());
       });
     }
 
