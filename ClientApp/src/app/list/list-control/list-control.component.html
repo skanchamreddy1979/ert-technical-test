@@ -1,18 +1,29 @@
-<form (ngSubmit)="onSubmit()">
-    <div>
-        <input type="search" id="searchValue" name="searchValue" placeholder="Search" [(ngModel)]="searchValue">
+<form (ngSubmit)="onSubmit()" class="bd-list-control-form">
+    <div class="form-row">
+        <div class="col mb-3">
+            <input type="search" id="searchValue" name="searchValue" placeholder="Search" class="form-control" [(ngModel)]="searchValue">
+        </div>
     </div>
-    <div>
-        <label for="perPage">Items per page</label>
-        <select name="perPage" id="perPage" [(ngModel)]="perPage">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-        </select>
+    <div class="form-group row">
+        <div class="col-md-4">
+            <div class="d-flex flex-row align-items-baseline">            
+                <p>Page</p>
+                <a class="btn btn-default">&lt;</a>
+                {{ page }}
+                <a class="btn btn-default">&gt;</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <label for="perPage" class="col-md-auto col-form-label">Items per page</label>
+                <div class="col-md-auto">
+                    <select name="perPage" id="perPage" class="form-control" [(ngModel)]="perPage">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>  
+                </div>              
+            </div>
+        </div>
     </div>
-    <div>
-        <label for="page">Page</label>
-        <input type="number" id="page" name="page" [(ngModel)]="page" min="1">
-    </div>
-    <button type="submit" style="display:none">hidden submit</button>
 </form>
