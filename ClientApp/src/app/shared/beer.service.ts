@@ -41,8 +41,7 @@ export class BeerService {
     return this.punkApiService.getBeer(id)
       .pipe(
         map((beerDto: BeerDto) => {
-          const beer = this.beerDtoMapperService.mapBeerDto(beerDto);
-          return beer;
+          return this.beerDtoMapperService.mapBeerDto(beerDto);
         }));
   }
 
