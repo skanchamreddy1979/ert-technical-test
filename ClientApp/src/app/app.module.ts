@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { ListItemComponent } from './list/list-item/list-item.component';
 import { ListControlComponent } from './list/list-control/list-control.component';
+import { BeerDetailsComponent } from './list/beer-details/beer-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ListControlComponent } from './list/list-control/list-control.component
     FavouritesComponent,
     HeaderComponent,
     ListItemComponent,
-    ListControlComponent
+    ListControlComponent,
+    BeerDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,7 +36,9 @@ import { ListControlComponent } from './list/list-control/list-control.component
     MaterialModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/list', pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
+      { path: 'list', component: ListComponent, children: [
+        { path: ':id', component: BeerDetailsComponent}
+      ]},
       { path: 'favourites', component: FavouritesComponent }
     ]),
     BrowserAnimationsModule,

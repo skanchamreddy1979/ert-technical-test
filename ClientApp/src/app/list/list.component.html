@@ -1,11 +1,14 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
     <app-list-control></app-list-control>  
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-12">
+<div class="row" >
+  <div class="col-6">
     <app-list-item *ngFor="let beer of beers" [beer]='beer'></app-list-item>
+  </div>
+  <div class="col-6">
+    <app-beer-details></app-beer-details>
   </div>
 </div>
