@@ -1,18 +1,18 @@
-<nav style="background-color: antiquewhite;">
-    <div>
-        <div>
-            <a href="#">BrewDog</a>
-        </div>
-        <div>
-            <ul>
-                <li routerLink="list">Beers</li>
-                <li routerLink="favourites">Favourites</li>
-            </ul>
-        </div>
-        <div>
-            <button>Sign Up</button>
-            <button>Sign In</button>
-            <button>Sign Out</button>
-        </div>
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <a href="#" class="navbar-brand">BrewDog</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item" routerLink="list" routerLinkActive="active">
+                <a class="nav-link">Beers</a>                
+            </li>
+            <li class="nav-item" routerLink="favourites" routerLinkActive="active">
+                <a class="nav-link">Favourites</a>                
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-nav navbar-right">
+        <button class="btn btn-primary">Sign Up</button>
+        <button class="btn btn-default">Sign In</button>
+        <button class="btn btn-default">Sign Out</button>
     </div>
 </nav>
