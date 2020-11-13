@@ -15,6 +15,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HeaderComponent } from './header/header.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { ListItemComponent } from './list/list-item/list-item.component';
+import { SearchComponent } from './list/search/search.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ListItemComponent } from './list/list-item/list-item.component';
     WelcomeComponent,
     FavouritesComponent,
     HeaderComponent,
-    ListItemComponent
+    ListItemComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -10,7 +10,8 @@ import { BeerService } from '../shared/beer.service';
 })
 export class ListComponent implements OnInit, OnDestroy {
 
-  private getBeersSubscription: Subscription;
+  private beersSubscription: Subscription;
+
   public beers: Beer[] = [];
 
   constructor(
@@ -18,13 +19,14 @@ export class ListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getBeersSubscription = this.beerService.getBeers()
+    this.beersSubscription = this.beerService.beersChanged
       .subscribe((beers: Beer[]) => {
         this.beers = beers;
       });
+    this.beerService.loadBeers();
   }
 
   ngOnDestroy() {
-    this.getBeersSubscription.unsubscribe();
+    this.beersSubscription.unsubscribe();
   }
 }
