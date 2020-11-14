@@ -37,6 +37,21 @@ export class BeerService {
       });
   }
 
+  public loadBeersByIds(beerIds: number[]): Observable<Beer[]> {
+    const parameters = new Map<PunkApiParamType, string | number>();
+
+    if (beerIds && beerIds.length) {
+      const idsParameterValue = beerIds.join('|');
+      parameters.set(PunkApiParamType.Ids, idsParameterValue);
+    }
+
+    return this.punkApiService.getBeers(parameters)
+      .pipe(
+        map((beerDtos: BeerDto[]) => {
+          return beerDtos.map(this.beerDtoMapperService.mapBeerDto)
+        }));
+  }
+
   public loadBeer(id: number): Observable<Beer> {
     return this.punkApiService.getBeer(id)
       .pipe(

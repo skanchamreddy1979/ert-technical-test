@@ -21,6 +21,7 @@ import { BeerDetailsResolverService } from './list/beer-details/beer-details-res
 import { SignUpComponent } from './header/sign-up/sign-up.component';
 import { SignInComponent } from './header/sign-in/sign-in.component';
 import { UserGuard } from './shared/user/user.guard';
+import { FavouriteItemComponent } from './favourites/favourite-item/favourite-item.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserGuard } from './shared/user/user.guard';
     ListControlComponent,
     BeerDetailsComponent,
     SignUpComponent,
-    SignInComponent
+    SignInComponent,
+    FavouriteItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
