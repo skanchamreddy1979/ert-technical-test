@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { UserService } from '../user.service';
 import { Favourite } from './favourite.model';
 
@@ -21,7 +22,11 @@ export class FavouriteService {
       return of(null);
     }
 
-    return this.http.post<Favourite>(`https://localhost:44383/api/users/${user.userId}/favourites`, favourite);
+    return this.http.post<Favourite>(`https://localhost:44383/api/users/${user.userId}/favourites`, favourite)
+      .pipe(tap((favourite: Favourite) => {
+        user.favourites.push(favourite);
+        this.userService.user.next(user);
+      }));
   }
 
   public deleteFavourite(favourite: Favourite): Observable<Favourite> {
@@ -31,6 +36,11 @@ export class FavouriteService {
       return of(null);
     }
 
-    return this.http.delete<Favourite>(`https://localhost:44383/api/users/${user.userId}/favourites/${favourite.itemId}`);
+    return this.http.delete<Favourite>(`https://localhost:44383/api/users/${user.userId}/favourites/${favourite.itemId}`)
+      .pipe(tap((favourite: Favourite) => {        
+        const favouriteToDeleteIndex: number = user.favourites.findIndex(f => f.itemId == favourite.itemId);
+        user.favourites.splice(favouriteToDeleteIndex, 1);
+        this.userService.user.next(user);
+      }));;
   }
 }
