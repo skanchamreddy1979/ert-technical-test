@@ -41,13 +41,13 @@ export class ListItemComponent implements OnInit, OnDestroy {
   onAddFavouriteClick(): void {
     const favourite = new Favourite();
     favourite.itemId = this.beer.id;
-    this.addFavouriteSubscription = this.favouriteService.addFavourite(favourite).subscribe(() => this.isFavourite = true);
+    this.addFavouriteSubscription = this.favouriteService.addFavourite(favourite).subscribe();
   }
 
   onDeleteFavouriteClick(): void {
     const favourite = new Favourite();
     favourite.itemId = this.beer.id;
-    this.deleteFavouriteSubscription = this.favouriteService.deleteFavourite(favourite).subscribe(() => this.isFavourite = false);
+    this.deleteFavouriteSubscription = this.favouriteService.deleteFavourite(favourite).subscribe();
   }
 
   ngOnDestroy() {
