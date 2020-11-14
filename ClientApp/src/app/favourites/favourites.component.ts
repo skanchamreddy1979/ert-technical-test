@@ -15,6 +15,7 @@ export class FavouritesComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription;
   private beerSubscription: Subscription;
 
+  hasNoFavourites: boolean = false;
   beers: Beer[] = [];
 
   constructor(
@@ -30,6 +31,8 @@ export class FavouritesComponent implements OnInit, OnDestroy {
           .subscribe((beers: Beer[]) => {
             this.beers = beers;
           });
+      } else {        
+        this.hasNoFavourites = true;
       }
     });
   }

@@ -1,6 +1,9 @@
 <div class="row">
     <div class="col-sm-7">
-        <div class="list-group mt-3">
+        <div class="list-group mt-3" *ngIf="hasNoFavourites">
+            <h3>You have no favourite beers yet. Go and get some ;)</h3>
+        </div>
+        <div class="list-group mt-3" *ngIf="!hasNoFavourites">
             <app-favourite-item *ngFor="let beer of beers" [beer]='beer'></app-favourite-item>
         </div>
     </div>
