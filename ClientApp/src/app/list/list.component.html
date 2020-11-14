@@ -6,7 +6,9 @@
 
 <div class="row" >
   <div class="col-sm-5">
-    <app-list-item *ngFor="let beer of beers" [beer]='beer'></app-list-item>
+    <div class="list-group">
+      <app-list-item *ngFor="let beer of beers" [beer]='beer'></app-list-item>
+    </div>
   </div>
   <div class="col-sm-7">
     <router-outlet></router-outlet>
