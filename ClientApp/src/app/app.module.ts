@@ -47,7 +47,8 @@ import { FavouriteItemComponent } from './favourites/favourite-item/favourite-it
       { path: 'list', component: ListComponent, children: [
         { path: ':id', component: BeerDetailsComponent, resolve: { beer: BeerDetailsResolverService }}
       ]},
-      { path: 'favourites', component: FavouritesComponent, canActivate: [UserGuard]}
+      { path: 'favourites', component: FavouritesComponent, canActivate: [UserGuard]},
+      { path: '**', redirectTo: '/list' }
     ]),
     BrowserAnimationsModule,
   ],
