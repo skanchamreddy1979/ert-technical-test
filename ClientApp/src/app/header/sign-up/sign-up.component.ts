@@ -41,7 +41,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       .subscribe((user: User) => {
         this.close.emit();
       }, () => {
-        this.error = 'Error occured during request processing.'
+        this.error = 'Failed to sign up.'
       });
   }
 

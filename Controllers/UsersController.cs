@@ -74,6 +74,11 @@ namespace ert_beer_app.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> SignUp(User user)
         {
+            if (await _context.Users.AnyAsync(u => u.Email == user.Email))
+            {
+                return BadRequest();
+            }
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
