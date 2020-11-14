@@ -8,7 +8,9 @@
                 </p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">ABV: {{ beer.abv }}</li>
+                <li class="list-group-item">
+                    <span class="font-weight-light">ABV:</span> {{ beer.abv }}
+                </li>
             </ul>
             <div class="card-body" *ngIf="isSignedIn">
                 <a class="card-link bd-favourite-link" (click)="onAddFavouriteClick()" *ngIf="!isFavourite">Add to Favouries</a>

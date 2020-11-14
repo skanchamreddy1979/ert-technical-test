@@ -2,7 +2,7 @@
     <div>
         <h4>{{ beer.name }}</h4>
         <p>{{ beer.tagLine }}</p>
-        <p>{{ beer.firstBrewed }}, {{ beer.abv }}%</p>
+        <p class="font-weight-light">{{ beer.firstBrewed }}, {{ beer.abv }}%</p>
         <button class="btn btn-primary btn-sm" (click)="onAddFavouriteClick()" *ngIf="isSignedIn && !isFavourite"><span class="fa fa-heart mr-1"></span>Add to Favouries</button>
         <button class="btn btn-danger btn-sm" (click)="onDeleteFavouriteClick()" *ngIf="isSignedIn && isFavourite"><span class="fa fa-trash mr-1"></span>Delete from Favouries</button>
     </div>
