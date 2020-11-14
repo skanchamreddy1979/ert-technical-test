@@ -1,0 +1,14 @@
+### Adding new user
+
+POST https://localhost:44383/api/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "email": "test@test.com"
+}
+
+### Getting existing user
+
+GET https://localhost:44383/api/users/1 HTTP/1.1
+content-type: application/json
