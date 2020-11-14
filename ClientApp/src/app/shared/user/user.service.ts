@@ -17,7 +17,11 @@ export class UserService {
 
   public signUp(user: User): Observable<User> {
     return this.http.post<User>('https://localhost:44383/api/users/signup', user)
-      .pipe(tap((user: User) => this.user.next(user)));
+      .pipe(tap((user: User) => {
+        // Saving user email in localStorage as "token" for simplicity
+        localStorage.setItem('brewDogUser', JSON.stringify(user.email));
+        this.user.next(user);
+      }));
   }
 
   public signIn(email: string): Observable<User> {
@@ -26,10 +30,25 @@ export class UserService {
     }
 
     return this.http.post<User>('https://localhost:44383/api/users/signin', JSON.stringify(email), httpOptions)
-      .pipe(tap((user: User) => this.user.next(user)));
+      .pipe(tap((user: User) => {
+        // Saving user email in localStorage as "token" for simplicity
+        localStorage.setItem('brewDogUser', JSON.stringify(user.email));
+        this.user.next(user);
+      }));
   }
 
-  public signOut(): void {
+  public signOut(): void {    
+    localStorage.removeItem('brewDogUser');
     this.user.next(null);
+  }
+
+  public autoSignIn(): Observable<User> {
+    const userEmail = JSON.parse(localStorage.getItem('brewDogUser'));
+
+    if (!userEmail) {
+      return;
+    }
+
+    return this.signIn(userEmail);
   }
 }
