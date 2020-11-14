@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from './user.model';
 
@@ -43,12 +43,19 @@ export class UserService {
   }
 
   public autoSignIn(): Observable<User> {
-    const userEmail = JSON.parse(localStorage.getItem('brewDogUser'));
-
-    if (!userEmail) {
-      return;
+    // Skipping logging in if user is already loaded. This is needed because UserGuard will check for it repetitively.
+    if (this.user.value) {
+      return this.user;
     }
 
+    const userEmail = JSON.parse(localStorage.getItem('brewDogUser'));
+
+    // If no user email is stored, skip logging in, return null.
+    if (!userEmail) {
+      return of(null);
+    }
+
+    // If email is presented, but user is not loaded yet, sign in.
     return this.signIn(userEmail);
   }
 }

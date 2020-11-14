@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
-import { map, take } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { UserService } from "./user.service";
 
 @Injectable({providedIn: 'root'})
@@ -12,8 +12,7 @@ export class UserGuard implements CanActivate {
     ) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
-        return this.userService.user.pipe(
-            take(1),
+        return this.userService.autoSignIn().pipe(
             map(user => {
                 if (!!user) {
                     return true;
