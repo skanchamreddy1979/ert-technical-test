@@ -12,6 +12,7 @@ import { MaterialModule } from './shared/material.module';
 import { ListComponent } from './list/list.component';
 
 import { WelcomeComponent } from './welcome/welcome.component';
+import { BeerService } from './services/beer.service';
 
 @NgModule({
   declarations: [AppComponent, ListComponent, WelcomeComponent],
@@ -26,7 +27,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     ]),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [BeerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
