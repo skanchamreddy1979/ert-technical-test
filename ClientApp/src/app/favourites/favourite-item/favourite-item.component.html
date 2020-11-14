@@ -1,7 +1,14 @@
-<a class="list-group-item list-group-item-action">
-    <div>
-        <h4>{{ beer.name }}</h4>
-        <p>{{ beer.tagLine }}</p>
-        <p>{{ beer.firstBrewed }}, {{ beer.abv }}%</p>
+<div class="card bd-favourite-card">
+    <div class="card-body">
+        <h5 class="card-title">{{ beer.name }}</h5>
+        <p class="card-text">
+            {{ beer.tagLine }}
+        </p>
     </div>
-</a>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">First brewed: {{ beer.firstBrewed }}</li>
+    </ul>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">ABV: {{ beer.abv }}</li>
+    </ul>
+</div>
