@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ert_beer_app.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace ert_beer_app.Controllers
 {
@@ -69,16 +69,30 @@ namespace ert_beer_app.Controllers
         //    return NoContent();
         //}
 
-        // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // POST: api/Users/signup
+        [Route("signup")]
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> SignUp(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+        }
+
+        // POST: api/Users/signin
+        [Route("signin")]
+        [HttpPost]
+        public async Task<ActionResult<User>> GetUser([FromBody] string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
         }
 
         // DELETE: api/Users/5

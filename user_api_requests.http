@@ -1,6 +1,6 @@
 ### Adding new user
 
-POST https://localhost:44383/api/users HTTP/1.1
+POST https://localhost:44383/api/users/signUp HTTP/1.1
 content-type: application/json
 
 {
@@ -10,5 +10,7 @@ content-type: application/json
 
 ### Getting existing user
 
-GET https://localhost:44383/api/users/1 HTTP/1.1
+POST https://localhost:44383/api/users/signIn HTTP/1.1
 content-type: application/json
+
+"test@test.com"
