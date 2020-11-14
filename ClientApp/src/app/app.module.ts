@@ -18,6 +18,7 @@ import { ListItemComponent } from './list/list-item/list-item.component';
 import { ListControlComponent } from './list/list-control/list-control.component';
 import { BeerDetailsComponent } from './list/beer-details/beer-details.component';
 import { BeerDetailsResolverService } from './list/beer-details/beer-details-resolver.service';
+import { SignUpComponent } from './header/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BeerDetailsResolverService } from './list/beer-details/beer-details-res
     HeaderComponent,
     ListItemComponent,
     ListControlComponent,
-    BeerDetailsComponent
+    BeerDetailsComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

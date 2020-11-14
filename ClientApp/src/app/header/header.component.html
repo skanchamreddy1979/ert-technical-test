@@ -11,8 +11,11 @@
         </ul>
     </div>
     <div class="navbar-nav navbar-right">
-        <button class="btn btn-primary">Sign Up</button>
-        <button class="btn btn-default">Sign In</button>
-        <button class="btn btn-default">Sign Out</button>
-    </div>
+        <button class="btn btn-primary" (click)="showSignUp = true">Sign Up</button>
+        <button class="btn btn-default" (click)="onSignInClick()">Sign In</button>
+        <button class="btn btn-default" (click)="onSignOutClick()">Sign Out</button>
+    </div>    
+
+    <app-sign-up *ngIf="showSignUp" (close)="showSignUp = false"></app-sign-up>
+
 </nav>
