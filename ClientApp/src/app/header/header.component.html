@@ -5,18 +5,25 @@
             <li class="nav-item bd-nav-link" routerLink="list" routerLinkActive="active">
                 <a class="nav-link">Beers</a>                
             </li>
-            <li class="nav-item bd-nav-link" routerLink="favourites" routerLinkActive="active">
+            <li class="nav-item bd-nav-link" routerLink="favourites" routerLinkActive="active" *ngIf="user">
                 <a class="nav-link">Favourites</a>                
             </li>
         </ul>
-    </div>
-    <div class="navbar-nav navbar-right">
-        <button class="btn btn-primary" (click)="showSignUp = true">Sign Up</button>
-        <button class="btn btn-default" (click)="showSignIn = true">Sign In</button>
-        <button class="btn btn-default" (click)="onSignOutClick()">Sign Out</button>
-    </div>    
-
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item mr-4" *ngIf="user">
+                <span class="navbar-text">Hi, {{ user.name }}!</span>
+            </li>
+            <li class="nav-item" *ngIf="!user">
+                <button class="btn btn-primary" (click)="showSignUp = true">Sign Up</button>
+            </li>
+            <li class="nav-item" *ngIf="!user">
+                <button class="btn btn-default" (click)="showSignIn = true">Sign In</button>
+            </li>
+            <li class="nav-item" *ngIf="user">
+                <button class="btn btn-default" (click)="onSignOutClick()">Sign Out</button>
+            </li>
+        </ul>  
+    </div>   
     <app-sign-up *ngIf="showSignUp" (close)="showSignUp = false"></app-sign-up>
     <app-sign-in *ngIf="showSignIn" (close)="showSignIn = false"></app-sign-in>
-
 </nav>

@@ -28,4 +28,8 @@ export class UserService {
     return this.http.post<User>('https://localhost:44383/api/users/signin', JSON.stringify(email), httpOptions)
       .pipe(tap((user: User) => this.user.next(user)));
   }
+
+  public signOut(): void {
+    this.user.next(null);
+  }
 }
