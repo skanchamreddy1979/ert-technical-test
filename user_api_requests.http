@@ -14,3 +14,20 @@ POST https://localhost:44383/api/users/signIn HTTP/1.1
 content-type: application/json
 
 "test@test.com"
+
+### Adding new favourite
+
+POST https://localhost:44383/api/users/1/favourites HTTP/1.1
+content-type: application/json
+
+{
+    "itemId": 444,
+    "user": {
+        "userId": 200
+    }
+}
+
+### Deleting favourite
+
+DELETE https://localhost:44383/api/users/1/favourites/444 HTTP/1.1
+content-type: application/json
