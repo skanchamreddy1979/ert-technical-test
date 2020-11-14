@@ -10,8 +10,9 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ABV: {{ beer.abv }}</li>
             </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Add to Favouries</a>
+            <div class="card-body" *ngIf="isSignedIn">
+                <a class="card-link" (click)="onAddFavouriteClick()" *ngIf="!isFavourite">Add to Favouries</a>
+                <a class="card-link" (click)="onDeleteFavouriteClick()" *ngIf="isFavourite">Delete from Favouries</a>
             </div>
         </div>
     </div>

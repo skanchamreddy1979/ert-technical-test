@@ -18,6 +18,7 @@ export class ListItemComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription;
 
   isFavourite: boolean = false;
+  isSignedIn: boolean = false;
 
   @Input()
   beer: Beer;
@@ -29,6 +30,8 @@ export class ListItemComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userSubscription = this.userService.user.subscribe((user: User) => {
+      this.isSignedIn = !!user;
+
       if (user && user.favourites) {
         this.isFavourite = user.favourites.some(f => f.itemId == this.beer.id)
       }
