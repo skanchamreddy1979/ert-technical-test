@@ -20,6 +20,7 @@ import { BeerDetailsComponent } from './list/beer-details/beer-details.component
 import { BeerDetailsResolverService } from './list/beer-details/beer-details-resolver.service';
 import { SignUpComponent } from './header/sign-up/sign-up.component';
 import { SignInComponent } from './header/sign-in/sign-in.component';
+import { UserGuard } from './shared/user/user.guard';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { SignInComponent } from './header/sign-in/sign-in.component';
       { path: 'list', component: ListComponent, children: [
         { path: ':id', component: BeerDetailsComponent, resolve: { beer: BeerDetailsResolverService }}
       ]},
-      { path: 'favourites', component: FavouritesComponent }
+      { path: 'favourites', component: FavouritesComponent, canActivate: [UserGuard]}
     ]),
     BrowserAnimationsModule,
   ],
