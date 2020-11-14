@@ -12,10 +12,11 @@
     </div>
     <div class="navbar-nav navbar-right">
         <button class="btn btn-primary" (click)="showSignUp = true">Sign Up</button>
-        <button class="btn btn-default" (click)="onSignInClick()">Sign In</button>
+        <button class="btn btn-default" (click)="showSignIn = true">Sign In</button>
         <button class="btn btn-default" (click)="onSignOutClick()">Sign Out</button>
     </div>    
 
     <app-sign-up *ngIf="showSignUp" (close)="showSignUp = false"></app-sign-up>
+    <app-sign-in *ngIf="showSignIn" (close)="showSignIn = false"></app-sign-in>
 
 </nav>

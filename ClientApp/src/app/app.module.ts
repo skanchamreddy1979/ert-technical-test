@@ -19,6 +19,7 @@ import { ListControlComponent } from './list/list-control/list-control.component
 import { BeerDetailsComponent } from './list/beer-details/beer-details.component';
 import { BeerDetailsResolverService } from './list/beer-details/beer-details-resolver.service';
 import { SignUpComponent } from './header/sign-up/sign-up.component';
+import { SignInComponent } from './header/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SignUpComponent } from './header/sign-up/sign-up.component';
     ListItemComponent,
     ListControlComponent,
     BeerDetailsComponent,
-    SignUpComponent
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
