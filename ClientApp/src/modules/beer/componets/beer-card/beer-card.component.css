@@ -1,0 +1,9 @@
+img{
+  width: 100px;  /* Or whatever */
+  margin: auto;  /* Magic! */
+}
+
+.image-wrapper{
+  display: flex;
+  padding: 0.2rem;
+}

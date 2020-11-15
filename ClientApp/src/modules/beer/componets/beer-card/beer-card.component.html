@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{beer.name}}</mat-card-title>
+    <mat-card-subtitle>{{beer.tagline}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <div class="image-wrapper">
+    <img [src]="beer.image_url ? beer.image_url : imageNotFoundUrl" alt="{{beer.name}}">
+  </div>
+
+  <mat-card-content>
+    <p>
+      {{beer.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+  </mat-card-actions>
+</mat-card>

@@ -7,22 +7,25 @@ import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './components/app.component';
 import {MaterialModule} from "../material/material.module";
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import {BeerModule} from "../beer/beer.module";
+import {BeerMainPageComponent} from "../beer/pages/beer-main-page/beer-main-page.component";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
     MaterialModule,
+    BeerModule,
     RouterModule.forRoot([
-      {path: '', component: HomePageComponent, pathMatch: 'full'},
-      {path: 'list', component: HomePageComponent},
+      {path: '', component: BeerMainPageComponent, pathMatch: 'full'},
+      {path: 'list', component: BeerMainPageComponent},
     ]),
     BrowserAnimationsModule,
   ],

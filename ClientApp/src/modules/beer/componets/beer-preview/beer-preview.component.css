@@ -1,0 +1,7 @@
+.container{
+  display: flex;
+}
+
+.card-wrapper{
+  margin: 1.5rem;
+}
