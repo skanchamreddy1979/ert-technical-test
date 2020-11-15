@@ -12,7 +12,11 @@
           <!-- Name Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>
-            <td mat-cell *matCellDef="let beer">{{ beer.name }}</td>
+            <td mat-cell *matCellDef="let beer">
+              <a [title]="'View details'" [routerLink]="['/beers', beer.id]">
+                {{ beer.name }}
+              </a>
+            </td>
           </ng-container>
 
           <!-- Tagline Column -->

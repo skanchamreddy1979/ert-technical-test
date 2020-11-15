@@ -7,12 +7,12 @@ import { BeerService } from "../services/beer.service";
 
 @Component({
   selector: 'app-beers',
-  templateUrl: './beers.component.html',
-  styleUrls: ['./beers.component.css'],
+  templateUrl: './beers-list.component.html',
+  styleUrls: ['./beers-list.component.css'],
   providers: [BeerService]
 })
 
-export class BeersComponent implements OnInit, OnDestroy  {
+export class BeersListComponent implements OnInit, OnDestroy  {
   displayedColumns: string[] = ['name', 'tagline', 'first_brewed', 'abv'];
   beers: Beer[] = [];
   notifier = new Subject();
@@ -22,9 +22,7 @@ export class BeersComponent implements OnInit, OnDestroy  {
   error: any;
   filterValue;
 
-  constructor(private beerService: BeerService) {
-    this.beerService = beerService;
-  }
+  constructor(private beerService: BeerService) { }
 
   ngOnInit() {
     let pageEvent = new PageEvent();

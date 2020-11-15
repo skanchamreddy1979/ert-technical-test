@@ -1,25 +1,26 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { BeerService } from '../services/beer.service';
 import { MaterialModule } from '../shared/material.module';
-import { BeersComponent } from './beers.component';
+import { BeersListComponent } from './beers-list.component';
 
-
-describe('BeersComponent', () => {
+describe('BeersListComponent', () => {
   const fakeBeersService = { check: () => true };
-  let component: BeersComponent;
-  let fixture: ComponentFixture<BeersComponent>;
+  let component: BeersListComponent;
+  let fixture: ComponentFixture<BeersListComponent>;
 
   beforeEach(() =>
     TestBed.configureTestingModule({
       declarations: [
-        BeersComponent
+        BeersListComponent
       ],
       imports: [
         MaterialModule,
         HttpClientModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        RouterModule
       ],
       providers: [
         { provide: BeerService, useValue: fakeBeersService }
@@ -27,12 +28,12 @@ describe('BeersComponent', () => {
     }).compileComponents());
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BeersComponent);
+    fixture = TestBed.createComponent(BeersListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should be created', () => {
-    expect(BeersComponent).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 });

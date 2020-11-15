@@ -21,8 +21,10 @@ export class BeerService {
       params = params.set('beer_name', filterValue);
     }
 
-    let beers = this.http.get<Beer[]>(urlConfig.beerApiUrl, { params });
+    return this.http.get<Beer[]>(urlConfig.beerApiUrl, { params });
+  }
 
-    return beers;
+  getBeerDetails(id: number): Observable<Beer[]> {
+    return this.http.get<Beer[]>(`${urlConfig.beerApiUrl}/${id}`);
   }
 }
