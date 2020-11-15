@@ -21,12 +21,18 @@ export class ListComponent implements AfterViewInit, OnInit {
   constructor(private beerService: BrewDogBeerService) { }
 
   ngOnInit() {
-    this.beerService.getBeers().subscribe((data: Beer[]) => this.beers = data)
+    this.loadBeers();
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
 
+  private loadBeers(searchByNameString?: string) {
+    this.beerService.getBeers(searchByNameString).subscribe((data: Beer[]) => this.beers = data)
+  }
 
+  onSearch(searchString){
+    this.loadBeers(searchString);
   }
 }
