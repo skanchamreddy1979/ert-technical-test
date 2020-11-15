@@ -1,6 +1,8 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Beer } from '../beer.model';
+import { BeerService } from '../services/beer/beer.service';
 
 const ELEMENT_DATA: PeriodicElement[] = [
   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
@@ -30,14 +32,33 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
 })
-export class ListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+export class ListComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['name', 'tagline', 'first_brewed', 'abv'];
+  dataSource = new MatTableDataSource<Beer>();
+  beers: Beer[];
+  resultsLength: number;
+
+  constructor(private beerService: BeerService) {
+  }
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
+  ngOnInit() {
+    this.getBeersData();
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  getBeersData() {
+    this.beerService.getAllBeers().subscribe(response => {
+      if (response !== null) {
+        this.dataSource = new MatTableDataSource<Beer>(response);
+        this.beers = response;
+        this.resultsLength = this.beers.length;
+      }
+    });
   }
 }
 
