@@ -1,0 +1,30 @@
+.beer-header {
+  font-size: 24pt;
+  text-align: center;
+}
+
+.mat-form-field {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.beer-container {
+  position: center;
+  min-height: 200px;
+  margin-bottom: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.beer-table-container {
+  position: center;
+  overflow: auto;
+}
+
+table {
+  font-family: 'Arial';
+  font-size: 14pt;
+  width: 100%;
+  margin-bottom: 20px;
+}
