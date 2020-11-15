@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatTableModule,
     MatCardModule,
     MatDividerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressBarModule
   ],
   exports: [
     MatButtonModule,
@@ -31,7 +33,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatTableModule,
     MatCardModule,
     MatDividerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule {

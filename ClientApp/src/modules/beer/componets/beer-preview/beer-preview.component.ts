@@ -10,13 +10,16 @@ import {Observable} from "rxjs";
 })
 export class BeerPreviewComponent implements OnInit {
 
+  private DEFAULT_BEER_COUNT: number = 4;
+
   constructor(private _beerService: BeerService) {
   }
 
-  beers = new Observable<Beer[]>();
+  beers : Beer[] = [];
 
   ngOnInit() {
-    this.beers = this._beerService.getRandomBeers(4);
+     this._beerService.getRandomBeers(this.DEFAULT_BEER_COUNT)
+       .subscribe(result => this.beers = result);
   }
 
 }
