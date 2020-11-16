@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+}
+
+a {
+  color: blue !important;
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 60%;
+  margin-top: 20px;
+  margin-left: 5px;
+}

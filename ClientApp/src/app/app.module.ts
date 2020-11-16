@@ -4,28 +4,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { MaterialModule } from './shared/material.module';
-
-import { ListComponent } from './list/list.component';
+import { MaterialModule } from './shared/modules/material.module';
 
 import { WelcomeComponent } from './welcome/welcome.component';
-import { AuthInterceptor } from './services/Interceptor/AuthInterceptor';
+import { AuthInterceptor } from './core/Interceptor/AuthInterceptor';
 import { AppRoutingModule } from './app.routing.module';
-import { DetailComponent } from './detail/detail.component';
-import { FavouritesComponent } from './favourites/favourites.component';
+import { DetailComponent, FavouritesComponent, ListComponent } from './beer/components';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent, DetailComponent, FavouritesComponent],
+  declarations: [AppComponent, ListComponent, WelcomeComponent, DetailComponent, FavouritesComponent, HeaderComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     MaterialModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

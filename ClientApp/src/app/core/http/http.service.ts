@@ -24,13 +24,14 @@ export class HttpService {
     return throwError(error);
   }
 
-  execute<T>(requestType: RequestType, relativeURL: string, httpParams: HttpParams, data: any){
+  execute<T>(requestType: RequestType, relativeURL: string, httpParams: HttpParams, data: any) {
     switch (requestType) {
       case RequestType.GET:
         return this.httpClient.get<T>(environment.apiBaseUrl + relativeURL, { params: httpParams }).pipe(catchError(this.formatErrors));
-      
+
       case RequestType.POST:
-        return this.httpClient.post<T>(environment.apiBaseUrl + relativeURL, JSON.stringify(data), this.httpOptions).pipe(catchError(this.formatErrors));
+        return this.httpClient.post<T>(environment.apiBaseUrl + relativeURL,
+          JSON.stringify(data), this.httpOptions).pipe(catchError(this.formatErrors));
 
       case RequestType.PUT:
         return this.httpClient.put<T>(environment.apiBaseUrl + relativeURL, JSON.stringify(data)).pipe(catchError(this.formatErrors));

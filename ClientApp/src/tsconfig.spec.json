@@ -9,7 +9,10 @@
   },
   "files": [
     "test.ts",
-    "polyfills.ts"
+    "polyfills.ts",
+    "app/beer/components/detail/detail.component.spec.ts",
+    "app/welcome/welcome.component.spec.ts"
+
   ],
   "include": [
     "**/*.spec.ts",

@@ -1,0 +1,12 @@
+<h1 data-test="heading">Beer Details</h1>
+<div class="p-3 center" *ngIf = "beer">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{beer?.image_url}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{beer?.name}}</h5>
+            <h5 class="card-title">{{beer?.abv}}</h5>
+            <p class="card-text">{{beer?.description}}</p>
+            <a href="#" class="btn btn-primary" (click)="goback()">back to list</a>
+        </div>
+    </div>
+</div>

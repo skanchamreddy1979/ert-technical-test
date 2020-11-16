@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --ssl --ssl-key D:\\certificates\\localhost.key  --ssl-cert D:\\certificates\\localhost.crt",
     "build": "ng build",
     "build:ssr": "ng run ert_beer_app:server:dev",
     "test": "ng test",
@@ -28,6 +28,7 @@
     "core-js": "^3.3.3",
     "hammerjs": "^2.0.8",
     "jquery": "3.4.1",
+    "ngx-spinner": "^10.0.1",
     "oidc-client": "^1.9.1",
     "popper.js": "^1.16.0",
     "prettier": "^2.1.1",
