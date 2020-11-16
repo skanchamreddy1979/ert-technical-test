@@ -1,5 +1,5 @@
-table  {
-  width: 100%;  
+table {
+  width: 100%;
 }
 
 tr.student-detail-row {
@@ -27,50 +27,50 @@ td {
   box-shadow: inset 2px 3px 8px #c1c1c1;
   border-radius: 8px;
 }
-img{
+img {
   padding: 10px;
   padding-left: 5%;
 }
-.h-spacer{
-flex: 1 1 auto;
-text-align: center;
-font-size: x-large;
-font-weight: bolder;
+.h-spacer {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: x-large;
+  font-weight: bolder;
 }
-.img_div{
+.img_div {
   margin-right: -20%;
 }
 
-.search{
-width: 300px;
+.search {
+  width: 300px;
 
-align-self: start;
-text-align: left;
+  align-self: start;
+  text-align: left;
 }
 
-th{
-font-size: medium;
-color: black;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+th {
+  font-size: medium;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.desc{
+.desc {
   font-size: small;
 }
 
-.mat-header-cell{
+.mat-header-cell {
   font-size: large;
   font-family: 'Gill Sans';
   font-weight: bold;
-  background-color:  #c8d0d4;
+  background-color: #c8d0d4;
 }
 
-td.mat-cell{
+td.mat-cell {
   font-size: small;
   font-family: Arial, Helvetica, sans-serif;
-  
 }
-.nav, .mat-toolbar{
+.nav,
+.mat-toolbar {
   background-color: black;
   color: white;
 }

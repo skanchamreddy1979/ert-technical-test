@@ -9,9 +9,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatListModule} from '@angular/material/list'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -28,7 +28,7 @@ import {MatListModule} from '@angular/material/list'
     MatInputModule,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   exports: [
     MatButtonModule,
@@ -40,7 +40,7 @@ import {MatListModule} from '@angular/material/list'
     MatInputModule,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
 })
 export class MaterialModule {}
