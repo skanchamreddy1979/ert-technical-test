@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
 
-import {BeerService} from "../../services/beer.service";
-import {Beer} from "../../models/beer.model";
-import {ProgressService} from "../../../shared";
-import {Observable} from "rxjs";
+import {BeerService} from '../../services/beer.service';
+import {Beer} from '../../models/beer.model';
+import {ProgressService} from '../../../shared';
 
 @Component({
   selector: 'app-beer-preview',
@@ -12,11 +12,10 @@ import {Observable} from "rxjs";
 })
 export class BeerPreviewComponent implements OnInit {
 
-  private DEFAULT_BEER_COUNT: number = 4;
+  private DEFAULT_BEER_COUNT = 4;
 
   constructor(
-    private _beerService: BeerService,
-    private _progressService: ProgressService) {
+    private _beerService: BeerService) {
   }
 
   beers = new Observable<Beer[]>();

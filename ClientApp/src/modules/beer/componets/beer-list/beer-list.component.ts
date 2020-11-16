@@ -33,7 +33,9 @@ export class BeerListComponent implements AfterViewInit, OnDestroy {
       distinctUntilChanged())
       .subscribe(value => {
         this.getBeers(value)
-          .subscribe(resp => this.dataSource.data = resp);
+          .subscribe(resp => {
+            console.log(resp);
+            this.dataSource.data = resp;});
       });
   }
 

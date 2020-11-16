@@ -13,6 +13,6 @@ export class FavoritesListPageComponent {
   constructor(private _beerService: BeerService) { }
 
   public getFavoritesBeer = (name?: string): Observable<Beer[]> => {
-    return this._beerService.getFavorites();
+    return this._beerService.getFavorites(name);
   }
 }

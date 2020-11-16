@@ -14,7 +14,6 @@ export class ProductsListPageComponent {
   constructor(private _beerService: BeerService) { }
 
   public getBeer = (name?: string): Observable<Beer[]> => {
-    console.log('Service', this._beerService);
     return this._beerService.getBeers(name);
   }
 

@@ -45,12 +45,19 @@ export class BeerService {
       .pipe(map(v => v.shift()));
   }
 
-  public getFavorites(): Observable<Beer[]> {
+  public getFavorites(name?: string): Observable<Beer[]> {
     let params;
 
     return this._httpClient.get<number[]>(API_GET_FAVORITES_URL)
       .pipe(mergeMap(ids => {
-        params = { 'ids': ids.join('|') };
+        params = {
+          'ids': ids.join('|'),
+        };
+
+        if (name) {
+          params.beer_name = name;
+        }
+
         return this._httpClient.get<Beer[]>(BEERS_URL, { params });
       }));
   }
