@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.userSubscription = this.userService.signIn(this.email)
-      .subscribe((user: User) => {
+      .subscribe(() => {
         this.close.emit();
       }, () => {
         this.error = 'Failed to sign in.'

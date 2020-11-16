@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { of, throwError } from 'rxjs';
+import { User } from 'src/app/shared/user/user.model';
 import { UserService } from 'src/app/shared/user/user.service';
 
 import { SignInComponent } from './sign-in.component';
@@ -31,5 +33,32 @@ describe('SignInComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit close event on Close click', () => {
+    spyOn(component.close, 'emit');
+    component.onClose();
+    expect(component.close.emit).toHaveBeenCalled();
+  });
+
+  it('should emit close event after successfull login on Submit click', () => {
+    userService.signIn.and.returnValue(of(new User()));
+    spyOn(component.close, 'emit');
+    component.onSubmit();
+    expect(component.close.emit).toHaveBeenCalled();
+  });
+
+  it('should not emit close event after failed login on Submit click', () => {
+    userService.signIn.and.returnValue(throwError({}));
+    spyOn(component.close, 'emit');
+    component.onSubmit();
+    expect(component.close.emit).not.toHaveBeenCalled();
+  });
+
+  it('should set the error after failed login on Submit click', () => {
+    userService.signIn.and.returnValue(throwError({}));
+    spyOn(component.close, 'emit');
+    component.onSubmit();
+    expect(component.close.emit).not.toHaveBeenCalled();
   });
 });
