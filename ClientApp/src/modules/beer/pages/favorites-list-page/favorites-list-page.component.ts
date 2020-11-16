@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Beer } from '../../models/beer.model';
 import { BeerService } from '../../services/beer.service';
+
 
 @Component({
   selector: 'app-favorites-list-page',

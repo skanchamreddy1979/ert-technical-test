@@ -22,7 +22,6 @@ export class BeerService {
 
   public getRandomBeers(count: number): Observable<Beer[]> {
     const beers: Beer[] = [];
-    const favoriteBeers: Beer[] = [];
 
     range(1, count)
       .pipe(mergeMap(_ => this._httpClient.get<Beer[]>(RANDOM_BEER_URL)))

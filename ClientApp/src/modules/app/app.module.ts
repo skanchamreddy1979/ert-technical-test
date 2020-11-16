@@ -6,8 +6,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './components/app.component';
-import {MaterialModule} from '../material/material.module';
-import {BeerModule} from '../beer/beer.module';
+import {MaterialModule} from '../material';
+import {BeerModule} from '../beer';
 import {BeerMainPageComponent} from '../beer/pages/beer-main-page/beer-main-page.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {SharedModule} from '../shared';
