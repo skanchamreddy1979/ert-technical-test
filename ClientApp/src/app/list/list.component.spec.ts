@@ -40,6 +40,10 @@ describe('ListComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have no beers after initialization', () => {
+    expect(component.beers).toEqual([]);
+  });
+
   it('should update list of beers when they change', fakeAsync(() => {
     beerServiceStub.beersChanged.next([ { id: 1 } as Beer, { id: 2 } as Beer, { id: 3 } as Beer]);
     tick();
