@@ -41,6 +41,13 @@ describe('SignInComponent', () => {
     expect(component.close.emit).toHaveBeenCalled();
   });
 
+  it('should sign in user with specified email on Submit click', () => {
+    userService.signIn.and.returnValue(of(new User()));
+    component.email = 'test@test.com';
+    component.onSubmit();
+    expect(userService.signIn).toHaveBeenCalledWith('test@test.com');
+  });
+
   it('should emit close event after successfull login on Submit click', () => {
     userService.signIn.and.returnValue(of(new User()));
     spyOn(component.close, 'emit');
@@ -57,8 +64,7 @@ describe('SignInComponent', () => {
 
   it('should set the error after failed login on Submit click', () => {
     userService.signIn.and.returnValue(throwError({}));
-    spyOn(component.close, 'emit');
     component.onSubmit();
-    expect(component.close.emit).not.toHaveBeenCalled();
+    expect(component.error).toBe('Failed to sign in.');
   });
 });
