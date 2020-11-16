@@ -13,6 +13,7 @@ import {Beer} from '../../models/beer.model';
   styleUrls: ['./detailed-page.component.css']
 })
 export class DetailedPageComponent implements OnInit, OnDestroy {
+
   private getOneBeerSubscription: Subscription;
 
   beer: Beer;
