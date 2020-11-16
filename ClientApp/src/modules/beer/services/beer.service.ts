@@ -25,9 +25,7 @@ export class BeerService {
     const favoriteBeers: Beer[] = [];
 
     range(1, count)
-      .pipe(
-        mergeMap(_ => this._httpClient.get<Beer[]>(RANDOM_BEER_URL))
-      )
+      .pipe(mergeMap(_ => this._httpClient.get<Beer[]>(RANDOM_BEER_URL)))
       .subscribe(beer => beers.push(beer.find(i => i.id)));
 
     return of(beers);
