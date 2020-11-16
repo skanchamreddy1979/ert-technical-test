@@ -15,16 +15,12 @@ import { Beer } from '../../models/beer.model';
 export class BeerListComponent implements AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['name', 'tagLine', 'firstBrewed', 'abv'];
-
   dataSource = new MatTableDataSource<Beer>();
-
   beerList = new Subject<string>();
 
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-
   @Input() getBeers: (name?: string) => Observable<Beer[]>;
-
   @Input() title = '';
 
   constructor() {
@@ -33,9 +29,7 @@ export class BeerListComponent implements AfterViewInit, OnDestroy {
       distinctUntilChanged())
       .subscribe(value => {
         this.getBeers(value)
-          .subscribe(resp => {
-            console.log(resp);
-            this.dataSource.data = resp;});
+          .subscribe(resp => this.dataSource.data = resp);
       });
   }
 
