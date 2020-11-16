@@ -16,7 +16,7 @@ export class BeerDetailsComponent implements OnInit {
   error: any;
 
   constructor(route: ActivatedRoute, private beerService: BeerService) {
-    this.id = route.snapshot.params['id'];
+    this.id = +route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
