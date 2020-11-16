@@ -3,7 +3,7 @@ import {Observable, of, range} from "rxjs";
 import {Beer} from '../models/beer.model';
 import {HttpClient} from "@angular/common/http";
 import {BEERS_URL, ONE_BEER_URL, RANDOM_BEER_URL} from "./api/beer-api-constants";
-import {mergeMap} from "rxjs/operators";
+import {map, mergeMap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,7 @@ export class BeerService {
   }
 
   public getOneBeer(id: number): Observable<Beer> {
-    return this._httpClient.get<Beer>(`${ONE_BEER_URL}/${id}`);
+    return this._httpClient.get<Beer[]>(`${ONE_BEER_URL}/${id}`)
+      .pipe(map(v => v.shift()));
   }
 }

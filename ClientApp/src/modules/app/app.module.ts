@@ -12,6 +12,7 @@ import {BeerMainPageComponent} from "../beer/pages/beer-main-page/beer-main-page
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {SharedModule} from "../shared";
 import {ProductsListPageComponent} from "../beer/pages/products-list-page/products-list-page.component";
+import {DetailedPageComponent} from "../beer/pages/detailed-page/detailed-page.component";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {ProductsListPageComponent} from "../beer/pages/products-list-page/produc
     RouterModule.forRoot([
       {path: '', component: BeerMainPageComponent, pathMatch: 'full'},
       {path: 'list', component: ProductsListPageComponent},
+      {path: 'detailed/:id', component: DetailedPageComponent},
     ]),
     BrowserAnimationsModule,
   ],

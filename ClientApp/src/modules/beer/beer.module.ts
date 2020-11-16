@@ -13,6 +13,7 @@ import {BeerPreviewComponent} from './componets/beer-preview/beer-preview.compon
 import {BeerCardComponent} from './componets/beer-card/beer-card.component';
 import {ProductsListPageComponent} from './pages/products-list-page/products-list-page.component';
 import {BeerSearchComponent} from './componets/beer-search/beer-search.component';
+import { DetailedPageComponent } from './pages/detailed-page/detailed-page.component';
 
 
 
@@ -24,6 +25,7 @@ import {BeerSearchComponent} from './componets/beer-search/beer-search.component
     BeerCardComponent,
     ProductsListPageComponent,
     BeerSearchComponent,
+    DetailedPageComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,7 @@ import {BeerSearchComponent} from './componets/beer-search/beer-search.component
   exports: [
     BeerMainPageComponent,
     ProductsListPageComponent,
-    RouterModule
+    DetailedPageComponent,
   ]
 })
 export class BeerModule {

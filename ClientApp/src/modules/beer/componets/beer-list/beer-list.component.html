@@ -6,7 +6,7 @@
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let beer">
-        <a routerLink="/detail/{{beer.id}}">{{ beer.name }}</a></td>
+        <a routerLink="/detailed/{{beer.id}}">{{ beer.name }}</a></td>
     </ng-container>
 
     <ng-container matColumnDef="tagLine">
@@ -25,7 +25,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" routerLink="/detailed/{{row.id}}"></tr>
 
   </table>
 

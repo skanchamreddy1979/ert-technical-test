@@ -1,0 +1,17 @@
+.container{
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.info{
+
+}
+
+.picture{
+  width: 200px;
+}
+
+.mat-card{
+  margin: 15px;
+}
