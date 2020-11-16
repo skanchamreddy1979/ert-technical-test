@@ -1,9 +1,10 @@
-export interface Beer {
-  id: string;
+export class Beer {
+  id: number;
   name: string;
   tagLine: string;
-  abv: string;
+  abv: number;
   imgUrl: string;
   description: string;
   firstBrewed: string;
+  detailRow: boolean;
 }
