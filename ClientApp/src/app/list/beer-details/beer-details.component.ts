@@ -41,7 +41,6 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
 
     this.userSubscription = this.userService.user.subscribe((user: User) => {
       this.isSignedIn = !!user;
-
       if (user && user.favourites && this.beer) {
         this.isFavourite = user.favourites.some(f => f.itemId == this.beer.id)
       }

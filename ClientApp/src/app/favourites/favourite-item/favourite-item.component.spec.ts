@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Beer } from 'src/app/beer.model';
 
 import { FavouriteItemComponent } from './favourite-item.component';
 
@@ -16,6 +17,7 @@ describe('FavouriteItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FavouriteItemComponent);
     component = fixture.componentInstance;
+    component.beer = new Beer();
     fixture.detectChanges();
   });
 

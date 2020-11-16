@@ -12,7 +12,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
   private beersSubscription: Subscription;
 
-  public beers: Beer[] = [];
+  beers: Beer[] = [];
 
   constructor(
     private beerService: BeerService
