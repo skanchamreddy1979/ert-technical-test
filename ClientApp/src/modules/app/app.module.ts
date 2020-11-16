@@ -6,13 +6,13 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './components/app.component';
-import {MaterialModule} from "../material/material.module";
-import {BeerModule} from "../beer/beer.module";
-import {BeerMainPageComponent} from "../beer/pages/beer-main-page/beer-main-page.component";
+import {MaterialModule} from '../material/material.module';
+import {BeerModule} from '../beer/beer.module';
+import {BeerMainPageComponent} from '../beer/pages/beer-main-page/beer-main-page.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
-import {SharedModule} from "../shared";
-import {ProductsListPageComponent} from "../beer/pages/products-list-page/products-list-page.component";
-import {DetailedPageComponent} from "../beer/pages/detailed-page/detailed-page.component";
+import {SharedModule} from '../shared';
+import {ProductsListPageComponent} from '../beer/pages/products-list-page/products-list-page.component';
+import {DetailedPageComponent} from '../beer/pages/detailed-page/detailed-page.component';
 import { FavoritesListPageComponent } from '../beer/pages/favorites-list-page/favorites-list-page.component';
 
 
