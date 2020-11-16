@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+
 import {BeerService} from "../../services/beer.service";
 import {Beer} from "../../models/beer.model";
+import {ProgressService} from "../../../shared";
 import {Observable} from "rxjs";
 
 @Component({
@@ -12,14 +14,15 @@ export class BeerPreviewComponent implements OnInit {
 
   private DEFAULT_BEER_COUNT: number = 4;
 
-  constructor(private _beerService: BeerService) {
+  constructor(
+    private _beerService: BeerService,
+    private _progressService: ProgressService) {
   }
 
-  beers : Beer[] = [];
+  beers = new Observable<Beer[]>();
 
   ngOnInit() {
-     this._beerService.getRandomBeers(this.DEFAULT_BEER_COUNT)
-       .subscribe(result => this.beers = result);
+    this.beers = this._beerService.getRandomBeers(this.DEFAULT_BEER_COUNT);
   }
 
 }

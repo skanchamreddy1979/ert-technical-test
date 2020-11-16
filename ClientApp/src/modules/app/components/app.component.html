@@ -1,7 +1,9 @@
 <body>
-  <div>
-    <app-navbar></app-navbar>
-    <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
-    <router-outlet></router-outlet>
+<div>
+  <app-navbar></app-navbar>
+  <div *ngIf="_progressService.isGlobalProgress">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
+  <router-outlet></router-outlet>
+</div>
 </body>

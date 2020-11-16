@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, of, range} from "rxjs";
 import {Beer} from '../models/beer.model';
 import {HttpClient} from "@angular/common/http";
-import {RANDOM_BEER_URL} from "./api/beer-api-constants";
+import {BEERS_URL, ONE_BEER_URL, RANDOM_BEER_URL} from "./api/beer-api-constants";
 import {mergeMap} from "rxjs/operators";
 
 @Injectable({
@@ -24,5 +24,19 @@ export class BeerService {
       .subscribe(beer => beers.push(beer.find(i => i.id)));
 
     return of(beers);
+  }
+
+  public getBeers(beerName?: string): Observable<Beer[]> {
+    let params;
+
+    if (beerName) {
+      params = {'beer_name': beerName};
+    }
+
+    return this._httpClient.get<Beer[]>(BEERS_URL, {params});
+  }
+
+  public getOneBeer(id: number): Observable<Beer> {
+    return this._httpClient.get<Beer>(`${ONE_BEER_URL}/${id}`);
   }
 }

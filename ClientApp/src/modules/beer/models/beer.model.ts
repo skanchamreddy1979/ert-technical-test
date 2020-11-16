@@ -5,5 +5,5 @@
   abv: string;
   image_url: string;
   description: string;
-  firstBrewed: string;
+  first_brewed: string;
 }

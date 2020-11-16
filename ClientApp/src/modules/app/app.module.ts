@@ -9,7 +9,9 @@ import {AppComponent} from './components/app.component';
 import {MaterialModule} from "../material/material.module";
 import {BeerModule} from "../beer/beer.module";
 import {BeerMainPageComponent} from "../beer/pages/beer-main-page/beer-main-page.component";
-import { NavbarComponent } from './components/navbar/navbar.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {SharedModule} from "../shared";
+import {ProductsListPageComponent} from "../beer/pages/products-list-page/products-list-page.component";
 
 
 @NgModule({
@@ -23,9 +25,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormsModule,
     MaterialModule,
     BeerModule,
+    SharedModule,
     RouterModule.forRoot([
       {path: '', component: BeerMainPageComponent, pathMatch: 'full'},
-      {path: 'list', component: BeerMainPageComponent},
+      {path: 'list', component: ProductsListPageComponent},
     ]),
     BrowserAnimationsModule,
   ],

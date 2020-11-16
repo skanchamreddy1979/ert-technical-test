@@ -1,13 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BeerListComponent } from './componets/beer-list/beer-list.component';
-import { BeerMainPageComponent } from './pages/beer-main-page/beer-main-page.component';
-import {MaterialModule} from "../material/material.module";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {MatGridListModule} from "@angular/material/grid-list";
-import { BeerPreviewComponent } from './componets/beer-preview/beer-preview.component';
 import {HttpClientModule} from "@angular/common/http";
-import { BeerCardComponent } from './componets/beer-card/beer-card.component';
 import {MatCardModule} from "@angular/material/card";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {RouterModule} from "@angular/router";
+
+import {BeerListComponent} from './componets/beer-list/beer-list.component';
+import {BeerMainPageComponent} from './pages/beer-main-page/beer-main-page.component';
+import {MaterialModule} from "../material/material.module";
+import {BeerPreviewComponent} from './componets/beer-preview/beer-preview.component';
+import {BeerCardComponent} from './componets/beer-card/beer-card.component';
+import {ProductsListPageComponent} from './pages/products-list-page/products-list-page.component';
+import {BeerSearchComponent} from './componets/beer-search/beer-search.component';
+
 
 
 @NgModule({
@@ -16,6 +22,8 @@ import {MatCardModule} from "@angular/material/card";
     BeerMainPageComponent,
     BeerPreviewComponent,
     BeerCardComponent,
+    ProductsListPageComponent,
+    BeerSearchComponent,
   ],
   imports: [
     CommonModule,
@@ -23,9 +31,14 @@ import {MatCardModule} from "@angular/material/card";
     MatGridListModule,
     HttpClientModule,
     MatCardModule,
+    MatPaginatorModule,
+    RouterModule
   ],
   exports: [
-    BeerMainPageComponent
+    BeerMainPageComponent,
+    ProductsListPageComponent,
+    RouterModule
   ]
 })
-export class BeerModule { }
+export class BeerModule {
+}

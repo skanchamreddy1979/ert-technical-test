@@ -1,6 +1,12 @@
 <mat-toolbar>
   <span>BrewDog</span>
   <div class="spacer"></div>
-  <a mat-button href="#" target="_blank">Home</a>
-  <a mat-button href="#" target="_blank">Full Products List</a>
+  <a
+    mat-button
+    [routerLink]="['/']"
+  >Home</a>
+  <a
+    mat-button
+    [routerLink]="['/list']"
+  >Full Products List</a>
 </mat-toolbar>

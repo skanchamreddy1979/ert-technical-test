@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ProgressService} from "../../shared";
 
 @Component({
   selector: 'app-root',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(public _progressService: ProgressService) {
+  }
 }
