@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Beer} from "../../models/beer.model";
-import {ActivatedRoute} from "@angular/router";
-import {BeerService} from "../../services/beer.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { BeerService } from '../../services/beer.service';
+import { Beer } from '../../models/beer.model';
+
 
 @Component({
   selector: 'app-detailed-page',
@@ -24,6 +26,11 @@ export class DetailedPageComponent implements OnInit {
         this.beer = result;
         console.log(result);
       });
+  }
+
+  public addToFavorites() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this._beerService.addToFavorites(id);
   }
 
 }

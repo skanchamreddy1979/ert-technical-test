@@ -1,3 +1,4 @@
+using ert_beer_app.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,8 @@ namespace ert_beer_app
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSingleton<IStorageService, StorageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +53,12 @@ namespace ert_beer_app
             }
 
             app.UseRouting();
+            
+            app.UseCors(builder => builder
+                .SetIsOriginAllowed(origin => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
 
             app.UseEndpoints(endpoints =>
             {

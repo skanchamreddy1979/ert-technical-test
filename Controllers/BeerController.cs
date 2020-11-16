@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ert_beer_app.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ert_beer_app.Controllers
@@ -7,18 +8,23 @@ namespace ert_beer_app.Controllers
     [ApiController]
     public class BeerController : ControllerBase
     {
-        public HashSet<int> FavoriteIds { get; set; } = new HashSet<int>() {1, 2};
-        
-        [HttpPost]
-        public void AddToFavorite(int id)
+        private readonly IStorageService _storageService;
+
+        public BeerController(IStorageService storageService)
         {
-            FavoriteIds.Add(id);
+            _storageService = storageService;
+        }
+
+        [HttpPost]
+        public void AddToFavorite([FromBody] int id)
+        {
+            _storageService.AddToFavorites(id);
         }
 
         [HttpGet]
         public IEnumerable<int> GetFavorites()
         {
-            return FavoriteIds;
+            return _storageService.GetFavorites();
         }
     }
 }
