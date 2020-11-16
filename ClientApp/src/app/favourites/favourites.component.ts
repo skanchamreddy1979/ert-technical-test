@@ -26,6 +26,7 @@ export class FavouritesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userSubscription = this.userService.user.subscribe((user: User) => {
       if (user && user.favourites && user.favourites.length) {
+        this.hasNoFavourites = false;
         const favouriteBeersIds = user.favourites.map(f => f.itemId);
         this.beerSubscription = this.beerService.loadBeersByIds(favouriteBeersIds)
           .subscribe((beers: Beer[]) => {
