@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReplaySubject } from 'rxjs';
 import { User } from '../shared/user/user.model';
@@ -11,10 +12,12 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   
-  let userServiceStub: any;
+  let userServiceStub: UserService;
+  let router: Router;
 
   beforeEach(async(() => {
-    userServiceStub = {
+    userServiceStub = { 
+      ...jasmine.createSpyObj('UserService', ['signOut']),
       user: new ReplaySubject<User>()
     };
 
@@ -27,6 +30,8 @@ describe('HeaderComponent', () => {
       ]
     })
     .compileComponents();
+
+    router = TestBed.get(Router);
   }));
 
   beforeEach(() => {
@@ -37,5 +42,27 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have no user defined after initialization', () => {
+    expect(component.user).toBeNull();
+  });
+
+  it('should update user when it changes', fakeAsync(() => {
+    userServiceStub.user.next({ userId: 1 } as User);
+    tick();
+    expect(component.user).toBeTruthy();
+    expect(component.user.userId).toBe(1);
+  }));
+
+  it('should sign out user when Sign Out is clicked', () => {
+    component.onSignOutClick();
+    expect(userServiceStub.signOut).toHaveBeenCalled();
+  });
+
+  it('should navigate to List when user signs out', () => {
+    spyOn(router, 'navigate');
+    component.onSignOutClick();
+    expect(router.navigate).toHaveBeenCalledWith(['/list']);
   });
 });
