@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { Beer } from '../beer.model';
 import { BrewDogBeerService } from '../brewDogBeers.service';
 
@@ -10,29 +9,32 @@ import { BrewDogBeerService } from '../brewDogBeers.service';
   styleUrls: ['./list.component.css'],
   providers: [BrewDogBeerService],
 })
-export class ListComponent implements AfterViewInit, OnInit {
+export class ListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['name', 'tagline', 'firstbrewed', 'abv'];
-  beers: Beer[] = [];
-  dataSource = new MatTableDataSource<Beer>();
+  beers: Beer[];
+  beersTotalLength = 999; // couldn't find a way to get the total count of beer
+  pageSize = 10;
+  startPageIndex = 1;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   constructor(private beerService: BrewDogBeerService) { }
 
   ngOnInit() {
-    this.loadBeers();
+    this.loadBeers(this.pageSize, this.startPageIndex);
+    
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    this.paginator.page.subscribe(() => this.loadBeers(this.paginator.pageSize, this.paginator.pageIndex + 1))
   }
 
-  private loadBeers(searchByNameString?: string) {
-    this.beerService.getBeers(searchByNameString).subscribe((data: Beer[]) => this.beers = data)
+  private loadBeers(pageSize: number, pageNumber: number, searchByNameString?: string) {
+    this.beerService.getBeers(pageSize, pageNumber, searchByNameString).subscribe((data: Beer[]) => this.beers = data )
   }
 
-  onSearch(searchString){
-    this.loadBeers(searchString);
+  onSearch(searchString) {
+    this.loadBeers(this.paginator.pageSize, 1, searchString);
   }
 }
