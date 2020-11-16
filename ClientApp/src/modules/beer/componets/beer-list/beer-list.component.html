@@ -1,5 +1,6 @@
 <div class="mat-elevation-z8">
-  <app-beer-search (SearchChanged)="userQuestionUpdate.next($event)"></app-beer-search>
+  <h2>{{title}}</h2>
+  <app-beer-search (SearchChanged)="beerList.next($event)"></app-beer-search>
 
   <table mat-table [dataSource]="dataSource">
 

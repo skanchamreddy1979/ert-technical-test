@@ -13,6 +13,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {SharedModule} from "../shared";
 import {ProductsListPageComponent} from "../beer/pages/products-list-page/products-list-page.component";
 import {DetailedPageComponent} from "../beer/pages/detailed-page/detailed-page.component";
+import { FavoritesListPageComponent } from '../beer/pages/favorites-list-page/favorites-list-page.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {DetailedPageComponent} from "../beer/pages/detailed-page/detailed-page.c
       {path: '', component: BeerMainPageComponent, pathMatch: 'full'},
       {path: 'list', component: ProductsListPageComponent},
       {path: 'detailed/:id', component: DetailedPageComponent},
+      {path: 'favorites', component: FavoritesListPageComponent},
     ]),
     BrowserAnimationsModule,
   ],

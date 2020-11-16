@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ert_beer_app.Controllers
@@ -11,5 +7,18 @@ namespace ert_beer_app.Controllers
     [ApiController]
     public class BeerController : ControllerBase
     {
+        public HashSet<int> FavoriteIds { get; set; } = new HashSet<int>() {1, 2};
+        
+        [HttpPost]
+        public void AddToFavorite(int id)
+        {
+            FavoriteIds.Add(id);
+        }
+
+        [HttpGet]
+        public IEnumerable<int> GetFavorites()
+        {
+            return FavoriteIds;
+        }
     }
 }

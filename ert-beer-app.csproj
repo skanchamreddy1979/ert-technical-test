@@ -23,10 +23,29 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <None Remove="ClientApp\**" />
+    <Content Remove="ClientApp\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\welcome\" />
+    <Compile Remove="ClientApp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="ClientApp\angular.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\e2e\tsconfig.e2e.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\package-lock.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\package.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\src\tsconfig.app.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\src\tsconfig.server.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\src\tsconfig.spec.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\src\tslint.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\tsconfig.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\tslint.json" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

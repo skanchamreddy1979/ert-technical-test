@@ -5,17 +5,17 @@ import { Injectable } from '@angular/core';
 })
 export class ProgressService {
 
-  public isGlobalProgress:boolean = false;
+  public isGlobalProgress = false;
 
   constructor() { }
 
-  public startGlobalProgress(){
+  public startGlobalProgress() {
     this.isGlobalProgress = true;
-    console.log("State", this.isGlobalProgress)
+    console.log('State', this.isGlobalProgress);
   }
 
-  public stopGlobalProgress(){
+  public stopGlobalProgress() {
     this.isGlobalProgress = false;
-    console.log("State", this.isGlobalProgress)
+    console.log('State', this.isGlobalProgress);
   }
 }

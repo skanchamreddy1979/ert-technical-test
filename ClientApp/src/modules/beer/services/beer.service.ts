@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, range} from "rxjs";
+import {HttpClient} from '@angular/common/http';
+import {Observable, of, range} from 'rxjs';
+import {map, mergeMap} from 'rxjs/operators';
+
 import {Beer} from '../models/beer.model';
-import {HttpClient} from "@angular/common/http";
-import {BEERS_URL, ONE_BEER_URL, RANDOM_BEER_URL} from "./api/beer-api-constants";
-import {map, mergeMap} from "rxjs/operators";
+import {BEERS_URL, ONE_BEER_URL, RANDOM_BEER_URL} from './api/beer-api-constants';
 
 @Injectable({
   providedIn: 'root'

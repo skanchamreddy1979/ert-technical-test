@@ -6,3 +6,9 @@ html {
   font-family: Roboto, Arial, sans-serif;
   background-color: #eaeaea;
 }
+
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

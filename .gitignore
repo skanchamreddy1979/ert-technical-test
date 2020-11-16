@@ -229,3 +229,13 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+.idea/.idea.ert-beer-app/.idea/.name
+.idea/.idea.ert-beer-app/.idea/contentModel.xml
+.idea/.idea.ert-beer-app/.idea/encodings.xml
+.idea/.idea.ert-beer-app/.idea/indexLayout.xml
+.idea/.idea.ert-beer-app/.idea/modules.xml
+.idea/.idea.ert-beer-app/.idea/projectSettingsUpdater.xml
+.idea/.idea.ert-beer-app/.idea/riderModule.iml
+.idea/.idea.ert-beer-app/.idea/vcs.xml
+.idea/.idea.ert-beer-app/.idea/workspace.xml
+.idea/config/applicationhost.config
