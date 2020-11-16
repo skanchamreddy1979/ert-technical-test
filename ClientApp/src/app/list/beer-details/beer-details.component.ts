@@ -33,17 +33,17 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
       if (data.beer) {
         this.beer = data.beer;
         const user = this.userService.user.value;
-        if (user) {
-          this.isFavourite = user.favourites.some(f => f.itemId == this.beer.id)
-        }
+        this.isFavourite = user
+          ? user.favourites.some(f => f.itemId == this.beer.id)
+          : false;
       }
     });
 
     this.userSubscription = this.userService.user.subscribe((user: User) => {
       this.isSignedIn = !!user;
-      if (user && user.favourites && this.beer) {
-        this.isFavourite = user.favourites.some(f => f.itemId == this.beer.id)
-      }
+      this.isFavourite = user && user.favourites && this.beer
+        ? user.favourites.some(f => f.itemId == this.beer.id)
+        : false;
     });
   }
 
