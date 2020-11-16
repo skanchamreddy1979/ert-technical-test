@@ -35,7 +35,6 @@ export class DetailedPageComponent implements OnInit {
   checkCanAddToFavorite() {
     const id = this.route.snapshot.paramMap.get('id');
     this._beerService.getFavorites()
-      .pipe(map(value => value))
       .subscribe(beers => {
         this.canAddToFavorite = beers.some(i => i.id === id);
       });
