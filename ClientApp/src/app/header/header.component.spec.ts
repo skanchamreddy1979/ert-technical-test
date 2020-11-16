@@ -56,6 +56,7 @@ describe('HeaderComponent', () => {
   }));
 
   it('should sign out user when Sign Out is clicked', () => {
+    spyOn(router, 'navigate');
     component.onSignOutClick();
     expect(userServiceStub.signOut).toHaveBeenCalled();
   });
