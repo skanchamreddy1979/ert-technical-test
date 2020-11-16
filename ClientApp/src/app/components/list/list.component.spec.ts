@@ -4,9 +4,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrewDogBeerService } from '../brewDogBeers.service';
+import { BrewDogBeerService } from 'src/app/services/brewDogBeers.service';
 import { SearchComponent } from '../search/search.component';
-import { MaterialModule } from '../shared/material.module';
+import { MaterialModule } from 'src/app/shared/material.module';
 
 import { ListComponent } from './list.component';
 

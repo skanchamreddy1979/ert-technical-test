@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { from, Observable } from "rxjs";
-import { Beer } from "./beer.model";
-import { requestUrls } from "./app.config";
+import { Beer } from "src/app/models/beer.model";
+import { requestUrls } from "src/app/app.config";
 
 @Injectable()
 export class BrewDogBeerService {

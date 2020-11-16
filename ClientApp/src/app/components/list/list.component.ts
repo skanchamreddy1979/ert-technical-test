@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { Beer } from '../beer.model';
-import { BrewDogBeerService } from '../brewDogBeers.service';
+import { Beer } from 'src/app/models/beer.model';
+import { BrewDogBeerService } from 'src/app/services/brewDogBeers.service';
 
 @Component({
   selector: 'app-list',

@@ -6,16 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 import { MaterialModule } from './shared/material.module';
 
-import { ListComponent } from './list/list.component';
-import { SearchComponent } from './search/search.component';
+import { ListComponent } from './components/list/list.component';
+import { SearchComponent } from './components/search/search.component';
 
-import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent, SearchComponent],
+  declarations: [AppComponent, ListComponent, SearchComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
