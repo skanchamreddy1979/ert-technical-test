@@ -29,6 +29,7 @@ export class FavouriteService {
       }));
   }
 
+  // todo: consider simplifying this method to simply pass favourite Id or fav. beer Id.
   public deleteFavourite(favourite: Favourite): Observable<Favourite> {
     const user = this.userService.user.value;
 

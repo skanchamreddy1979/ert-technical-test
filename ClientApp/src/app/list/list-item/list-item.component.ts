@@ -31,10 +31,9 @@ export class ListItemComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userSubscription = this.userService.user.subscribe((user: User) => {
       this.isSignedIn = !!user;
-
-      if (user && user.favourites) {
-        this.isFavourite = user.favourites.some(f => f.itemId == this.beer.id)
-      }
+      this.isFavourite = user && user.favourites
+        ? user.favourites.some(f => f.itemId == this.beer.id)
+        : false;
     });
   }
 
