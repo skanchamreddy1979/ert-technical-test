@@ -49,6 +49,7 @@ describe('SignUpComponent', () => {
     expect(userService.signUp).toHaveBeenCalled();
     var signUpCallArguments = userService.signUp.calls.mostRecent().args;
     expect(signUpCallArguments).toBeTruthy();
+    expect(signUpCallArguments[0]).toBeTruthy();
     expect(signUpCallArguments[0].name).toBe('Test');
     expect(signUpCallArguments[0].email).toBe('test@test.com');
   });
