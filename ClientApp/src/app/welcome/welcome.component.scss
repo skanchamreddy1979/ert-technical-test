@@ -1,16 +1,17 @@
 table {
   width: 100%;
+  box-shadow: inset 2px 3px 8px #d7eaf0;
 }
 
-tr.student-detail-row {
+tr.beer-detail-row {
   height: 0;
 }
 
-.student-element-row:not(.student-expanded-row):hover {
+.beer-row:not(.beer-expanded-row):hover {
   background: whitesmoke;
 }
 
-tr:not(.student-expanded-row):active {
+tr:not(.beer-expanded-row):active {
   background: #efefef;
 }
 
@@ -18,7 +19,7 @@ td {
   border-bottom-width: 0;
 }
 
-.student-element-detail {
+.beer-detail {
   overflow: hidden;
   display: flex;
   align-items: center;

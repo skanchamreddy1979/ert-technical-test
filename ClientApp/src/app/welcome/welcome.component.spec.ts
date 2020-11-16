@@ -37,8 +37,8 @@ describe('WelcomeComponent', () => {
   });
   it('should show BrewDog Beers', () => {
     expect(
-      fixture.nativeElement.querySelector('[data-test="title_name"]')
-    ).toBeTruthy();
+      fixture.nativeElement.querySelector('[data-test="title_name"]').innerText
+    ).toEqual('BrewDog Beers');
   });
   it('should show search', () => {
     expect(
@@ -52,8 +52,8 @@ describe('WelcomeComponent', () => {
   });
   it('should show name header', () => {
     expect(
-      fixture.nativeElement.querySelectorAll('[data-test="nameheader"]')
-    ).toBeTruthy();
+      fixture.nativeElement.querySelector('[data-test="nameheader"]').innerText
+    ).toEqual('Name');
   });
   it('should show name row data', () => {
     expect(
@@ -62,8 +62,9 @@ describe('WelcomeComponent', () => {
   });
   it('should show tagline header', () => {
     expect(
-      fixture.nativeElement.querySelectorAll('[data-test="taglineheader"]')
-    ).toBeTruthy();
+      fixture.nativeElement.querySelector('[data-test="taglineheader"]')
+        .innerText
+    ).toEqual('Tag Line');
   });
   it('should show tagline row data', () => {
     expect(
@@ -72,8 +73,8 @@ describe('WelcomeComponent', () => {
   });
   it('should show abv header', () => {
     expect(
-      fixture.nativeElement.querySelectorAll('[data-test="abvheader"]')
-    ).toBeTruthy();
+      fixture.nativeElement.querySelector('[data-test="abvheader"]').innerText
+    ).toEqual('ABV');
   });
   it('should show abv row data', () => {
     expect(
@@ -82,8 +83,9 @@ describe('WelcomeComponent', () => {
   });
   it('should show firstbrewed header', () => {
     expect(
-      fixture.nativeElement.querySelectorAll('[data-test="firstbrewedheader"]')
-    ).toBeTruthy();
+      fixture.nativeElement.querySelector('[data-test="firstbrewedheader"]')
+        .innerText
+    ).toEqual('First Brewed');
   });
   it('should show firstbrewed row data', () => {
     expect(
@@ -91,4 +93,3 @@ describe('WelcomeComponent', () => {
     ).toBeTruthy();
   });
 });
-
