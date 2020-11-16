@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Observable, Subject } from 'rxjs';
@@ -34,7 +34,7 @@ export class BeerListComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.beerList.complete();
+    this.beerList.unsubscribe();
   }
 
   ngAfterViewInit() {

@@ -11,11 +11,9 @@ export class ProgressService {
 
   public startGlobalProgress() {
     this.isGlobalProgress = true;
-    console.log('State', this.isGlobalProgress);
   }
 
   public stopGlobalProgress() {
     this.isGlobalProgress = false;
-    console.log('State', this.isGlobalProgress);
   }
 }

@@ -3,7 +3,6 @@ import {Observable} from 'rxjs';
 
 import {BeerService} from '../../services/beer.service';
 import {Beer} from '../../models/beer.model';
-import {ProgressService} from '../../../shared';
 
 @Component({
   selector: 'app-beer-preview',
