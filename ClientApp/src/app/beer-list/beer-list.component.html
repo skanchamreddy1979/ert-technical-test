@@ -1,0 +1,49 @@
+<mat-form-field>
+  <mat-label>Search beers</mat-label>
+  <input matInput (keyup)="onKeyUp($event)" placeholder="Search beer by name..." #input>
+</mat-form-field>
+
+    <div class="beer-container mat-elevation-z8">
+      <div class="beer-table-container">
+        <table mat-table [dataSource]="beers">
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let beer">
+              <a [title]="'View details'" [routerLink]="['/beers', beer.id]">
+                {{ beer.name }}
+              </a>
+            </td>
+          </ng-container>
+
+          <!-- Tagline Column -->
+          <ng-container matColumnDef="tagline">
+            <th mat-header-cell *matHeaderCellDef>Tagline</th>
+            <td mat-cell *matCellDef="let beer">{{ beer.tagline }}</td>
+          </ng-container>
+
+          <!-- First brewed Column -->
+          <ng-container matColumnDef="first_brewed">
+            <th mat-header-cell *matHeaderCellDef>First brewed</th>
+            <td mat-cell *matCellDef="let beer">{{ beer.first_brewed }}</td>
+          </ng-container>
+
+          <!-- Abv Column -->
+          <ng-container matColumnDef="abv">
+            <th mat-header-cell *matHeaderCellDef>Abv</th>
+            <td mat-cell *matCellDef="let beer">{{ beer.abv }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator [length]="325"
+                       [pageIndex]="pageIndex"
+                       [pageSize]="pageSize"
+                       [pageSizeOptions]="[10, 15, 25]"
+                       [showFirstLastButtons]="true"
+                       (page)="pageEvent = loadBeers($event)">
+        </mat-paginator>
+      </div>
+    </div>

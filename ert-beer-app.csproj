@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\welcome\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

@@ -1,0 +1,34 @@
+<div class='card-body'>
+  <div class='row'>
+    <div class='col-md-8'>
+      <div class='row'>
+        <div class='col-md-2'>Name:</div>
+        <div class='col-md-10'><b>{{beer.name}}</b> </div>
+        <hr />
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Tag line:</div>
+        <div class='col-md-10'>{{beer.tagline}}</div>
+        <hr />
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>First Brewed:</div>
+        <div class='col-md-10'>{{beer.first_brewed}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Abv:</div>
+        <div class='col-md-10'>{{beer.abv}} %</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Description:</div>
+        <div class='col-md-10'>{{beer.description}}</div>
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <img class='img center-block img-responsive' style="height:40%">
+    </div>
+  </div>
+</div>
+<div *ngIf="!beer">
+  Beer details not found
+</div>
