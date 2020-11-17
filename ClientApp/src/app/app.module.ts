@@ -11,20 +11,25 @@ import { MaterialModule } from './shared/material.module';
 
 import { BeerService } from 'src/app/beer/services/beer.service';
 import { BrewDogBeersComponent } from './beer/components/brew-dog-beers/brew-dog-beers.component';
+import { BeerDetailsComponent } from './beer/components/beer-details/beer-details.component';
+import { BeersListResolver } from './beer/resolver/beers-list-resolver';
 
 @NgModule({
-  declarations: [AppComponent, BrewDogBeersComponent],
+  declarations: [AppComponent, BrewDogBeersComponent, BeerDetailsComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: '', component: BrewDogBeersComponent, pathMatch: 'full' }
+      { path: '', component: BrewDogBeersComponent, resolve: {
+        beerslist: BeersListResolver
+      } }
     ]),
     BrowserAnimationsModule,
   ],
-  providers: [BeerService],
+  providers: [BeerService, BeersListResolver],
   bootstrap: [AppComponent],
+  entryComponents:[BeerDetailsComponent]
 })
 export class AppModule {}

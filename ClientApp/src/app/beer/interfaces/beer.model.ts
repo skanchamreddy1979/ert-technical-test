@@ -6,5 +6,4 @@ export interface Beer {
   imgUrl: string;
   description: string;
   firstBrewed: string;
-  detailRow: boolean;
 }
