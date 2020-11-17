@@ -26,7 +26,7 @@ describe('BeerDetailsComponent', () => {
 
     routeStub = {
       data: new ReplaySubject<{ beer: Beer }>()
-    }
+    };
 
     TestBed.configureTestingModule({
       declarations: [ BeerDetailsComponent ],
@@ -83,7 +83,8 @@ describe('BeerDetailsComponent', () => {
     expect(component.isFavourite).toBe(true);
   }));
 
-  it('should set isFavourite to false if beer is not among favourites of current user when beer is provided by route data', fakeAsync(() => {
+  it('should set isFavourite to false if beer is not among favourites of current user when beer is provided by route data',
+    fakeAsync(() => {
     component.isFavourite = true;
 
     const user = new User();
@@ -131,7 +132,7 @@ describe('BeerDetailsComponent', () => {
     expect(component.isSignedIn).toBe(false);
   }));
 
-  it('should set isFavourite to true when providing a user with the current beer among favourites', fakeAsync(() => {    
+  it('should set isFavourite to true when providing a user with the current beer among favourites', fakeAsync(() => {
     const beer = new Beer();
     beer.id = 1;
     component.beer = beer;
@@ -144,7 +145,7 @@ describe('BeerDetailsComponent', () => {
     expect(component.isFavourite).toBe(true);
   }));
 
-  it('should set isFavourite to false when providing a user without the current beer among favourites', fakeAsync(() => {  
+  it('should set isFavourite to false when providing a user without the current beer among favourites', fakeAsync(() => {
     component.isFavourite = true;
     const beer = new Beer();
     beer.id = 5;
@@ -165,7 +166,7 @@ describe('BeerDetailsComponent', () => {
     expect(component.isFavourite).toBe(false);
   }));
 
-  it('should set isFavourite to false when user with favourites is provided and there is no current beer loaded', fakeAsync(() => {    
+  it('should set isFavourite to false when user with favourites is provided and there is no current beer loaded', fakeAsync(() => {
     component.isFavourite = true;
     component.beer = null;
     const user = new User();
@@ -184,7 +185,7 @@ describe('BeerDetailsComponent', () => {
     favouriteServiceStub.addFavourite.and.returnValue(of(new Favourite()));
     component.onAddFavouriteClick();
     expect(favouriteServiceStub.addFavourite).toHaveBeenCalled();
-    var addFavouriteArguments = favouriteServiceStub.addFavourite.calls.mostRecent().args;    
+    const addFavouriteArguments = favouriteServiceStub.addFavourite.calls.mostRecent().args;
     expect(addFavouriteArguments).toBeTruthy();
     expect(addFavouriteArguments[0]).toBeTruthy();
     expect(addFavouriteArguments[0].itemId).toBe(1);
@@ -197,7 +198,7 @@ describe('BeerDetailsComponent', () => {
     favouriteServiceStub.deleteFavourite.and.returnValue(of(new Favourite()));
     component.onDeleteFavouriteClick();
     expect(favouriteServiceStub.deleteFavourite).toHaveBeenCalled();
-    var deleteFavouriteArguments = favouriteServiceStub.deleteFavourite.calls.mostRecent().args;    
+    const deleteFavouriteArguments = favouriteServiceStub.deleteFavourite.calls.mostRecent().args;
     expect(deleteFavouriteArguments).toBeTruthy();
     expect(deleteFavouriteArguments[0]).toBeTruthy();
     expect(deleteFavouriteArguments[0].itemId).toBe(1);

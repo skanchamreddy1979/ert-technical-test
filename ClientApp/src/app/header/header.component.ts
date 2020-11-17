@@ -13,8 +13,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private userSubscription: Subscription;
 
-  showSignUp: boolean = false;
-  showSignIn: boolean = false;
+  showSignUp = false;
+  showSignIn = false;
   user: User = null;
 
   constructor(

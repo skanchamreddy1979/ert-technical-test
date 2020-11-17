@@ -1,4 +1,4 @@
-import { Favourite } from "./favourite/favourite.model";
+import { Favourite } from './favourite/favourite.model';
 
 export class User {
     public userId: number;

@@ -17,17 +17,17 @@ export class UserService {
 
   public signUp(user: User): Observable<User> {
     return this.http.post<User>('https://localhost:44383/api/users/signup', user)
-      .pipe(tap((user: User) => {
+      .pipe(tap((createdUser: User) => {
         // Saving user email in localStorage as "token" for simplicity
-        localStorage.setItem('brewDogUser', JSON.stringify(user.email));
-        this.user.next(user);
+        localStorage.setItem('brewDogUser', JSON.stringify(createdUser.email));
+        this.user.next(createdUser);
       }));
   }
 
   public signIn(email: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
-    }
+    };
 
     return this.http.post<User>('https://localhost:44383/api/users/signin', JSON.stringify(email), httpOptions)
       .pipe(tap((user: User) => {
@@ -37,7 +37,7 @@ export class UserService {
       }));
   }
 
-  public signOut(): void {    
+  public signOut(): void {
     localStorage.removeItem('brewDogUser');
     this.user.next(null);
   }

@@ -11,8 +11,8 @@ import { UserService } from 'src/app/shared/user/user.service';
 export class SignInComponent implements OnInit, OnDestroy {
 
   private userSubscription: Subscription;
-  
-  email: string;  
+
+  email: string;
   error: string = null;
 
   @Output()
@@ -35,7 +35,7 @@ export class SignInComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.close.emit();
       }, () => {
-        this.error = 'Failed to sign in.'
+        this.error = 'Failed to sign in.';
       });
   }
 

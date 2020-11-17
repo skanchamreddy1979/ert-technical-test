@@ -16,7 +16,7 @@ describe('ListControlComponent', () => {
     beerServiceSpy = {
       ...jasmine.createSpyObj('BeerService', ['loadBeers']),
       beersChanged: new ReplaySubject<Beer[]>()
-    }
+    };
 
     TestBed.configureTestingModule({
       declarations: [ ListControlComponent ],

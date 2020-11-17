@@ -72,7 +72,7 @@ describe('ListItemComponent', () => {
     const user = new User();
     const favourite = new Favourite();
     favourite.itemId = 1;
-    user.favourites = [ favourite ]
+    user.favourites = [ favourite ];
     userServiceStub.user.next(user);
     tick();
     expect(component.isFavourite).toBe(true);
@@ -85,7 +85,7 @@ describe('ListItemComponent', () => {
     const user = new User();
     const favourite = new Favourite();
     favourite.itemId = 5;
-    user.favourites = [ favourite ]
+    user.favourites = [ favourite ];
     userServiceStub.user.next(user);
     tick();
     expect(component.isFavourite).toBe(false);
@@ -104,7 +104,7 @@ describe('ListItemComponent', () => {
     favouriteServiceStub.addFavourite.and.returnValue(of(new Favourite()));
     component.onAddFavouriteClick();
     expect(favouriteServiceStub.addFavourite).toHaveBeenCalled();
-    var addFavouriteArguments = favouriteServiceStub.addFavourite.calls.mostRecent().args;    
+    const addFavouriteArguments = favouriteServiceStub.addFavourite.calls.mostRecent().args;
     expect(addFavouriteArguments).toBeTruthy();
     expect(addFavouriteArguments[0]).toBeTruthy();
     expect(addFavouriteArguments[0].itemId).toBe(1);
@@ -117,7 +117,7 @@ describe('ListItemComponent', () => {
     favouriteServiceStub.deleteFavourite.and.returnValue(of(new Favourite()));
     component.onDeleteFavouriteClick();
     expect(favouriteServiceStub.deleteFavourite).toHaveBeenCalled();
-    var deleteFavouriteArguments = favouriteServiceStub.deleteFavourite.calls.mostRecent().args;    
+    const deleteFavouriteArguments = favouriteServiceStub.deleteFavourite.calls.mostRecent().args;
     expect(deleteFavouriteArguments).toBeTruthy();
     expect(deleteFavouriteArguments[0]).toBeTruthy();
     expect(deleteFavouriteArguments[0].itemId).toBe(1);

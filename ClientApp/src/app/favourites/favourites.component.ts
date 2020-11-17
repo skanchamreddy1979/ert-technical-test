@@ -15,11 +15,11 @@ export class FavouritesComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription;
   private beerSubscription: Subscription;
 
-  hasNoFavourites: boolean = false;
+  hasNoFavourites = false;
   beers: Beer[] = [];
 
   constructor(
-    private userService: UserService,    
+    private userService: UserService,
     private beerService: BeerService
   ) { }
 
@@ -32,7 +32,7 @@ export class FavouritesComponent implements OnInit, OnDestroy {
           .subscribe((beers: Beer[]) => {
             this.beers = beers;
           });
-      } else {        
+      } else {
         this.hasNoFavourites = true;
       }
     });

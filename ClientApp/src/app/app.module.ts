@@ -25,8 +25,8 @@ import { FavouriteItemComponent } from './favourites/favourite-item/favourite-it
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    ListComponent, 
+    AppComponent,
+    ListComponent,
     WelcomeComponent,
     FavouritesComponent,
     HeaderComponent,

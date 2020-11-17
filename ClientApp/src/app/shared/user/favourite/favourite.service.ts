@@ -23,8 +23,8 @@ export class FavouriteService {
     }
 
     return this.http.post<Favourite>(`https://localhost:44383/api/users/${user.userId}/favourites`, favourite)
-      .pipe(tap((favourite: Favourite) => {
-        user.favourites.push(favourite);
+      .pipe(tap((createdFavourite: Favourite) => {
+        user.favourites.push(createdFavourite);
         this.userService.user.next(user);
       }));
   }
@@ -38,10 +38,10 @@ export class FavouriteService {
     }
 
     return this.http.delete<Favourite>(`https://localhost:44383/api/users/${user.userId}/favourites/${favourite.itemId}`)
-      .pipe(tap((favourite: Favourite) => {        
-        const favouriteToDeleteIndex: number = user.favourites.findIndex(f => f.itemId == favourite.itemId);
+      .pipe(tap((deletedFavourite: Favourite) => {
+        const favouriteToDeleteIndex: number = user.favourites.findIndex(f => f.itemId === deletedFavourite.itemId);
         user.favourites.splice(favouriteToDeleteIndex, 1);
         this.userService.user.next(user);
-      }));;
+      }));
   }
 }

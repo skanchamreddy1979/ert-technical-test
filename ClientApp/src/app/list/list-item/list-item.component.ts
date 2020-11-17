@@ -17,8 +17,8 @@ export class ListItemComponent implements OnInit, OnDestroy {
   private deleteFavouriteSubscription: Subscription;
   private userSubscription: Subscription;
 
-  isFavourite: boolean = false;
-  isSignedIn: boolean = false;
+  isFavourite = false;
+  isSignedIn = false;
 
   @Input()
   beer: Beer;
@@ -32,7 +32,7 @@ export class ListItemComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.user.subscribe((user: User) => {
       this.isSignedIn = !!user;
       this.isFavourite = user && user.favourites
-        ? user.favourites.some(f => f.itemId == this.beer.id)
+        ? user.favourites.some(f => f.itemId === this.beer.id)
         : false;
     });
   }

@@ -16,8 +16,8 @@ describe('SignUpComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SignUpComponent ],
       imports: [FormsModule],
-      providers: [ 
-        { provide: UserService, useValue: jasmine.createSpyObj('UserService', ['signUp']) } 
+      providers: [
+        { provide: UserService, useValue: jasmine.createSpyObj('UserService', ['signUp']) }
       ]
     })
     .compileComponents();
@@ -47,7 +47,7 @@ describe('SignUpComponent', () => {
     component.name = 'Test';
     component.onSubmit();
     expect(userService.signUp).toHaveBeenCalled();
-    var signUpCallArguments = userService.signUp.calls.mostRecent().args;
+    const signUpCallArguments = userService.signUp.calls.mostRecent().args;
     expect(signUpCallArguments).toBeTruthy();
     expect(signUpCallArguments[0]).toBeTruthy();
     expect(signUpCallArguments[0].name).toBe('Test');
@@ -67,7 +67,7 @@ describe('SignUpComponent', () => {
     component.onSubmit();
     expect(component.close.emit).not.toHaveBeenCalled();
   });
-  
+
   it('should set the error after failed sign up on Submit click', () => {
     userService.signUp.and.returnValue(throwError({}));
     component.onSubmit();

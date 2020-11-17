@@ -27,7 +27,7 @@ describe('FavouritesComponent', () => {
       declarations: [ FavouritesComponent ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: UserService, useValue: userServiceStub },        
+        { provide: UserService, useValue: userServiceStub },
         { provide: BeerService, useValue: beerServiceSpy }
       ]
     })
@@ -52,22 +52,19 @@ describe('FavouritesComponent', () => {
     expect(component.beers).toEqual([]);
   });
 
-  it('should set hasNoFavourites to true when user is not provided', fakeAsync(() => 
-  {
+  it('should set hasNoFavourites to true when user is not provided', fakeAsync(() => {
     userServiceStub.user.next(null);
     tick();
     expect(component.hasNoFavourites).toBe(true);
   }));
 
-  it('should set hasNoFavourites to true when provided user has no favourites', fakeAsync(() => 
-  {
+  it('should set hasNoFavourites to true when provided user has no favourites', fakeAsync(() => {
     userServiceStub.user.next(new User());
     tick();
     expect(component.hasNoFavourites).toBe(true);
   }));
 
-  it('should set hasNoFavourites to false when user with favourites is provided', fakeAsync(() => 
-  {
+  it('should set hasNoFavourites to false when user with favourites is provided', fakeAsync(() => {
     component.hasNoFavourites = true;
     beerServiceSpy.loadBeersByIds.and.returnValue(of([]));
     const user = new User();
@@ -78,11 +75,10 @@ describe('FavouritesComponent', () => {
     user.favourites = [ favourite1, favourite2 ];
     userServiceStub.user.next(user);
     tick();
-    expect(component.hasNoFavourites).toBe(false);  
+    expect(component.hasNoFavourites).toBe(false);
   }));
 
-  it('should load favourite beers when user with favourites is provided', fakeAsync(() => 
-  {
+  it('should load favourite beers when user with favourites is provided', fakeAsync(() => {
     component.hasNoFavourites = true;
     beerServiceSpy.loadBeersByIds.and.returnValue(of([]));
     const user = new User();
@@ -93,11 +89,10 @@ describe('FavouritesComponent', () => {
     user.favourites = [ favourite1, favourite2 ];
     userServiceStub.user.next(user);
     tick();
-    expect(beerServiceSpy.loadBeersByIds).toHaveBeenCalledWith([1, 2]);  
+    expect(beerServiceSpy.loadBeersByIds).toHaveBeenCalledWith([1, 2]);
   }));
 
-  it('should update beers when they are loaded according to favourites of provided user', fakeAsync(() => 
-  {
+  it('should update beers when they are loaded according to favourites of provided user', fakeAsync(() => {
     const beer1 = new Beer();
     beer1.id = 1;
     const beer2 = new Beer();
@@ -117,6 +112,6 @@ describe('FavouritesComponent', () => {
     expect(component.beers).toBeTruthy();
     expect(component.beers.length).toBe(2);
     expect(component.beers).toContain(beer1);
-    expect(component.beers).toContain(beer2);    
+    expect(component.beers).toContain(beer2);
   }));
 });

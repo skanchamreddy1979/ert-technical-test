@@ -13,7 +13,7 @@ export class BeerDetailsResolverService implements Resolve<Beer> {
     private beerService: BeerService,
     private router: Router
   ) { }
-  
+
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Beer> {
     const beerId = +route.paramMap.get('id');
     if (beerId) {

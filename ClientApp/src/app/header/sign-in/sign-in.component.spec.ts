@@ -16,8 +16,8 @@ describe('SignInComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SignInComponent ],
       imports: [ FormsModule ],
-      providers: [ 
-        { provide: UserService, useValue: jasmine.createSpyObj('UserService', ['signIn']) } 
+      providers: [
+        { provide: UserService, useValue: jasmine.createSpyObj('UserService', ['signIn']) }
       ]
     })
     .compileComponents();

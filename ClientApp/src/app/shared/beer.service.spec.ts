@@ -76,13 +76,13 @@ describe('BeerService', () => {
   }));
 
   it('should emit loaded beers when loadBeers is called', fakeAsync(() => {
-    var emittedBeers: Beer[];
+    let emittedBeers: Beer[];
     const beerDto = new BeerDto();
     beerDto.id = 1;
     punkApiService.getBeers.and.returnValue(of([beerDto]));
     const mappedBeer = new Beer();
     mappedBeer.id = 1;
-    beerDtoMapperService.mapBeerDto.and.returnValue(mappedBeer)
+    beerDtoMapperService.mapBeerDto.and.returnValue(mappedBeer);
     beerService.beersChanged.subscribe(beers => emittedBeers = beers);
     beerService.loadBeers();
     tick();
@@ -114,13 +114,13 @@ describe('BeerService', () => {
   }));
 
   it('should return Observable of mapped beers when loadBeersByIds is called', fakeAsync(() => {
-    var emittedBeers: Beer[];
+    let emittedBeers: Beer[];
     const beerDto = new BeerDto();
     beerDto.id = 1;
     punkApiService.getBeers.and.returnValue(of([beerDto]));
     const mappedBeer = new Beer();
     mappedBeer.id = 1;
-    beerDtoMapperService.mapBeerDto.and.returnValue(mappedBeer)
+    beerDtoMapperService.mapBeerDto.and.returnValue(mappedBeer);
     beerService.loadBeersByIds([1]).subscribe(beers => emittedBeers = beers);
     tick();
     expect(emittedBeers).toBeTruthy();
@@ -145,13 +145,13 @@ describe('BeerService', () => {
   }));
 
   it('should return Observable of mapped beers when loadBeersByIds is called', fakeAsync(() => {
-    var emittedBeer: Beer;
+    let emittedBeer: Beer;
     const beerDto = new BeerDto();
     beerDto.id = 1;
     punkApiService.getBeer.and.returnValue(of(beerDto));
     const mappedBeer = new Beer();
     mappedBeer.id = 1;
-    beerDtoMapperService.mapBeerDto.and.returnValue(mappedBeer)
+    beerDtoMapperService.mapBeerDto.and.returnValue(mappedBeer);
     beerService.loadBeer(1).subscribe(beer => emittedBeer = beer);
     tick();
     expect(emittedBeer).toBe(mappedBeer);

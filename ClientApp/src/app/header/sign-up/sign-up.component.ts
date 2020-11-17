@@ -36,12 +36,12 @@ export class SignUpComponent implements OnInit, OnDestroy {
     const user = new User();
     user.name = this.name;
     user.email = this.email;
-    
+
     this.userSubscription = this.userService.signUp(user)
-      .subscribe((user: User) => {
+      .subscribe(() => {
         this.close.emit();
       }, () => {
-        this.error = 'Failed to sign up.'
+        this.error = 'Failed to sign up.';
       });
   }
 

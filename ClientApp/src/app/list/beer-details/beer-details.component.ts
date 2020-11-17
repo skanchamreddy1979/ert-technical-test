@@ -18,13 +18,13 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
   private deleteFavouriteSubscription: Subscription;
   private userSubscription: Subscription;
 
-  isFavourite: boolean = false;
-  isSignedIn: boolean = false;
+  isFavourite = false;
+  isSignedIn = false;
   beer: Beer;
 
   constructor(
-    private route: ActivatedRoute,  
-    private userService: UserService,  
+    private route: ActivatedRoute,
+    private userService: UserService,
     private favouriteService: FavouriteService
   ) { }
 
@@ -34,7 +34,7 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
         this.beer = data.beer;
         const user = this.userService.user.value;
         this.isFavourite = user
-          ? user.favourites.some(f => f.itemId == this.beer.id)
+          ? user.favourites.some(f => f.itemId === this.beer.id)
           : false;
       }
     });
@@ -42,7 +42,7 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.user.subscribe((user: User) => {
       this.isSignedIn = !!user;
       this.isFavourite = user && user.favourites && this.beer
-        ? user.favourites.some(f => f.itemId == this.beer.id)
+        ? user.favourites.some(f => f.itemId === this.beer.id)
         : false;
     });
   }

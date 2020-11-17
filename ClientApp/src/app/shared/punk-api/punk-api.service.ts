@@ -15,7 +15,7 @@ export class PunkApiService {
   ) { }
 
   public getBeers(parameters?: Map<PunkApiParamType, string | number>): Observable<BeerDto[]> {
-    var httpParams = new HttpParams();
+    let httpParams = new HttpParams();
 
     if (parameters && parameters.size) {
       parameters.forEach((value: string, key: PunkApiParamType) => {

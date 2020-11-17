@@ -16,8 +16,8 @@ describe('ListComponent', () => {
   beforeEach(async(() => {
     beerServiceStub = {
       beersChanged: new ReplaySubject<Beer[]>()
-    }
-    
+    };
+
     TestBed.configureTestingModule({
       declarations: [ ListComponent ],
       imports: [FormsModule],

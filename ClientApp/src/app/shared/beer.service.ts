@@ -20,7 +20,7 @@ export class BeerService {
   ) { }
 
   public loadBeers(page?: number, perPage?: number, searchValue?: string): void {
-    var parameters = this.initializePunkApiParams(page, perPage);
+    const parameters = this.initializePunkApiParams(page, perPage);
 
     if (searchValue) {
       const searchValueParameterValue: string = searchValue.replace(/ /g, '_');
@@ -30,7 +30,7 @@ export class BeerService {
     this.punkApiService.getBeers(parameters)
       .pipe(
         map((beerDtos: BeerDto[]) => {
-          return beerDtos.map(beerDto => this.beerDtoMapperService.mapBeerDto(beerDto))
+          return beerDtos.map(beerDto => this.beerDtoMapperService.mapBeerDto(beerDto));
         }))
       .subscribe((beers: Beer[]) => {
         this.beersChanged.next(beers);
@@ -48,7 +48,7 @@ export class BeerService {
     return this.punkApiService.getBeers(parameters)
       .pipe(
         map((beerDtos: BeerDto[]) => {
-          return beerDtos.map(beerDto => this.beerDtoMapperService.mapBeerDto(beerDto))
+          return beerDtos.map(beerDto => this.beerDtoMapperService.mapBeerDto(beerDto));
         }));
   }
 
@@ -69,8 +69,8 @@ export class BeerService {
 
     if (perPage) {
       parameters.set(PunkApiParamType.PerPage, perPage);
-    } 
-    
+    }
+
     return parameters;
   }
 }
