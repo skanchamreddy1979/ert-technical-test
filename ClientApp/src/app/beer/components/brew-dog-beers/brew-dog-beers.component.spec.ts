@@ -1,27 +1,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeComponent } from './welcome.component';
-import { MaterialModule } from '../shared/material.module';
+import { MaterialModule } from 'src/app/shared/material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('WelcomeComponent', () => {
-  let component: WelcomeComponent;
-  let fixture: ComponentFixture<WelcomeComponent>;
+import { BrewDogBeersComponent } from './brew-dog-beers.component';
+
+describe('BrewDogBeersComponent', () => {
+  let component: BrewDogBeersComponent;
+  let fixture: ComponentFixture<BrewDogBeersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WelcomeComponent],
+      declarations: [ BrewDogBeersComponent ],
       imports: [
         MaterialModule,
         HttpClientTestingModule,
         BrowserAnimationsModule,
       ],
-    }).compileComponents();
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WelcomeComponent);
+    fixture = TestBed.createComponent(BrewDogBeersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -29,7 +31,7 @@ describe('WelcomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
+  
   it('should show search', () => {
     expect(
       fixture.nativeElement.querySelector('[data-test="search"]')

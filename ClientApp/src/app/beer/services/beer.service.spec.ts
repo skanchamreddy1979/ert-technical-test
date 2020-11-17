@@ -1,12 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { BeerService } from './beer.service';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { WelcomeComponent } from '../welcome/welcome.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 
 let beers = [];
 

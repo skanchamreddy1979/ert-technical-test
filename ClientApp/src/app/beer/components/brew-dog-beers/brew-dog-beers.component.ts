@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { BeerService } from '../services/beer.service';
-import { Beer } from '../beer.model';
+import { BeerService } from 'src/app/beer/services/beer.service';
+import { Beer } from 'src/app/beer/interfaces/beer.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -15,10 +15,9 @@ import {
 const beers = [];
 
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.component.html',
-
-  styleUrls: ['./welcome.component.scss'],
+  selector: 'app-brew-dog-beers',
+  templateUrl: './brew-dog-beers.component.html',
+  styleUrls: ['./brew-dog-beers.component.css'],
   animations: [
     trigger('detailExpand', [
       state(
@@ -33,10 +32,9 @@ const beers = [];
     ]),
   ],
 })
-export class WelcomeComponent implements OnInit {
+export class BrewDogBeersComponent implements OnInit {
   displayedColumns = ['name', 'tagLine', 'firstBrewed', 'abv'];
   dataSource: MatTableDataSource<Beer>;
-  isExpansionDetailRow;
   expandedElement: Beer | null;
   isTableExpanded = false;
 
