@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { urlConfig } from "../app.config";
-import { Beer } from "../beer.model";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { urlConfig } from '../app.config';
+import { Beer } from '../beer.model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
-import { Beer } from "../beer.model";
+import { Beer } from '../beer.model';
 import { BeerService } from '../services/beer.service';
 import { BeerDetailsComponent } from './beer-details.component';
 
@@ -9,7 +9,7 @@ describe('BeerDetailsComponent',
   () => {
     const fakeBeersService = {
       getBeerDetails: () => new Observable<Beer[]>()
-    }
+    };
 
     let component: BeerDetailsComponent;
     let fixture: ComponentFixture<BeerDetailsComponent>;
@@ -42,7 +42,7 @@ describe('BeerDetailsComponent',
       fixture.detectChanges();
       });
 
-      it('should create',
+      it('should be create',
         () => {
           expect(component).toBeTruthy();
         });

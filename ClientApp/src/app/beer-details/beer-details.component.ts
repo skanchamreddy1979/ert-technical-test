@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Beer } from '../beer.model';
-import { BeerService } from "../services/beer.service";
+import { BeerService } from '../services/beer.service';
 
 @Component({
   selector: 'app-detail',

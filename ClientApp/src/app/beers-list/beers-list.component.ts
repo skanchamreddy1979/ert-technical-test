@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Subject } from 'rxjs';
-import { Beer } from "../beer.model";
-import { BeerService } from "../services/beer.service";
+import { Beer } from '../beer.model';
+import { BeerService } from '../services/beer.service';
 
 
 @Component({
