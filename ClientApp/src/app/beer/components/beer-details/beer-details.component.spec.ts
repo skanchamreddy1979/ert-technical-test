@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BeerDetailsComponent } from './beer-details.component';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { MatDialogRef } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 
 describe('BeerDetailsComponent', () => {
   let component: BeerDetailsComponent;
@@ -13,7 +14,8 @@ describe('BeerDetailsComponent', () => {
     };
   
     TestBed.configureTestingModule({
-      declarations: [ BeerDetailsComponent, MaterialModule ],
+      declarations: [ BeerDetailsComponent ],
+      imports: [FormsModule, MaterialModule],
       providers: [
         {
           provide: MatDialogRef,

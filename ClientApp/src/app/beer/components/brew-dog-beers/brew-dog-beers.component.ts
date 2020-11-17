@@ -22,19 +22,19 @@ import { BeerDetailsComponent } from '../beer-details/beer-details.component';
   selector: 'app-brew-dog-beers',
   templateUrl: './brew-dog-beers.component.html',
   styleUrls: ['./brew-dog-beers.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      state(
-        'collapsed',
-        style({ height: '0px', minHeight: '0', visibility: 'hidden' })
-      ),
-      state('expanded', style({ height: '*', visibility: 'visible' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
-      ),
-    ]),
-  ],
+  // animations: [
+  //   trigger('detailExpand', [
+  //     state(
+  //       'collapsed',
+  //       style({ height: '0px', minHeight: '0', visibility: 'hidden' })
+  //     ),
+  //     state('expanded', style({ height: '*', visibility: 'visible' })),
+  //     transition(
+  //       'expanded <=> collapsed',
+  //       animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+  //     ),
+  //   ]),
+  // ],
 })
 export class BrewDogBeersComponent implements OnInit, OnDestroy {
   displayedColumns = ['name', 'tagLine', 'firstBrewed', 'abv'];
