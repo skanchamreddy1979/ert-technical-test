@@ -1,5 +1,5 @@
 <div>
-  <search searchParametrName='Beer Name' (onSearch)="onSearch($event)"></search>
+  <app-search searchParametrName='Beer Name' (search)="search($event)"></app-search>
 </div>
 <div class="mat-elevation-z8 beers-table">
   <table mat-table [dataSource]="beers">

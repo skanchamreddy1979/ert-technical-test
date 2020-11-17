@@ -26,7 +26,6 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.loadBeers(this.pageSize, this.startPageIndex);
-
   }
 
   ngAfterViewInit() {
@@ -51,7 +50,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
       );
   }
 
-  onSearch(searchString) {
+  search(searchString: string) {
     this.loadBeers(this.paginator.pageSize, 1, searchString);
   }
 }

@@ -29,7 +29,7 @@ describe('ListComponent', () => {
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    debugElement = fixture.debugElement.query(By.css (".beers-table"));
+    debugElement = fixture.debugElement.query(By.css ('.beers-table'));
     element = debugElement.nativeElement;
   });
 
@@ -37,7 +37,7 @@ describe('ListComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should have a table to display the beer', () => {
-    expect(element.innerHTML).toContain("thead");
-    expect(element.innerHTML).toContain("tbody");
+    expect(element.innerHTML).toContain('thead');
+    expect(element.innerHTML).toContain('tbody');
   });
 });

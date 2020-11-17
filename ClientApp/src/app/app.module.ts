@@ -21,7 +21,6 @@ import { SearchComponent } from './components/search/search.component';
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      //{ path: '', component: WelcomeComponent, pathMatch: 'full' },
       { path: '', component: ListComponent },
     ]),
     BrowserAnimationsModule,
