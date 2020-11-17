@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
-import { urlConfig } from '../app.config';
+
 import { IBeer } from '../beer.model';
 import { BeerService } from './beer.service';
 

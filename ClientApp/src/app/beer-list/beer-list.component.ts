@@ -22,11 +22,11 @@ export class BeerListComponent implements OnInit, OnDestroy {
 
   constructor(private beerService: BeerService) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.loadBeers(this.initPageEvent());
   }
 
-  public onKeyUp(event: Event) {
+  public onKeyUp(event: Event): void{
     this.filterValue = (event.target as HTMLInputElement).value;
     this.loadBeers(this.initPageEvent());
   }

@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { Subject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+
 import { IBeer } from '../beer.model';
 import { BeerService } from '../services/beer.service';
 
@@ -11,18 +13,19 @@ import { BeerService } from '../services/beer.service';
   templateUrl: './beer-details.component.html',
   styleUrls: ['./beer-details.component.css']
 })
+
 export class BeerDetailsComponent implements OnInit, OnDestroy {
-  id: number;
-  beer: IBeer;
-  notifier = new Subject();
+  public id: number;
+  public beer: IBeer;
+  public unsubscrube$: Subject<void> = new Subject<void>();
 
   constructor(route: ActivatedRoute, private beerService: BeerService) {
     this.id = +route.snapshot.paramMap.get('id');
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.beerService.getBeerDetails(this.id)
-      .pipe(takeUntil(this.notifier))
+      .pipe(takeUntil(this.unsubscrube$))
       .subscribe(
         beers => {
           this.beer = beers[0];
@@ -33,8 +36,8 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
       );
   }
 
-  ngOnDestroy() {
-    this.notifier.next();
-    this.notifier.complete();
+  public ngOnDestroy() : void {
+    this.unsubscrube$.next();
+    this.unsubscrube$.complete();
   }
 }

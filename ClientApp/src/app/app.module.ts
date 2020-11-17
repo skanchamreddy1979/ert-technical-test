@@ -9,17 +9,17 @@ import { AppComponent } from './app.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerListComponent } from './beer-list/beer-list.component';
 import { MaterialModule } from './shared/material.module';
-import { BeerWelcomeComponent } from './beer-welcome/beer-welcome.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
-  declarations: [AppComponent, BeerWelcomeComponent, BeerListComponent, BeerDetailsComponent],
+  declarations: [AppComponent, WelcomeComponent, BeerListComponent, BeerDetailsComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: '', component: BeerWelcomeComponent, pathMatch: 'full' },
+      { path: '', component: WelcomeComponent, pathMatch: 'full' },
       { path: 'list', component: BeerListComponent },
       { path: 'beers/:id', component: BeerDetailsComponent}
     ]),

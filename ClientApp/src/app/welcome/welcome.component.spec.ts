@@ -1,20 +1,20 @@
-import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BeerWelcomeComponent } from './beer-welcome.component';
+
+import { WelcomeComponent } from './welcome.component';
 
 describe('BeerWelcomeComponent', () => {
-  let component: BeerWelcomeComponent;
-  let fixture: ComponentFixture<BeerWelcomeComponent>;
+  let component: WelcomeComponent;
+  let fixture: ComponentFixture<WelcomeComponent>;
 
   beforeEach(() =>
     TestBed.configureTestingModule({
       declarations: [
-        BeerWelcomeComponent
+        WelcomeComponent
       ],
     }).compileComponents());
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BeerWelcomeComponent);
+    fixture = TestBed.createComponent(WelcomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

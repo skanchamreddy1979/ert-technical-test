@@ -22,7 +22,7 @@ describe('BeerDetailsComponent',
       },
     ];
 
-    const fakeBeersService = {
+    const beersServiceStub = {
       getBeerDetails: () => of(beerDetailsMock),
     };
 
@@ -45,7 +45,7 @@ describe('BeerDetailsComponent',
         declarations: [BeerDetailsComponent],
         providers: [
           { provide: ActivatedRoute, useValue: fakeRoute },
-          { provide: BeerService, useValue: fakeBeersService }
+          { provide: BeerService, useValue: beersServiceStub }
         ]
       }).compileComponents();
     }));
