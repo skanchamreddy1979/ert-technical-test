@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { User } from '../shared/user/user.model';
 import { UserService } from '../shared/user/user.service';
 
@@ -11,7 +12,7 @@ import { UserService } from '../shared/user/user.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  private userSubscription: Subscription;
+  private unsubscribe = new Subject();
 
   showSignUp = false;
   showSignIn = false;
@@ -23,9 +24,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.userSubscription = this.userService.user.subscribe((user: User) => {
-      this.user = user;
-    });
+    this.userService.user
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((user: User) => {
+        this.user = user;
+      });
   }
 
   onSignOutClick(): void {
@@ -34,9 +37,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
 }

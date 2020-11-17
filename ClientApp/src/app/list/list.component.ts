@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Beer } from '../beer.model';
 import { BeerService } from '../shared/beer.service';
 
@@ -10,7 +11,7 @@ import { BeerService } from '../shared/beer.service';
 })
 export class ListComponent implements OnInit, OnDestroy {
 
-  private beersSubscription: Subscription;
+  private unsubscribe = new Subject();
 
   beers: Beer[] = [];
 
@@ -19,15 +20,15 @@ export class ListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.beersSubscription = this.beerService.beersChanged
+    this.beerService.beersChanged
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((beers: Beer[]) => {
         this.beers = beers;
       });
   }
 
   ngOnDestroy() {
-    if (this.beersSubscription) {
-      this.beersSubscription.unsubscribe();
-    }
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

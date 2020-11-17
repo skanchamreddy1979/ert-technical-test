@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Beer } from 'src/app/beer.model';
 import { BeerService } from 'src/app/shared/beer.service';
 
@@ -10,7 +11,8 @@ import { BeerService } from 'src/app/shared/beer.service';
 })
 export class ListControlComponent implements OnInit, OnDestroy {
 
-  beersSubscription: Subscription;
+  private unsubscribe = new Subject();
+
   searchValue: string;
   page = 1;
   perPage = 10;
@@ -24,7 +26,8 @@ export class ListControlComponent implements OnInit, OnDestroy {
     // Note: doing this weird last page check, as API does not give any paging info,
     // total object count or even all objects to get total count (req. w/o pagination is limited to 25 items).
     // In this case we can get page with 0 items and we don't know the exact number of pages.
-    this.beersSubscription = this.beerService.beersChanged
+    this.beerService.beersChanged
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe((beers: Beer[]) => {
         this.reachedLastPage = beers.length < this.perPage;
       });
@@ -54,8 +57,7 @@ export class ListControlComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.beersSubscription) {
-      this.beersSubscription.unsubscribe();
-    }
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

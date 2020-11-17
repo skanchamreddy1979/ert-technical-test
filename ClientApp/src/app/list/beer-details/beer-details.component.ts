@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Beer } from 'src/app/beer.model';
 import { Favourite } from 'src/app/shared/user/favourite/favourite.model';
 import { FavouriteService } from 'src/app/shared/user/favourite/favourite.service';
@@ -13,10 +14,7 @@ import { UserService } from 'src/app/shared/user/user.service';
   styleUrls: ['./beer-details.component.css']
 })
 export class BeerDetailsComponent implements OnInit, OnDestroy {
-  private beerSubscription: Subscription;
-  private addFavouriteSubscription: Subscription;
-  private deleteFavouriteSubscription: Subscription;
-  private userSubscription: Subscription;
+  private unsubscribe = new Subject();
 
   isFavourite = false;
   isSignedIn = false;
@@ -29,51 +27,46 @@ export class BeerDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.beerSubscription = this.route.data.subscribe((data: Data) => {
-      if (data.beer) {
-        this.beer = data.beer;
-        const user = this.userService.user.value;
-        this.isFavourite = user
+    this.route.data
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((data: Data) => {
+        if (data.beer) {
+          this.beer = data.beer;
+          const user = this.userService.user.value;
+          this.isFavourite = user
+            ? user.favourites.some(f => f.itemId === this.beer.id)
+            : false;
+        }
+      });
+
+    this.userService.user
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((user: User) => {
+        this.isSignedIn = !!user;
+        this.isFavourite = user && user.favourites && this.beer
           ? user.favourites.some(f => f.itemId === this.beer.id)
           : false;
-      }
-    });
-
-    this.userSubscription = this.userService.user.subscribe((user: User) => {
-      this.isSignedIn = !!user;
-      this.isFavourite = user && user.favourites && this.beer
-        ? user.favourites.some(f => f.itemId === this.beer.id)
-        : false;
-    });
+      });
   }
 
   onAddFavouriteClick(): void {
     const favourite = new Favourite();
     favourite.itemId = this.beer.id;
-    this.addFavouriteSubscription = this.favouriteService.addFavourite(favourite).subscribe();
+    this.favouriteService.addFavourite(favourite)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe();
   }
 
   onDeleteFavouriteClick(): void {
     const favourite = new Favourite();
     favourite.itemId = this.beer.id;
-    this.deleteFavouriteSubscription = this.favouriteService.deleteFavourite(favourite).subscribe();
+    this.favouriteService.deleteFavourite(favourite)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe();
   }
 
   ngOnDestroy(): void {
-    if (this.beerSubscription) {
-      this.beerSubscription.unsubscribe();
-    }
-
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
-
-    if (this.addFavouriteSubscription) {
-      this.addFavouriteSubscription.unsubscribe();
-    }
-
-    if (this.deleteFavouriteSubscription) {
-      this.deleteFavouriteSubscription.unsubscribe();
-    }
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

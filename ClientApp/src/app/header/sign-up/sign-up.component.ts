@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { User } from 'src/app/shared/user/user.model';
 import { UserService } from 'src/app/shared/user/user.service';
 
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/shared/user/user.service';
 })
 export class SignUpComponent implements OnInit, OnDestroy {
 
-  private userSubscription: Subscription;
+  private unsubscribe = new Subject();
 
   name: string;
   email: string;
@@ -37,7 +38,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
     user.name = this.name;
     user.email = this.email;
 
-    this.userSubscription = this.userService.signUp(user)
+    this.userService.signUp(user)
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
         this.close.emit();
       }, () => {
@@ -46,8 +48,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

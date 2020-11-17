@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Beer } from '../beer.model';
 import { BeerService } from '../shared/beer.service';
 import { User } from '../shared/user/user.model';
@@ -12,8 +13,7 @@ import { UserService } from '../shared/user/user.service';
 })
 export class FavouritesComponent implements OnInit, OnDestroy {
 
-  private userSubscription: Subscription;
-  private beerSubscription: Subscription;
+  private unsubscribe = new Subject();
 
   hasNoFavourites = false;
   beers: Beer[] = [];
@@ -24,27 +24,26 @@ export class FavouritesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.userSubscription = this.userService.user.subscribe((user: User) => {
-      if (user && user.favourites && user.favourites.length) {
-        this.hasNoFavourites = false;
-        const favouriteBeersIds = user.favourites.map(f => f.itemId);
-        this.beerSubscription = this.beerService.loadBeersByIds(favouriteBeersIds)
-          .subscribe((beers: Beer[]) => {
-            this.beers = beers;
-          });
-      } else {
-        this.hasNoFavourites = true;
-      }
-    });
+    this.userService.user
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((user: User) => {
+        if (user && user.favourites && user.favourites.length) {
+          this.hasNoFavourites = false;
+          const favouriteBeersIds = user.favourites.map(f => f.itemId);
+          this.beerService.loadBeersByIds(favouriteBeersIds)
+            .pipe(takeUntil(this.unsubscribe))
+            .subscribe((beers: Beer[]) => {
+              this.beers = beers;
+            });
+        } else {
+          this.hasNoFavourites = true;
+        }
+      });
   }
 
   ngOnDestroy() {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
-    if (this.beerSubscription) {
-      this.beerSubscription.unsubscribe();
-    }
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
 }

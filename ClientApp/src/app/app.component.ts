@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { UserService } from './shared/user/user.service';
 
 @Component({
@@ -7,19 +8,19 @@ import { UserService } from './shared/user/user.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private userSubscription: Subscription;
+
+  private unsubscribe = new Subject();
 
   constructor(
     private userService: UserService
   ) {}
 
   ngOnInit() {
-    this.userSubscription = this.userService.autoSignIn().subscribe();
+    this.userService.autoSignIn().pipe(takeUntil(this.unsubscribe)).subscribe();
   }
 
   ngOnDestroy() {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }
