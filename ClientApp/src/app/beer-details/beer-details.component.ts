@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { Beer } from '../beer.model';
 import { BeerService } from '../services/beer.service';
 
@@ -9,11 +11,10 @@ import { BeerService } from '../services/beer.service';
   templateUrl: './beer-details.component.html',
   styleUrls: ['./beer-details.component.css']
 })
-export class BeerDetailsComponent implements OnInit {
+export class BeerDetailsComponent implements OnInit, OnDestroy {
   id: number;
   beer: Beer;
   notifier = new Subject();
-  error: any;
 
   constructor(route: ActivatedRoute, private beerService: BeerService) {
     this.id = +route.snapshot.paramMap.get('id');
@@ -21,14 +22,14 @@ export class BeerDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.beerService.getBeerDetails(this.id)
+      .pipe(takeUntil(this.notifier))
       .subscribe(
         beers => {
           this.beer = beers[0];
         },
-        error => {
-          this.error = error.message;
-          console.log(error);
-        }
+        catchError(error => {
+          return throwError(error);
+        })
       );
   }
 

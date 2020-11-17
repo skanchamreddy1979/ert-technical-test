@@ -17,7 +17,7 @@ export class BeerService {
       .set('page', pageIndex.toString())
       .set('per_page', pageSize.toString());
 
-    if (filterValue != null) {
+    if (filterValue != null && filterValue.length > 0) {
       params = params.set('beer_name', filterValue);
     }
 
