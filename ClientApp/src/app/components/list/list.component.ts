@@ -34,11 +34,12 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
       .page.pipe(takeUntil(this.notifier))
       .subscribe(
         () => this.loadBeers(this.paginator.pageSize, this.paginator.pageIndex + 1)
-      )
+      );
   }
 
   ngOnDestroy() {
-
+    this.notifier.next();
+    this.notifier.complete();
   }
 
   private loadBeers(pageSize: number, pageNumber: number, searchByNameString?: string) {
@@ -47,7 +48,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(takeUntil(this.notifier))
       .subscribe(
         (data: Beer[]) => this.beers = data
-      )
+      );
   }
 
   onSearch(searchString) {
