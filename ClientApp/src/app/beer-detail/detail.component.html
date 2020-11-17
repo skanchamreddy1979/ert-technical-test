@@ -1,0 +1,64 @@
+<div class='card-body'>
+  <div class='row'>
+    <div class='col-md-8'>
+      <div class='row'>
+        <div class='col-md-2'>Name:</div>
+        <div class='col-md-10'><b>{{beer.name}}</b> </div>
+        <hr />
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Tag line:</div>
+        <div class='col-md-10'>{{beer.tagline}}</div>
+        <hr />
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>First Brewed:</div>
+        <div class='col-md-10'>{{beer.first_brewed}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Abv:</div>
+        <div class='col-md-10'>{{beer.abv}} %</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Description:</div>
+        <div class='col-md-10'>{{beer.description}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Ibu:</div>
+        <div class='col-md-10'>{{beer.ibu}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Target og:</div>
+        <div class='col-md-10'>{{beer.target_og}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Target fg:</div>
+        <div class='col-md-10'>{{beer.target_fg}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Ebc:</div>
+        <div class='col-md-10'>{{beer.ebc}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Srm:</div>
+        <div class='col-md-10'>{{beer.srm}}</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'>Ph:</div>
+        <div class='col-md-10'>{{beer.ph}}</div>
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <img class='img center-block img-responsive'
+           [src]='beer.image_url'
+           [title]='beer.name' style="height:40%">
+    </div>
+  </div>
+</div>
+
+<div class='card-footer'>
+  <button class='btn btn-default'
+          (click)='onBack()'>
+    <i class='fa fa-chevron-left'></i> Back
+  </button>
+</div>
