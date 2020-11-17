@@ -4,12 +4,10 @@
       <div class="row">
         <div class="col-md-2">Name:</div>
         <div class="col-md-10"><b>{{beer.name}}</b> </div>
-        <hr />
       </div>
       <div class="row">
         <div class="col-md-2">Tag line:</div>
         <div class="col-md-10">{{beer.tagline}}</div>
-        <hr />
       </div>
       <div class="row">
         <div class="col-md-2">First Brewed:</div>
@@ -25,7 +23,10 @@
       </div>
     </div>
     <div class="col-md-4">
-      <img class="img center-block img-responsive" style="height:40%">
+      <img class="img center-block img-responsive"
+           [src]='beer.image_url'
+           [title]='beer.name'
+           style="height:40%">
     </div>
   </div>
   <div *ngIf="!beer">
