@@ -22,14 +22,18 @@ import { BeersListResolver } from './beer/resolver/beers-list-resolver';
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: '', component: BrewDogBeersComponent, resolve: {
-        beerslist: BeersListResolver
-      } }
+      {
+        path: '',
+        component: BrewDogBeersComponent,
+        resolve: {
+          beerslist: BeersListResolver,
+        },
+      },
     ]),
     BrowserAnimationsModule,
   ],
   providers: [BeerService, BeersListResolver],
   bootstrap: [AppComponent],
-  entryComponents:[BeerDetailsComponent]
+  entryComponents: [BeerDetailsComponent],
 })
 export class AppModule {}

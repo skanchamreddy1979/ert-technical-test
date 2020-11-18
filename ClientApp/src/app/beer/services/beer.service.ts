@@ -12,23 +12,7 @@ export class BeerService {
   constructor(private http: HttpClient) {}
 
   getAllBeers(): Observable<Beer[]> {
-    
-    return this.http.get<Beer[]>(environment.apiUrl +'/beers' );
-    //   map((beers: any) => {
-    //     return beers.map((beer) => {
-    //       return {
-    //         id: beer.id,
-    //         name: beer.name,
-    //         tagLine: beer.tagline,
-    //         abv: beer.abv,
-    //         imgUrl: beer.image_url,
-    //         description: beer.description,
-    //         firstBrewed: beer.first_brewed
-            
-    //       };
-    //     });
-    //   })
-    // );
+    return this.http.get<Beer[]>(environment.apiUrl + '/beers');
   }
   getBeer(id: number): Observable<any> {
     return this.http.get(environment.apiUrl + '/beers/' + id);

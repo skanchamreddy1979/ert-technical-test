@@ -1,23 +1,26 @@
 .img-align {
-    width: 40%;
-    margin-left:10px ;
+  width: 40%;
+  margin-left: 10px;
 }
-  .column{
-    float: left;
-    width: 45%;
-    padding: 10px;
-  }
-  .row:after{
-  content: "";
+.column {
+  float: left;
+  width: 45%;
+  padding: 10px;
+}
+.row:after {
+  content: '';
   display: table;
   clear: both;
-  }
-  .mat-table,h3,ul,li,strong,.mat-label,input {
-    font-family: Roboto,"Helvetica Neue",sans-serif
-  }
-  .detailslist{
-    padding: 15px;
-    
-
-  }
- 
+}
+.mat-table,
+h3,
+ul,
+li,
+strong,
+.mat-label,
+input {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+.detailslist {
+  padding: 15px;
+}

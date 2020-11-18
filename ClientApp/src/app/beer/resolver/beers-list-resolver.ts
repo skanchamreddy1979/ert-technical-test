@@ -5,8 +5,8 @@ import { BeerService } from 'src/app/beer/services/beer.service';
 
 @Injectable()
 export class BeersListResolver implements Resolve<any> {
-    constructor(private service: BeerService) { }
-    resolve(): Observable<any> {
-        return this.service.getAllBeers();
-    }
+  constructor(private service: BeerService) {}
+  resolve(): Observable<any> {
+    return this.service.getAllBeers();
+  }
 }

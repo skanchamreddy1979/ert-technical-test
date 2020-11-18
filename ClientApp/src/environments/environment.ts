@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.punkapi.com/v2'
+  apiUrl: 'https://api.punkapi.com/v2',
 };
 
 /*

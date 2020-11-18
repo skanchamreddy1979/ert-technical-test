@@ -10,20 +10,19 @@ describe('BeerDetailsComponent', () => {
   let fixture: ComponentFixture<BeerDetailsComponent>;
   beforeEach(async(() => {
     const mockDialogRef = {
-      close: jasmine.createSpy('close')
+      close: jasmine.createSpy('close'),
     };
-  
+
     TestBed.configureTestingModule({
-      declarations: [ BeerDetailsComponent ],
+      declarations: [BeerDetailsComponent],
       imports: [FormsModule, MaterialModule],
       providers: [
         {
           provide: MatDialogRef,
-          useValue: mockDialogRef
-        }
-      ]
-    })
-    .compileComponents();
+          useValue: mockDialogRef,
+        },
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

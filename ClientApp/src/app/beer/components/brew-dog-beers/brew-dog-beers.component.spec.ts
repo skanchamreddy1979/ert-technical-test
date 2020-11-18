@@ -8,12 +8,8 @@ describe('BrewDogBeersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      
-      imports: [
-        AppModule
-      ],
-    })
-    .compileComponents();
+      imports: [AppModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,7 +21,23 @@ describe('BrewDogBeersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
+  it('should doFilter', () => {
+    expect(component.doFilter).toBeTruthy();
+  });
+
+  it('should getBeerInfo', () => {
+    expect(component.getBeerInfo).toBeTruthy();
+  });
+
+  it('should initialize values', () => {
+    expect(component.initialValueSubscrption).toBeTruthy();
+  });
+
+  it('should haev bindDataSource', () => {
+    expect(component.bindDataSource).toBeTruthy();
+  });
+
   it('should show search', () => {
     expect(
       fixture.nativeElement.querySelector('[data-test="search"]')
