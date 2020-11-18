@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { BeerService } from 'src/app/beer/services/beer.service';
 import { Beer } from '../../models/beer.model';
 
@@ -9,12 +8,10 @@ import { Beer } from '../../models/beer.model';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
 })
-export class ListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'tagline', 'first_brewed', 'abv'];
-  beers: MatTableDataSource<Beer>;
+export class ListComponent implements OnInit, OnDestroy {
+  beers: Beer[];
   allBeers: Beer[];
-
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  private subscription: Subscription;
 
   constructor(private beerService: BeerService) {
   }
@@ -24,7 +21,7 @@ export class ListComponent implements OnInit {
   }
 
   public getBeersData = (): void => {
-    this.beerService.getAllBeers().subscribe(response => {
+    this.subscription = this.beerService.getAllBeers().subscribe(response => {
       if (response !== null) {
         this.setBeers(response);
         this.allBeers = response;
@@ -40,7 +37,12 @@ export class ListComponent implements OnInit {
   }
 
   private setBeers = (beersList: Beer[]): void => {
-    this.beers = new MatTableDataSource<Beer>(beersList);
-    this.beers.paginator = this.paginator;
+    this.beers = beersList;
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

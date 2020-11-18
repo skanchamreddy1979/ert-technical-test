@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SimpleChange } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatSortModule, MatTableDataSource, MatTableModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatTableDataSource, MatTableModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router, RouterModule } from '@angular/router';
 import { Beer } from '../../models/beer.model';
@@ -20,6 +21,7 @@ describe('SharedListComponent', () => {
         HttpClientTestingModule,
         BrowserAnimationsModule,
         MatTableModule,
+        MatPaginatorModule,
         MatSortModule,
         RouterModule.forRoot([])
       ],
@@ -45,23 +47,24 @@ describe('SharedListComponent', () => {
     expect(fixture.nativeElement.querySelector('[data-test="beertable"]')).toBeTruthy();
   });
 
-  it('should call get beers', async(() => {
-    component.beers = new MatTableDataSource<Beer>();
-    component.beers.data = mockResponse;
-    component.beersData = new MatTableDataSource<Beer>();
-    component.ngDoCheck();
-    expect(component.beersData.data.length).toBeGreaterThan(0);
+  it('should create paginator', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="paginator"]')).toBeTruthy();
+  });
 
+  it('should check default paginator size', () => {
+    expect(component.paginator.pageSize).toEqual(10);
+  });
+
+  it('check beers data is getting updated properly', async(() => {
+    component.beers = mockResponse;
+    component.beersData = new MatTableDataSource<Beer>();
+    component.ngOnChanges({beers : new SimpleChange(undefined, mockResponse, false)});
+    fixture.detectChanges();
+    expect(component.beersData.data.length).toBeGreaterThan(0);
   }));
 
   it('should call get beer by id method navigate', async(() => {
     component.showDetails(1);
     expect(routerSpy.navigate).toHaveBeenCalledWith(['details', '1']);
-
-  }));
-
-  it('should call get beer by id method navigate with empty beer list', async(() => {
-    component.showDetails(0);
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['details', '0']);
   }));
 });

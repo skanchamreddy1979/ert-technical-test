@@ -1,4 +1,5 @@
-import { Component, DoCheck, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -9,20 +10,25 @@ import { Beer } from '../../models/beer.model';
   templateUrl: './shared-list.component.html',
   styleUrls: ['./shared-list.component.css']
 })
-export class SharedListComponent implements DoCheck {
+export class SharedListComponent implements OnInit, OnChanges {
 
-  @Input() beers: MatTableDataSource<Beer>;
+  @Input() beers: Beer[];
   displayedColumns: string[] = ['name', 'tagline', 'first_brewed', 'abv'];
   beersData: MatTableDataSource<Beer>;
   @ViewChild(MatSort, { static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false}) paginator: MatPaginator;
 
   constructor(private router: Router) { }
 
-  ngDoCheck(): void {
-    if (this.beers !== this.beersData) {
-      this.beersData = this.beers;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.beers.currentValue !== changes.beers.previousValue) {
+      this.beersData = new MatTableDataSource<Beer>(this.beers);
+      this.beersData.paginator = this.paginator;
       this.beersData.sort = this.sort;
     }
+  }
+
+  ngOnInit(): void {
   }
 
   public showDetails = (id: number) => {

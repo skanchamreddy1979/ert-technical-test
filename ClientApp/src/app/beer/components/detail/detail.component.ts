@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Beer } from 'src/app/beer/models/beer.model';
 import { BeerService } from 'src/app/beer/services/beer.service';
 
@@ -8,10 +9,11 @@ import { BeerService } from 'src/app/beer/services/beer.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
 
   id: number;
   beer: Beer;
+  private subscription: Subscription;
 
   constructor(private beerService: BeerService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -21,7 +23,7 @@ export class DetailComponent implements OnInit {
   }
 
   private getBeerDetails = (): void => {
-    this.beerService.getBeerById(this.id).subscribe(response => {
+    this.subscription = this.beerService.getBeerById(this.id).subscribe(response => {
       if (response !== null && response.length > 0) {
         this.beer = response[0];
       }
@@ -31,4 +33,11 @@ export class DetailComponent implements OnInit {
   public goBack = (): void => {
     this.router.navigate(['list']);
   }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
 }

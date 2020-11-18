@@ -22,23 +22,27 @@ describe('BeerService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('expects service to fetch all bears', () => {
-    const mockResponse: Beer[] = [
-      { id: 1, name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: 1.1 }
-    ];
-
+  it('expects service to fetch all beers', () => {
     beerService.getAllBeers().subscribe(data => {
-      expect(mockResponse.length).toEqual(1);
+      expect(data.length).toBeGreaterThan(0);
     });
   });
 
-  it('expects service to fetch bear by id ', () => {
-    const mockResponse: Beer[] = [
-      { id: 1, name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: 1.1 }
-    ];
-
+  it('expects service to fetch beer by id ', () => {
     beerService.getBeerById(1).subscribe(data => {
-      expect(mockResponse.length).toEqual(1);
+      expect(data.length).toEqual(1);
+    });
+  });
+
+  it('expects service to fetch beer with id which given as input id ', () => {
+    beerService.getBeerById(5).subscribe(data => {
+      expect(data[0].id).toEqual(5);
+    });
+  });
+
+  it('expects service not fetch beer by id  which is not present', () => {
+    beerService.getBeerById(40).subscribe(data => {
+      expect(data.length).toEqual(0);
     });
   });
 });

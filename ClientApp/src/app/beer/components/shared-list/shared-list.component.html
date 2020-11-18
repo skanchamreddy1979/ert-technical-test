@@ -29,3 +29,7 @@
         <td class="mat-cell" colspan="4">No data matching the search "{{input.value}}"</td>
     </tr>
 </table>
+<mat-paginator data-test="paginator"
+    [pageSize] = "10" 
+    showFirstLastButtons
+></mat-paginator>

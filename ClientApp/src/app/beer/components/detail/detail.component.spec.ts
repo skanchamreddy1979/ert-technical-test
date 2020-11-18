@@ -42,24 +42,45 @@ describe('DetailComponent', () => {
     expect(fixture.nativeElement.querySelector('[data-test="heading"]')).toBeTruthy();
   });
 
-  it('should create beer details', () => {
+  it('should create beer details not present initially', () => {
     expect(fixture.nativeElement.querySelector('[data-test="beerdetails"]')).toBeFalsy();
   });
 
-  it('should create beer name', () => {
+  it('should create beer name not present initially', () => {
     expect(fixture.nativeElement.querySelector('[data-test="beername"]')).toBeFalsy();
   });
 
-  it('should create beer abv', () => {
+  it('should create beer abv not present initially', () => {
     expect(fixture.nativeElement.querySelector('[data-test="beerabv"]')).toBeFalsy();
   });
 
-  it('should create beer description', () => {
+  it('should create beer description not present initially', () => {
     expect(fixture.nativeElement.querySelector('[data-test="beerdescription"]')).toBeFalsy();
   });
 
   it('should create goto list', () => {
     expect(fixture.nativeElement.querySelector('[data-test="gotolist"]')).toBeFalsy();
+  });
+
+  it('should check beer description present after initialization', () => {
+    spyOn(beerService, 'getBeerById').and.returnValue(of(mockResponse));
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('[data-test="beerdescription"]')).toBeTruthy();
+  });
+
+  it('should check beer abv present after initialization', () => {
+    spyOn(beerService, 'getBeerById').and.returnValue(of(mockResponse));
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('[data-test="beerabv"]').innerText).toEqual('1.1');
+  });
+
+  it('check beer name present after initialization', () => {
+    spyOn(beerService, 'getBeerById').and.returnValue(of(mockResponse));
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('[data-test="beername"]').innerText).toEqual('name');
   });
 
   it('should call get beer by id method', async(() => {

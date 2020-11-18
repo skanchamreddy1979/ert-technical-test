@@ -6,7 +6,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   { path: 'list', component: ListComponent },
-  { path: 'favorate', component: FavouritesComponent },
+  { path: 'favourite', component: FavouritesComponent },
   { path: 'details/:id', component: DetailComponent },
   { path: 'home', component: WelcomeComponent },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
