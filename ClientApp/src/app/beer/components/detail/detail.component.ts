@@ -20,7 +20,7 @@ export class DetailComponent implements OnInit {
     this.getBeerDetails();
   }
 
-  getBeerDetails() {
+  private getBeerDetails = (): void => {
     this.beerService.getBeerById(this.id).subscribe(response => {
       if (response !== null && response.length > 0) {
         this.beer = response[0];
@@ -28,7 +28,7 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  goBack() {
+  public goBack = (): void => {
     this.router.navigate(['list']);
   }
 }

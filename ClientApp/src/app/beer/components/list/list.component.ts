@@ -1,8 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { BeerService } from 'src/app/beer/services/beer.service';
 import { Beer } from '../../models/beer.model';
 
@@ -11,29 +9,21 @@ import { Beer } from '../../models/beer.model';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
 })
-export class ListComponent implements OnInit, AfterViewInit {
+export class ListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'tagline', 'first_brewed', 'abv'];
   beers: MatTableDataSource<Beer>;
   allBeers: Beer[];
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false}) sort: MatSort;
 
-  constructor(private beerService: BeerService, private router: Router) {
+  constructor(private beerService: BeerService) {
   }
 
   ngOnInit() {
     this.getBeersData();
   }
 
-  ngAfterViewInit() {
-    if (this.beers !== undefined) {
-      this.beers.paginator = this.paginator;
-      this.beers.sort = this.sort;
-    }
-  }
-
-  getBeersData() {
+  public getBeersData = (): void => {
     this.beerService.getAllBeers().subscribe(response => {
       if (response !== null) {
         this.setBeers(response);
@@ -42,20 +32,15 @@ export class ListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+  public applyFilter = (filterValue: string): void => {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     const filteredBeers = this.allBeers.filter(beer => beer.name.toLowerCase().includes(filterValue));
     this.setBeers(filteredBeers);
   }
 
-  setBeers(beersList: Beer[]) {
+  private setBeers = (beersList: Beer[]): void => {
     this.beers = new MatTableDataSource<Beer>(beersList);
     this.beers.paginator = this.paginator;
-    this.beers.sort = this.sort;
-  }
-
-  showDetails(id: number) {
-    this.router.navigate(['details', id.toString()]);
   }
 }

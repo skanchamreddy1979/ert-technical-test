@@ -1,24 +1,22 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatSortHeader, MatSortModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs/internal/observable/of';
 import { Beer } from 'src/app/beer/models/beer.model';
 import { BeerService } from 'src/app/beer/services/beer.service';
 import { TestData } from '../test-data';
-
 import { ListComponent } from './list.component';
 
 describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
   let beerService: BeerService;
-  const routerSpy = { navigate: jasmine.createSpy('navigate') };
   const mockResponse: Beer[] = TestData.getBeerTestData();
 
   beforeEach(async(() => {
@@ -28,15 +26,12 @@ describe('ListComponent', () => {
         BrowserAnimationsModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule,
         MatFormFieldModule,
         MatInputModule,
         RouterModule.forRoot([])
       ],
-      declarations: [ ListComponent ],
-      providers: [
-        { provide: Router, useValue: routerSpy }
-      ]
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [ ListComponent ]
     })
     .compileComponents();
   }));
@@ -50,6 +45,22 @@ describe('ListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should create list view', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="listview"]')).toBeTruthy();
+  });
+
+  it('should create formfield', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="search"]')).toBeTruthy();
+  });
+
+  it('should create shared list', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="sharedlist"]')).toBeTruthy();
+  });
+
+  it('should create paginator', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="paginator"]')).toBeTruthy();
   });
 
   it('should call getBeersData', async(() => {
@@ -70,18 +81,5 @@ describe('ListComponent', () => {
     component.ngOnInit();
     component.applyFilter('Buzzra');
     expect(component.beers.data.length).toEqual(0);
-  }));
-
-  it('should call get beer by id method navigate', async(() => {
-    component.allBeers = mockResponse;
-    component.showDetails(1);
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['details', '1']);
-
-  }));
-
-  it('should call get beer by id method navigate with empty beer list', async(() => {
-    component.allBeers = mockResponse;
-    component.showDetails(0);
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['details', '0']);
   }));
 });

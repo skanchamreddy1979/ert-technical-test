@@ -22,4 +22,21 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create nav bar', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="navbar"]')).toBeTruthy();
+  });
+
+  it('should create home', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="home"]')).toBeTruthy();
+  });
+
+  it('should create beer list', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="beerlist"]')).toBeTruthy();
+  });
+
+  it('should create favourites', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="favourites"]')).toBeTruthy();
+  });
+
 });

@@ -13,11 +13,11 @@ export class BeerService {
   private readonly beerByIdUrl = 'beers/';
   constructor(private httpService: HttpService) { }
 
-  public getAllBeers(): Observable<Beer[]> {
+  public getAllBeers = (): Observable<Beer[]> => {
     return this.httpService.execute<Beer[]>(RequestType.GET, this.beerUrl, null, null);
   }
 
-  public getBeerById(id: number): Observable<Beer[]> {
+  public getBeerById = (id: number): Observable<Beer[]> => {
     return this.httpService.execute<Beer[]>(RequestType.GET, this.beerByIdUrl + id, null, null);
   }
 }

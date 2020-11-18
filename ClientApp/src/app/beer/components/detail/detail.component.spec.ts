@@ -38,6 +38,30 @@ describe('DetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should create beer details heading', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="heading"]')).toBeTruthy();
+  });
+
+  it('should create beer details', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="beerdetails"]')).toBeFalsy();
+  });
+
+  it('should create beer name', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="beername"]')).toBeFalsy();
+  });
+
+  it('should create beer abv', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="beerabv"]')).toBeFalsy();
+  });
+
+  it('should create beer description', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="beerdescription"]')).toBeFalsy();
+  });
+
+  it('should create goto list', () => {
+    expect(fixture.nativeElement.querySelector('[data-test="gotolist"]')).toBeFalsy();
+  });
+
   it('should call get beer by id method', async(() => {
     spyOn(beerService, 'getBeerById').and.returnValue(of(mockResponse));
     component.ngOnInit();

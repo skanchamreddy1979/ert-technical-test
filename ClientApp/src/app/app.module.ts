@@ -11,11 +11,11 @@ import { MaterialModule } from './shared/modules/material.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AuthInterceptor } from './core/Interceptor/AuthInterceptor';
 import { AppRoutingModule } from './app.routing.module';
-import { DetailComponent, FavouritesComponent, ListComponent } from './beer/components';
+import { DetailComponent, FavouritesComponent, ListComponent, SharedListComponent } from './beer/components';
 import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent, DetailComponent, FavouritesComponent, HeaderComponent],
+  declarations: [AppComponent, ListComponent, WelcomeComponent, DetailComponent, FavouritesComponent, HeaderComponent, SharedListComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
