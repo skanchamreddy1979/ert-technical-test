@@ -24,7 +24,7 @@ describe('BeerService', () => {
 
   it('expects service to fetch all bears', () => {
     const mockResponse: Beer[] = [
-      { id: '1', name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: '1.1' }
+      { id: 1, name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: 1.1 }
     ];
 
     beerService.getAllBeers().subscribe(data => {
@@ -34,7 +34,7 @@ describe('BeerService', () => {
 
   it('expects service to fetch bear by id ', () => {
     const mockResponse: Beer[] = [
-      { id: '1', name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: '1.1' }
+      { id: 1, name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: 1.1 }
     ];
 
     beerService.getBeerById(1).subscribe(data => {

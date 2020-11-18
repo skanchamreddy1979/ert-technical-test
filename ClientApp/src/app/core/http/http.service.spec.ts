@@ -30,7 +30,7 @@ describe('HttpService', () => {
 
   it('should call get', () => {
     const mockResponse: Beer[] = [
-      { id: '1', name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: '1.1' }
+      { id: 1, name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: 1.1 }
     ];
     const response = httpService.execute<Beer[]>(RequestType.GET, 'beers', null, null);
     response.subscribe(resp => {
@@ -40,7 +40,7 @@ describe('HttpService', () => {
 
   it('should call post', () => {
     const mockResponse: Beer[] = [
-      { id: '1', name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: '1.1' }
+      { id: 1, name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: 1.1 }
     ];
     const response = httpService.execute<Beer[]>(RequestType.POST, 'beers', null, mockResponse);
     response.subscribe(resp => {
@@ -50,7 +50,7 @@ describe('HttpService', () => {
 
   it('should call get', () => {
     const mockResponse: Beer[] = [
-      { id: '1', name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: '1.1' }
+      { id: 1, name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: 1.1 }
     ];
     const response = httpService.execute<Beer[]>(RequestType.PUT, 'beers', null, mockResponse);
     response.subscribe(resp => {
@@ -60,7 +60,7 @@ describe('HttpService', () => {
 
   it('should call get', () => {
     const mockResponse: Beer[] = [
-      { id: '1', name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: '1.1' }
+      { id: 1, name: 'name', tagLine: 'tagline', firstBrewed: 'firstbrewed', description: 'description', imgUrl: '', abv: 1.1 }
     ];
     const response = httpService.execute<Beer[]>(RequestType.DELETE, 'beers/1', null, null);
     response.subscribe(resp => {
