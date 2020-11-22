@@ -12,6 +12,7 @@ import { MaterialModule } from './shared/material.module';
 import { ListComponent } from './list/list.component';
 
 import { WelcomeComponent } from './welcome/welcome.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent, ListComponent, WelcomeComponent],
@@ -25,8 +26,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
       { path: 'list', component: ListComponent },
     ]),
     BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
