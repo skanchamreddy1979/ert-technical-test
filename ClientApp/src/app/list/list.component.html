@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Tagline</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let beer of beers">
+      <td>
+        <ngb-highlight [result]="beer.name"></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight [result]="beer.tagLine"></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight [result]="beer.description"></ngb-highlight>
+      </td>
+    </tr>
+  </tbody>
+</table>
