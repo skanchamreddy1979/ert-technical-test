@@ -3,7 +3,7 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Tagline</th>
-      <th scope="col">Brew Date</th>
+      <th scope="col">First Date</th>
       <th scope="col">AbV</th>
     </tr>
   </thead>
@@ -24,3 +24,8 @@
     </tr>
   </tbody>
 </table>
+
+
+<ngb-pagination class="d-flex justify-content-between p-2" [collectionSize]="collectionSize" [(page)]="page"
+  [pageSize]="pageSize" (pageChange)="GetBeers(page)">
+</ngb-pagination>
