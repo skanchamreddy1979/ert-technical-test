@@ -1,4 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Beer } from '../beer.model';
+import { BeerService } from '../beer.service';
 
 @Component({
   selector: 'app-detail',
@@ -6,10 +10,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
+  beer: Beer;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private beerService: BeerService,
+    private location: Location) { }
 
   ngOnInit() {
+    this.getBeer();
   }
 
+  getBeer(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.beerService.getBeer(id).subscribe(beer => {
+      this.beer = beer[0]
+    });
+  }
+
+  goBack(): void {
+    this.location.back()
+  }
 }

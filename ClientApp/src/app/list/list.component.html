@@ -8,9 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let beer of beers">
+    <tr *ngFor="let beer of beers" routerLink="/detail/{{beer.id}}">
       <td>
-        <ngb-highlight [result]="beer.name"></ngb-highlight>
+
+        <ngb-highlight [result]=" beer.name">
+        </ngb-highlight>
       </td>
       <td>
         <ngb-highlight [result]="beer.tagline"></ngb-highlight>

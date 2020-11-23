@@ -9,7 +9,7 @@ import { Beer } from './beer.model';
 })
 export class BeerService {
 
-  endpoint: string = "https://api.punkapi.com/v2";
+  private endpoint: string = "https://api.punkapi.com/v2";
   constructor(private http: HttpClient) { }
 
   list(): Observable<Beer[]> {
@@ -19,7 +19,7 @@ export class BeerService {
     );
   }
 
-  getBeer(id: string): Observable<Beer> {
+  getBeer(id: number): Observable<Beer> {
     return this.http.get<Beer>(`${this.endpoint}/beers/${id}`).pipe(
       tap(data => console.log(JSON.stringify(data))),
       catchError(this.handleError)

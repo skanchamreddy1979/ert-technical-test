@@ -1,1 +1,14 @@
-<p>detail works!</p>
+<div *ngIf="beer">
+  <button class="btn btn-primary" (click)="goBack()">go back</button>
+  <h2>{{beer.name | uppercase}} Details</h2>
+  <div>
+    Beer name: {{beer.name}}
+  </div>
+  <div>
+    <blockquote>{{beer.description}}</blockquote>
+  </div>
+  <div>Alcohol by volume: {{beer.abv}}</div>
+  <div>
+    <img src="{{beer.image_url}}" alt="Image of {{beer.name}}. {{beer.description}}" height="350">
+  </div>
+</div>
