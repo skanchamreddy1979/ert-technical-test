@@ -1,5 +1,14 @@
 <body>
   <div>
-    <router-outlet></router-outlet>
+    <h1>{{title}}</h1>
+    <nav>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/list">Beers</a></li>
+      </ul>
+    </nav>
+    <div class="app">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </body>
