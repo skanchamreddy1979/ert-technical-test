@@ -3,7 +3,8 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Tagline</th>
-      <th scope="col">Description</th>
+      <th scope="col">Brew Date</th>
+      <th scope="col">AbV</th>
     </tr>
   </thead>
   <tbody>
@@ -12,10 +13,13 @@
         <ngb-highlight [result]="beer.name"></ngb-highlight>
       </td>
       <td>
-        <ngb-highlight [result]="beer.tagLine"></ngb-highlight>
+        <ngb-highlight [result]="beer.tagline"></ngb-highlight>
       </td>
       <td>
-        <ngb-highlight [result]="beer.description"></ngb-highlight>
+        <ngb-highlight [result]="beer.first_brewed"></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight [result]="beer.abv"></ngb-highlight>
       </td>
     </tr>
   </tbody>
