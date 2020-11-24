@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Beer } from '../beer.model';
@@ -13,8 +12,7 @@ export class DetailComponent implements OnInit {
   beer: Beer;
 
   constructor(private route: ActivatedRoute,
-    private beerService: BeerService,
-    private location: Location) { }
+    private beerService: BeerService) { }
 
   ngOnInit() {
     this.getBeer();
@@ -25,9 +23,5 @@ export class DetailComponent implements OnInit {
     this.beerService.getBeer(id).subscribe(beer => {
       this.beer = beer[0]
     });
-  }
-
-  goBack(): void {
-    this.location.back()
   }
 }

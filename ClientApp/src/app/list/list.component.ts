@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
   pageSize = 10;
   pageTitle = 'Beer List';
   collectionSize: number;
-  beers: Beer[];
+  beers: Beer[] = [];
   filteredBeers: Beer[] = [];
 
   constructor(private beerService: BeerService) { }
