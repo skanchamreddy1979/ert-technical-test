@@ -26,20 +26,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let beer of filteredBeers" routerLink="/detail/{{beer.id}}">
+            <tr *ngFor="let beer of filteredBeers">
               <td>
-
-                <ngb-highlight [result]=" beer.name">
-                </ngb-highlight>
+                <a routerLink="/detail/{{beer.id}}">
+                  {{beer.name}}
+                </a>
               </td>
               <td>
-                <ngb-highlight [result]="beer.tagline"></ngb-highlight>
+                {{beer.tagline}}
               </td>
               <td>
-                <ngb-highlight [result]="beer.first_brewed"></ngb-highlight>
+                {{beer.first_brewed}}
               </td>
               <td>
-                <ngb-highlight [result]="beer.abv"></ngb-highlight>
+                {{beer.abv}}
               </td>
             </tr>
           </tbody>
