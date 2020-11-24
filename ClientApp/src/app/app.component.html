@@ -1,5 +1,20 @@
-<body>
-  <div>
-    <router-outlet></router-outlet>
-  </div>
-</body>
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="60"
+    alt="BrewDog Logo"
+    src="https://images.easyfundraising.org.uk/retailer/cropped/logo-brewdog-1593774018.png"
+  /> 
+  <div> Welcome to {{ title }}</div>
+  <app-brewdogbeerlist></app-brewdogbeerlist>
+</div>
+
+<style>
+  .spacer {
+    flex: 1;
+  }
+</style>
+  
+
+

@@ -1,0 +1,68 @@
+<h3> BrewDog Beers List</h3>
+<nav class = "navbar">
+    <input class="form-control" type="text" name="name" [(ngModel)]="name" (ngModelChange)="Search()" placeholder="Enter beer Name to search">
+</nav>
+<div>
+    <table>
+        <thead>
+            <tr>
+                
+                <th>Beer Name</th>
+                <th>TagLine</th>
+                <th>First Brewed</th>
+            </tr>
+        </thead>
+        <tbody>
+    <tr *ngFor = "let beer of beers | paginate: {itemsPerPage:10, currentPage:p};">
+        
+        <td><span><a href ="#">{{beer.name}}</a></span></td>
+            <td><span>{{beer.tagline}}</span></td>
+            <td><span>{{beer.first_brewed}}</span></td>
+    
+    </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </table>
+    </div>
+
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Beer Details</h2>
+          <button type="button" class="close"  data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body">
+          <!-- <p>{{beer.image_url}}</p>
+          <p>{{beer.name}}</p>
+          <p>{{beer.abv}}</p>
+          <p>{{beer.description}}</p> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+    <style>
+        table,td,th{
+            border: 1px solid black;
+        }
+            table {
+                border-collapse: collapse;
+                width: 90%;
+            }
+            th{
+                height: 50px;
+                background-color: grey;
+            }
+            .modal.show{
+                display: block;
+            }
+        
+    </style>
