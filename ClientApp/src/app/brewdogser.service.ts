@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BrewdogserService {
-
+    //service
   private _url: string = 'https://api.punkapi.com/v2/beers';
   constructor(private http : HttpClient) { }
 
