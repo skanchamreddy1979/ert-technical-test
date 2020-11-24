@@ -14,7 +14,6 @@ export class ListComponent implements OnInit {
   collectionSize: number;
   beers: Beer[];
   filteredBeers: Beer[] = [];
-  error: string;
 
   constructor(private beerService: BeerService) { }
 
@@ -24,9 +23,10 @@ export class ListComponent implements OnInit {
   }
   set listFilter(value: string) {
     this._filter = value;
+    console.log('this.listFilter', this.listFilter, this.beers.length, this.filteredBeers.length);
     this.filteredBeers = this.listFilter ? this.filterBeers(this.listFilter) : this.beers;
+    this.collectionSize = this.beers.length;
   }
-
 
   ngOnInit() {
     this.getBeers(this.page);
@@ -34,19 +34,21 @@ export class ListComponent implements OnInit {
 
   getBeers(page: number) {
     return this.beerService.list().subscribe((beers) => {
-      this.beers = this.filteredBeers.length !== 0 ? this.limitBeers(this.filteredBeers, page) : this.limitBeers(beers, page);
-      this.collectionSize = beers.length;
-      this.filteredBeers = this.beers;
+      this.beers = beers;
+      this.collectionSize = this.beers.length;
+      this.filteredBeers = this.limitBeers(page);
     });
   }
 
-  private limitBeers(beers: Beer[], page: number): Beer[] {
-    return beers.slice((page - 1) * this.pageSize, (page - 1) * this.pageSize + this.pageSize);
+  private limitBeers(page: number): Beer[] {
+    return this.beers.slice((page - 1) * this.pageSize, (page - 1) * this.pageSize + this.pageSize);
   }
 
   filterBeers(filter: string): Beer[] {
     filter = filter.toLocaleLowerCase();
-    return this.beers.filter((beer: Beer) => beer.name.toLocaleLowerCase().indexOf(filter) !== -1);
+    const filtered = this.beers.filter((beer: Beer) => beer.name.toLocaleLowerCase().indexOf(filter) !== -1);
+    this.collectionSize = filtered.length;
+    return filtered;
   }
 }
 
