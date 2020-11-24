@@ -1,33 +1,55 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Tagline</th>
-      <th scope="col">First Date</th>
-      <th scope="col">AbV</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let beer of beers" routerLink="/detail/{{beer.id}}">
-      <td>
+<div class='container-fluid'>
+  <div class="card">
+    <div class="card-header">
+      {{pageTitle}}
+    </div>
+    <div class="card-body">
+      <div class='row'>
+        <div class='col-md-2 col-sm-2 col-xs-2'>Search:</div>
+        <div class='col-md-4 col-sm-4 col-xs-4'>
+          <input type='text' [(ngModel)]='listFilter' />
+        </div>
+      </div>
+      <div class='row' *ngIf='listFilter'>
+        <div class='col-md-6'>
+          <h4>Filtered by: {{listFilter}}</h4>
+        </div>
+      </div>
+      <div class='table-responsive'>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Tagline</th>
+              <th scope="col">First Date</th>
+              <th scope="col">AbV</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let beer of filteredBeers" routerLink="/detail/{{beer.id}}">
+              <td>
 
-        <ngb-highlight [result]=" beer.name">
-        </ngb-highlight>
-      </td>
-      <td>
-        <ngb-highlight [result]="beer.tagline"></ngb-highlight>
-      </td>
-      <td>
-        <ngb-highlight [result]="beer.first_brewed"></ngb-highlight>
-      </td>
-      <td>
-        <ngb-highlight [result]="beer.abv"></ngb-highlight>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
-<ngb-pagination class="d-flex justify-content-between p-2" [collectionSize]="collectionSize" [(page)]="page"
-  [pageSize]="pageSize" (pageChange)="GetBeers(page)">
-</ngb-pagination>
+                <ngb-highlight [result]=" beer.name">
+                </ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight [result]="beer.tagline"></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight [result]="beer.first_brewed"></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight [result]="beer.abv"></ngb-highlight>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <ngb-pagination class="d-flex justify-content-between p-2" [collectionSize]="collectionSize" [(page)]="page"
+          [pageSize]="pageSize" (pageChange)="GetBeers(page)">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>
