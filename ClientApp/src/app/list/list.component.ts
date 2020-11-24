@@ -29,15 +29,19 @@ export class ListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.GetBeers(this.page);
+    this.getBeers(this.page);
   }
 
-  GetBeers(page: number) {
+  getBeers(page: number) {
     return this.beerService.list().subscribe((beers) => {
-      this.beers = beers.slice((page - 1) * this.pageSize, (page - 1) * this.pageSize + this.pageSize);
+      this.beers = this.filteredBeers.length !== 0 ? this.limitBeers(this.filteredBeers, page) : this.limitBeers(beers, page);
       this.collectionSize = beers.length;
       this.filteredBeers = this.beers;
     });
+  }
+
+  private limitBeers(beers: Beer[], page: number): Beer[] {
+    return beers.slice((page - 1) * this.pageSize, (page - 1) * this.pageSize + this.pageSize);
   }
 
   filterBeers(filter: string): Beer[] {
