@@ -24,7 +24,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   getBeer(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.subscriptions.add(this.beerService.getBeer(id).subscribe(beer => {
-      this.beer = beer[0]
+      this.beer = beer[0];
     }));
   }
 

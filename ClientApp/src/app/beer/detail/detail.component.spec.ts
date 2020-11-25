@@ -20,7 +20,7 @@ describe('DetailComponent', () => {
       declarations: [DetailComponent],
       providers: [
         { provide: BeerService, useValue: mockBeerService },
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => { id: 1 } } } } }
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 1 } } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     });
@@ -29,7 +29,7 @@ describe('DetailComponent', () => {
       .then(() => {
         fixture = TestBed.createComponent(DetailComponent);
         component = fixture.componentInstance;
-      })
+      });
   }));
 
   it('should create', () => {

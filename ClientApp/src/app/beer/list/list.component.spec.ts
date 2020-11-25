@@ -1,4 +1,4 @@
-import { Directive, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Directive, HostListener, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable, Observer, of } from 'rxjs';
@@ -8,87 +8,17 @@ import { BeerService } from '../beer.service';
 
 import { ListComponent } from './list.component';
 
-@Directive({
-  selector: '[routerLink]',
-  host: { '(click)': 'onClick()' }
-})
-export class RouterLinkDirectiveStub {
+@Directive({ selector: '[routerLink]' })
+export class RouterLinkStubDirective {
   @Input('routerLink') linkParams: any;
   navigatedTo: any = null;
+  @HostListener('click')
   onClick() {
     this.navigatedTo = this.linkParams;
   }
 }
 
-describe('ListComponent', () => {
-  let component: ListComponent;
-  let fixture: ComponentFixture<ListComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ListComponent, RouterLinkDirectiveStub],
-      providers: [
-        { provide: BeerService, useClass: MockBeerService }
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
-    });
-    TestBed.compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(ListComponent);
-        component = fixture.componentInstance;
-      })
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should have zero beers initially', fakeAsync(() => {
-    let mockBeerService = fixture.debugElement.injector.get(BeerService);
-    let stub = spyOn(mockBeerService, 'list').and.callFake(() => {
-      return of([]).pipe(delay(300));
-    });
-
-    component.getBeers(1);
-    tick(300);
-
-    expect(component.beers).toEqual([]);
-  }));
-
-  it('should return beers', fakeAsync(() => {
-    let mockBeerService = fixture.debugElement.injector.get(BeerService);
-    spyOn(mockBeerService, 'list').and.callFake(() => {
-      return of(mockBeers).pipe(delay(300));
-    });
-
-    component.getBeers(2);
-    tick(300);
-
-    expect(component.beers.length).toEqual(10);
-  }));
-
-  it('should have the correct route for first beer', () => {
-    let mockBeerService = jasmine.createSpyObj(['list']);
-    mockBeerService.list.and.returnValue(of(mockBeers));
-    fixture.detectChanges();
-
-    const beerElements = fixture.debugElement.queryAll(By.css('.beer'));
-    let routerLink = beerElements[0].query(By.directive(RouterLinkDirectiveStub))
-      .injector.get(RouterLinkDirectiveStub);
-
-    beerElements[0].query(By.css('a')).triggerEventHandler('click', null);
-    expect(routerLink.navigatedTo).toBe('/detail/1');
-  })
-
-});
-
-let mockBeers = [
+const mockBeers = [
   { id: '1', name: 'beer 1 ', description: 'description 01', abv: '1', tagLine: '_', imgUrl: '', firstBrewed: new Date() },
   { id: '2', name: 'beer 2 ', description: 'description 02', abv: '3', tagLine: '_', imgUrl: '', firstBrewed: new Date() },
   { id: '3', name: 'beer 3 ', description: 'description 03', abv: '5', tagLine: '_', imgUrl: '', firstBrewed: new Date() },
@@ -103,8 +33,76 @@ let mockBeers = [
 
 class MockBeerService {
   list() {
-    return Observable.create((observer: Observer<Array<Beer>>) => {
+    return new Observable((observer: Observer<Array<Beer>>) => {
       observer.next(mockBeers);
-    })
+    });
   }
 }
+
+describe('ListComponent', () => {
+  let component: ListComponent;
+  let fixture: ComponentFixture<ListComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ListComponent, RouterLinkStubDirective],
+      providers: [
+        { provide: BeerService, useClass: MockBeerService }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
+    });
+    TestBed.compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(ListComponent);
+        component = fixture.componentInstance;
+      });
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have zero beers initially', fakeAsync(() => {
+    const mockBeerService = fixture.debugElement.injector.get(BeerService);
+    spyOn(mockBeerService, 'list').and.callFake(() => {
+      return of([]).pipe(delay(300));
+    });
+
+    component.getBeers(1);
+    tick(300);
+
+    expect(component.beers).toEqual([]);
+  }));
+
+  it('should return beers', fakeAsync(() => {
+    const mockBeerService = fixture.debugElement.injector.get(BeerService);
+    spyOn(mockBeerService, 'list').and.callFake(() => {
+      return of(mockBeers).pipe(delay(300));
+    });
+
+    component.getBeers(2);
+    tick(300);
+
+    expect(component.beers.length).toEqual(10);
+  }));
+
+  it('should have the correct route for first beer', () => {
+    const mockBeerService = jasmine.createSpyObj(['list']);
+    mockBeerService.list.and.returnValue(of(mockBeers));
+    fixture.detectChanges();
+
+    const beerElements = fixture.debugElement.queryAll(By.css('.beer'));
+    const routerLink = beerElements[0].query(By.directive(RouterLinkStubDirective))
+      .injector.get(RouterLinkStubDirective);
+
+    beerElements[0].query(By.css('a')).triggerEventHandler('click', null);
+    expect(routerLink.navigatedTo).toBe('/detail/1');
+  });
+
+});

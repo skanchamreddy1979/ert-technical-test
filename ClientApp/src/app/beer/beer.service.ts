@@ -9,7 +9,7 @@ import { Beer } from './beer.model';
 })
 export class BeerService {
 
-  private endpoint: string = "https://api.punkapi.com/v2";
+  private endpoint = 'https://api.punkapi.com/v2';
   constructor(private http: HttpClient) { }
 
   list(): Observable<Beer[]> {
@@ -30,8 +30,7 @@ export class BeerService {
     let errorMessage: string;
     if (error.error instanceof ErrorEvent) {
       errorMessage = `ERROR: ${error.error.message}`;
-    }
-    else {
+    } else {
       errorMessage = `SERVER ERROR: ${error.status} with message: ${error.message}`;
     }
     return throwError(errorMessage);
