@@ -26,7 +26,7 @@ export class BeerService {
     );
   }
 
-  private handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse) {
     let errorMessage: string;
     if (error.error instanceof ErrorEvent) {
       errorMessage = `ERROR: ${error.error.message}`;

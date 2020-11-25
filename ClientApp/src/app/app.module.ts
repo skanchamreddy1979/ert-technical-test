@@ -13,9 +13,10 @@ import { ListComponent } from './list/list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailComponent } from './detail/detail.component';
+import { BeerComponent } from './beer/beer.component';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent, DetailComponent],
+  declarations: [AppComponent, ListComponent, WelcomeComponent, DetailComponent, BeerComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

@@ -1,9 +1,7 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { BeerService } from './beer.service';
-import { Beer } from './beer.model';
-
 
 let mockData = [
   { id: '1 ', name: 'beer 1 ', description: 'description 01', abv: '1', tagLine: '_', imgUrl: '', firstBrewed: new Date() },
@@ -18,21 +16,17 @@ let mockData = [
   { id: '10', name: 'beer 10', description: 'description 10', abv: '19', tagLine: '_', imgUrl: '', firstBrewed: new Date() }
 ];
 
-describe('Beer Service', () => {
+describe('BeerService', () => {
 
-  let beerService;
+  let beerService: BeerService;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ],
+      imports: [HttpClientTestingModule],
       providers: [BeerService]
     });
     httpTestingController = TestBed.get(HttpTestingController);
-
     beerService = TestBed.get(BeerService);
   });
 
@@ -46,86 +40,49 @@ describe('Beer Service', () => {
 
   describe('getBeers', () => {
     it('should return mock beers', () => {
-      spyOn(beerService, 'handleError').and.callThrough();
-      spyOn(beerService, 'log').and.callThrough();
+      beerService.list().subscribe();
 
-      beerService.list().subscribe(
-        beers => expect(beers.length).toEqual(mockData.length),
-        fail
-      );
-
-      const req = httpTestingController.expectOne(beerService.endpoint);
+      const req = httpTestingController.expectOne('https://api.punkapi.com/v2/beers');
       expect(req.request.method).toEqual('GET');
-
       req.flush(mockData);
+
     });
 
-    it('should turn 404 into a user-friendly error', () => {
+    it('should return 404 when not found', () => {
       spyOn(beerService, 'handleError').and.callThrough();
-      spyOn(beerService, 'log').and.callThrough();
 
-      const msg = 'Deliberate 404';
       beerService.list().subscribe(
         beers => expect(beers).toEqual([]),
-        fail
+        () => expect(beerService.handleError).toHaveBeenCalledTimes(1)
       );
 
-      const req = httpTestingController.expectOne(beerService.endpoint);
-      req.flush('Invalid request parameters', { status: 404, statusText: 'Bad Request' });
-
-      expect(beerService.handleError).toHaveBeenCalledTimes(1);
+      const req = httpTestingController.expectOne('https://api.punkapi.com/v2/beers');
+      req.flush('Invalid request parameters', { status: 404, statusText: 'Not found' });
     });
   });
 
   describe('getBeer', () => {
 
     it('should return a single mock beer', () => {
-      spyOn(beerService, 'handleError').and.callThrough();
-
-      beerService.getBeer(mockData[0].id).subscribe(
-        response => expect(response).toEqual(mockData[0]),
-        fail
+      beerService.getBeer(1).subscribe(
+        response => expect(response).toEqual(mockData[0])
       );
 
-      const req = httpTestingController.expectOne(`${beerService.endpoint}/${mockData[0].id}`);
+      const req = httpTestingController.expectOne('https://api.punkapi.com/v2/beers/1');
       expect(req.request.method).toEqual('GET');
-
       req.flush(mockData[0]);
     });
 
-    it('should fail gracefully on error', () => {
+    it('should return 404 when not found', () => {
       spyOn(beerService, 'handleError').and.callThrough();
 
-      beerService.getBeer(mockData[0].id).subscribe(
+      beerService.getBeer(1).subscribe(
         response => expect(response).toBeUndefined(),
-        fail
+        () => expect(beerService.handleError).toHaveBeenCalledTimes(1)
       );
 
-      const req = httpTestingController.expectOne(`${beerService.endpoint}/${mockData[0].id}`);
-      expect(req.request.method).toEqual('GET');
-
+      const req = httpTestingController.expectOne('https://api.punkapi.com/v2/beers/1');
       req.flush('Invalid request', { status: 404, statusText: 'Not found' });
-
-      expect(beerService.handleError).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('handleError', () => {
-    it('should handle error gracefully', () => {
-
-      spyOn(beerService, 'handleError').and.callThrough();
-
-      beerService.getBeer(mockData[0].id).subscribe(
-        response => expect(response).toBeUndefined(),
-        fail
-      );
-
-      const req = httpTestingController.expectOne(`${beerService.endpoint}/${mockData[0].id}`);
-      expect(req.request.method).toEqual('GET');
-
-      req.flush('Invalid request', { status: 404, statusText: 'Not found' });
-
-      expect(beerService.handleError).toHaveBeenCalledTimes(1);
     });
   });
 });

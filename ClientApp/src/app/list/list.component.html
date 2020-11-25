@@ -26,7 +26,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let beer of filteredBeers">
+            <tr *ngFor="let beer of filteredBeers" class="beer">
               <td>
                 <a routerLink="/detail/{{beer.id}}">
                   {{beer.name}}
