@@ -8,15 +8,14 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import { ListComponent } from './list/list.component';
-
-import { WelcomeComponent } from './welcome/welcome.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DetailComponent } from './detail/detail.component';
-import { BeerComponent } from './beer/beer.component';
+import { ListComponent } from './beer/list/list.component';
+import { WelcomeComponent } from './beer/welcome/welcome.component';
+import { DetailComponent } from './beer/detail/detail.component';
+
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent, DetailComponent, BeerComponent],
+  declarations: [AppComponent, ListComponent, WelcomeComponent, DetailComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,

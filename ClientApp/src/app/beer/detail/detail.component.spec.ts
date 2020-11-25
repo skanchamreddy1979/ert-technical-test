@@ -1,10 +1,8 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Observer, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { Beer } from '../beer.model';
 import { BeerService } from '../beer.service';
+
 
 import { DetailComponent } from './detail.component';
 
@@ -22,7 +20,7 @@ describe('DetailComponent', () => {
       declarations: [DetailComponent],
       providers: [
         { provide: BeerService, useValue: mockBeerService },
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: (id: number) => { id: 1 } } } } }
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => { id: 1 } } } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     });

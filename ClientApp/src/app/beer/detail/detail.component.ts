@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Beer } from '../beer.model';
 import { BeerService } from '../beer.service';
 
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
