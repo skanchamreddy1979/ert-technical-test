@@ -83,7 +83,6 @@ describe('ListComponent', () => {
       .injector.get(RouterLinkDirectiveStub);
 
     beerElements[0].query(By.css('a')).triggerEventHandler('click', null);
-    console.log('routerLink.navigatedTo', routerLink.navigatedTo.length);
     expect(routerLink.navigatedTo).toBe('/detail/1');
   })
 

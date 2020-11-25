@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListComponent } from './beer/list/list.component';
 import { WelcomeComponent } from './beer/welcome/welcome.component';
 import { DetailComponent } from './beer/detail/detail.component';
+import { BeerDetailGuard } from './beer/detail/detail.guard';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { DetailComponent } from './beer/detail/detail.component';
     RouterModule.forRoot([
       { path: '', component: WelcomeComponent, pathMatch: 'full' },
       { path: 'list', component: ListComponent },
-      { path: 'detail/:id', component: DetailComponent }
+      { path: 'detail/:id', canActivate: [BeerDetailGuard], component: DetailComponent }
     ]),
     BrowserAnimationsModule,
     NgbModule
