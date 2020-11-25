@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Beer } from '../beer.model';
 import { BeerService } from '../beer.service';
 
@@ -7,13 +8,14 @@ import { BeerService } from '../beer.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
   page = 1;
   pageSize = 10;
   pageTitle = 'Beer List';
   collectionSize: number;
   beers: Beer[] = [];
   filteredBeers: Beer[] = [];
+  private subscriptions = new Subscription();
 
   constructor(private beerService: BeerService) { }
 
@@ -23,7 +25,6 @@ export class ListComponent implements OnInit {
   }
   set listFilter(value: string) {
     this._filter = value;
-    console.log('this.listFilter', this.listFilter, this.beers.length, this.filteredBeers.length);
     this.filteredBeers = this.listFilter ? this.filterBeers(this.listFilter) : this.beers;
     this.collectionSize = this.beers.length;
   }
@@ -33,11 +34,11 @@ export class ListComponent implements OnInit {
   }
 
   getBeers(page: number) {
-    return this.beerService.list().subscribe((beers) => {
+    this.subscriptions.add(this.beerService.list().subscribe((beers) => {
       this.beers = beers;
       this.collectionSize = this.beers.length;
       this.filteredBeers = this.limitBeers(page);
-    });
+    }));
   }
 
   private limitBeers(page: number): Beer[] {
@@ -49,6 +50,10 @@ export class ListComponent implements OnInit {
     const filtered = this.beers.filter((beer: Beer) => beer.name.toLocaleLowerCase().indexOf(filter) !== -1);
     this.collectionSize = filtered.length;
     return filtered;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
 
