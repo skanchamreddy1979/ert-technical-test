@@ -16,6 +16,7 @@ export class ListComponent implements OnInit, OnDestroy {
   beers: Beer[] = [];
   filteredBeers: Beer[] = [];
   private subscriptions = new Subscription();
+  allBeers: Beer[];
 
   constructor(private beerService: BeerService) { }
 
@@ -25,31 +26,37 @@ export class ListComponent implements OnInit, OnDestroy {
   }
   set listFilter(value: string) {
     this._filter = value;
-    this.filteredBeers = this.listFilter ? this.filterBeers(this.listFilter) : this.beers;
-    this.collectionSize = this.beers.length;
+    this.filteredBeers = this.listFilter ? this.filterBeers(this.listFilter) : this.setBeers(this.allBeers);
+    this.collectionSize = this.filteredBeers.length >= this.pageSize ? this.beers.length : this.filteredBeers.length;
   }
 
   ngOnInit() {
-    this.getBeers(this.page);
+    this.getBeers();
   }
 
-  getBeers(page: number) {
+  getBeers() {
     this.subscriptions.add(this.beerService.list().subscribe((beers) => {
-      this.beers = beers;
-      this.collectionSize = this.beers.length;
-      this.filteredBeers = this.limitBeers(page);
+      this.allBeers = beers;
+      this.setBeers(beers);
     }));
   }
 
-  private limitBeers(page: number): Beer[] {
-    return this.beers.slice((page - 1) * this.pageSize, (page - 1) * this.pageSize + this.pageSize);
+  private setBeers(beers: Beer[], page?: number) {
+    this.beers = beers;
+    this.collectionSize = this.beers.length;
+    this.filteredBeers = this.limitBeers(beers, page);
+    return this.filteredBeers;
+  }
+
+  private limitBeers(beers: Beer[], page: number): Beer[] {
+    page = page ? page : 1;
+    return beers.slice((page - 1) * this.pageSize, (page - 1) * this.pageSize + this.pageSize);
   }
 
   filterBeers(filter: string): Beer[] {
     filter = filter.toLocaleLowerCase();
-    const filtered = this.beers.filter((beer: Beer) => beer.name.toLocaleLowerCase().indexOf(filter) !== -1);
-    this.collectionSize = filtered.length;
-    return filtered;
+    const filtered = this.allBeers.filter((beer: Beer) => beer.name.toLocaleLowerCase().indexOf(filter) !== -1);
+    return this.setBeers(filtered);
   }
 
   ngOnDestroy(): void {

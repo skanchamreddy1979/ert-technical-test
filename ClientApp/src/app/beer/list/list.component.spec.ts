@@ -74,7 +74,7 @@ describe('ListComponent', () => {
       return of([]).pipe(delay(300));
     });
 
-    component.getBeers(1);
+    component.getBeers();
     tick(300);
 
     expect(component.beers).toEqual([]);
@@ -86,7 +86,7 @@ describe('ListComponent', () => {
       return of(mockBeers).pipe(delay(300));
     });
 
-    component.getBeers(2);
+    component.getBeers();
     tick(300);
 
     expect(component.beers.length).toEqual(10);

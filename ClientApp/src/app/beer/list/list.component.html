@@ -22,7 +22,7 @@
               <th scope="col">Name</th>
               <th scope="col">Tagline</th>
               <th scope="col">First Date</th>
-              <th scope="col">AbV</th>
+              <th scope="col">Abv</th>
             </tr>
           </thead>
           <tbody>
@@ -47,7 +47,7 @@
       </div>
       <div class="row">
         <ngb-pagination class="d-flex justify-content-between p-2" [collectionSize]="collectionSize" [(page)]="page"
-          [pageSize]="pageSize" (pageChange)="getBeers(page)">
+          [pageSize]="pageSize" (pageChange)="setBeers(beers, page)">
         </ngb-pagination>
       </div>
     </div>
