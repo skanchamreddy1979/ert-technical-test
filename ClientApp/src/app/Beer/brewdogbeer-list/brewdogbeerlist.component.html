@@ -1,0 +1,65 @@
+<div class="header">
+  <h4>BrewDog Beers List</h4>
+</div>
+<nav class="navbar">
+  <input class="searchbar" type="text" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
+    placeholder="Enter beer Name to search">
+</nav>
+<div>
+  <table>
+    <thead>
+      <tr>
+
+        <th>Beer Name</th>
+        <th>TagLine</th>
+        <th>First Brewed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let beer of beers | paginate: {itemsPerPage:10, currentPage:p};">
+
+        <td><span><a [routerLink]="['/beer-details/'+beer.id]">{{beer.name}}</a></span></td>
+        <td><span>{{beer.tagline}}</span></td>
+        <td><span>{{beer.first_brewed}}</span></td>
+
+      </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </table>
+</div>
+
+<style>
+  table,
+  td,
+  th {
+    border: 1px solid black;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 90%;
+  }
+
+  th {
+    height: 50px;
+    background-color: grey;
+  }
+
+  .modal.show {
+    display: block;
+  }
+
+  .header {
+    background-color: #f1f1f1;
+    padding: 5px;
+    margin-top: 10px;
+    text-align: left;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
+  .searchbar {
+    float: left;
+  }
+
+  /* Style the top navigation bar */
+</style>

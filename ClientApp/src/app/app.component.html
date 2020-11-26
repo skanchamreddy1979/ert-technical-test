@@ -1,20 +1,48 @@
-
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <img
-    width="60"
-    alt="BrewDog Logo"
-    src="https://images.easyfundraising.org.uk/retailer/cropped/logo-brewdog-1593774018.png"
-  /> 
-  <div> Welcome to {{ title }}</div>
-  <app-brewdogbeerlist></app-brewdogbeerlist>
-</div>
+<div class="header" role="banner">
+  <img width="60" alt="BrewDog Logo"
+    src="https://images.easyfundraising.org.uk/retailer/cropped/logo-brewdog-1593774018.png" />
 
+  <h1>Welcome to {{ title }}</h1>
+  <div class="topnav">
+    <a href="#">Beers</a>
+    <a href="#">Community</a>
+    <a href="#">Locations</a>
+    <a href="#">Shops</a>
+  </div>
+  <!-- <app-brewdogbeerlist></app-brewdogbeerlist>-->
+  <router-outlet></router-outlet>
+</div>
 <style>
   .spacer {
     flex: 1;
   }
+
+  .header {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .topnav {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    overflow: hidden;
+    background-color: rgb(7, 7, 7);
+  }
+
+  /* Style the topnav links */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  /* Change color on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
 </style>
-  
-
-
