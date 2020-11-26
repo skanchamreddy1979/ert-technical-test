@@ -26,8 +26,9 @@ export class ListComponent implements OnInit, OnDestroy {
   }
   set listFilter(value: string) {
     this._filter = value;
-    this.filteredBeers = this.listFilter ? this.filterBeers(this.listFilter) : this.setBeers(this.allBeers);
+    this.filteredBeers = this.listFilter ? this.filterBeers(this.listFilter) : this.setBeers(this.allBeers, 1);
     this.collectionSize = this.filteredBeers.length >= this.pageSize ? this.beers.length : this.filteredBeers.length;
+    this.page = 1;
   }
 
   ngOnInit() {
