@@ -7,7 +7,7 @@
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
-            width: 40%;
+            width: 20%;
         }
 
         .card:hover {
@@ -17,12 +17,32 @@
         .container {
             padding: 2px 16px;
         }
+
+        .previous {
+            background-color: #f1f1f1;
+            color: black;
+        }
+
+        .round {
+            border-radius: 50%;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+
+        a:hover {
+            background-color: rgb(70, 68, 68);
+            color: rgb(15, 15, 15);
+        }
     </style>
 </head>
 
 <body>
 
-    <h2>Beer Details</h2>
+    <h2>Beer Details</h2> <a href="#" class="previous round">Back</a>
 
     <div class="card">
         <img src={{data.image_url}} alt="beer_image" style="width:50%">

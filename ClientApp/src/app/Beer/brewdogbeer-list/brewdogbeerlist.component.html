@@ -3,13 +3,12 @@
 </div>
 <nav class="navbar">
   <input class="searchbar" type="text" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
-    placeholder="Enter beer Name to search">
+    placeholder="Search by beer name">
 </nav>
 <div>
   <table>
     <thead>
       <tr>
-
         <th>Beer Name</th>
         <th>TagLine</th>
         <th>First Brewed</th>
@@ -33,11 +32,12 @@
   td,
   th {
     border: 1px solid black;
+    text-align: left;
   }
 
   table {
     border-collapse: collapse;
-    width: 90%;
+    width: 85%;
   }
 
   th {
@@ -61,5 +61,7 @@
     float: left;
   }
 
-  /* Style the top navigation bar */
+  .navbar {
+    margin-left: -1%;
+  }
 </style>
