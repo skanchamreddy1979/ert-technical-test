@@ -1,0 +1,38 @@
+.spacer {
+    flex: auto;
+  }
+
+  .header {
+    background-color: #f1f1f1;
+    padding: 5px;
+    text-align: center;
+    
+  }
+  .heading
+  {
+    font-size: 28px;
+  }
+  .topnav {
+    font-family: Impact, sans-serif;
+    font-size: larger;
+    font-weight: 5;
+    overflow: hidden;
+    background-color: #606468;
+  }
+
+  /* Style the topnav links */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-weight: 3;
+  }
+
+  /* Change color on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }

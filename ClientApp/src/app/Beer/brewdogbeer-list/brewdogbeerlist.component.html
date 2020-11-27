@@ -1,12 +1,14 @@
 <div class="header">
-  <h4>BrewDog Beers List</h4>
+  <h4 class="header">BrewDog Beers List</h4>
 </div>
+<!--Nav bar search box to search beer by name-->
 <nav class="navbar">
   <input class="searchbar" type="text" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
     placeholder="Search by beer name">
 </nav>
 <div>
-  <table>
+  <!--Table to display beer list-->
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Beer Name</th>
@@ -23,45 +25,6 @@
 
       </tr>
     </tbody>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <pagination-controls class = "pagination"(pageChange)="p = $event"></pagination-controls>
   </table>
 </div>
-
-<style>
-  table,
-  td,
-  th {
-    border: 1px solid black;
-    text-align: left;
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 85%;
-  }
-
-  th {
-    height: 50px;
-    background-color: grey;
-  }
-
-  .modal.show {
-    display: block;
-  }
-
-  .header {
-    background-color: #f1f1f1;
-    padding: 5px;
-    margin-top: 10px;
-    text-align: left;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  }
-
-  .searchbar {
-    float: left;
-  }
-
-  .navbar {
-    margin-left: -1%;
-  }
-</style>

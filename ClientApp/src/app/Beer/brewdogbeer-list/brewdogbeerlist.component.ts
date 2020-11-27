@@ -13,10 +13,13 @@ export class BrewdogbeerlistComponent implements OnInit {
   public p = 1;
   constructor(private brewdogService: BrewdogserService, private router: Router) { }
 
+  //Method to get the beer list
   ngOnInit(): any {
     this.brewdogService.getBeerList()
       .subscribe(data => this.beers = data);
   }
+
+  //Method to trigger search beer by name
   Search(): any {
     if (this.name === '') {
       this.ngOnInit();
@@ -27,6 +30,8 @@ export class BrewdogbeerlistComponent implements OnInit {
       });
     }
   }
+
+  //Method to navigate to beer-details after clicking on beer name
   onSelect(beer: any): any {
     this.router.navigate(['beers', this.beers.id]);
   }

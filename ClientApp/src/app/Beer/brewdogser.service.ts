@@ -8,16 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class BrewdogserService {
 
+  //URL to access external API
   private URL = 'https://api.punkapi.com/v2/beers/';
   constructor(private http: HttpClient) { }
 
+  //Service to get beer list observable and cast it into IBeerList array
   getBeerList(): Observable<IBeerList[]>
   {
     return this.http.get<IBeerList[]>(this.URL);
   }
+
+  //Service to get beer details by id observable and cast it into IBeerList array
   getBeerById(id: number): Observable<IBeerList[]>
   {
-
     return this.http.get<IBeerList[]>(this.URL + id);
   }
 }
