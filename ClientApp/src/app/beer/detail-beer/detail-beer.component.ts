@@ -22,7 +22,6 @@ export class DetailBeerComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private punkAPIService: PunkAPIService, private formBuilder: FormBuilder) {
   }
 
-
   ngOnInit() {
     this.beerFormGroup.disable();
     this.getDetailBeer();

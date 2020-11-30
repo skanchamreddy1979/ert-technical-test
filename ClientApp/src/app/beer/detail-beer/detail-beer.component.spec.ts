@@ -1,9 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { DetailBeerComponent } from './detail-beer.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PunkAPIService } from 'src/app/shared/punk-api.service';
+import { delay } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DetailBeerComponent', () => {
   let component: DetailBeerComponent;
@@ -20,9 +23,10 @@ describe('DetailBeerComponent', () => {
       imports: [
         ReactiveFormsModule,
         FormsModule,
+        HttpClientTestingModule, RouterModule.forRoot([])
       ],
       providers: [
-        { provide: PunkAPIService, useValue: mockBeerService },
+        //{ provide: PunkAPIService, useValue: mockBeerService },
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 1 } } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -38,4 +42,17 @@ describe('DetailBeerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return get beers by id ', fakeAsync(() => {
+    const injmockBeerService = fixture.debugElement.injector.get(PunkAPIService);
+    spyOn(injmockBeerService, 'getBeerbyId').and.callFake(() => {
+      return of(mockBeer).pipe(delay(300));
+    });
+
+    component.getDetailBeer();
+    tick(300);
+
+    expect(component).toBeTruthy();
+  }));
+
 });
