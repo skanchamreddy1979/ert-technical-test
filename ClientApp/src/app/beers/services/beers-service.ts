@@ -13,12 +13,12 @@ export class BeersService {
   getBeerList(): Observable<Beer[]> {
     return this.http.get<Beer[]>(environment.apiUrl);
   }
-
-  getBeerById(id: number): Observable<Beer[]> {
+// Below method is used to fetch Beer name by its id.
+  getBeerById(id: string): Observable<Beer[]> {
     const url = environment.apiUrl + '/' + id;
     return this.http.get<Beer[]>(url);
   }
-
+// Below method is used to fetch beer information by its name
   searchBeerName(beername: string): Observable<any> {
     return this.http.get(environment.apiUrl + '?beer_name=' + beername);
   }

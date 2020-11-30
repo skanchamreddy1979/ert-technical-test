@@ -11,5 +11,12 @@ export class FavouritesComponent implements OnInit {
 
   ngOnInit() {
   }
-
+// Below method is used to call a service and get all the favourites against an email id.
+fetchFavouritesList(email: string): void {
+  // Todo
+}
+// Below method is used to call a service that will add beer to favourites.
+addToFavourites(id: string, email: string):  void {
+// Todo
+}
 }

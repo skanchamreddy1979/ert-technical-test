@@ -29,6 +29,7 @@ describe('BrewdogListComponent', () => {
 
   it('should call oninit method', () => {
     component.ngOnInit();
+    spyOn(beersService, 'getBeerList');
     expect(component).toBeTruthy();
   });
 
@@ -49,4 +50,8 @@ describe('BrewdogListComponent', () => {
     expect(component).toBeTruthy();
   }));
 
+  it('should destroy', () => {
+    component.ngOnDestroy();
+    expect(component).toBeTruthy();
+  });
 });
