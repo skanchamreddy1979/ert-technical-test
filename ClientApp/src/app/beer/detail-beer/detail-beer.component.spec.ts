@@ -26,7 +26,6 @@ describe('DetailBeerComponent', () => {
         HttpClientTestingModule, RouterModule.forRoot([])
       ],
       providers: [
-        //{ provide: PunkAPIService, useValue: mockBeerService },
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 1 } } } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
