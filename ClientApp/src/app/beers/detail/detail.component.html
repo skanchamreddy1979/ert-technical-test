@@ -1,0 +1,20 @@
+<div class="mat-app-background basic-container">
+  <h1>Beer Details</h1>
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="column">
+        <img src="{{beers?.image_url}}" alt="Image loading...">
+      </div>
+      <div class="column">
+        <ul>
+          <li> <strong>Name :</strong> {{beers?.name}} </li>
+          <li> <strong>Abv :</strong> {{beers?.abv}} </li>
+          <li> <strong>Description :</strong> {{beers?.description}} </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <input type="button" class="btn" (click)="onBackButtonClick()" value="Back to Beer List"/>
+</div>

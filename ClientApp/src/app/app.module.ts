@@ -8,25 +8,24 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
-
-import { ListComponent } from './list/list.component';
-
-import { WelcomeComponent } from './welcome/welcome.component';
+import {  BeersService, DetailComponent, BrewdogListComponent } from './beers';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, WelcomeComponent],
+  declarations: [AppComponent, BrewdogListComponent, DetailComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: '', component: WelcomeComponent, pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
+      { path: '', component: BrewdogListComponent, pathMatch: 'full' },
+      { path: 'detail', component: DetailComponent },
+      { path: 'list', component: BrewdogListComponent }
     ]),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [BeersService],
   bootstrap: [AppComponent],
+  entryComponents: [DetailComponent]
 })
-export class AppModule {}
+export class AppModule { }

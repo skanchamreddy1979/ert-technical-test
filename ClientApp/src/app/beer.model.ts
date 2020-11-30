@@ -3,6 +3,6 @@ export interface Beer {
   name: string;
   tagLine: string;
   abv: string;
-  imgUrl: string;
+  image_url: string;
   description: string;
 }
