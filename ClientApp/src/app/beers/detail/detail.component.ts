@@ -20,7 +20,7 @@ export class DetailComponent implements OnInit {
   getBeerListById(id: string): void {
     this.beersService.getBeerById(id).subscribe(res => {
       if (res && res.length > 0) {
-        this.beers = <Beer>res[0];
+        this.beers = res[0];
       }
     });
   }

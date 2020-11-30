@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Beer } from 'src/app/beer.model';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material';
 import { BeersService } from '../services/beers-service';
 import { Subscription } from 'rxjs';
@@ -42,7 +42,7 @@ export class BrewdogListComponent implements OnInit, OnDestroy {
   }
 // Below method is used to bind Mat data source.
   private bindBeers(beers: Beer[]) {
-    this.beers = <Beer[]>beers;
+    this.beers = beers;
     this.dataSource = new MatTableDataSource(this.beers);
     this.totalRecords = this.beers.length;
     this.dataSource.paginator = this.paginator;

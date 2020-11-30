@@ -7,7 +7,7 @@ import { BrewdogListComponent } from './list.component';
 describe('BrewdogListComponent', () => {
   let component: BrewdogListComponent;
   let fixture: ComponentFixture<BrewdogListComponent>;
-  let beersService;
+  let beersService: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
