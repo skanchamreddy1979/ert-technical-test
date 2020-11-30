@@ -14,6 +14,7 @@
         <th>Beer Name</th>
         <th>TagLine</th>
         <th>First Brewed</th>
+        <th>Abv</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
         <td><span><a [routerLink]="['/beer-details/'+beer.id]">{{beer.name}}</a></span></td>
         <td><span>{{beer.tagline}}</span></td>
         <td><span>{{beer.first_brewed}}</span></td>
+        <td><span>{{beer.abv}}</span></td>
 
       </tr>
     </tbody>

@@ -5,7 +5,7 @@ import { BeerDetailsComponent } from './Beer/brewdogbeer-details/beer-details.co
 
 const routes: Routes = [
 
-  //Array to declare routes
+  // Array to declare routes
   { path: '', component: BrewdogbeerlistComponent, pathMatch: 'full' },
   { path: 'beers', component: BrewdogbeerlistComponent, pathMatch: 'full' },
   { path: 'beer-details/:id', component: BeerDetailsComponent, pathMatch: 'full' },

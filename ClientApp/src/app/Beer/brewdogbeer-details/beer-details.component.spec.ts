@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { BrewdogserService } from '../brewdogser.service';
 import { BeerDetailsComponent } from './beer-details.component';
-import { IBeerList } from '../../beerlist';
+import { IBeerList } from '../../Beer/beerlist';
 
 describe('BeerDetailsComponent', () => {
   let component: BeerDetailsComponent;

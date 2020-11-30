@@ -6,7 +6,6 @@ import { BrewdogserService } from './brewdogser.service';
 describe('BrewdogserService', () => {
   let SERVICE: BrewdogserService;
   let http: HttpClient;
-  
   beforeEach(() => {
     TestBed.configureTestingModule({});
     SERVICE = TestBed.inject(BrewdogserService);

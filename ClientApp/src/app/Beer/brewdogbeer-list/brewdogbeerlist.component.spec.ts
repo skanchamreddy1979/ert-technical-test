@@ -3,7 +3,7 @@ import { BrewdogbeerlistComponent } from './brewdogbeerlist.component';
 import { BrewdogserService } from '../brewdogser.service';
 import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
-import { IBeerList } from 'src/app/beerlist';
+import { IBeerList } from 'src/app/Beer/beerlist';
 
 
 describe('BrewdogbeerlistComponent', () => {
