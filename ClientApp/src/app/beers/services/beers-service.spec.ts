@@ -19,8 +19,6 @@ describe('BeerService', () => {
     });
 
     it('should be created', () => {
-        // tslint:disable-next-line: no-shadowed-variable
-        const service: BeersService = TestBed.get(BeersService);
         expect(service).toBeTruthy();
     });
 

@@ -43,9 +43,6 @@ describe('BrewdogListComponent', () => {
   }));
 
   it('should call navigate to details page', async(() => {
-    const mockResponse = [
-      {id: 1, name: 'Buzz', tagline: 'A Real Bitter Experience.', first_brewed: '09/2007'}
-    ];
     component.navigateToDetails('1');
     expect(component).toBeTruthy();
   }));

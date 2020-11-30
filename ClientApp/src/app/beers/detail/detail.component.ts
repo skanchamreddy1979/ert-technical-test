@@ -10,15 +10,15 @@ import { BeersService } from '../services/beers-service';
 })
 export class DetailComponent implements OnInit {
   beers: Beer;
-  constructor(private _beersService: BeersService, private _router: Router) { }
+  constructor(private beersService: BeersService, private _router: Router) { }
 // Below method is used to initialize all the variables.
   ngOnInit() {
     const id = sessionStorage.getItem('beerId');
     this.getBeerListById(id);
   }
   // Below method calls service to fetch beer by id
-  getBeerListById(id: string) : void{
-    this._beersService.getBeerById(id).subscribe(res => {
+  getBeerListById(id: string): void {
+    this.beersService.getBeerById(id).subscribe(res => {
       if (res && res.length > 0) {
         this.beers = <Beer>res[0];
       }

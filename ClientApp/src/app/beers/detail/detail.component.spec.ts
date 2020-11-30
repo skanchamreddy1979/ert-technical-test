@@ -7,7 +7,7 @@ import { DetailComponent } from './detail.component';
 describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
-  let beersService;
+  let beersService: BeersService;
   beforeEach(async(() => {
     const mockDialogRef = {
       close: jasmine.createSpy('close')

@@ -19,7 +19,7 @@ export class BrewdogListComponent implements OnInit, OnDestroy {
   private filterSubscription: Subscription;
   public dataSource = new MatTableDataSource<any>([]);
   displayedColumns: string[] = ['name', 'tagline', 'first_brewed', 'abv'];
-  constructor(private _beersService: BeersService, private router: Router) { }
+  constructor(private beersService: BeersService, private router: Router) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -35,7 +35,7 @@ export class BrewdogListComponent implements OnInit, OnDestroy {
 // Below method is used to search a beer by its name.
   getFilterData(event: any) {
     if (event.target.value !== '' || event.target.value !== null) {
-      this.filterSubscription = this._beersService.searchBeerName(event.target.value).subscribe(res => {
+      this.filterSubscription = this.beersService.searchBeerName(event.target.value).subscribe(res => {
         this.bindBeers(res);
       });
     }
@@ -49,7 +49,7 @@ export class BrewdogListComponent implements OnInit, OnDestroy {
   }
 // Below method fetches all the beers from the api.
   private getBeers() {
-    this.listSubscription = this._beersService.getBeerList().subscribe(res => {
+    this.listSubscription = this.beersService.getBeerList().subscribe(res => {
       this.bindBeers(res);
     });
 
