@@ -34,12 +34,12 @@
             <td>
               <ng-container *ngIf="beers.isChecked">
                 <span [id]="beers.id" >
-                  <i class="fa fa-star" aria-hidden="true" (click)="getIconCount(beers.id,true)"></i>
+                  <i class="fa fa-star" aria-hidden="true" role="button" (click)="getFevoriteCount(beers.id,true)"></i>
                 </span>
               </ng-container>
               <ng-container *ngIf="!beers.isChecked">
                 <span [id]="beers.id">
-                  <i class="fa fa-star-o" aria-hidden="true" (click)="getIconCount(beers.id, false)"></i>
+                  <i class="fa fa-star-o" aria-hidden="true"role="button"  (click)="getFevoriteCount(beers.id, false)"></i>
                 </span>
               </ng-container>
           </td>

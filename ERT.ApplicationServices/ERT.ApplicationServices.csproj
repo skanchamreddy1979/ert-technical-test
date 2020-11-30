@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ERT.Common\ERT.Common.csproj" />
+    <ProjectReference Include="..\ERT.Domain\ERT.Domain.csproj" />
+    <ProjectReference Include="..\ERT.Repository\ERT.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

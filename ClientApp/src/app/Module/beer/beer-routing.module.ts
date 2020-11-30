@@ -6,7 +6,13 @@ import { BeersListComponent } from './beers-list/beers-list.component';
 const routes: Routes = [
   {
     path: '',
-    component: BeersListComponent
+    component: BeersListComponent,
+    data: { action: 'isBeerListComp'}
+  },
+  {
+    path: 'beerlist',
+    component: BeersListComponent,
+    data: { action: 'isBeerList'}
   },
   {
     path: 'details/:id',

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace ert_beer_app
+namespace ERT.Api
 {
     public class Program
     {
@@ -21,6 +21,7 @@ namespace ert_beer_app
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
                 });
     }
 }
