@@ -1,5 +1,24 @@
-<body>
-  <div>
-    <router-outlet></router-outlet>
+<!--<body>-->
+  <div [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <a><h1 class="app-name" routerLink="/">BEER Application</h1></a>
+    </mat-toolbar>
+
+    <mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0" >
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="true">
+        <mat-nav-list fullscreen>
+          <!--<a mat-list-item routerLink="/" *ngFor="let nav of fillerNav">{{nav}}</a>-->
+          <a mat-list-item routerLink="/" router-active>Home</a>
+          <a mat-list-item routerLink="/BeerList">Beer List</a>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <div class="body-content">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   </div>
-</body>
+<!--</body>-->

@@ -1,0 +1,11 @@
+mat-toolbar {
+  background-color: #474648 !important;
+}
+
+.app-name {
+  cursor: pointer;
+}
+
+mat-sidenav-content{
+    padding:15px;
+}

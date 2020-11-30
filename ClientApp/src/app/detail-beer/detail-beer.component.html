@@ -1,0 +1,24 @@
+<div class="container" *ngIf="beer">
+  <form [formGroup]="beerFormGroup" class="form">
+    <h1>{{beer.name | uppercase}} DETAILS</h1>
+
+    <mat-form-field class="form-element">
+      <label> Beer Name </label>
+      <input matInput formControlName="BeerName" value="{{beer.name | uppercase}}">
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <label> Description </label>
+      <textarea matInput matTextareaAutosize formControlName="description" value="{{beer.description}}"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <label> ABV </label>
+      <input matInput formControlName="abv" value="{{beer.abv}}">
+    </mat-form-field>
+
+    <div class="beerImage">
+      <img src="{{beer.image_url}}" alt="Image of {{beer.name}}.{{beer.description}}" height="350">
+    </div>
+  </form>
+</div>
