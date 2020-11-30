@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PunkAPIService } from '../shared/punk-api.service';
+import { PunkAPIService } from '../../shared/punk-api.service';
 import { Subscription } from 'rxjs';
-import { Beer } from '../beer.model';
-import { ActivatedRoute } from '@angular/router';
+import { Beer } from '../../beer.model';
+import { ActivatedRoute,  } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -19,7 +19,9 @@ export class DetailBeerComponent implements OnInit, OnDestroy {
     'abv': null
   });
 
-  constructor(private route: ActivatedRoute, private punkAPIService: PunkAPIService, private formBuilder: FormBuilder) { }
+  constructor(private route: ActivatedRoute, private punkAPIService: PunkAPIService, private formBuilder: FormBuilder) {
+  }
+
 
   ngOnInit() {
     this.beerFormGroup.disable();
@@ -28,7 +30,7 @@ export class DetailBeerComponent implements OnInit, OnDestroy {
 
   getDetailBeer(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.subscriptions.add(this.punkAPIService.getBeerbyID(id).subscribe(beer => {
+    this.subscriptions.add(this.punkAPIService.getBeerbyId(id).subscribe(beer => {
       this.beer = beer[0];
     }));
   }

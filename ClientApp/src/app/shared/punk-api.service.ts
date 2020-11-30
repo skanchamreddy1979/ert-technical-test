@@ -19,19 +19,22 @@ export class PunkAPIService {
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
+  // Return all beer set
   getAllBeers(): Observable<any> {
     return this.http.get<Beer>(this.beerApiUrl + 'beers').pipe(
       catchError(this.handleError)
     );
   }
 
-  getBeerbyID(id: number): Observable<Beer> {
+  // Get and return by id
+  getBeerbyId(id: number): Observable<Beer> {
     return this.http.get<Beer>(`${this.beerApiUrl}beers/${id}`).pipe(
       tap(data => console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
+  // Handling the HTTP Response Error
   handleError(error: HttpErrorResponse) {
     let errorMessage: string;
     if (error.error instanceof ErrorEvent) {

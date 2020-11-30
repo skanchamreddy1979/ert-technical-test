@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DetailBeerComponent } from './detail-beer.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PunkAPIService } from '../shared/punk-api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PunkAPIService } from 'src/app/shared/punk-api.service';
 
 describe('DetailBeerComponent', () => {
   let component: DetailBeerComponent;

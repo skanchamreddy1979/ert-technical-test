@@ -8,8 +8,8 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { BeerListComponent } from './beer-list/beer-list.component';
-import { DetailBeerComponent } from './detail-beer/detail-beer.component';
+import { BeerListComponent } from './beer/beer-list/beer-list.component';
+import { DetailBeerComponent } from './beer/detail-beer/detail-beer.component';
 
 @NgModule({
   declarations: [AppComponent, WelcomeComponent, BeerListComponent, DetailBeerComponent],

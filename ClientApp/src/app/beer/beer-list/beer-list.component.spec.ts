@@ -1,10 +1,10 @@
 import { NO_ERRORS_SCHEMA, Input, HostListener } from '@angular/core';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { BeerListComponent } from './beer-list.component';
-import { PunkAPIService } from '../shared/punk-api.service';
+import { PunkAPIService } from '../../shared/punk-api.service';
 import { delay } from 'rxjs/operators';
 import { of, Observable, Observer } from 'rxjs';
-import { Beer } from '../beer.model';
+import { Beer } from '../../beer.model';
 import { MatTableModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterModule, Router } from '@angular/router';
