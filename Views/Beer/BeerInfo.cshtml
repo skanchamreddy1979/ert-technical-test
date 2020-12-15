@@ -1,0 +1,36 @@
+﻿@model BeerModel
+@using (Html.BeginForm(controllerName: "Beer", actionName: "save", method: FormMethod.Post))
+{
+<h1 class="display-4">@(Model.Id>0? $"Edit - {Model.Name}" : "Add New Beer")</h1>
+<div class="form-group">
+        @Html.LabelFor(x => x.Id)
+        @Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Id)
+</div>
+<div class="form-group">
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name)
+</div>
+<div class="form-group">
+    @Html.LabelFor(x => x.Tag_Line)
+    @Html.TextBoxFor(x => x.Tag_Line, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Tag_Line)
+</div>
+<div class="form-group">
+    @Html.LabelFor(x => x.First_Brewed)
+    @Html.TextBoxFor(x => x.First_Brewed, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.First_Brewed)
+</div>
+<div class="form-group">
+    @Html.LabelFor(x => x.Abv)
+    @Html.TextBoxFor(x => x.Abv, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Abv)
+</div>
+
+@Html.HiddenFor(x => x.Id)
+        <button type="submit" class="btn btn-primary">Save</button>}
+@section Scripts
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
