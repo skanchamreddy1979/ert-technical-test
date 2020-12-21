@@ -1,204 +1,162 @@
-﻿@model ert_beer_app.Models.BeerModel
+﻿@model PaginatedList<ert_beer_app.Models.BeerModel>
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//code.jquery.com/jquery-1.12.3.js"></script>
-<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<head>
+    <link href="~/fontawesome/css/all.css" rel="stylesheet" />
+</head>
 
-<h1> Welcome To Brew Dog Beers </h1>
-<div class="form-group">
-    <label>Email</label>
-    <input type="text" id="txtEmail" />
-    <input type="button" id="btnFavorites" value="Add to Favorites" />
-</div>
+<h1 class="clr wdt">Brew Dog Beers</h1>
 <br />
-
-<table id="tblPopulation" class="table table-striped table-bordered table-hover bgc" border="1">
-    <thead>
-        <tr>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Tag_Line</td>
-            <td>First_Brewed</td>
-            <td>ABV</td>
-        </tr>
-        <tr>
-            <td>
-                <input type="text" />
-            </td>
-            <td>
-                <input type="text" />
-            </td>
-            <td>
-                <input type="text" />
-            </td>
-            <td>
-                <input type="text" />
-            </td>
-            <td>
-                <input type="text" />
-            </td>
-        </tr>
-    </thead>
-</table>
-
-<div id="beerHeader" class="aln"> Beer Details </div>
-<table id="tblBeer" class="table table-striped table-bordered table-hover blue" border="1" style="width:100%">
-    <thead>
-        <tr>
-            <td>Name</td>
-            <td>Tag Line</td>
-            <td>First_Brewed</td>
-            <td>ABV</td>
-            <td>Image</td>
-        </tr>
-    </thead>
-</table>
-
-<script>
-    $(document).ready(function () {
-        PopulateData(); $('#tblBeer').hide(); $('#beerHeader').hide();
-    });
-
-    $('#tblPopulation').on('click', 'tr', function () {
-        $("#tblBeer").on("draw.dt", function () {
-            $(this).find(".dataTables_empty").parents('tbody').empty();
-        }).DataTable();
-        var data = $('#tblPopulation').DataTable().row(this).data();        
-        var table2 = $('#tblBeer').DataTable();
-        var rows = table2
-            .rows()
-            .remove()
-            .draw();
-
-        var tr = null;
-        tr += "<tr><td>" + data[1]
-            + "</td><td>" + data[2]
-            + "</td><td>" + data[3]
-            + "</td><td>" + data[4]
-            + "</td></tr>";
-        $('#tblBeer').append(tr);       
-        $('#tblBeer').show(); $('#beerHeader').show();
-    });
+@{
+    var fields = (Model ?? Enumerable.Empty<BeerModel>()).ToList();
+}
 
 
-    $("#btnFavorites").click(function (e) {
-        SaveFavorites();
-    });
+@using (Html.BeginForm("Beer", "Beer"))
+{
+    <div>
+        @Html.Label("Beer Name")
+        @Html.TextBox("searchBeersByName", null, new { @class = "form-control valid", @data_val = "true", @data_val_required = "Beer Name is required" })
+        <input type="submit" id="SearchBeersByName" value="Search By Name" class="clr" />
+    </div>
+}
 
-    function SaveFavorites() {
-        var table = $('#tblPopulation').DataTable();
-        if ($('[name="checkbx"]:checked').length <= 0) {
-            alert('Please select minimum one Beer');
-            return;
-        }
-        if ($("#txtEmail").val().length == 0) {
-            alert('Please enter Email Id');            
-            return;
-        }
-        else {
-            var emailId = $("#txtEmail").val();
-            var CData = new Array();
-            $('[name="checkbx"]:checked').each(function (data) {
-                var rowData = table.row($(this).parents('tr')).data();
-                var obj = {
-                    "id": rowData[0],
-                    "name": rowData[1],
-                    "tagline": rowData[2],
-                    "first_brewed": rowData[3],
-                    "abv": rowData[4]
-                };
-                CData.push(obj);
-            });
-            for (var i = 0; i < CData.length; i++) {
-                var beer = new Object();
-                beer.name = CData[i].name;
-                beer.Tag_Line = CData[i].tagline;
-                beer.first_brewed = CData[i].first_brewed;
-                beer.abv = CData[i].abv;
-                beer.email = emailId;
-                $.ajax({
-                    type: "POST",
-                    url: "/Beer/Save",
-                    data: '{beer: ' + JSON.stringify(beer) + '}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        if (response != null) {
-                            alert("Name : " + response.name + ", Designation : " + response.tagline + ", Location :" + response.abv);
-                        }
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        $('input[type="checkbox"]:checked').prop('checked', false);
-                        $("#txtEmail").val('');                        
-                    }
-                });
-            }
-        }
-    }
-
-    function PopulateData() {
-        $("#tblPopulation").show();
-        $.ajax({
-            url: 'https://api.punkapi.com/v2/beers?',
-            dataType: "json",
-            type: "Get",
-            success: function (data) {
-                var tr;
-                console.log(data);
-                for (var i = 0; i < data.length; i++) {
-                    tr += "<tr><td> <input type='checkbox' name='checkbx' id='chk'>" + data[i].id
-                        + "</td><td>" + data[i].name
-                        + "</td><td>" + data[i].tagline
-                        + "</td><td>" + data[i].first_brewed
-                        + "</td><td>" + data[i].abv
-                        + "</td></tr>";
-
+@using (Html.BeginForm(actionName: "AddtoFavorites", controllerName: "Beer", method: FormMethod.Post))
+{
+    <div class="form-group">
+        <table class="table" border="1" width="80%">
+            <thead>
+                <tr class="clr" style="grid-row">
+                    <th class="">Check</th>
+                    <th class="">ID</th>
+                    <th class="">Beer Name</th>
+                    <th class="">TagLine</th>
+                    <th class="">First_Brewed</th>
+                    <th class="">Abv</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < fields.Count; i++)
+                {
+                    <tr>
+                        <td class="selected">
+                            @Html.CheckBoxFor(modelItem => @fields[i].checkboxAnswer)
+                        </td>
+                        <td class="selected">
+                            @Html.DisplayFor(modelItem => @fields[i].Id)
+                        </td>
+                        <td class="selected">
+                            @Html.DisplayFor(modelItem => @fields[i].Name)
+                        </td>
+                        <td class="selected">
+                            @Html.DisplayFor(modelItem => @fields[i].TagLine)
+                        </td>
+                        <td class="selected">
+                            @Html.DisplayFor(modelItem => @fields[i].First_Brewed)
+                        </td>
+                        <td class="selected">
+                            @Html.DisplayFor(modelItem => @fields[i].Abv)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", @fields[i])
+                        </td>
+                    </tr>
                 }
-                $('#tblPopulation').append(tr);
 
-                tblFormate();
-            },
-            error: function (xhr) {
-                alert('No Valid Data');
+            </tbody>
+        </table>
+        <br />
+        <div>
+            @{
+                var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+                var NextvDisabled = !Model.NextPage ? "disabled" : "";
             }
-        });
+            <a asp-action="Beer"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               class="btn btn-default @prevDisabled">
+                Previous
+            </a>
+            <a asp-action="Beer"
+               asp-route-pageNumber="@(Model.PageIndex + 1)"
+               class="btn btn-default @NextvDisabled">
+                Next
+            </a>
+        </div>
+        <br />
+
+        @Html.Label("Email Id")
+        @Html.TextBox("email")
+        <button type="submit" name="submit" value="AddtoFavorites" class="clr">Add to Favorites</button>
+    </div>
+}
+<br />
+@using (Html.BeginForm(controllerName: "Beer", actionName: "SearchFavoriteBeersByEmail"))
+{
+    <div>
+        @Html.TextBox("searchFavorites")
+        <input type="submit" id="submit" value="Search Favorite Beers" class="clr" />
+    </div>
+}
+
+<style type="text/css">
+    .clr {
+        background-color: cadetblue;
+        color: white;
+        text-align:center;
+              
+    }
+    .wdt {
+        width: 80%;
     }
 
-    function tblFormate() {
-        var table = $('#tblPopulation').DataTable(
-            {
-                //"searching": false,
-                "lengthMenu": [[10, 20, 50, 100, 150, -1], [10, 20, 50, 100, 150, "All"]]
-            });
-        //Apply the search
-        table.columns().eq(0).each(function (colIdx) {
-
-            $('input', table.column(colIdx).header()).on('keyup change', function () {
-                table
-                    .column(colIdx)
-                    .search(this.value)
-                    .draw();
-            });
-        });
+    .selected {
+        background-color: #004b89;
+        color: white;
+        font-weight: bold;        
     }
 
-</script>
-<style>
-    h1 {
+
+    td,
+    th {
+        border: 1px solid rgb(190, 190, 190);
+        padding: 10px;
+    }
+
+    td {
         text-align: center;
-        margin-top: 5px;
     }
-    .aln {
-        text-align: center;
-        font-size:xx-large;
+
+    tr:nth-child(even) {
+        background-color: #eee;
     }
-    .bgc {
-        background-color: whitesmoke !important;
+
+    th[scope="col"] {
+        background-color: #696969;
+        color: #fff;
     }
+
+    th[scope="row"] {
+        background-color: #d7d9f2;
+    }
+
+    caption {
+        padding: 10px;
+        caption-side: bottom;
+    }
+
+    table {
+        border-collapse: collapse;
+        border: 2px solid rgb(200, 200, 200);
+        letter-spacing: 1px;
+        font-family: sans-serif;
+        font-size: .8rem;
+    }
+
+
 </style>
+@section Scripts
+    {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,5 +1,5 @@
 using ert_beer_app.Data;
-using ert_beer_app.Services;
+using ert_beer_app.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +33,8 @@ namespace ert_beer_app
             {
                 options.AreaViewLocationFormats.Clear();
                 options.AreaViewLocationFormats.Add("/Views/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Views/{1}/{1}.cshtml");
+                options.AreaViewLocationFormats.Add("/Views/{1}/{2}.cshtml");
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
             });
             services.AddControllersWithViews();
@@ -47,12 +49,8 @@ namespace ert_beer_app
                 .UseLoggerFactory(logFactory);
 
             });
-            services.AddTransient<IBeerService, BeerEFService>();
-            // In production, the Angular files will be served from this directory
-            //services.AddSpaStaticFiles(configuration =>
-            //{
-            //    configuration.RootPath = "ClientApp/dist";
-            //});
+            services.AddTransient<IBeerRepository, BeerRepository>();            
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,11 +68,7 @@ namespace ert_beer_app
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            //if (!env.IsDevelopment())
-            //{
-            //    app.UseSpaStaticFiles();
-            //}
+            app.UseStaticFiles();            
 
             app.UseRouting();
 
@@ -86,19 +80,6 @@ namespace ert_beer_app
                     name: "default",
                     pattern: "{controller=Beer}/{action=Beer}/{id?}");
             });
-
-            //app.UseSpa(spa =>
-            //{
-            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
-            //    // see https://go.microsoft.com/fwlink/?linkid=864501
-
-            //    spa.Options.SourcePath = "ClientApp";
-
-            //    if (env.IsDevelopment())
-            //    {
-            //        //spa.UseAngularCliServer(npmScript: "start");
-            //    }
-            //});
         }
     }
 }

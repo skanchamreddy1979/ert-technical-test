@@ -1,35 +1,54 @@
 ﻿@model BeerModel
-@using (Html.BeginForm(controllerName: "Beer", actionName: "save", method: FormMethod.Post))
-{
-<h1 class="display-4">@(Model.Id>0? $"Edit - {Model.Name}" : "Add New Beer")</h1>
-<div class="form-group">
-        @Html.LabelFor(x => x.Id)
-        @Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Id)
-</div>
-<div class="form-group">
-        @Html.LabelFor(x => x.Name)
-        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Name)
-</div>
-<div class="form-group">
-    @Html.LabelFor(x => x.Tag_Line)
-    @Html.TextBoxFor(x => x.Tag_Line, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Tag_Line)
-</div>
-<div class="form-group">
-    @Html.LabelFor(x => x.First_Brewed)
-    @Html.TextBoxFor(x => x.First_Brewed, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.First_Brewed)
-</div>
-<div class="form-group">
-    @Html.LabelFor(x => x.Abv)
-    @Html.TextBoxFor(x => x.Abv, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Abv)
+@{   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1> Beer Details</h1>
+<div id="divBeerInfo">
+    <table id="tblBeerInfo" class="table" border="1" width="80%" style="text-align:center" >
+        <thead>
+            <tr class="clr">               
+                <th>Beer Name</th>
+                <th>TagLine</th>
+                <th>First_Brewed</th>
+                <th>Abv</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>                
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.TagLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.First_Brewed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Abv)
+                </td>
+                <td>
+                    <img src=@Model.image_url
+                         class="rounded-circle"
+                         width="200" height="450"
+                         asp-append-version="true" />                   
+                    
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </div>
 
-@Html.HiddenFor(x => x.Id)
-        <button type="submit" class="btn btn-primary">Save</button>}
+<a href="##" onClick="history.go(-1); return false;"> Return to Main Data</a>
+
+<style type="text/css">
+    .clr {
+        background-color: cadetblue;
+        color: white;
+    }
+</style>
 @section Scripts
 {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
