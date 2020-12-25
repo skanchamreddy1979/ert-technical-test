@@ -27,28 +27,16 @@ namespace ert_beer_app
         {
             services.Configure<RazorViewEngineOptions>(options =>
             {
-                //options.AreaViewLocationFormats.Clear();
-                //options.AreaViewLocationFormats.Add("/Views/{1}/{0}.cshtml");
-                //options.AreaViewLocationFormats.Add("/Views/{1}/{1}.cshtml");
-                //options.AreaViewLocationFormats.Add("/Views/{1}/{2}.cshtml");
-                //options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+                options.AreaViewLocationFormats.Clear();
+                options.AreaViewLocationFormats.Add("/Views/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Views/{1}/{1}.cshtml");                
+                options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
             });
             services.AddHttpClient();
-            services.AddScoped<ERT.BusinessServices.Interfaces.IBeerService, BeerService>();
-            //services.AddScoped<Services.IBeerService, BeerEFService>();
+            services.AddScoped<ERT.BusinessServices.Interfaces.IBeerService, BeerService>();            
             services.AddControllersWithViews();
             services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
             var logFactory = LoggerFactory.Create(b => b.AddConsole().AddDebug());
-
-            //services.AddDbContext<BeerDBContext>(options =>
-            //{
-            //    options
-            //    .UseSqlServer(Configuration.GetConnectionString("AppConnection"))
-            //    .EnableSensitiveDataLogging()
-            //    .UseLoggerFactory(logFactory);
-
-            //});
-                      
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
