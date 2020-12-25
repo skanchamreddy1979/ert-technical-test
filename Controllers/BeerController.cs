@@ -22,9 +22,8 @@ namespace ert_beer_app.Controllers
             beerModel.First_Brewed = model.First_Brewed;
             beerModel.Abv = model.Abv;
             beerModel.image_url = model.image_url;
-            return View("BeerInfo", beerModel);           
+            return View("BeerInfo", beerModel);
         }
-
         public ActionResult GetAllBeers(string searchBeersByName = null, int pageNumber = 1)
         {            
             if (pageNumber < 1) pageNumber = 1;
