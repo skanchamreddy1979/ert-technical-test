@@ -1,52 +1,77 @@
-﻿@model BeerModel
-@{   
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model ERT.Entities.BeerModel
+@{
+    ViewBag.Title = "Details";
+
 }
-<h1> Beer Details</h1>
-<div id="divBeerInfo">
-    <table id="tblBeerInfo" class="table" border="1" width="80%" style="text-align:center" >
-        <thead>
-            <tr class="clr">               
-                <th>Beer Name</th>
-                <th>TagLine</th>
-                <th>First_Brewed</th>
-                <th>Abv</th>
-                <th>Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>                
-                <td>
-                    @Html.DisplayFor(modelItem => Model.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.TagLine)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.First_Brewed)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.Abv)
-                </td>
-                <td>
-                    <img src=@Model.image_url
-                         class="rounded-circle"
-                         width="200" height="450"
-                         asp-append-version="true" />                   
-                    
-                </td>
-            </tr>
+<h1 class="hstyle">Beer Details</h1>
+@using (Html.BeginForm())
+{
 
-        </tbody>
-    </table>
-</div>
+    <div id="divBeerInfo">
+        <table id="tblBeerInfo" class="table" border="1">
+            <thead>
+                <tr class="clr">
+                    <th>Beer Name</th>
+                    <th>TagLine</th>
+                    <th>First_Brewed</th>
+                    <th>Abv</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="center">
+                        @Html.DisplayFor(modelItem => Model.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.TagLine)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.First_Brewed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Abv)
+                    </td>
+                    <td>
+                        @*<img src="@Url.Content(Model.image_url)" class="rounded-circle" width="200" height="450" asp-append-version="true" />*@
+                        <img src=@Model.image_url class="rounded-circle" width="200" height="450" asp-append-version="true" />
+                    </td>
+                </tr>
 
-<a href="##" onClick="history.go(-1); return false;"> Return to Main Data</a>
+            </tbody>
+        </table>
+    </div>
+}
+<br />
+@Html.ActionLink("Back to List", "GetAllBeers")
 
 <style type="text/css">
     .clr {
         background-color: cadetblue;
         color: white;
+        text-align: center;
+        height: 30px;
+    }
+
+    .hstyle {
+        background-color: #004b89;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        width: 80%;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        border: 2px solid rgb(200, 200, 200);
+        letter-spacing: 1px;
+        font-family: sans-serif;
+        font-size: .8rem;
     }
 </style>
 @section Scripts

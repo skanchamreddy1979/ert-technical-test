@@ -1,6 +1,6 @@
 using System;
 
-namespace ert_beer_app.Models
+namespace ERT.Entities
 {
     public class ErrorViewModel
     {

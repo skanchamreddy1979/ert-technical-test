@@ -1,4 +1,4 @@
-﻿--Create Table
+﻿--Create Table Script
 CREATE TABLE [dbo].[Beer] (
     [BeerId] INT IDENTITY (1, 1) NOT NULL,
     [Id] INT NULL,
@@ -20,8 +20,8 @@ INSERT INTO BEER([Id], [Name],[TagLine],[First_Brewed],[Abv] ,[image_url], [Emai
 VALUES(1,'Avery Brown Dredge','Bloggers','02/2011','7.2','imgurl1','abc@gmail.com',GETDATE(),GETDATE(),1,10,0)
 
 INSERT INTO BEER([Id], [Name],[TagLine],[First_Brewed],[Abv] ,[image_url], [Email] , [CreatedDate],[ModifiedDate],[CurrentPageIndex],[PageCount],[checkboxAnswer])
-VALUES(2,'india','Blogger','03/2014','6.8','imgurl2','aaa@gmail.com',GETDATE(),GETDATE(),1,10,1)
+VALUES(2,'india','Blogger','03/2018','6.8','imgurl2','aaa@gmail.com',GETDATE(),GETDATE(),1,10,1)
 
 
 INSERT INTO BEER([Id], [Name],[TagLine],[First_Brewed],[Abv] ,[image_url], [Email] , [CreatedDate],[ModifiedDate],[CurrentPageIndex],[PageCount],[checkboxAnswer])
-VALUES(2,'india','Blogger','03/2014','6.8','imgurl2','aaa@gmail.com',GETDATE(),GETDATE(),1,10,1)
+VALUES(3,'india','Blogger','03/2019','6.8','imgurl2','aaa@gmail.com',GETDATE(),GETDATE(),1,10,1)

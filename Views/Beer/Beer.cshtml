@@ -1,70 +1,47 @@
-﻿@model PaginatedList<ert_beer_app.Models.BeerModel>
+﻿@model PaginatedList<ERT.Entities.BeerModel>
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
-<head>
-    <link href="~/fontawesome/css/all.css" rel="stylesheet" />
-</head>
-
-<h1 class="clr wdt">Brew Dog Beers</h1>
-<br />
 @{
-    var fields = (Model ?? Enumerable.Empty<BeerModel>()).ToList();
+    var pageIndexNum = 0;
 }
+<h1 class="selected hwidth">Brew Dog Beers</h1>
+<div>
+    <br />
 
+    @using (Html.BeginForm("GetAllBeers", "Beer"))
+    {
+        <div>
+            @Html.Label("Beer Name")
+            @Html.TextBox("searchBeersByName")
+            <input type="submit" id="SearchBeersByName" value="Search By Name" class="clr" />
+        </div>
 
-@using (Html.BeginForm("Beer", "Beer"))
-{
-    <div>
-        @Html.Label("Beer Name")
-        @Html.TextBox("searchBeersByName", null, new { @class = "form-control valid", @data_val = "true", @data_val_required = "Beer Name is required" })
-        <input type="submit" id="SearchBeersByName" value="Search By Name" class="clr" />
-    </div>
-}
-
-@using (Html.BeginForm(actionName: "AddtoFavorites", controllerName: "Beer", method: FormMethod.Post))
-{
-    <div class="form-group">
-        <table class="table" border="1" width="80%">
+        <br />
+        <table class="table">
             <thead>
-                <tr class="clr" style="grid-row">
-                    <th class="">Check</th>
-                    <th class="">ID</th>
-                    <th class="">Beer Name</th>
-                    <th class="">TagLine</th>
-                    <th class="">First_Brewed</th>
-                    <th class="">Abv</th>
-                    <th></th>
+                <tr class="clr">
+                    <th>Check</th>                    
+                    <th>Beer Name</th>
+                    <th>TagLine</th>
+                    <th>First_Brewed</th>
+                    <th>Abv</th>                    
                 </tr>
             </thead>
             <tbody>
-                @for (var i = 0; i < fields.Count; i++)
-                {
-                    <tr>
-                        <td class="selected">
-                            @Html.CheckBoxFor(modelItem => @fields[i].checkboxAnswer)
-                        </td>
-                        <td class="selected">
-                            @Html.DisplayFor(modelItem => @fields[i].Id)
-                        </td>
-                        <td class="selected">
-                            @Html.DisplayFor(modelItem => @fields[i].Name)
-                        </td>
-                        <td class="selected">
-                            @Html.DisplayFor(modelItem => @fields[i].TagLine)
-                        </td>
-                        <td class="selected">
-                            @Html.DisplayFor(modelItem => @fields[i].First_Brewed)
-                        </td>
-                        <td class="selected">
-                            @Html.DisplayFor(modelItem => @fields[i].Abv)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", @fields[i])
-                        </td>
-                    </tr>
+                @foreach (var item in Model)
+                {                    
+                <tr>
+                    <td class="center"> @Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>                                       
+                    <td>@Html.ActionLink(item.Name, "GetBeerDetails", new { item.Name, item.TagLine, item.First_Brewed, item.Abv, item.image_url })</td>
+                    <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
+                    <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Abv)</td>
+                    @*<td>@Html.ActionLink("Details", "GetBeerDetails", new { item.Name, item.TagLine, item.First_Brewed, item.Abv, item.image_url })</td>*@
+                </tr>
+                   
                 }
-
             </tbody>
         </table>
         <br />
@@ -72,49 +49,49 @@
             @{
                 var prevDisabled = !Model.PreviousPage ? "disabled" : "";
                 var NextvDisabled = !Model.NextPage ? "disabled" : "";
+
             }
-            <a asp-action="Beer"
+            <a asp-action="GetAllBeers"
                asp-route-pageNumber="@(Model.PageIndex - 1)"
                class="btn btn-default @prevDisabled">
                 Previous
             </a>
-            <a asp-action="Beer"
+            <a asp-action="GetAllBeers"
                asp-route-pageNumber="@(Model.PageIndex + 1)"
                class="btn btn-default @NextvDisabled">
                 Next
             </a>
+            @{
+                pageIndexNum = Model.PageIndex;
+            }
         </div>
         <br />
+    }
+</div>
 
-        @Html.Label("Email Id")
-        @Html.TextBox("email")
-        <button type="submit" name="submit" value="AddtoFavorites" class="clr">Add to Favorites</button>
-    </div>
-}
+
 <br />
-@using (Html.BeginForm(controllerName: "Beer", actionName: "SearchFavoriteBeersByEmail"))
-{
-    <div>
-        @Html.TextBox("searchFavorites")
-        <input type="submit" id="submit" value="Search Favorite Beers" class="clr" />
-    </div>
-}
-
+@*background-color: #eee;*@
 <style type="text/css">
     .clr {
         background-color: cadetblue;
         color: white;
-        text-align:center;
-              
+        text-align: center;
     }
-    .wdt {
+
+    .hwidth {
         width: 80%;
+    }
+
+    .center {
+        text-align: center;
     }
 
     .selected {
         background-color: #004b89;
         color: white;
-        font-weight: bold;        
+        font-weight: bold;
+        text-align: center;
     }
 
 
@@ -124,12 +101,8 @@
         padding: 10px;
     }
 
-    td {
-        text-align: center;
-    }
-
     tr:nth-child(even) {
-        background-color: #eee;
+        background-color: beige;
     }
 
     th[scope="col"] {
@@ -147,16 +120,17 @@
     }
 
     table {
+        border: 1px;
+        width: 80%;
         border-collapse: collapse;
         border: 2px solid rgb(200, 200, 200);
         letter-spacing: 1px;
         font-family: sans-serif;
         font-size: .8rem;
     }
-
-
 </style>
-@section Scripts
-    {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+@*@section Scripts
+        {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
