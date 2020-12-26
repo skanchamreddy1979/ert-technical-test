@@ -1,11 +1,8 @@
 ﻿@model PaginatedList<ERT.Entities.BeerModel>
 @{
-    //Layout = "~/Views/Shared/_Layout.cshtml";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{
-    var pageIndexNum = 0;
-}
+
 <h1 class="selected hwidth">Brew Dog Beers</h1>
 <div>
     <br />
@@ -17,7 +14,6 @@
             @Html.TextBox("searchBeersByName")
             <input type="submit" id="SearchBeersByName" value="Search By Name" class="clr" />
         </div>
-
         <br />
         <table class="table">
             <thead>
@@ -26,21 +22,22 @@
                     <th>Beer Name</th>
                     <th>TagLine</th>
                     <th>First_Brewed</th>
-                    <th>Abv</th>                    
+                    <th>Abv</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
-                {                    
-                <tr>
-                    <td class="center"> @Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>                                       
-                    <td>@Html.ActionLink(item.Name, "GetBeerDetails", new { item.Name, item.TagLine, item.First_Brewed, item.Abv, item.image_url })</td>
-                    <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
-                    <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Abv)</td>
-                    @*<td>@Html.ActionLink("Details", "GetBeerDetails", new { item.Name, item.TagLine, item.First_Brewed, item.Abv, item.image_url })</td>*@
-                </tr>
-                   
+                {
+                    <tr>
+                        <td>@Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>                       
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
+                        <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Abv)</td>
+                        <td>@Html.ActionLink("Details", "GetBeerDetailsById", new { id = item.Id })</td>
+                    </tr>
+
                 }
             </tbody>
         </table>
@@ -61,76 +58,12 @@
                class="btn btn-default @NextvDisabled">
                 Next
             </a>
-            @{
-                pageIndexNum = Model.PageIndex;
-            }
         </div>
         <br />
     }
 </div>
-
-
 <br />
-@*background-color: #eee;*@
-<style type="text/css">
-    .clr {
-        background-color: cadetblue;
-        color: white;
-        text-align: center;
-    }
-
-    .hwidth {
-        width: 80%;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .selected {
-        background-color: #004b89;
-        color: white;
-        font-weight: bold;
-        text-align: center;
-    }
-
-
-    td,
-    th {
-        border: 1px solid rgb(190, 190, 190);
-        padding: 10px;
-    }
-
-    tr:nth-child(even) {
-        background-color: beige;
-    }
-
-    th[scope="col"] {
-        background-color: #696969;
-        color: #fff;
-    }
-
-    th[scope="row"] {
-        background-color: #d7d9f2;
-    }
-
-    caption {
-        padding: 10px;
-        caption-side: bottom;
-    }
-
-    table {
-        border: 1px;
-        width: 80%;
-        border-collapse: collapse;
-        border: 2px solid rgb(200, 200, 200);
-        letter-spacing: 1px;
-        font-family: sans-serif;
-        font-size: .8rem;
-    }
-</style>
-
-@*@section Scripts
+@section Scripts
         {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }*@
+    }

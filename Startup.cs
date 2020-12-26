@@ -1,9 +1,6 @@
-//using ert_beer_app.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.EntityFrameworkCore;
-//using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,7 +30,7 @@ namespace ert_beer_app
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
             });
             services.AddHttpClient();
-            services.AddScoped<ERT.BusinessServices.Interfaces.IBeerService, BeerService>();            
+            services.AddScoped<IBeerService, BeerService>();            
             services.AddControllersWithViews();
             services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
             var logFactory = LoggerFactory.Create(b => b.AddConsole().AddDebug());
