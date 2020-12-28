@@ -14,10 +14,10 @@ namespace ert_beer_app.Controllers
             this.beerService = beerService;
         }
         public ActionResult GetBeerDetailsById(int id)
-        {
-            //
+        {            
             IEnumerable<BeerModel> model = beerService.GetAllBeers(null, 0, id);
             return View("BeerInfo", model.FirstOrDefault(x => x.Id == id));
+            //return View("BeerInfo", model.FirstOrDefault(x => x.Id == id));
         }       
         public ActionResult GetAllBeers(string searchBeersByName = null, int pageNumber = 1)
         {           
