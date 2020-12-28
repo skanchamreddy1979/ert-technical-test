@@ -13,6 +13,7 @@ using System;
 using System.Web.Http;
 using System.Linq;
 
+
 namespace ert_beer.test.Services
 {
     [TestClass]
@@ -48,11 +49,10 @@ namespace ert_beer.test.Services
                 new BeerModel() { Abv="4.5",First_Brewed="09/2007",Id=6, Name="Trashy Blonde",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png" },
                 new BeerModel() { Abv="6.2",First_Brewed="09/2008",Id=7, Name="Amarillo",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png"},
                 new BeerModel() { Abv="1.8",First_Brewed="09/2009",Id=8, Name="Motueka",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png"},
-                new BeerModel() { Abv="2.7",First_Brewed="09/2006",Id=9, Name="Propino Pale Malt",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png"},                
+                new BeerModel() { Abv="2.7",First_Brewed="09/2006",Id=9, Name="Propino Pale Malt",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png"},
                 new BeerModel() { Abv="6.8",First_Brewed="09/2013",Id=210, Name="Dead Metaphor",TagLine="Scottish Breakfast Stout.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/210.png"}
             };
         }
-
         private BeerService CreateBeerService()
         {
             return new BeerService(
@@ -66,8 +66,7 @@ namespace ert_beer.test.Services
             //Arrange            
             _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:apiUrl")]).Returns("https://api.punkapi.com/v2/beers?");
             _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:perPage")]).Returns("10");
-            _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:beerName")]).Returns("");                      
-
+            _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:beerName")]).Returns("");
             var configuration = new HttpConfiguration();
             var request = new HttpRequestMessage();
             request.SetConfiguration(configuration);
@@ -93,7 +92,7 @@ namespace ert_beer.test.Services
 
             //Act
             var service = CreateBeerService();
-            var actualResult = service.GetAllBeers(null, 1, 0);
+            var actualResult = service.GetAllBeers(null, 1);
 
             //Assert
             Assert.IsNotNull(actualResult);
@@ -135,7 +134,7 @@ namespace ert_beer.test.Services
 
             //Act
             var service = CreateBeerService();
-            var actualResult = service.GetAllBeers(null, 1, 0);
+            var actualResult = service.GetAllBeers(null, 1);
 
             //Assert
             Assert.IsNotNull(actualResult);
@@ -177,14 +176,13 @@ namespace ert_beer.test.Services
 
             //Act
             var service = CreateBeerService();
-            var actualResult = service.GetAllBeers(null, 1, id);
+            var actualResult = service.GetBeerById(id);
 
             //Assert
             Assert.IsNotNull(actualResult);
             Assert.IsInstanceOfType(actualResult, typeof(List<BeerModel>));
             Assert.AreEqual(actualResult.ToList()[0].Id, expectedResults.ToList()[0].Id);
         }
-
 
         public class DelegatingHandlerStub : DelegatingHandler
         {

@@ -14,25 +14,16 @@ namespace ert_beer_app.Controllers
             this.beerService = beerService;
         }
         public ActionResult GetBeerDetailsById(int id)
-        {            
-            IEnumerable<BeerModel> model = beerService.GetAllBeers(null, 0, id);
-            return View("BeerInfo", model.FirstOrDefault(x => x.Id == id));
-            //return View("BeerInfo", model.FirstOrDefault(x => x.Id == id));
-        }       
+        {
+            IEnumerable<BeerModel> model = beerService.GetBeerById(id);
+            return View("BeerInfo", model.FirstOrDefault());
+        }
         public ActionResult GetAllBeers(string searchBeersByName = null, int pageNumber = 1)
         {           
-            if (pageNumber < 1) pageNumber = 1;
-            IEnumerable<BeerModel> model = null;
-            model = beerService.GetAllBeers(searchBeersByName, pageNumber, 0);
-            if (model.Count() > 0)
-            {
-                return View("Beer", PaginatedList<BeerModel>.CreateAsync(model.ToList(), pageNumber, model.Count()));
-            }
-            else
-            {
-                model = beerService.GetAllBeers(searchBeersByName, pageNumber - 1, 0);
-            }
-            return View("Beer", PaginatedList<BeerModel>.CreateAsync(model.ToList(), pageNumber - 1, model.Count()));
+            IEnumerable<BeerModel> model = null; 
+            model = beerService.GetAllBeers(searchBeersByName, pageNumber);
+            return View("Beer", PaginatedList<BeerModel>.CreateAsync(model.ToList(), pageNumber, model.Count()));
+
         }
 
     }

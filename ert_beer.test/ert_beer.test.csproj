@@ -12,6 +12,8 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Cqrs" Version="4.2.1729.923" />
     <PackageReference Include="Marten" Version="3.13.3" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
@@ -29,9 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ert-technical-test-main\ert-beer-app.csproj" />
-    <ProjectReference Include="..\ERT.BusinessServices\ERT.BusinessServices.csproj" />
-    <ProjectReference Include="..\ERT.Entities\ERT.Entities.csproj" />
+    <ProjectReference Include="..\ert-beer-app\ert-beer-app.csproj" />
   </ItemGroup>
 
 </Project>

@@ -61,7 +61,7 @@ namespace ert_beer.test.Services
             //Arrange 
             int pagenumber = 1;
 
-            _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>()))
+            _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(expectedResult).Verifiable();
 
             //Act
@@ -80,7 +80,7 @@ namespace ert_beer.test.Services
             //Arrange           
             int pagenumber = 1; string name = "Buzz"; var expectedResults = from list in expectedResult where list.Name == name select list;
 
-            _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>()))
+            _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(expectedResults);
 
             //Act
@@ -101,8 +101,8 @@ namespace ert_beer.test.Services
             var expectedResults = from list in expectedResult where list.Id == id select list;
             var ControllerService = CreateBeerController();
 
-            _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>()))
-                .Returns(expectedResults);
+            _mockBeerService.Setup(beerService => beerService.GetBeerById(It.IsAny<int>()))
+                .Returns(expectedResults).Verifiable();
 
             //Act
             var actualResult = ControllerService.GetBeerDetailsById(id);

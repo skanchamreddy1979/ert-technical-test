@@ -7,6 +7,7 @@ using ERT.BusinessServices.Interfaces;
 using ERT.Entities;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using NPOI.SS.Formula.Functions;
 
 namespace ERT.BusinessServices
 {
@@ -19,37 +20,45 @@ namespace ERT.BusinessServices
             this.clientFactory = clientFactory;
             this.configuration = configuration;
         }
-        public IEnumerable<BeerModel> GetAllBeers(string beerName = null, int pageNumber = 1, int id=0)
+        public IEnumerable<BeerModel> GetAllBeers(string beerName = null, int pageNumber = 1)
         {
             List<BeerModel> beerList = new List<BeerModel>();
             var apiBaseUrl = configuration["BeerApi:apiUrl"];
-            if (id > 0)
+
+            var PerPageCount = configuration["BeerApi:perPage"];
+            var name = configuration["BeerApi:beerName"];
+            apiBaseUrl = configuration["BeerApi:apiUrl"] + "page=" + pageNumber + "&per_page=" + PerPageCount;
+
+            if (!string.IsNullOrEmpty(beerName))
             {
-                apiBaseUrl = apiBaseUrl.Replace("?", "/" + id);               
+                apiBaseUrl = apiBaseUrl + name + beerName;
             }
-            else
-            {
-                var PerPageCount = configuration["BeerApi:perPage"];
-                var name = configuration["BeerApi:beerName"];
-                apiBaseUrl = configuration["BeerApi:apiUrl"] + "page=" + pageNumber + "&per_page=" + PerPageCount;
+            beerList = GetBeersFromAPI(apiBaseUrl);           
 
-                if (!string.IsNullOrEmpty(beerName))
-                {
-                    apiBaseUrl = apiBaseUrl + name + beerName;
-                }
-            } 
+            return beerList;
+        }       
+        public IEnumerable<BeerModel> GetBeerById(int id = 0)
+        {
+            List<BeerModel> beerData = new List<BeerModel>();
+            var apiBaseUrl = configuration["BeerApi:apiUrl"];
+            apiBaseUrl = apiBaseUrl.Replace("?", "/" + id);
 
+            beerData = GetBeersFromAPI(apiBaseUrl);          
+
+            return beerData;
+        }
+        private List<BeerModel> GetBeersFromAPI(string url)
+        {
+            List<BeerModel> beerList = new List<BeerModel>();
             var client = clientFactory.CreateClient();
 
-            using (HttpResponseMessage response = client.GetAsync(apiBaseUrl).Result)
+            using (HttpResponseMessage response = client.GetAsync(url).Result)
             {
                 string apiresponse = response.Content.ReadAsStringAsync().Result;
                 beerList = JsonConvert.DeserializeObject<List<BeerModel>>(apiresponse);
             }
-
             return beerList;
         }
-
 
     }
 }

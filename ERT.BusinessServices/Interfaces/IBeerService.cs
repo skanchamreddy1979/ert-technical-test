@@ -7,6 +7,7 @@ namespace ERT.BusinessServices.Interfaces
 { 
    public interface IBeerService
     {
-        IEnumerable<BeerModel> GetAllBeers(string beerName, int pageNumber, int id);
+        IEnumerable<BeerModel> GetAllBeers(string beerName, int pageNumber);
+        IEnumerable<BeerModel> GetBeerById(int id);
     }
 }
