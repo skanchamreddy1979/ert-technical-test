@@ -22,21 +22,19 @@
                     <th>Beer Name</th>
                     <th>TagLine</th>
                     <th>First_Brewed</th>
-                    <th>Abv</th>
-                    <th></th>
+                    <th>Abv</th>                    
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>                       
-                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
-                        <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Abv)</td>
-                        <td>@Html.ActionLink("Details", "GetBeerDetailsById", new { id = item.Id })</td>
-                    </tr>
+                <tr>
+                    <td>@Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>                    
+                    <td>@Html.ActionLink(item.Name, "GetBeerDetailsById", new { id = item.Id })</td>
+                    <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
+                    <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Abv)</td>                    
+                </tr>
 
                 }
             </tbody>
