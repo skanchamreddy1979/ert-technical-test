@@ -15,6 +15,7 @@ namespace ert_beer_app.Controllers
         }
         public ActionResult GetBeerDetailsById(int id)
         {
+            //
             IEnumerable<BeerModel> model = beerService.GetAllBeers(null, 0, id);
             return View("BeerInfo", model.FirstOrDefault(x => x.Id == id));
         }       
