@@ -47,7 +47,7 @@
     <div>
         @{
             var firstPage = 1;
-            var previousPage = Model.CurrentPage >1? Model.CurrentPage - 1: Model.CurrentPage;
+            var previousPage = Model.CurrentPage > 1 ? Model.CurrentPage - 1 : Model.CurrentPage;
             var NextPage = Model.CurrentPage + 1;
             var lastPage = Model.TotalPages;
 
@@ -55,6 +55,7 @@
             var prevDisabled = !Model.ShowPrevious ? "disabled" : "";
             var NextvDisabled = !Model.ShowNext ? "disabled" : "";
             var lastvDisabled = !Model.ShowLast ? "disabled" : "";
+
         }
 
         <a asp-action="GetAllBeers" asp-route-pageNumber="@firstPage" class="fas fa-fast-backward @firstDisabled"></a>
@@ -63,6 +64,7 @@
         <a asp-action="GetAllBeers" asp-route-pageNumber="@lastPage" class="fas fa-fast-forward @NextvDisabled"></a>
     </div>
     <br />
+
 </div>
 <br />
 @section Scripts

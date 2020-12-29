@@ -13,7 +13,14 @@
             color: white;
             text-align: center;
         }
-
+        .fas.disabled,
+        .fas[disabled],
+        .disabled > .fas,
+        [disabled] > .fas {
+            opacity: 0.5;
+            /* optionalcursor: not-allowed;*/
+            /*optional pointer-events: none;*/
+        }
         .hwidth {
             width: 80%;
         }
