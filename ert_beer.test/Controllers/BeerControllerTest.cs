@@ -28,7 +28,7 @@ namespace ert_beer.test.Services
             _mockBeerService = _mockRepository.Create<IBeerService>();
             PrepareTestData();
         }
-        
+
         [TestCleanup]
         public void TestCleanup()
         {
@@ -46,7 +46,7 @@ namespace ert_beer.test.Services
                 new BeerModel() { Abv="4.5",First_Brewed="09/2007",Id=6, Name="Trashy Blonde",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png" },
                 new BeerModel() { Abv="6.2",First_Brewed="09/2008",Id=7, Name="Amarillo",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png"},
                 new BeerModel() { Abv="1.8",First_Brewed="09/2009",Id=8, Name="Motueka",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png"},
-                new BeerModel() { Abv="2.7",First_Brewed="09/2006",Id=9, Name="Propino Pale Malt",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png"},                
+                new BeerModel() { Abv="2.7",First_Brewed="09/2006",Id=9, Name="Propino Pale Malt",TagLine="A Real Bitter Experience.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/keg.png"},
                 new BeerModel() { Abv="6.8",First_Brewed="09/2013",Id=210, Name="Dead Metaphor",TagLine="Scottish Breakfast Stout.",checkboxAnswer=false,image_url="https://images.punkapi.com/v2/210.png"}
             };
         }
@@ -59,30 +59,33 @@ namespace ert_beer.test.Services
         public void GetAllBeerDetails()
         {
             //Arrange 
-            int pagenumber = 1;
+            int pagenumber = 1; int lastPage = 33;
 
             _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(expectedResult).Verifiable();
 
+            _mockBeerService.Setup(beerService => beerService.GetLastPageIndex())
+               .Returns(lastPage).Verifiable();
             //Act
             var Service = CreateBeerController();
             var actualResult = Service.GetAllBeers(null, pagenumber);
-			var model = (List<BeerModel>)((ViewResult)actualResult).Model;
+            var model = (List<BeerModel>)((ViewResult)actualResult).Model;
 
             //Assert
             Assert.IsNotNull(actualResult);
-            Assert.AreEqual(expectedResult.ToList().Count(), model.Count);           
+            Assert.AreEqual(expectedResult.ToList().Count(), model.Count);
         }
 
         [TestMethod]
         public void GetAllBeerDetailsByName()
         {
             //Arrange           
-            int pagenumber = 1; string name = "Buzz"; var expectedResults = from list in expectedResult where list.Name == name select list;
+            int pagenumber =1,  lastPage = 33; string name = "Buzz"; var expectedResults = from list in expectedResult where list.Name == name select list;
 
             _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(expectedResults);
-
+            _mockBeerService.Setup(beerService => beerService.GetLastPageIndex())
+               .Returns(lastPage).Verifiable();
             //Act
             var Service = CreateBeerController();
             var actualResult = Service.GetAllBeers(name, pagenumber);
@@ -111,7 +114,7 @@ namespace ert_beer.test.Services
             //Assert
             Assert.IsNotNull(actualResult);
             Assert.AreEqual(expectedResults.ToList()[0].Id, model.Id);
-        }        
+        }
 
     }
 }

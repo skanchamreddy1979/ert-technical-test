@@ -18,12 +18,12 @@ namespace ert_beer_app.Controllers
             IEnumerable<BeerModel> model = beerService.GetBeerById(id);
             return View("BeerInfo", model.FirstOrDefault());
         }
-        public ActionResult GetAllBeers(string searchBeersByName = null, int pageNumber = 1)
+        public ActionResult GetAllBeers(string searchBeersByName = null,int pageNumber = 1)
         {           
             IEnumerable<BeerModel> model = null; 
-            model = beerService.GetAllBeers(searchBeersByName, pageNumber);
-            return View("Beer", PaginatedList<BeerModel>.CreateAsync(model.ToList(), pageNumber, model.Count()));
-
+            model = beerService.GetAllBeers(searchBeersByName, pageNumber );
+            int lastPageIndex = beerService.GetLastPageIndex();
+            return View("Beer", PaginatedList<BeerModel>.CreateAsync(model.ToList(), pageNumber, lastPageIndex));
         }
 
     }

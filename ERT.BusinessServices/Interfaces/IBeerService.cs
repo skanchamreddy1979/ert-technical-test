@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ERT.BusinessServices.Interfaces
 { 
@@ -9,5 +10,6 @@ namespace ERT.BusinessServices.Interfaces
     {
         IEnumerable<BeerModel> GetAllBeers(string beerName, int pageNumber);
         IEnumerable<BeerModel> GetBeerById(int id);
+        int GetLastPageIndex();        
     }
 }

@@ -143,13 +143,13 @@ namespace ert_beer.test.Services
         }
 
         [TestMethod]
-        public void GetAllBeersDetailsById() 
+        public void GetAllBeersDetailsById()
         {
             //Arrange              
             int id = 210;
             var expectedResults = from list in expectedResult where list.Id == id select list;
 
-            _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:apiUrl")]).Returns("https://api.punkapi.com/v2/beers?");            
+            _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:apiUrl")]).Returns("https://api.punkapi.com/v2/beers?");
 
             var configuration = new HttpConfiguration();
             var request = new HttpRequestMessage();
@@ -182,6 +182,25 @@ namespace ert_beer.test.Services
             Assert.IsNotNull(actualResult);
             Assert.IsInstanceOfType(actualResult, typeof(List<BeerModel>));
             Assert.AreEqual(actualResult.ToList()[0].Id, expectedResults.ToList()[0].Id);
+        }
+
+         [TestMethod]
+        public void GetLastPageIndex()
+        {
+            //Arrange              
+            
+            string expectedResults = "33";
+
+            _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:LastPageIndex")]).Returns(expectedResults);           
+
+            //Act
+            var service = CreateBeerService();
+            var actualResult = service.GetLastPageIndex();
+
+            //Assert
+            Assert.IsNotNull(actualResult);
+            Assert.IsInstanceOfType(actualResult, typeof(int));
+            Assert.AreEqual(actualResult,Convert.ToInt32(expectedResults));
         }
 
         public class DelegatingHandlerStub : DelegatingHandler

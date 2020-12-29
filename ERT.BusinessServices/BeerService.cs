@@ -8,6 +8,7 @@ using ERT.Entities;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using NPOI.SS.Formula.Functions;
+using System.IO;
 
 namespace ERT.BusinessServices
 {
@@ -23,11 +24,11 @@ namespace ERT.BusinessServices
         public IEnumerable<BeerModel> GetAllBeers(string beerName = null, int pageNumber = 1)
         {
             List<BeerModel> beerList = new List<BeerModel>();
-            var apiBaseUrl = configuration["BeerApi:apiUrl"];
 
+            var apiBaseUrl = configuration["BeerApi:apiUrl"];
             var PerPageCount = configuration["BeerApi:perPage"];
-            var name = configuration["BeerApi:beerName"];
-            apiBaseUrl = configuration["BeerApi:apiUrl"] + "page=" + pageNumber + "&per_page=" + PerPageCount;
+            var name = configuration["BeerApi:beerName"];            
+            apiBaseUrl = configuration["BeerApi:apiUrl"] + "page=" + pageNumber + "&per_page=" + PerPageCount;           
 
             if (!string.IsNullOrEmpty(beerName))
             {
@@ -36,7 +37,13 @@ namespace ERT.BusinessServices
             beerList = GetBeersFromAPI(apiBaseUrl);           
 
             return beerList;
-        }       
+        }  
+        
+        public int GetLastPageIndex()
+        {           
+            var LastPage = Convert.ToInt32(configuration["BeerApi:LastPageIndex"]);
+            return LastPage;         
+        }
         public IEnumerable<BeerModel> GetBeerById(int id = 0)
         {
             List<BeerModel> beerData = new List<BeerModel>();
@@ -59,6 +66,5 @@ namespace ERT.BusinessServices
             }
             return beerList;
         }
-
     }
 }

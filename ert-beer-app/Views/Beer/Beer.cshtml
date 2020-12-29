@@ -11,57 +11,61 @@
     {
         <div>
             @Html.Label("Beer Name")
-            @Html.TextBox("searchBeersByName")
+            @Html.TextBox("searchBeersByName", "test")
             <input type="submit" id="SearchBeersByName" value="Search By Name" class="clr" />
         </div>
-        <br />
-        <table class="table">
-            <thead>
-                <tr class="clr">
-                    <th>Check</th>                    
-                    <th>Beer Name</th>
-                    <th>Tag Line</th>
-                    <th>First Brewed</th>
-                    <th>ABV</th>                    
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+    }
+    <br />
+    <table class="table">
+        <thead>
+            <tr class="clr">
+                <th>Check</th>
+                <th>Id</th>
+                <th>Beer Name</th>
+                <th>Tag Line</th>
+                <th>First Brewed</th>
+                <th>ABV</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <td>@Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>                    
+                    <td>@Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
                     <td>@Html.ActionLink(item.Name, "GetBeerDetailsById", new { id = item.Id })</td>
                     <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
                     <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Abv)</td>                    
+                    <td>@Html.DisplayFor(modelItem => item.Abv)</td>
                 </tr>
 
-                }
-            </tbody>
-        </table>
-        <br />
-        <div>
-            @{
-                var prevDisabled = !Model.PreviousPage ? "disabled" : "";
-                var NextvDisabled = !Model.NextPage ? "disabled" : "";
-
             }
-            <a asp-action="GetAllBeers"
-               asp-route-pageNumber="@(Model.PageIndex - 1)"
-               class="btn btn-default @prevDisabled">
-                Previous
-            </a>
-            <a asp-action="GetAllBeers"
-               asp-route-pageNumber="@(Model.PageIndex + 1)"
-               class="btn btn-default @NextvDisabled">
-                Next
-            </a>
-        </div>
-        <br />
-    }
+        </tbody>
+    </table>
+    <br />
+
+    <div>
+        @{
+            var firstPage = 1;
+            var previousPage = Model.CurrentPage >1? Model.CurrentPage - 1: Model.CurrentPage;
+            var NextPage = Model.CurrentPage + 1;
+            var lastPage = Model.TotalPages;
+
+            var firstDisabled = !Model.ShowFirst ? "disabled" : "";
+            var prevDisabled = !Model.ShowPrevious ? "disabled" : "";
+            var NextvDisabled = !Model.ShowNext ? "disabled" : "";
+            var lastvDisabled = !Model.ShowLast ? "disabled" : "";
+        }
+
+        <a asp-action="GetAllBeers" asp-route-pageNumber="@firstPage" class="fas fa-fast-backward @firstDisabled"></a>
+        <a asp-action="GetAllBeers" asp-route-pageNumber="@previousPage" class="fas fa-step-backward @prevDisabled"></a>
+        <a asp-action="GetAllBeers" asp-route-pageNumber="@NextPage" class="fas fa-step-forward @NextvDisabled"></a>
+        <a asp-action="GetAllBeers" asp-route-pageNumber="@lastPage" class="fas fa-fast-forward @NextvDisabled"></a>
+    </div>
+    <br />
 </div>
 <br />
 @section Scripts
         {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
