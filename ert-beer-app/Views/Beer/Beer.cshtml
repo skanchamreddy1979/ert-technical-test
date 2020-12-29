@@ -11,60 +11,59 @@
     {
         <div>
             @Html.Label("Beer Name")
-            @Html.TextBox("searchBeersByName", "test")
+            @Html.TextBox("searchBeersByName")
             <input type="submit" id="SearchBeersByName" value="Search By Name" class="clr" />
         </div>
-    }
-    <br />
-    <table class="table">
-        <thead>
-            <tr class="clr">
-                <th>Check</th>
-                <th>Id</th>
-                <th>Beer Name</th>
-                <th>Tag Line</th>
-                <th>First Brewed</th>
-                <th>ABV</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                    <td>@Html.ActionLink(item.Name, "GetBeerDetailsById", new { id = item.Id })</td>
-                    <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
-                    <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Abv)</td>
+
+        <br />
+        <table class="table">
+            <thead>
+                <tr class="clr">
+                    <th>Check</th>
+                    <th>Id</th>
+                    <th>Beer Name</th>
+                    <th>Tag Line</th>
+                    <th>First Brewed</th>
+                    <th>ABV</th>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.ActionLink(item.Name, "GetBeerDetailsById", new { id = item.Id })</td>
+                        <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
+                        <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Abv)</td>
+                    </tr>
 
+                }
+            </tbody>
+        </table>
+        <br />
+
+        <div>
+            @{
+                var firstPage = 1;
+                var previousPage = Model.CurrentPage > 1 ? Model.CurrentPage - 1 : Model.CurrentPage;
+                var NextPage = Model.CurrentPage + 1;
+                var lastPage = Model.TotalPages;
+
+                var firstDisabled = !Model.ShowFirst ? "disabled" : "";
+                var prevDisabled = !Model.ShowPrevious ? "disabled" : "";
+                var NextvDisabled = !Model.ShowNext ? "disabled" : "";
+                var lastvDisabled = !Model.ShowLast ? "disabled" : "";
             }
-        </tbody>
-    </table>
-    <br />
 
-    <div>
-        @{
-            var firstPage = 1;
-            var previousPage = Model.CurrentPage > 1 ? Model.CurrentPage - 1 : Model.CurrentPage;
-            var NextPage = Model.CurrentPage + 1;
-            var lastPage = Model.TotalPages;
-
-            var firstDisabled = !Model.ShowFirst ? "disabled" : "";
-            var prevDisabled = !Model.ShowPrevious ? "disabled" : "";
-            var NextvDisabled = !Model.ShowNext ? "disabled" : "";
-            var lastvDisabled = !Model.ShowLast ? "disabled" : "";
-
-        }
-
-        <a asp-action="GetAllBeers" asp-route-pageNumber="@firstPage" class="fas fa-fast-backward @firstDisabled"></a>
-        <a asp-action="GetAllBeers" asp-route-pageNumber="@previousPage" class="fas fa-step-backward @prevDisabled"></a>
-        <a asp-action="GetAllBeers" asp-route-pageNumber="@NextPage" class="fas fa-step-forward @NextvDisabled"></a>
-        <a asp-action="GetAllBeers" asp-route-pageNumber="@lastPage" class="fas fa-fast-forward @NextvDisabled"></a>
-    </div>
-    <br />
-
+            <a asp-action="GetAllBeers" asp-route-pageNumber="@firstPage" class="fas fa-fast-backward fa-3x @firstDisabled"></a>
+            <a asp-action="GetAllBeers" asp-route-pageNumber="@previousPage" class="fas fa-step-backward fa-3x @prevDisabled"></a>
+            <a asp-action="GetAllBeers" asp-route-pageNumber="@NextPage" class="fas fa-step-forward fa-3x @NextvDisabled"></a>
+            <a asp-action="GetAllBeers" asp-route-pageNumber="@lastPage" class="fas fa-fast-forward fa-3x @NextvDisabled"></a>
+        </div>
+        <br />
+    }
 </div>
 <br />
 @section Scripts

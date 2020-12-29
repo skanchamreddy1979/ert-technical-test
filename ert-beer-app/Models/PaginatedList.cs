@@ -15,13 +15,13 @@ namespace ERT.Entities
 
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; } = 1;
-        public bool ShowPrevious => CurrentPage > 1;
-        public bool ShowNext => CurrentPage < TotalPages;
-        public bool ShowFirst => CurrentPage != 1;
-        public bool ShowLast => CurrentPage != TotalPages;
+        public bool ShowFirst => CurrentPage != 1 ;
+        public bool ShowPrevious => CurrentPage > 1 ;
+        public bool ShowNext => CurrentPage < TotalPages && PageSize >= 10 ;
+        public bool ShowLast => CurrentPage != TotalPages && PageSize >= 10 ;
         public PaginatedList(List<T> items, int count, int pageIndex, int lastPageIndex)
         {            
-            CurrentPage = pageIndex;
+            CurrentPage = pageIndex; PageSize = count;
             TotalPages = lastPageIndex;           
             this.AddRange(items);
         } 
