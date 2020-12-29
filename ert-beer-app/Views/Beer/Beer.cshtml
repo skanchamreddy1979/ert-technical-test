@@ -31,12 +31,12 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td class="center">@Html.CheckBoxFor(modelItem => item.checkboxAnswer)</td>
+                        <td class="center">@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.ActionLink(item.Name, "GetBeerDetailsById", new { id = item.Id })</td>
                         <td>@Html.DisplayFor(modelItem => item.TagLine)</td>
-                        <td>@Html.DisplayFor(modelItem => item.First_Brewed)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Abv)</td>
+                        <td class="center">@Html.DisplayFor(modelItem => item.First_Brewed)</td>
+                        <td class="center">@Html.DisplayFor(modelItem => item.Abv)</td>
                     </tr>
 
                 }
@@ -49,18 +49,18 @@
                 var firstPage = 1;
                 var previousPage = Model.CurrentPage > 1 ? Model.CurrentPage - 1 : Model.CurrentPage;
                 var NextPage = Model.CurrentPage + 1;
-                var lastPage = Model.TotalPages;
+                var lastPage = Model.LastPageIndex;
 
                 var firstDisabled = !Model.ShowFirst ? "disabled" : "";
                 var prevDisabled = !Model.ShowPrevious ? "disabled" : "";
                 var NextvDisabled = !Model.ShowNext ? "disabled" : "";
                 var lastvDisabled = !Model.ShowLast ? "disabled" : "";
             }
-
-            <a asp-action="GetAllBeers" asp-route-pageNumber="@firstPage" class="fas fa-fast-backward fa-3x @firstDisabled"></a>
-            <a asp-action="GetAllBeers" asp-route-pageNumber="@previousPage" class="fas fa-step-backward fa-3x @prevDisabled"></a>
-            <a asp-action="GetAllBeers" asp-route-pageNumber="@NextPage" class="fas fa-step-forward fa-3x @NextvDisabled"></a>
-            <a asp-action="GetAllBeers" asp-route-pageNumber="@lastPage" class="fas fa-fast-forward fa-3x @NextvDisabled"></a>
+            
+            <input type="submit" value="<<" action="GetAllBeers" asp-route-pageNumber="@firstPage" class="fas fas-angle-left fa-2x fl @firstDisabled">
+            <input type="submit" value="<" action="GetAllBeers" asp-route-pageNumber="@previousPage" class="fas fa-step-backward fa-2x fl @prevDisabled">
+            <input type="submit" value=">" action="GetAllBeers" asp-route-pageNumber="@NextPage" class="fas fa-step-forward fa-2x fl @NextvDisabled">
+            <input type="submit" value=">>" action="GetAllBeers" asp-route-pageNumber="@lastPage" class="fas fa-fast-forward fa-2x fl @NextvDisabled">
         </div>
         <br />
     }
