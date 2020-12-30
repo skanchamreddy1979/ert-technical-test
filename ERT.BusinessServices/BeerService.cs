@@ -16,43 +16,35 @@ namespace ERT.BusinessServices
     {
         private readonly IConfiguration configuration;
         private readonly IHttpClientFactory clientFactory;
+        string apiBaseUrl = string.Empty, PerPageCount = string.Empty, beerNameProperty = string.Empty;
         public BeerService(IHttpClientFactory clientFactory, IConfiguration configuration)
         {
             this.clientFactory = clientFactory;
             this.configuration = configuration;
+            apiBaseUrl = configuration["BeerApi:apiUrl"];
+            PerPageCount = configuration["BeerApi:perPage"];
+            beerNameProperty = configuration["BeerApi:beerName"];
         }
         public IEnumerable<BeerModel> GetAllBeers(string beerName = null, int pageNumber = 1)
         {
-            List<BeerModel> beerList = new List<BeerModel>();
-
-            var apiBaseUrl = configuration["BeerApi:apiUrl"];
-            var PerPageCount = configuration["BeerApi:perPage"];
-            var name = configuration["BeerApi:beerName"];            
-            apiBaseUrl = configuration["BeerApi:apiUrl"] + "page=" + pageNumber + "&per_page=" + PerPageCount;           
+            apiBaseUrl = configuration["BeerApi:apiUrl"] + "page=" + pageNumber + "&per_page=" + PerPageCount;
 
             if (!string.IsNullOrEmpty(beerName))
             {
-                apiBaseUrl = apiBaseUrl + name + beerName;
+                apiBaseUrl = apiBaseUrl + beerNameProperty + beerName;
             }
-            beerList = GetBeersFromAPI(apiBaseUrl);           
+            return GetBeersFromAPI(apiBaseUrl);
+        }
 
-            return beerList;
-        }  
-        
         public int GetLastPageIndex()
-        {           
+        {
             var LastPage = Convert.ToInt32(configuration["BeerApi:LastPageIndex"]);
-            return LastPage;         
+            return LastPage;
         }
         public IEnumerable<BeerModel> GetBeerById(int id = 0)
         {
-            List<BeerModel> beerData = new List<BeerModel>();
-            var apiBaseUrl = configuration["BeerApi:apiUrl"];
             apiBaseUrl = apiBaseUrl.Replace("?", "/" + id);
-
-            beerData = GetBeersFromAPI(apiBaseUrl);          
-
-            return beerData;
+            return GetBeersFromAPI(apiBaseUrl);
         }
         private List<BeerModel> GetBeersFromAPI(string url)
         {

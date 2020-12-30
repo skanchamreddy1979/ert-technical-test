@@ -62,16 +62,17 @@ namespace ert_beer.test.Services
             int pagenumber = 1; int lastPage = 33;
 
             _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>()))
-                .Returns(expectedResult).Verifiable();
+                .Returns(expectedResult);
 
             _mockBeerService.Setup(beerService => beerService.GetLastPageIndex())
-               .Returns(lastPage).Verifiable();
-            //Act
+               .Returns(lastPage);
+
+            //ACT
             var Service = CreateBeerController();
             var actualResult = Service.GetAllBeers(null, pagenumber);
             var model = (List<BeerModel>)((ViewResult)actualResult).Model;
 
-            //Assert
+            //ASSERT
             Assert.IsNotNull(actualResult);
             Assert.AreEqual(expectedResult.ToList().Count(), model.Count);
         }
@@ -85,13 +86,14 @@ namespace ert_beer.test.Services
             _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(expectedResults);
             _mockBeerService.Setup(beerService => beerService.GetLastPageIndex())
-               .Returns(lastPage).Verifiable();
-            //Act
+               .Returns(lastPage);
+           
+            //ACT
             var Service = CreateBeerController();
             var actualResult = Service.GetAllBeers(name, pagenumber);
             var model = (List<BeerModel>)((ViewResult)actualResult).Model;
 
-            //Assert
+            //ASSERT
             Assert.IsNotNull(actualResult);
             Assert.AreEqual(expectedResults.ToList().Count(), model.Count);
         }
@@ -107,11 +109,11 @@ namespace ert_beer.test.Services
             _mockBeerService.Setup(beerService => beerService.GetBeerById(It.IsAny<int>()))
                 .Returns(expectedResults).Verifiable();
 
-            //Act
+            //ACT
             var actualResult = ControllerService.GetBeerDetailsById(id);
             var model = (BeerModel)((ViewResult)actualResult).Model;
 
-            //Assert
+            //ASSERT
             Assert.IsNotNull(actualResult);
             Assert.AreEqual(expectedResults.ToList()[0].Id, model.Id);
         }

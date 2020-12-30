@@ -20,11 +20,10 @@ namespace ert_beer_app.Controllers
         }
      
         public ActionResult GetAllBeers(string searchBeersByName = null,int pageNumber = 1)
-        {           
-            IEnumerable<BeerModel> model = null; 
-            model = beerService.GetAllBeers(searchBeersByName, pageNumber );
+        {  
+            IEnumerable<BeerModel>  beers = beerService.GetAllBeers(searchBeersByName, pageNumber );
             int lastPageIndex = beerService.GetLastPageIndex();
-            return View("Beer", PaginatedList<BeerModel>.CreateAsync(model.ToList(), pageNumber, lastPageIndex));
+            return View("Beer", PaginatedList<BeerModel>.CreateAsync(beers.ToList(), pageNumber, lastPageIndex));
         }
 
     }
