@@ -25,9 +25,9 @@ namespace ert_beer.test.Services
         public void TestInitialize()
         {
             _mockRepository = new MockRepository(MockBehavior.Strict);
-            _mockclientFactory = _mockRepository.Create<IHttpClientFactory>();
             _mockconfiguration = _mockRepository.Create<IConfiguration>();
             _mockhandlerMock = _mockRepository.Create<HttpMessageHandler>();
+            _mockclientFactory = _mockRepository.Create<IHttpClientFactory>();
 
             _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:apiUrl")]).Returns("https://api.punkapi.com/v2/beers?");
             _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:perPage")]).Returns("10");
@@ -45,8 +45,9 @@ namespace ert_beer.test.Services
                 _mockconfiguration.Object
                 );
         }
+
         [TestMethod]
-        public void GetAllBeersDetails()
+        public void GeAlltBeers_WhenFetchingAllBeers_ThenReturnAllBeers()
         {
             //Arrange          
             _mockhandlerMock
@@ -69,15 +70,15 @@ namespace ert_beer.test.Services
             _mockclientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
             var Service = CreateBeerService();
 
-            // ACT
+            //ACT
             var actualResult = Service.GetAllBeers(null, 1);
 
-            // ASSERT            
+            //ASSERT            
             Assert.IsNotNull(actualResult);
             Assert.AreEqual(actualResult.ToList().Count(), 2);
         }
         [TestMethod]
-        public void GetAllBeersDetailsByName()
+        public void GeAlltBeers_WhenFetchingAllBeersBySearchName_ThenReturnAllBeers() 
         {
             //Arrange 
             string beerName = "india";
@@ -100,16 +101,16 @@ namespace ert_beer.test.Services
             _mockclientFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
             var Service = CreateBeerService();
 
-            // ACT
+            //ACT
             var actualResult = Service.GetAllBeers(beerName, 1);
 
-            // ASSERT            
+            //ASSERT            
             Assert.IsNotNull(actualResult);
             Assert.AreEqual(actualResult.ToList()[0].Name, beerName);
         }
 
         [TestMethod]
-        public void GetAllBeersDetailsById()
+        public void GetBeerDetails_WhenFetchingBeerDetailsByBeerId_ThenReturnBeerDetails()
         {
             //Arrange 
             int id = 1;
@@ -136,19 +137,19 @@ namespace ert_beer.test.Services
             //ACT
             var actualResult = Service.GetBeerById(id);
 
-            // ASSERT           
+            //ASSERT           
             Assert.IsNotNull(actualResult);
             Assert.AreEqual(actualResult.ToList()[0].Id, 1);
         }
 
         [TestMethod]
-        public void GetLastPageIndex()
+        public void GetLastPageIndex_WhenFetchingBeers_ThenReturnLastPageIndex()
         {
             //Arrange
             string expectedResults = "33";
             _mockconfiguration.SetupGet(x => x[It.Is<string>(s => s == "BeerApi:LastPageIndex")]).Returns(expectedResults);
 
-            // ACT
+            //ACT
             var service = CreateBeerService();
             var actualResult = service.GetLastPageIndex();
 
