@@ -47,7 +47,7 @@ namespace ert_beer.test.Services
         }
 
         [TestMethod]
-        public void GeAlltBeers_WhenFetchingAllBeers_ThenReturnAllBeers()
+        public void GeAllBeers_WhenFetchingAllBeers_ThenReturnAllBeers()
         {
             //Arrange          
             _mockhandlerMock
@@ -78,7 +78,7 @@ namespace ert_beer.test.Services
             Assert.AreEqual(actualResult.ToList().Count(), 2);
         }
         [TestMethod]
-        public void GeAlltBeers_WhenFetchingAllBeersBySearchName_ThenReturnAllBeers() 
+        public void GeAllBeers_WhenFetchingAllBeersBySearchName_ThenReturnAllBeers() 
         {
             //Arrange 
             string beerName = "india";

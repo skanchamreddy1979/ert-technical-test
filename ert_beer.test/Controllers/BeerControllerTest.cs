@@ -56,7 +56,7 @@ namespace ert_beer.test.Services
         }
 
         [TestMethod]
-        public void GeAlltBeers_WhenFetchingAllBeers_ThenReturnAllBeers()
+        public void GeAllBeers_WhenFetchingAllBeers_ThenReturnAllBeers()
         {
             //Arrange 
             int pagenumber = 1; int lastPage = 33;
@@ -78,7 +78,7 @@ namespace ert_beer.test.Services
         }
 
         [TestMethod]
-        public void GeAlltBeers_WhenFetchingAllBeersBySearchName_ThenReturnAllBeers()
+        public void GeAllBeers_WhenFetchingAllBeersBySearchName_ThenReturnAllBeers()
         {
             //Arrange           
             int pagenumber =1,  lastPage = 33; string name = "Buzz"; var expectedResults = from list in expectedResult where list.Name == name select list;
