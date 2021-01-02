@@ -27,7 +27,7 @@ namespace ERT.BusinessServices
         }
         public IEnumerable<BeerModel> GetAllBeers(string beerName = null, int pageNumber = 1)
         {
-            apiBaseUrl = configuration["BeerApi:apiUrl"] + "page=" + pageNumber + "&per_page=" + PerPageCount;
+            apiBaseUrl = apiBaseUrl + "page=" + pageNumber + "&per_page=" + PerPageCount;
 
             if (!string.IsNullOrEmpty(beerName))
             {

@@ -20,7 +20,7 @@ namespace ert_beer.test.Services
         private MockRepository _mockRepository;
         private Mock<IBeerService> _mockBeerService;
         private IEnumerable<BeerModel> expectedResult = new List<BeerModel>();
-
+        int pagenumber = 1;
         [TestInitialize]
         public void TestInitialize()
         {
@@ -59,7 +59,7 @@ namespace ert_beer.test.Services
         public void GeAllBeers_WhenFetchingAllBeers_ThenReturnAllBeers()
         {
             //Arrange 
-            int pagenumber = 1; int lastPage = 33;
+            int lastPage = 33;
 
             _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(expectedResult);
@@ -78,10 +78,10 @@ namespace ert_beer.test.Services
         }
 
         [TestMethod]
-        public void GeAllBeers_WhenFetchingAllBeersBySearchName_ThenReturnAllBeers()
+        public void GeAllBeers_WhenSearchingAllBeersByName_ThenReturnAllBeers()
         {
             //Arrange           
-            int pagenumber =1,  lastPage = 33; string name = "Buzz"; var expectedResults = from list in expectedResult where list.Name == name select list;
+            int lastPage = 33; string name = "Buzz"; var expectedResults = from list in expectedResult where list.Name.Contains(name) select list;
 
             _mockBeerService.Setup(beerService => beerService.GetAllBeers(It.IsAny<string>(), It.IsAny<int>()))
                 .Returns(expectedResults);

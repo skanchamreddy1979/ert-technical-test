@@ -78,7 +78,7 @@ namespace ert_beer.test.Services
             Assert.AreEqual(actualResult.ToList().Count(), 2);
         }
         [TestMethod]
-        public void GeAllBeers_WhenFetchingAllBeersBySearchName_ThenReturnAllBeers() 
+        public void GeAllBeers_WhenSearchingAllBeersByName_ThenReturnAllBeers() 
         {
             //Arrange 
             string beerName = "india";
